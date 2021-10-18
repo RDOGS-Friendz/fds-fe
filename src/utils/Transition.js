@@ -1,15 +1,16 @@
+/* eslint-disable */
 import React, { useRef, useEffect, useContext } from 'react';
 import { CSSTransition as ReactCSSTransition } from 'react-transition-group';
 
 const TransitionContext = React.createContext({
   parent: {},
-})
+});
 
 function useIsInitialRender() {
   const isInitialRender = useRef(true);
   useEffect(() => {
     isInitialRender.current = false;
-  }, [])
+  }, []);
   return isInitialRender.current;
 }
 
@@ -36,11 +37,11 @@ function CSSTransition({
   const removeFromDom = unmountOnExit;
 
   function addClasses(node, classes) {
-    classes.length && node.classList.add(...classes);
+    classes.length && node.classList.add(...classes); // eslint-disable-line
   }
 
   function removeClasses(node, classes) {
-    classes.length && node.classList.remove(...classes);
+    classes.length && node.classList.remove(...classes); // eslint-disable-line
   }
 
   const nodeRef = React.useRef(null);
@@ -53,34 +54,34 @@ function CSSTransition({
       unmountOnExit={removeFromDom}
       in={show}
       addEndListener={(done) => {
-        nodeRef.current.addEventListener('transitionend', done, false)
+        nodeRef.current.addEventListener('transitionend', done, false);
       }}
       onEnter={() => {
         if (!removeFromDom) nodeRef.current.style.display = null;
-        addClasses(nodeRef.current, [...enterClasses, ...enterStartClasses])
+        addClasses(nodeRef.current, [...enterClasses, ...enterStartClasses]);
       }}
       onEntering={() => {
-        removeClasses(nodeRef.current, enterStartClasses)
-        addClasses(nodeRef.current, enterEndClasses)
+        removeClasses(nodeRef.current, enterStartClasses);
+        addClasses(nodeRef.current, enterEndClasses);
       }}
       onEntered={() => {
-        removeClasses(nodeRef.current, [...enterEndClasses, ...enterClasses])
+        removeClasses(nodeRef.current, [...enterEndClasses, ...enterClasses]);
       }}
       onExit={() => {
-        addClasses(nodeRef.current, [...leaveClasses, ...leaveStartClasses])
+        addClasses(nodeRef.current, [...leaveClasses, ...leaveStartClasses]);
       }}
       onExiting={() => {
-        removeClasses(nodeRef.current, leaveStartClasses)
-        addClasses(nodeRef.current, leaveEndClasses)
+        removeClasses(nodeRef.current, leaveStartClasses);
+        addClasses(nodeRef.current, leaveEndClasses);
       }}
       onExited={() => {
-        removeClasses(nodeRef.current, [...leaveEndClasses, ...leaveClasses])
+        removeClasses(nodeRef.current, [...leaveEndClasses, ...leaveClasses]);
         if (!removeFromDom) nodeRef.current.style.display = 'none';
       }}
     >
-      <Component ref={nodeRef} {...rest} style={{ display: !removeFromDom ? 'none': null }}>{children}</Component>
+      <Component ref={nodeRef} {...rest} style={{ display: !removeFromDom ? 'none' : null }}>{children}</Component>
     </ReactCSSTransition>
-  )
+  );
 }
 
 function Transition({ show, appear, ...rest }) {
@@ -95,7 +96,7 @@ function Transition({ show, appear, ...rest }) {
         show={parent.show}
         {...rest}
       />
-    )
+    );
   }
 
   return (
@@ -110,7 +111,7 @@ function Transition({ show, appear, ...rest }) {
     >
       <CSSTransition appear={appear} show={show} {...rest} />
     </TransitionContext.Provider>
-  )
+  );
 }
 
 export default Transition;

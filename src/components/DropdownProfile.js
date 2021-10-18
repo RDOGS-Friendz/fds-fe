@@ -5,9 +5,8 @@ import Transition from '../utils/Transition';
 import UserAvatar from '../images/user-avatar-32.png';
 
 function DropdownProfile({
-  align
+  align,
 }) {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -37,6 +36,7 @@ function DropdownProfile({
   return (
     <div className="relative inline-flex">
       <button
+        type="button"
         ref={trigger}
         className="inline-flex justify-center items-center group"
         aria-haspopup="true"
@@ -94,7 +94,7 @@ function DropdownProfile({
         </div>
       </Transition>
     </div>
-  )
+  );
 }
 
 export default DropdownProfile;

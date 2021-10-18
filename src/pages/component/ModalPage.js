@@ -12,22 +12,21 @@ import AnnouncementIcon from '../../images/announcement-icon.svg';
 import ModalImage from '../../images/modal-image.jpg';
 
 function ModalPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [basicModalOpen, setBasicModalOpen] = useState(false);
-  const [scrollbarModalOpen, setScrollbarModalOpen] = useState(false)
-  const [cookiesModalOpen, setCookiesModalOpen] = useState(false)
-  const [successModalOpen, setSuccessModalOpen] = useState(false)
-  const [dangerModalOpen, setDangerModalOpen] = useState(false)
-  const [infoModalOpen, setInfoModalOpen] = useState(false)
-  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
-  const [newsletterModalOpen, setNewsletterModalOpen] = useState(false)
-  const [announcementModalOpen, setAnnouncementModalOpen] = useState(false)
-  const [integrationModalOpen, setIntegrationModalOpen] = useState(false)
-  const [newsModalOpen, setNewsModalOpen] = useState(false)
-  const [planModalOpen, setPlanModalOpen] = useState(false)
-  const [searchModalOpen, setSearchModalOpen] = useState(false)
+  const [scrollbarModalOpen, setScrollbarModalOpen] = useState(false);
+  const [cookiesModalOpen, setCookiesModalOpen] = useState(false);
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
+  const [dangerModalOpen, setDangerModalOpen] = useState(false);
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
+  const [feedbackModalOpen, setFeedbackModalOpen] = useState(false);
+  const [newsletterModalOpen, setNewsletterModalOpen] = useState(false);
+  const [announcementModalOpen, setAnnouncementModalOpen] = useState(false);
+  const [integrationModalOpen, setIntegrationModalOpen] = useState(false);
+  const [newsModalOpen, setNewsModalOpen] = useState(false);
+  const [planModalOpen, setPlanModalOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -53,7 +52,7 @@ function ModalPage() {
 
               {/* Components */}
               <div className="space-y-8 mt-8">
-              
+
                 {/* Basic */}
                 <div>
                   <h2 className="text-2xl text-gray-800 font-bold mb-6">Basic</h2>
@@ -62,7 +61,7 @@ function ModalPage() {
                     {/* Basic Modal */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="basic-modal" onClick={(e) => { e.stopPropagation(); setBasicModalOpen(true); }}>Basic Modal</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="basic-modal" onClick={(e) => { e.stopPropagation(); setBasicModalOpen(true); }}>Basic Modal</button>
                       <ModalBasic id="basic-modal" modalOpen={basicModalOpen} setModalOpen={setBasicModalOpen} title="Basic Modal">
                         {/* Modal content */}
                         <div className="px-5 pt-4 pb-1">
@@ -77,19 +76,18 @@ function ModalPage() {
                         {/* Modal footer */}
                         <div className="px-5 py-4">
                           <div className="flex flex-wrap justify-end space-x-2">
-                            <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setBasicModalOpen(false); }}>Close</button>
-                            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">I Understand</button>
+                            <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setBasicModalOpen(false); }}>Close</button>
+                            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">I Understand</button>
                           </div>
                         </div>
                       </ModalBasic>
                       {/* End */}
                     </div>
 
-
                     {/* Modal w/ Scroll Bar */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="scrollbar-modal" onClick={(e) => { e.stopPropagation(); setScrollbarModalOpen(true); }}>Modal w/ Scroll Bar</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="scrollbar-modal" onClick={(e) => { e.stopPropagation(); setScrollbarModalOpen(true); }}>Modal w/ Scroll Bar</button>
                       <ModalBasic id="scrollbar-modal" modalOpen={scrollbarModalOpen} setModalOpen={setScrollbarModalOpen} title="Modal w/ Scroll Bar">
                         {/* Modal content */}
                         <div className="px-5 py-4">
@@ -108,8 +106,8 @@ function ModalPage() {
                         {/* Modal footer */}
                         <div className="sticky bottom-0 px-5 py-4 bg-white border-t border-gray-200">
                           <div className="flex flex-wrap justify-end space-x-2">
-                            <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setScrollbarModalOpen(false); }}>Close</button>
-                            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">I Understand</button>
+                            <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setScrollbarModalOpen(false); }}>Close</button>
+                            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">I Understand</button>
                           </div>
                         </div>
                       </ModalBasic>
@@ -119,7 +117,7 @@ function ModalPage() {
                     {/* Cookies */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="cookies-modal" onClick={(e) => { e.stopPropagation(); setCookiesModalOpen(true); }}>Cookies</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="cookies-modal" onClick={(e) => { e.stopPropagation(); setCookiesModalOpen(true); }}>Cookies</button>
                       <ModalCookies id="cookies-modal" modalOpen={cookiesModalOpen} setModalOpen={setCookiesModalOpen} title="We use cookies 🍪">
                         {/* Modal content */}
                         <div className="text-sm mb-5">
@@ -130,13 +128,13 @@ function ModalPage() {
                         </div>
                         {/* Modal footer */}
                         <div className="flex flex-wrap justify-end space-x-2">
-                          <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setCookiesModalOpen(false); }}>Decline</button>
-                          <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={(e) => { e.stopPropagation(); setCookiesModalOpen(false); }}>I Accept</button>
+                          <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setCookiesModalOpen(false); }}>Decline</button>
+                          <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={(e) => { e.stopPropagation(); setCookiesModalOpen(false); }}>I Accept</button>
                         </div>
                       </ModalCookies>
                       {/* End */}
-                    </div>                  
-                    
+                    </div>
+
                   </div>
                 </div>
 
@@ -148,7 +146,7 @@ function ModalPage() {
                     {/* Success Modal */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="success-modal" onClick={(e) => { e.stopPropagation(); setSuccessModalOpen(true); }}>Success Modal</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="success-modal" onClick={(e) => { e.stopPropagation(); setSuccessModalOpen(true); }}>Success Modal</button>
                       <ModalBlank id="success-modal" modalOpen={successModalOpen} setModalOpen={setSuccessModalOpen}>
                         <div className="p-5 flex space-x-4">
                           {/* Icon */}
@@ -171,8 +169,8 @@ function ModalPage() {
                             </div>
                             {/* Modal footer */}
                             <div className="flex flex-wrap justify-end space-x-2">
-                              <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setSuccessModalOpen(false); }}>Cancel</button>
-                              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Yes, Upgrade it</button>
+                              <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setSuccessModalOpen(false); }}>Cancel</button>
+                              <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Yes, Upgrade it</button>
                             </div>
                           </div>
                         </div>
@@ -183,7 +181,7 @@ function ModalPage() {
                     {/* Danger Modal */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="danger-modal" onClick={(e) => { e.stopPropagation(); setDangerModalOpen(true); }}>Danger Modal</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="danger-modal" onClick={(e) => { e.stopPropagation(); setDangerModalOpen(true); }}>Danger Modal</button>
                       <ModalBlank id="danger-modal" modalOpen={dangerModalOpen} setModalOpen={setDangerModalOpen}>
                         <div className="p-5 flex space-x-4">
                           {/* Icon */}
@@ -206,8 +204,8 @@ function ModalPage() {
                             </div>
                             {/* Modal footer */}
                             <div className="flex flex-wrap justify-end space-x-2">
-                              <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setDangerModalOpen(false); }}>Cancel</button>
-                              <button className="btn-sm bg-red-500 hover:bg-red-600 text-white">Yes, Delete it</button>
+                              <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setDangerModalOpen(false); }}>Cancel</button>
+                              <button type="button" className="btn-sm bg-red-500 hover:bg-red-600 text-white">Yes, Delete it</button>
                             </div>
                           </div>
                         </div>
@@ -218,7 +216,7 @@ function ModalPage() {
                     {/* Info Modal */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="info-modal" onClick={(e) => { e.stopPropagation(); setInfoModalOpen(true); }}>Info Modal</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="info-modal" onClick={(e) => { e.stopPropagation(); setInfoModalOpen(true); }}>Info Modal</button>
                       <ModalBlank id="info-modal" modalOpen={infoModalOpen} setModalOpen={setInfoModalOpen}>
                         <div className="p-5 flex space-x-4">
                           {/* Icon */}
@@ -241,18 +239,18 @@ function ModalPage() {
                             </div>
                             {/* Modal footer */}
                             <div className="flex flex-wrap justify-end space-x-2">
-                              <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setInfoModalOpen(false); }}>Cancel</button>
-                              <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Yes, Create it</button>
+                              <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setInfoModalOpen(false); }}>Cancel</button>
+                              <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Yes, Create it</button>
                             </div>
                           </div>
                         </div>
                       </ModalBlank>
                       {/* End */}
-                    </div>                                    
-                    
+                    </div>
+
                   </div>
                 </div>
-                
+
                 {/* Product */}
                 <div>
                   <h2 className="text-2xl text-gray-800 font-bold mb-6">Product</h2>
@@ -261,7 +259,7 @@ function ModalPage() {
                     {/* Send Feedback */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="feedback-modal" onClick={(e) => { e.stopPropagation(); setFeedbackModalOpen(true); }}>Send Feedback</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="feedback-modal" onClick={(e) => { e.stopPropagation(); setFeedbackModalOpen(true); }}>Send Feedback</button>
                       <ModalBasic id="feedback-modal" modalOpen={feedbackModalOpen} setModalOpen={setFeedbackModalOpen} title="Send Feedback">
                         {/* Modal content */}
                         <div className="px-5 py-4">
@@ -270,24 +268,33 @@ function ModalPage() {
                           </div>
                           <div className="space-y-3">
                             <div>
-                              <label className="block text-sm font-medium mb-1" htmlFor="name">Name <span className="text-red-500">*</span></label>
+                              <label className="block text-sm font-medium mb-1" htmlFor="name">
+                                Name
+                                <span className="text-red-500">*</span>
+                              </label>
                               <input id="name" className="form-input w-full px-2 py-1" type="text" required />
                             </div>
                             <div>
-                              <label className="block text-sm font-medium mb-1" htmlFor="email">Email <span className="text-red-500">*</span></label>
+                              <label className="block text-sm font-medium mb-1" htmlFor="email">
+                                Email
+                                <span className="text-red-500">*</span>
+                              </label>
                               <input id="email" className="form-input w-full px-2 py-1" type="email" required />
                             </div>
                             <div>
-                              <label className="block text-sm font-medium mb-1" htmlFor="feedback">Message <span className="text-red-500">*</span></label>
-                              <textarea id="feedback" className="form-textarea w-full px-2 py-1" rows="4" required></textarea>
+                              <label className="block text-sm font-medium mb-1" htmlFor="feedback">
+                                Message
+                                <span className="text-red-500">*</span>
+                              </label>
+                              <textarea id="feedback" className="form-textarea w-full px-2 py-1" rows="4" required />
                             </div>
                           </div>
                         </div>
                         {/* Modal footer */}
                         <div className="px-5 py-4 border-t border-gray-200">
                           <div className="flex flex-wrap justify-end space-x-2">
-                            <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setFeedbackModalOpen(false); }}>Cancel</button>
-                            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Send</button>
+                            <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setFeedbackModalOpen(false); }}>Cancel</button>
+                            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Send</button>
                           </div>
                         </div>
                       </ModalBasic>
@@ -297,7 +304,7 @@ function ModalPage() {
                     {/* Newsletter */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="newsletter-modal" onClick={(e) => { e.stopPropagation(); setNewsletterModalOpen(true); }}>Newsletter</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="newsletter-modal" onClick={(e) => { e.stopPropagation(); setNewsletterModalOpen(true); }}>Newsletter</button>
                       <ModalAction id="newsletter-modal" modalOpen={newsletterModalOpen} setModalOpen={setNewsletterModalOpen}>
                         {/* Modal header */}
                         <div className="mb-2 text-center">
@@ -335,7 +342,7 @@ function ModalPage() {
                     {/* Announcement */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="announcement-modal" onClick={(e) => { e.stopPropagation(); setAnnouncementModalOpen(true); }}>Announcement</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="announcement-modal" onClick={(e) => { e.stopPropagation(); setAnnouncementModalOpen(true); }}>Announcement</button>
                       <ModalAction id="announcement-modal" modalOpen={announcementModalOpen} setModalOpen={setAnnouncementModalOpen}>
                         {/* Modal header */}
                         <div className="mb-2 text-center">
@@ -352,7 +359,7 @@ function ModalPage() {
                           </div>
                           {/* CTAs */}
                           <div className="space-y-3">
-                            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Claim your Reward -&gt;</button>
+                            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Claim your Reward -&gt;</button>
                             <div>
                               <a className="font-medium text-sm text-indigo-500 hover:text-indigo-600" href="#0" onClick={(e) => { e.preventDefault(); setAnnouncementModalOpen(true); }}>Not Now!</a>
                             </div>
@@ -360,12 +367,12 @@ function ModalPage() {
                         </div>
                       </ModalAction>
                       {/* End */}
-                    </div> 
+                    </div>
 
                     {/* Integration */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="integration-modal" onClick={(e) => { e.stopPropagation(); setIntegrationModalOpen(true); }}>Integration</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="integration-modal" onClick={(e) => { e.stopPropagation(); setIntegrationModalOpen(true); }}>Integration</button>
                       <ModalAction id="integration-modal" modalOpen={integrationModalOpen} setModalOpen={setIntegrationModalOpen}>
                         {/* Modal header */}
                         <div className="mb-5 text-center">
@@ -430,26 +437,30 @@ function ModalPage() {
                               <div>Suspendisse faucibus interdum</div>
                             </li>
                           </ul>
-                          <div className="text-xs text-gray-500">By clicking on Allow access, you authorize Mosaic to use your information in accordance with its <a className="text-indigo-500 hover:text-indigo-600" href="#0">Privacy Policy</a>. You can stop it at any time on the integrations page of your Mosaic account.</div>
+                          <div className="text-xs text-gray-500">
+                            By clicking on Allow access, you authorize Mosaic to use your information in accordance with its
+                            <a className="text-indigo-500 hover:text-indigo-600" href="#0">Privacy Policy</a>
+                            . You can stop it at any time on the integrations page of your Mosaic account.
+                          </div>
                         </div>
                         {/* Modal footer */}
                         <div className="flex flex-wrap justify-end space-x-2">
-                          <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setIntegrationModalOpen(false); }}>Cancel</button>
-                          <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Allow Access</button>
+                          <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setIntegrationModalOpen(false); }}>Cancel</button>
+                          <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Allow Access</button>
                         </div>
                       </ModalAction>
                       {/* End */}
                     </div>
-                    
+
                     {/* What's New */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="news-modal" onClick={(e) => { e.stopPropagation(); setNewsModalOpen(true); }}>What's New</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="news-modal" onClick={(e) => { e.stopPropagation(); setNewsModalOpen(true); }}>What&apos;s New</button>
                       <ModalBlank id="news-modal" modalOpen={newsModalOpen} setModalOpen={setNewsModalOpen}>
                         <div className="relative">
                           <img className="w-full" src={ModalImage} width="460" height="200" alt="New on Mosaic" />
                           {/* Close button */}
-                          <button className="absolute top-0 right-0 mt-5 mr-5 text-gray-50 hover:text-white" onClick={(e) => { e.stopPropagation(); setNewsModalOpen(false); }}>
+                          <button type="button" className="absolute top-0 right-0 mt-5 mr-5 text-gray-50 hover:text-white" onClick={(e) => { e.stopPropagation(); setNewsModalOpen(false); }}>
                             <div className="sr-only">Close</div>
                             <svg className="w-4 h-4 fill-current">
                               <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />
@@ -473,17 +484,17 @@ function ModalPage() {
                           </div>
                           {/* Modal footer */}
                           <div className="flex flex-wrap justify-end space-x-2">
-                            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={(e) => { e.stopPropagation(); setNewsModalOpen(false); }}>Cool, I Got it</button>
+                            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={(e) => { e.stopPropagation(); setNewsModalOpen(false); }}>Cool, I Got it</button>
                           </div>
-                        </div>                      
+                        </div>
                       </ModalBlank>
                       {/* End */}
                     </div>
-                    
+
                     {/* Change your Plan */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="feedback-modal" onClick={(e) => { e.stopPropagation(); setPlanModalOpen(true); }}>Change your Plan</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="feedback-modal" onClick={(e) => { e.stopPropagation(); setPlanModalOpen(true); }}>Change your Plan</button>
                       <ModalBasic id="feedback-modal" modalOpen={planModalOpen} setModalOpen={setPlanModalOpen} title="Change your Plan">
                         {/* Modal content */}
                         <div className="px-5 pt-4 pb-1">
@@ -492,13 +503,19 @@ function ModalPage() {
                             {/* Options */}
                             <ul className="space-y-2 mb-4">
                               <li>
-                                <button className="w-full h-full text-left py-3 px-4 rounded bg-white border-2 border-indigo-500 shadow-sm duration-150 ease-in-out">
+                                <button type="button" className="w-full h-full text-left py-3 px-4 rounded bg-white border-2 border-indigo-500 shadow-sm duration-150 ease-in-out">
                                   <div className="flex items-center">
-                                    <div className="w-4 h-4 border-4 border-indigo-500 rounded-full mr-3"></div>
+                                    <div className="w-4 h-4 border-4 border-indigo-500 rounded-full mr-3" />
                                     <div className="flex-grow">
                                       <div className="flex flex-wrap items-center justify-between mb-0.5">
-                                        <span className="font-medium text-gray-800">Mosaic Light <span className="text-xs italic text-gray-500 align-top">Current Plan</span></span>
-                                        <span><span className="font-medium text-green-600">$39.00</span>/mo</span>
+                                        <span className="font-medium text-gray-800">
+                                          Mosaic Light
+                                          <span className="text-xs italic text-gray-500 align-top">Current Plan</span>
+                                        </span>
+                                        <span>
+                                          <span className="font-medium text-green-600">$39.00</span>
+                                          /mo
+                                        </span>
                                       </div>
                                       <div className="text-sm">2 MB · 1 member · 500 block limits</div>
                                     </div>
@@ -506,13 +523,19 @@ function ModalPage() {
                                 </button>
                               </li>
                               <li>
-                                <button className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
+                                <button type="button" className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
                                   <div className="flex items-center">
-                                    <div className="w-4 h-4 border-2 border-gray-300 rounded-full mr-3"></div>
+                                    <div className="w-4 h-4 border-2 border-gray-300 rounded-full mr-3" />
                                     <div className="flex-grow">
                                       <div className="flex flex-wrap items-center justify-between mb-0.5">
-                                        <span className="font-semibold text-gray-800">Mosaic Basic <span className="text-xs italic text-indigo-500 align-top">Best Value ✨</span></span>
-                                        <span><span className="font-medium text-green-600">$59.00</span>/mo</span>
+                                        <span className="font-semibold text-gray-800">
+                                          Mosaic Basic
+                                          <span className="text-xs italic text-indigo-500 align-top">Best Value ✨</span>
+                                        </span>
+                                        <span>
+                                          <span className="font-medium text-green-600">$59.00</span>
+                                          /mo
+                                        </span>
                                       </div>
                                       <div className="text-sm">5 MB · 2 members · 1000 block limits</div>
                                     </div>
@@ -520,13 +543,16 @@ function ModalPage() {
                                 </button>
                               </li>
                               <li>
-                                <button className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
+                                <button type="button" className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
                                   <div className="flex items-center">
-                                    <div className="w-4 h-4 border-2 border-gray-300 rounded-full mr-3"></div>
+                                    <div className="w-4 h-4 border-2 border-gray-300 rounded-full mr-3" />
                                     <div className="flex-grow">
                                       <div className="flex flex-wrap items-center justify-between mb-0.5">
                                         <span className="font-semibold text-gray-800">Mosaic Plus</span>
-                                        <span><span className="font-medium text-green-600">$79.00</span>/mo</span>
+                                        <span>
+                                          <span className="font-medium text-green-600">$79.00</span>
+                                          /mo
+                                        </span>
                                       </div>
                                       <div className="text-sm">10 MB · 5 members · Unlimited block limits</div>
                                     </div>
@@ -540,8 +566,8 @@ function ModalPage() {
                         {/* Modal footer */}
                         <div className="px-5 py-4">
                           <div className="flex flex-wrap justify-end space-x-2">
-                            <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setPlanModalOpen(false); }}>Cancel</button>
-                            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Change Plan</button>
+                            <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={(e) => { e.stopPropagation(); setPlanModalOpen(false); }}>Cancel</button>
+                            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Change Plan</button>
                           </div>
                         </div>
                       </ModalBasic>
@@ -551,11 +577,11 @@ function ModalPage() {
                     {/* Quick Find */}
                     <div className="m-1.5">
                       {/* Start */}
-                      <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="quick-find-modal" onClick={(e) => { e.stopPropagation(); setSearchModalOpen(true); }}>Quick Find</button>
+                      <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white" aria-controls="quick-find-modal" onClick={(e) => { e.stopPropagation(); setSearchModalOpen(true); }}>Quick Find</button>
                       <ModalSearch id="quick-find-modal" searchId="quick-find" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} />
                       {/* End */}
-                    </div>                  
-                    
+                    </div>
+
                   </div>
                 </div>
 

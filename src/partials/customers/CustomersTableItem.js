@@ -13,7 +13,7 @@ function CustomersTableItem(props) {
       </td>
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
         <div className="flex items-center relative">
-          <button>
+          <button type="button">
             <svg className={`w-4 h-4 flex-shrink-0 fill-current ${props.fav ? 'text-yellow-500' : 'text-gray-300'}`} viewBox="0 0 16 16">
               <path d="M8 0L6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934h-6L8 0z" />
             </svg>
@@ -48,7 +48,7 @@ function CustomersTableItem(props) {
       </td>
       <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
         {/* Menu button */}
-        <button className="text-gray-400 hover:text-gray-500 rounded-full">
+        <button type="button" className="text-gray-400 hover:text-gray-500 rounded-full">
           <span className="sr-only">Menu</span>
           <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32">
             <circle cx="16" cy="16" r="2" />

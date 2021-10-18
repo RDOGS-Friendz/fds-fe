@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Image from '../../images/user-avatar-80.png';
 
 function AccountPanel() {
-
   const [sync, setSync] = useState(false);
 
   return (
@@ -17,7 +16,7 @@ function AccountPanel() {
             <div className="mr-4">
               <img className="w-20 h-20 rounded-full" src={Image} width="80" height="80" alt="User upload" />
             </div>
-            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Change</button>
+            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Change</button>
           </div>
         </section>
         {/* Business Profile */}
@@ -48,15 +47,15 @@ function AccountPanel() {
               <label className="sr-only" htmlFor="email">Business email</label>
               <input id="email" className="form-input" type="email" />
             </div>
-            <button className="btn border-gray-200 hover:border-gray-300 shadow-sm text-indigo-500">Change</button>
+            <button type="button" className="btn border-gray-200 hover:border-gray-300 shadow-sm text-indigo-500">Change</button>
           </div>
         </section>
         {/* Password */}
         <section>
           <h2 className="text-xl leading-snug text-gray-800 font-bold mb-1">Password</h2>
-          <div className="text-sm">You can set a permanent password if you don't want to use temporary login codes.</div>
+          <div className="text-sm">You can set a permanent password if you don&apos;t want to use temporary login codes.</div>
           <div className="mt-5">
-            <button className="btn border-gray-200 shadow-sm text-indigo-500">Set New Password</button>
+            <button type="button" className="btn border-gray-200 shadow-sm text-indigo-500">Set New Password</button>
           </div>
         </section>
         {/* Smart Sync */}
@@ -67,7 +66,7 @@ function AccountPanel() {
             <div className="form-switch focus-within:outline-blue">
               <input type="checkbox" id="toggle" className="sr-only" checked={sync} onChange={() => setSync(!sync)} />
               <label className="bg-gray-400" htmlFor="toggle">
-                <span className="bg-white shadow-sm" aria-hidden="true"></span>
+                <span className="bg-white shadow-sm" aria-hidden="true" />
                 <span className="sr-only">Enable smart sync</span>
               </label>
             </div>
@@ -79,8 +78,8 @@ function AccountPanel() {
       <footer>
         <div className="flex flex-col px-6 py-5 border-t border-gray-200">
           <div className="flex self-end">
-            <button className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
-            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
+            <button type="button" className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
+            <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
           </div>
         </div>
       </footer>

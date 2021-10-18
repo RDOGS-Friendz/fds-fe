@@ -6,7 +6,6 @@ import SettingsSidebar from '../../partials/settings/SettingsSidebar';
 import PlansPanel from '../../partials/settings/PlansPanel';
 
 function Plans() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

@@ -13,9 +13,8 @@ Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, T
 function LineChart04({
   data,
   width,
-  height
+  height,
 }) {
-
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ function LineChart04({
     // eslint-disable-next-line no-unused-vars
     const chart = new Chart(ctx, {
       type: 'line',
-      data: data,
+      data,
       options: {
         chartArea: {
           backgroundColor: tailwindConfig().theme.colors.gray[50],
@@ -71,7 +70,7 @@ function LineChart04({
   }, []);
 
   return (
-    <canvas ref={canvas} width={width} height={height}></canvas>
+    <canvas ref={canvas} width={width} height={height} />
   );
 }
 

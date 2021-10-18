@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+/* eslint-disable */
 
 function AccordionTableRichItem(props) {
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -30,6 +30,7 @@ function AccordionTableRichItem(props) {
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
           <div className="flex items-center">
             <button
+              type="button"
               className={`text-gray-400 hover:text-gray-500 transform ${open && 'rotate-180'}`}
               aria-expanded={open}
               onClick={() => setOpen(!open)}
@@ -55,7 +56,7 @@ function AccordionTableRichItem(props) {
               <div className="font-medium text-gray-800 mb-1">{props.descriptionTitle}</div>
               <div>{props.descriptionBody}</div>
             </div>
-            <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white">Approve</button>
+            <button type="button" className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white">Approve</button>
           </div>
         </td>
       </tr>

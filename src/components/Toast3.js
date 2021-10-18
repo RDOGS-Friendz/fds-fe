@@ -5,11 +5,10 @@ function Toast3({
   className,
   type,
   open,
-  setOpen
+  setOpen,
 }) {
-
-  const typeIcon = (type) => {
-    switch (type) {
+  const typeIcon = (t) => {
+    switch (t) {
       case 'warning':
         return (
           <svg className="w-4 h-4 flex-shrink-0 fill-current text-yellow-500 mt-[3px] mr-3" viewBox="0 0 16 16">
@@ -39,17 +38,18 @@ function Toast3({
 
   return (
     <>
-      {open &&
+      {open
+        && (
         <div className={className}>
           <div className="inline-flex min-w-80 px-4 py-2 rounded-sm text-sm bg-white shadow-lg border border-gray-200 text-gray-600">
             <div className="flex w-full justify-between items-start">
               <div className="flex">
                 {typeIcon(type)}
                 <div>
-                {children}
+                  {children}
                 </div>
               </div>
-              <button className="opacity-70 hover:opacity-80 ml-3 mt-[3px]" onClick={() => setOpen(false)}>
+              <button type="button" className="opacity-70 hover:opacity-80 ml-3 mt-[3px]" onClick={() => setOpen(false)}>
                 <div className="sr-only">Close</div>
                 <svg className="w-4 h-4 fill-current">
                   <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />
@@ -58,7 +58,7 @@ function Toast3({
             </div>
           </div>
         </div>
-      }
+        )}
     </>
   );
 }

@@ -19,7 +19,7 @@ function AnalyticsCard07() {
             <ul className="space-y-1 text-sm text-gray-800 mt-3 mb-4">
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '82%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '82%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇨🇮 Ireland</div>
                   <div className="font-medium">4.2K</div>
@@ -27,7 +27,7 @@ function AnalyticsCard07() {
               </li>
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '70%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '70%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇺🇸 United States</div>
                   <div className="font-medium">3.4K</div>
@@ -35,7 +35,7 @@ function AnalyticsCard07() {
               </li>
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '60%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '60%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇩🇪 Germany</div>
                   <div className="font-medium">1.6k</div>
@@ -43,7 +43,7 @@ function AnalyticsCard07() {
               </li>
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '44%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '44%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇮🇹 Italy</div>
                   <div className="font-medium">1.2k</div>
@@ -51,7 +51,7 @@ function AnalyticsCard07() {
               </li>
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '40%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '40%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇬🇧 United Kingdom</div>
                   <div className="font-medium">912</div>
@@ -59,7 +59,7 @@ function AnalyticsCard07() {
               </li>
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '30%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '30%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇫🇷 France</div>
                   <div className="font-medium">677</div>
@@ -67,7 +67,7 @@ function AnalyticsCard07() {
               </li>
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '22%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '22%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇮🇳 India</div>
                   <div className="font-medium">449</div>
@@ -75,7 +75,7 @@ function AnalyticsCard07() {
               </li>
               {/* Item */}
               <li className="relative px-2 py-1">
-                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{width: '12%'}}></div>
+                <div className="absolute inset-0 bg-light-blue-100" aria-hidden="true" style={{ width: '12%' }} />
                 <div className="relative flex justify-between space-x-2">
                   <div>🇸🇬 Singapore</div>
                   <div className="font-medium">269</div>

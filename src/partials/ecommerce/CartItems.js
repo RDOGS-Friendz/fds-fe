@@ -26,31 +26,31 @@ function CartItems() {
                 <div className="flex items-center space-x-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
-                    <button>
+                    <button type="button">
                       <span className="sr-only">1 star</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">2 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">3 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">4 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">5 stars</span>
                       <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -66,7 +66,7 @@ function CartItems() {
                   <div className="inline-flex text-sm font-medium bg-green-100 text-green-600 rounded-full text-center px-2 py-0.5">$89.00</div>
                 </div>
               </div>
-              <button className="text-sm underline hover:no-underline">Remove</button>
+              <button type="button" className="text-sm underline hover:no-underline">Remove</button>
             </div>
           </div>
         </li>
@@ -88,31 +88,31 @@ function CartItems() {
                 <div className="flex items-center space-x-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
-                    <button>
+                    <button type="button">
                       <span className="sr-only">1 star</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">2 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">3 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">4 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">5 stars</span>
                       <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -128,7 +128,7 @@ function CartItems() {
                   <div className="inline-flex text-sm font-medium bg-green-100 text-green-600 rounded-full text-center px-2 py-0.5">$89.00</div>
                 </div>
               </div>
-              <button className="text-sm underline hover:no-underline">Remove</button>
+              <button type="button" className="text-sm underline hover:no-underline">Remove</button>
             </div>
           </div>
         </li>
@@ -150,31 +150,31 @@ function CartItems() {
                 <div className="flex items-center space-x-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
-                    <button>
+                    <button type="button">
                       <span className="sr-only">1 star</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">2 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">3 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">4 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">5 stars</span>
                       <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -190,7 +190,7 @@ function CartItems() {
                   <div className="inline-flex text-sm font-medium bg-green-100 text-green-600 rounded-full text-center px-2 py-0.5">$89.00</div>
                 </div>
               </div>
-              <button className="text-sm underline hover:no-underline">Remove</button>
+              <button type="button" className="text-sm underline hover:no-underline">Remove</button>
             </div>
           </div>
         </li>

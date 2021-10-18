@@ -5,7 +5,6 @@ import Header from '../../partials/Header';
 import Tooltip from '../../components/Tooltip';
 
 function FormPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [toggle1, setToggle1] = useState(true);
@@ -68,7 +67,10 @@ function FormPage() {
                     <div>
                       {/* Start */}
                       <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="mandatory">Mandatory <span className="text-red-500">*</span></label>
+                        <label className="block text-sm font-medium mb-1" htmlFor="mandatory">
+                          Mandatory
+                          <span className="text-red-500">*</span>
+                        </label>
                         <input id="mandatory" className="form-input w-full" type="text" required />
                       </div>
                       {/* End */}
@@ -211,7 +213,10 @@ function FormPage() {
                       {/* Start */}
                       <div>
                         <div>
-                          <label className="block text-sm font-medium mb-1" htmlFor="error">Error <span className="text-red-500">*</span></label>
+                          <label className="block text-sm font-medium mb-1" htmlFor="error">
+                            Error
+                            <span className="text-red-500">*</span>
+                          </label>
                           <input id="error" className="form-input w-full border-red-300" type="text" />
                         </div>
                         <div className="text-xs mt-1 text-red-500">This field is required!</div>
@@ -223,7 +228,10 @@ function FormPage() {
                       {/* Start */}
                       <div>
                         <div>
-                          <label className="block text-sm font-medium mb-1" htmlFor="success">Success <span className="text-red-500">*</span></label>
+                          <label className="block text-sm font-medium mb-1" htmlFor="success">
+                            Success
+                            <span className="text-red-500">*</span>
+                          </label>
                           <input id="success" className="form-input w-full border-green-300" type="text" />
                         </div>
                         <div className="text-xs mt-1 text-green-500">Sounds good!</div>
@@ -326,7 +334,7 @@ function FormPage() {
                         <div className="form-switch focus-within:outline-blue">
                           <input type="checkbox" id="switch-1" className="sr-only" checked={toggle1} onChange={() => setToggle1(!toggle1)} />
                           <label className="bg-gray-400" htmlFor="switch-1">
-                            <span className="bg-white shadow-sm" aria-hidden="true"></span>
+                            <span className="bg-white shadow-sm" aria-hidden="true" />
                             <span className="sr-only">Switch label</span>
                           </label>
                         </div>
@@ -341,7 +349,7 @@ function FormPage() {
                         <div className="form-switch focus-within:outline-blue">
                           <input type="checkbox" id="switch-2" className="sr-only" checked={toggle2} onChange={() => setToggle2(!toggle2)} />
                           <label className="bg-gray-400" htmlFor="switch-2">
-                            <span className="bg-white shadow-sm" aria-hidden="true"></span>
+                            <span className="bg-white shadow-sm" aria-hidden="true" />
                             <span className="sr-only">Switch label</span>
                           </label>
                         </div>
@@ -356,7 +364,7 @@ function FormPage() {
                         <div className="form-switch focus-within:outline-blue">
                           <input type="checkbox" id="switch-3" className="sr-only" checked={toggle3} onChange={() => setToggle3(!toggle3)} disabled />
                           <label className="bg-gray-400" htmlFor="switch-3">
-                            <span className="bg-white shadow-sm" aria-hidden="true"></span>
+                            <span className="bg-white shadow-sm" aria-hidden="true" />
                             <span className="sr-only">Switch label</span>
                           </label>
                         </div>

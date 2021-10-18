@@ -6,7 +6,6 @@ import SettingsSidebar from '../../partials/settings/SettingsSidebar';
 import AppsPanel from '../../partials/settings/AppsPanel';
 
 function Apps() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

@@ -7,7 +7,7 @@ import AppImage04 from '../../images/applications-image-04.jpg';
 
 function ShopCards01() {
   return (
-    <React.Fragment>
+    <>
       {/* Card 1 */}
       <div className="col-span-full sm:col-span-6 xl:col-span-3 bg-white shadow-lg rounded-sm border border-gray-200 overflow-hidden">
         <div className="flex flex-col h-full">
@@ -27,31 +27,31 @@ function ShopCards01() {
                 <div className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
-                    <button>
+                    <button type="button">
                       <span className="sr-only">1 star</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">2 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">3 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">4 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">5 stars</span>
                       <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -121,31 +121,31 @@ function ShopCards01() {
                 <div className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
-                    <button>
+                    <button type="button">
                       <span className="sr-only">1 star</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">2 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">3 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">4 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">5 stars</span>
                       <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -215,31 +215,31 @@ function ShopCards01() {
                 <div className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
-                    <button>
+                    <button type="button">
                       <span className="sr-only">1 star</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">2 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">3 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">4 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">5 stars</span>
                       <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -309,31 +309,31 @@ function ShopCards01() {
                 <div className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
-                    <button>
+                    <button type="button">
                       <span className="sr-only">1 star</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">2 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">3 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">4 stars</span>
                       <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                       </svg>
                     </button>
-                    <button>
+                    <button type="button">
                       <span className="sr-only">5 stars</span>
                       <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                         <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -383,7 +383,7 @@ function ShopCards01() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

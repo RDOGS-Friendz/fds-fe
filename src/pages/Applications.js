@@ -17,7 +17,6 @@ import Image07 from '../images/applications-image-07.jpg';
 import Image08 from '../images/applications-image-08.jpg';
 
 function Applications() {
-
   const items01 = [
     {
       id: 0,
@@ -77,7 +76,7 @@ function Applications() {
       link: '#0',
       content: 'Master Digital Marketing Strategy, Social Media Marketing, Analytics & More!',
       price: '$89.00',
-      deal: '$199.00'
+      deal: '$199.00',
     },
     {
       id: 1,
@@ -86,7 +85,7 @@ function Applications() {
       link: '#0',
       content: 'Master Digital Marketing Strategy, Social Media Marketing, Analytics & More!',
       price: '$89.00',
-      deal: '$199.00'
+      deal: '$199.00',
     },
     {
       id: 2,
@@ -95,7 +94,7 @@ function Applications() {
       link: '#0',
       content: 'Master Digital Marketing Strategy, Social Media Marketing, Analytics & More!',
       price: '$89.00',
-      deal: '$199.00'
+      deal: '$199.00',
     },
     {
       id: 3,
@@ -104,7 +103,7 @@ function Applications() {
       link: '#0',
       content: 'Master Digital Marketing Strategy, Social Media Marketing, Analytics & More!',
       price: '$89.00',
-      deal: '$199.00'
+      deal: '$199.00',
     },
   ];
 
@@ -159,7 +158,7 @@ function Applications() {
               <form className="relative">
                 <label htmlFor="app-search" className="sr-only">Search</label>
                 <input id="app-search" className="form-input w-full pl-9 py-3 focus:border-gray-300" type="search" placeholder="Search…" />
-                <button className="absolute inset-0 right-auto group" type="submit" aria-label="Search">
+                <button type="button" className="absolute inset-0 right-auto group" type="submit" aria-label="Search">
                   <svg className="w-4 h-4 flex-shrink-0 fill-current text-gray-400 group-hover:text-gray-500 ml-3 mr-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
                     <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
@@ -196,24 +195,22 @@ function Applications() {
               <div className="mt-8">
                 <h2 className="text-xl text-gray-800 font-bold mb-5">Trending apps</h2>
                 <div className="grid grid-cols-12 gap-6">
-                {
-                  items01.map(item => {
-                    return (
-                      <ApplicationsCard01
-                        key={item.id}
-                        id={item.id}
-                        image={item.image}
-                        title={item.title}
-                        link={item.link}
-                        content={item.content}
-                        rating={item.rating}
-                        feat01={item.feat01}
-                        feat02={item.feat02}
-                        feat03={item.feat03}
-                        feat04={item.feat04}
-                      />
-                    )
-                  })
+                  {
+                  items01.map((item) => (
+                    <ApplicationsCard01
+                      key={item.id}
+                      id={item.id}
+                      image={item.image}
+                      title={item.title}
+                      link={item.link}
+                      content={item.content}
+                      rating={item.rating}
+                      feat01={item.feat01}
+                      feat02={item.feat02}
+                      feat03={item.feat03}
+                      feat04={item.feat04}
+                    />
+                  ))
                 }
                 </div>
               </div>
@@ -222,22 +219,20 @@ function Applications() {
               <div className="mt-8">
                 <h2 className="text-xl text-gray-800 font-bold mb-5">Premium but worth it</h2>
                 <div className="grid grid-cols-12 gap-6">
-                {
-                  items02.map(item => {
-                    return (
-                      <ApplicationsCard02
-                        key={item.id}
-                        id={item.id}
-                        image={item.image}
-                        title={item.title}
-                        link={item.link}
-                        content={item.content}
-                        rating={item.rating}
-                        price={item.price}
-                        deal={item.deal}
-                      />
-                    )
-                  })
+                  {
+                  items02.map((item) => (
+                    <ApplicationsCard02
+                      key={item.id}
+                      id={item.id}
+                      image={item.image}
+                      title={item.title}
+                      link={item.link}
+                      content={item.content}
+                      rating={item.rating}
+                      price={item.price}
+                      deal={item.deal}
+                    />
+                  ))
                 }
                 </div>
               </div>
@@ -246,18 +241,16 @@ function Applications() {
               <div className="mt-8">
                 <h2 className="text-xl text-gray-800 font-bold mb-5">Popular categories</h2>
                 <div className="grid grid-cols-12 gap-6">
-                {
-                  items03.map(item => {
-                    return (
-                      <ApplicationsCard03
-                        key={item.id}
-                        id={item.id}
-                        image={item.image}
-                        title={item.title}
-                        link={item.link}
-                      />
-                    )
-                  })
+                  {
+                  items03.map((item) => (
+                    <ApplicationsCard03
+                      key={item.id}
+                      id={item.id}
+                      image={item.image}
+                      title={item.title}
+                      link={item.link}
+                    />
+                  ))
                 }
                 </div>
               </div>

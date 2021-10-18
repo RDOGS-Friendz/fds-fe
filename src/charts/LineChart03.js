@@ -13,9 +13,8 @@ Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, T
 function LineChart03({
   data,
   width,
-  height
+  height,
 }) {
-
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ function LineChart03({
     // eslint-disable-next-line no-unused-vars
     const chart = new Chart(ctx, {
       type: 'line',
-      data: data,
+      data,
       options: {
         layout: {
           padding: 20,
@@ -81,7 +80,7 @@ function LineChart03({
   }, []);
 
   return (
-    <canvas ref={canvas} width={width} height={height}></canvas>
+    <canvas ref={canvas} width={width} height={height} />
   );
 }
 

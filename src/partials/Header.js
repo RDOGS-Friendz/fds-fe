@@ -7,10 +7,9 @@ import UserMenu from '../components/DropdownProfile';
 
 function Header({
   sidebarOpen,
-  setSidebarOpen
+  setSidebarOpen,
 }) {
-
-  const [searchModalOpen, setSearchModalOpen] = useState(false)
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   return (
     <header className="sticky top-0 bg-white border-b border-gray-200 z-30">
@@ -22,6 +21,7 @@ function Header({
 
             {/* Hamburger button */}
             <button
+              type="button"
               className="text-gray-500 hover:text-gray-600 lg:hidden"
               aria-controls="sidebar"
               aria-expanded={sidebarOpen}
@@ -40,6 +40,7 @@ function Header({
           {/* Header: Right side */}
           <div className="flex items-center space-x-3">
             <button
+              type="button"
               className={`w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition duration-150 rounded-full ml-3 ${searchModalOpen && 'bg-gray-200'}`}
               onClick={(e) => { e.stopPropagation(); setSearchModalOpen(true); }}
               aria-controls="search-modal"

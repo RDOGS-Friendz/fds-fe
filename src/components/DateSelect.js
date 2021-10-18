@@ -1,29 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function DateSelect() {
-
   const options = [
     {
       id: 0,
-      period: 'Today'
+      period: 'Today',
     },
     {
       id: 1,
-      period: 'Last 7 Days'
+      period: 'Last 7 Days',
     },
     {
       id: 2,
-      period: 'Last Month'
+      period: 'Last Month',
     },
     {
       id: 3,
-      period: 'Last 12 Months'
+      period: 'Last 12 Months',
     },
     {
       id: 4,
-      period: 'All Time'
-    }
+      period: 'All Time',
+    },
   ];
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -56,6 +55,7 @@ function DateSelect() {
   return (
     <div className="relative">
       <button
+        type="button"
         ref={trigger}
         className="btn justify-between min-w-44 bg-white border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-600"
         aria-label="Select date range"
@@ -91,21 +91,20 @@ function DateSelect() {
           onBlur={() => setDropdownOpen(false)}
         >
           {
-            options.map(option => {
-              return (
-                <button
-                  key={option.id}
-                  tabIndex="0"
-                  className={`flex items-center w-full hover:bg-gray-50 py-1 px-3 cursor-pointer ${option.id === selected && 'text-indigo-500'}`}
-                  onClick={() => { setSelected(option.id); setDropdownOpen(false); }}
-                >
-                  <svg className={`flex-shrink-0 mr-2 fill-current text-indigo-500 ${option.id !== selected && 'invisible'}`} width="12" height="9" viewBox="0 0 12 9">
-                    <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z" />
-                  </svg>
-                  <span>{option.period}</span>
-                </button>
-              )
-            })
+            options.map((option) => (
+              <button
+                type="button"
+                key={option.id}
+                tabIndex="0"
+                className={`flex items-center w-full hover:bg-gray-50 py-1 px-3 cursor-pointer ${option.id === selected && 'text-indigo-500'}`}
+                onClick={() => { setSelected(option.id); setDropdownOpen(false); }}
+              >
+                <svg className={`flex-shrink-0 mr-2 fill-current text-indigo-500 ${option.id !== selected && 'invisible'}`} width="12" height="9" viewBox="0 0 12 9">
+                  <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z" />
+                </svg>
+                <span>{option.period}</span>
+              </button>
+            ))
           }
         </div>
       </Transition>

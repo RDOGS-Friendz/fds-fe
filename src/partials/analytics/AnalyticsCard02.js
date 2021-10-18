@@ -1,12 +1,11 @@
 import React from 'react';
-import LineChart from '../../charts/LineChart04';
 import { Link } from 'react-router-dom';
+import LineChart from '../../charts/LineChart04';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function AnalyticsCard02() {
-
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',
@@ -53,7 +52,7 @@ function AnalyticsCard02() {
           <div className="flex items-center">
             {/* Red dot */}
             <div className="relative flex items-center justify-center w-4 h-4 rounded-full bg-red-100 mr-3" aria-hidden="true">
-              <div className="absolute w-1.5 h-1.5 rounded-full bg-red-500"></div>
+              <div className="absolute w-1.5 h-1.5 rounded-full bg-red-500" />
             </div>
             {/* Vistors number */}
             <div>
@@ -64,7 +63,7 @@ function AnalyticsCard02() {
         </div>
 
         {/* Chart built with Chart.js 3 */}
-        <div >
+        <div>
           {/* Change the height attribute to adjust the chart height */}
           <LineChart data={chartData} width={389} height={70} />
         </div>

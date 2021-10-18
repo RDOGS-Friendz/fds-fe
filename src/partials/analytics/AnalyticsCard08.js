@@ -5,7 +5,6 @@ import DoughnutChart from '../../charts/DoughnutChart';
 import { tailwindConfig } from '../../utils/Utils';
 
 function AnalyticsCard08() {
-
   const chartData = {
     labels: ['Desktop', 'Mobile', 'Tablet'],
     datasets: [
@@ -34,8 +33,8 @@ function AnalyticsCard08() {
       <header className="px-5 py-4 border-b border-gray-100">
         <h2 className="font-semibold text-gray-800">Sessions By Device</h2>
       </header>
-        {/* Chart built with Chart.js 3 */}
-        {/* Change the height attribute to adjust the chart height */}
+      {/* Chart built with Chart.js 3 */}
+      {/* Change the height attribute to adjust the chart height */}
       <DoughnutChart data={chartData} width={389} height={260} />
     </div>
   );

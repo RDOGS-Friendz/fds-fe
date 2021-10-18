@@ -9,7 +9,6 @@ import AccordionTableRichItem from '../../components/AccordionTableRichItem';
 import Image01 from '../../images/user-40-07.jpg';
 
 function AccordionPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const items = [
@@ -22,7 +21,7 @@ function AccordionPage() {
       items: '1',
       location: '🇲🇽 New Mexico, MX',
       type: 'Subscription',
-      description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+      description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     },
   ];
 
@@ -81,22 +80,20 @@ function AccordionPage() {
                     <div className="overflow-x-auto">
                       <table className="table-auto w-full divide-y divide-gray-200">
                         {
-                          items.map(item => {
-                            return (
-                              <AccordionTableItem
-                                key={item.id}
-                                id={item.id}
-                                image={item.image}
-                                customer={item.customer}
-                                total={item.total}
-                                status={item.status}
-                                items={item.items}
-                                location={item.location}
-                                type={item.type}
-                                description={item.description}
-                              />
-                            )
-                          })
+                          items.map((item) => (
+                            <AccordionTableItem
+                              key={item.id}
+                              id={item.id}
+                              image={item.image}
+                              customer={item.customer}
+                              total={item.total}
+                              status={item.status}
+                              items={item.items}
+                              location={item.location}
+                              type={item.type}
+                              description={item.description}
+                            />
+                          ))
                         }
                       </table>
                     </div>
@@ -112,22 +109,20 @@ function AccordionPage() {
                     <div className="overflow-x-auto">
                       <table className="table-auto w-full divide-y divide-gray-200">
                         {
-                          items2.map(item => {
-                            return (
-                              <AccordionTableRichItem
-                                key={item.id}
-                                id={item.id}
-                                image={item.image}
-                                customer={item.customer}
-                                email={item.email}
-                                location={item.location}
-                                date={item.date}
-                                amount={item.amount}
-                                descriptionTitle={item.descriptionTitle}
-                                descriptionBody={item.descriptionBody}
-                              />
-                            )
-                          })
+                          items2.map((item) => (
+                            <AccordionTableRichItem
+                              key={item.id}
+                              id={item.id}
+                              image={item.image}
+                              customer={item.customer}
+                              email={item.email}
+                              location={item.location}
+                              date={item.date}
+                              amount={item.amount}
+                              descriptionTitle={item.descriptionTitle}
+                              descriptionBody={item.descriptionBody}
+                            />
+                          ))
                         }
                       </table>
                     </div>

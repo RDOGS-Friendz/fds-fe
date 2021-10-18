@@ -5,7 +5,10 @@ function PaginationNumeric2() {
     <div>
       <nav className="flex justify-between" role="navigation" aria-label="Navigation">
         <div className="flex-1 mr-2">
-          <a className="btn bg-white border-gray-200 text-gray-300 cursor-not-allowed" href="#0" disabled>&lt;-<span className="hidden sm:inline">&nbsp;Previous</span></a>
+          <a className="btn bg-white border-gray-200 text-gray-300 cursor-not-allowed" href="#0" disabled>
+            &lt;-
+            <span className="hidden sm:inline">&nbsp;Previous</span>
+          </a>
         </div>
         <div className="flex-grow text-center">
           <ul className="inline-flex text-sm font-medium -space-x-px">
@@ -27,7 +30,10 @@ function PaginationNumeric2() {
           </ul>
         </div>
         <div className="flex-1 text-right ml-2">
-          <a className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500" href="#0"><span className="hidden sm:inline">Next&nbsp;</span>-&gt;</a>
+          <a className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500" href="#0">
+            <span className="hidden sm:inline">Next&nbsp;</span>
+            -&gt;
+          </a>
         </div>
       </nav>
     </div>

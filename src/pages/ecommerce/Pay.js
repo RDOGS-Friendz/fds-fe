@@ -5,7 +5,6 @@ import PayBg from '../../images/pay-bg.jpg';
 import User from '../../images/user-64-13.jpg';
 
 function Pay() {
-
   const [card, setCard] = useState(true);
 
   return (
@@ -74,75 +73,98 @@ function Pay() {
             <div className="flex justify-center mb-6">
               <div className="relative flex w-full p-1 bg-gray-50 rounded">
                 <span className="absolute inset-0 m-1 pointer-events-none" aria-hidden="true">
-                  <span className={`absolute inset-0 w-1/2 bg-white rounded border border-gray-200 shadow-sm transform transition duration-150 ease-in-out ${card ? 'translate-x-0' : 'translate-x-full'}`}></span>
+                  <span className={`absolute inset-0 w-1/2 bg-white rounded border border-gray-200 shadow-sm transform transition duration-150 ease-in-out ${card ? 'translate-x-0' : 'translate-x-full'}`} />
                 </span>
                 <button
+                  type="button"
                   className="relative flex-1 text-sm font-medium p-1 duration-150 ease-in-out"
                   onClick={(e) => { e.preventDefault(); setCard(true); }}
-                >Pay With Card</button>
+                >
+                  Pay With Card
+                </button>
                 <button
+                  type="button"
                   className="relative flex-1 text-sm font-medium p-1 duration-150 ease-in-out"
                   onClick={(e) => { e.preventDefault(); setCard(false); }}
-                >Pay With PayPal</button>
+                >
+                  Pay With PayPal
+                </button>
               </div>
             </div>
 
             {/* Card form */}
-            {card &&
+            {card
+              && (
               <div>
                 <div className="space-y-4">
                   {/* Card Number */}
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="card-nr">Card Number <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="card-nr">
+                      Card Number
+                      <span className="text-red-500">*</span>
+                    </label>
                     <input id="card-nr" className="form-input w-full" type="text" placeholder="1234 1234 1234 1234" />
                   </div>
                   {/* Expiry and CVC */}
                   <div className="flex space-x-4">
                     <div>
-                      <label className="block text-sm font-medium mb-1" htmlFor="card-expiry">Expiry Date <span className="text-red-500">*</span></label>
+                      <label className="block text-sm font-medium mb-1" htmlFor="card-expiry">
+                        Expiry Date
+                        <span className="text-red-500">*</span>
+                      </label>
                       <input id="card-expiry" className="form-input w-full" type="text" placeholder="MM/YY" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium mb-1" htmlFor="card-cvc">CVC <span className="text-red-500">*</span></label>
+                      <label className="block text-sm font-medium mb-1" htmlFor="card-cvc">
+                        CVC
+                        <span className="text-red-500">*</span>
+                      </label>
                       <input id="card-cvc" className="form-input w-full" type="text" placeholder="CVC" />
                     </div>
                   </div>
                   {/* Name on Card */}
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="card-name">Name on Card <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="card-name">
+                      Name on Card
+                      <span className="text-red-500">*</span>
+                    </label>
                     <input id="card-name" className="form-input w-full" type="text" placeholder="John Doe" />
                   </div>
                   {/* Email */}
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="card-email">Email <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="card-email">
+                      Email
+                      <span className="text-red-500">*</span>
+                    </label>
                     <input id="card-email" className="form-input w-full" type="email" placeholder="john@company.com" />
                   </div>
                 </div>
                 {/* htmlForm footer */}
                 <div className="mt-6">
                   <div className="mb-4">
-                    <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay $253.00</button>
+                    <button type="button" className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay $253.00</button>
                   </div>
-                  <div className="text-xs text-gray-500 italic text-center">You'll be charged $253, including $48 htmlFor VAT in Italy</div>
+                  <div className="text-xs text-gray-500 italic text-center">You&apos;ll be charged $253, including $48 htmlFor VAT in Italy</div>
                 </div>
               </div>
-            }
+              )}
 
             {/* PayPal htmlForm */}
-            {!card &&
+            {!card
+              && (
               <div>
                 <div>
                   <div className="mb-4">
-                    <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay with PayPal - $253.00</button>
+                    <button type="button" className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay with PayPal - $253.00</button>
                   </div>
-                  <div className="text-xs text-gray-500 italic text-center">You'll be charged $253, including $48 htmlFor VAT in Italy</div>
+                  <div className="text-xs text-gray-500 italic text-center">You&apos;ll be charged $253, including $48 htmlFor VAT in Italy</div>
                 </div>
               </div>
-            }
+              )}
 
           </div>
         </div>
-      </main>    
+      </main>
     </>
   );
 }

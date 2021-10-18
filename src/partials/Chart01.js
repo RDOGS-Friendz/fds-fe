@@ -1,13 +1,12 @@
 import React from 'react';
 
 // Import utilities
+import resolveConfig from 'tailwindcss/resolveConfig';
+import { Line } from 'react-chartjs-2';
 import { formatValue, hexToRGB } from '../utils/Utils';
 
 // Import TailwindCSS variables
-import resolveConfig from 'tailwindcss/resolveConfig';
 import tailwindConfig from '../css/tailwind.config';
-
-import { Line } from 'react-chartjs-2';
 
 // Tailwind config
 const fullConfig = resolveConfig(tailwindConfig);

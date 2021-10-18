@@ -1,19 +1,18 @@
 import React, { useRef, useEffect } from 'react';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function ModalBlank({
   children,
   id,
   modalOpen,
-  setModalOpen
+  setModalOpen,
 }) {
-
   const modalContent = useRef(null);
 
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      if (!modalOpen || modalContent.current.contains(target)) return
+      if (!modalOpen || modalContent.current.contains(target)) return;
       setModalOpen(false);
     };
     document.addEventListener('click', clickHandler);

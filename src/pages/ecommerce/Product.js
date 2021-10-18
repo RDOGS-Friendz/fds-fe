@@ -13,7 +13,6 @@ import Related02 from '../../images/related-product-02.jpg';
 import Related03 from '../../images/related-product-03.jpg';
 
 function Product() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -69,31 +68,31 @@ function Product() {
                     <div className="flex items-center space-x-2 mr-2">
                       {/* Stars */}
                       <div className="flex space-x-1">
-                        <button>
+                        <button type="button">
                           <span className="sr-only">1 star</span>
                           <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                           </svg>
                         </button>
-                        <button>
+                        <button type="button">
                           <span className="sr-only">2 stars</span>
                           <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                           </svg>
                         </button>
-                        <button>
+                        <button type="button">
                           <span className="sr-only">3 stars</span>
                           <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                           </svg>
                         </button>
-                        <button>
+                        <button type="button">
                           <span className="sr-only">4 stars</span>
                           <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                           </svg>
                         </button>
-                        <button>
+                        <button type="button">
                           <span className="sr-only">5 stars</span>
                           <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                             <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -143,31 +142,31 @@ function Product() {
                           <div className="flex items-center space-x-2">
                             {/* Stars */}
                             <div className="flex space-x-1">
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">1 star</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">2 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">3 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">4 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">5 stars</span>
                                 <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -191,31 +190,31 @@ function Product() {
                           <div className="flex items-center space-x-2">
                             {/* Stars */}
                             <div className="flex space-x-1">
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">1 star</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">2 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">3 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">4 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">5 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -239,31 +238,31 @@ function Product() {
                           <div className="flex items-center space-x-2">
                             {/* Stars */}
                             <div className="flex space-x-1">
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">1 star</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">2 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">3 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">4 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">5 stars</span>
                                 <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -287,31 +286,31 @@ function Product() {
                           <div className="flex items-center space-x-2">
                             {/* Stars */}
                             <div className="flex space-x-1">
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">1 star</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">2 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">3 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">4 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">5 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -328,7 +327,7 @@ function Product() {
                   </ul>
                   {/* Load More */}
                   <div className="text-center">
-                    <button className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 hover:text-gray-600">Load More Reviews</button>
+                    <button type="button" className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 hover:text-gray-600">Load More Reviews</button>
                   </div>
                 </div>
 
@@ -354,31 +353,31 @@ function Product() {
                           <div className="flex items-center space-x-2">
                             {/* Stars */}
                             <div className="flex space-x-1">
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">1 star</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">2 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">3 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">4 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">5 stars</span>
                                 <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -412,31 +411,31 @@ function Product() {
                           <div className="flex items-center space-x-2">
                             {/* Stars */}
                             <div className="flex space-x-1">
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">1 star</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">2 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">3 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">4 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">5 stars</span>
                                 <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -470,31 +469,31 @@ function Product() {
                           <div className="flex items-center space-x-2">
                             {/* Stars */}
                             <div className="flex space-x-1">
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">1 star</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">2 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">3 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">4 stars</span>
                                 <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                                 </svg>
                               </button>
-                              <button>
+                              <button type="button">
                                 <span className="sr-only">5 stars</span>
                                 <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                                   <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -515,7 +514,7 @@ function Product() {
                   </ul>
                   {/* Load More */}
                   <div className="text-center">
-                    <button className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 hover:text-gray-600">Load More Stuff</button>
+                    <button type="button" className="btn bg-white border-gray-200 hover:border-gray-300 text-indigo-500 hover:text-gray-600">Load More Stuff</button>
                   </div>
                 </div>
 
@@ -529,7 +528,7 @@ function Product() {
                   <div className="text-sm text-gray-800 font-semibold mb-3">Select a Package</div>
                   <ul className="space-y-2 sm:flex sm:space-y-0 sm:space-x-2 lg:space-y-2 lg:space-x-0 lg:flex-col mb-4">
                     <li>
-                      <button className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
+                      <button type="button" className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
                         <div className="flex flex-wrap items-center justify-between mb-0.5">
                           <span className="font-semibold text-gray-800">Essential</span>
                           <span className="font-medium text-green-600">$39.00</span>
@@ -538,16 +537,20 @@ function Product() {
                       </button>
                     </li>
                     <li>
-                      <button className="w-full h-full text-left py-3 px-4 rounded bg-white border-2 border-indigo-500 shadow-sm duration-150 ease-in-out">
+                      <button type="button" className="w-full h-full text-left py-3 px-4 rounded bg-white border-2 border-indigo-500 shadow-sm duration-150 ease-in-out">
                         <div className="flex flex-wrap items-center justify-between mb-0.5">
-                          <span className="font-semibold text-gray-800">Premium <span className="text-xs italic text-indigo-500 align-top">Best Value ✨</span></span>
+                          <span className="font-semibold text-gray-800">
+                            Premium
+                            {' '}
+                            <span className="text-xs italic text-indigo-500 align-top">Best Value ✨</span>
+                          </span>
                           <span className="font-medium text-green-600">$69.00</span>
                         </div>
                         <div className="text-sm">Lorem ipsum dolor sit amet elit sed do eiusmod.</div>
                       </button>
                     </li>
                     <li>
-                      <button className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
+                      <button type="button" className="w-full h-full text-left py-3 px-4 rounded bg-white border border-gray-200 hover:border-gray-300 shadow-sm duration-150 ease-in-out">
                         <div className="flex flex-wrap items-center justify-between mb-0.5">
                           <span className="font-semibold text-gray-800">Complete</span>
                           <span className="font-medium text-green-600">$89.00</span>
@@ -559,7 +562,12 @@ function Product() {
                   <div className="mb-4">
                     <a className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Buy Now - $69.00</a>
                   </div>
-                  <div className="text-xs text-gray-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a className="underline hover:no-underline" href="#0">Terms</a>.</div>
+                  <div className="text-xs text-gray-500 italic text-center">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    {' '}
+                    <a className="underline hover:no-underline" href="#0">Terms</a>
+                    .
+                  </div>
                 </div>
               </div>
 

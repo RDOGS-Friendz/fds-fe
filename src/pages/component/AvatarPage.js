@@ -11,7 +11,6 @@ import Avatar05 from '../../images/avatar-05.jpg';
 import Avatar06 from '../../images/avatar-06.jpg';
 
 function AvatarPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -79,7 +78,7 @@ function AvatarPage() {
                       {/* Start */}
                       <div className="relative">
                         <img className="rounded-full" src={Avatar01} width="24" height="24" alt="Avatar" />
-                        <div className="absolute top-0 right-0 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></div>
+                        <div className="absolute top-0 right-0 w-2 h-2 bg-red-500 border-2 border-white rounded-full" />
                       </div>
                       {/* End */}
                     </div>
@@ -87,7 +86,7 @@ function AvatarPage() {
                       {/* Start */}
                       <div className="relative">
                         <img className="rounded-full" src={Avatar01} width="28" height="28" alt="Avatar" />
-                        <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
+                        <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full" />
                       </div>
                       {/* End */}
                     </div>
@@ -95,7 +94,7 @@ function AvatarPage() {
                       {/* Start */}
                       <div className="relative">
                         <img className="rounded-full" src={Avatar01} width="32" height="32" alt="Avatar" />
-                        <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full"></div>
+                        <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-white rounded-full" />
                       </div>
                       {/* End */}
                     </div>
@@ -103,7 +102,7 @@ function AvatarPage() {
                       {/* Start */}
                       <div className="relative">
                         <img className="rounded-full" src={Avatar01} width="40" height="40" alt="Avatar" />
-                        <div className="absolute top-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+                        <div className="absolute top-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
                       </div>
                       {/* End */}
                     </div>
@@ -111,7 +110,7 @@ function AvatarPage() {
                       {/* Start */}
                       <div className="relative">
                         <img className="rounded-full" src={Avatar01} width="64" height="64" alt="Avatar" />
-                        <div className="absolute top-1 right-1 w-3 h-3 bg-red-500 border-2 border-white rounded-full"></div>
+                        <div className="absolute top-1 right-1 w-3 h-3 bg-red-500 border-2 border-white rounded-full" />
                       </div>
                       {/* End */}
                     </div>

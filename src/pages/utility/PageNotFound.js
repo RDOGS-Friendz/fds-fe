@@ -6,7 +6,6 @@ import Header from '../../partials/Header';
 import NotFoundImage from '../../images/404-illustration.svg';
 
 function PageNotFound() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

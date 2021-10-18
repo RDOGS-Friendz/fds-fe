@@ -2,7 +2,7 @@
 import { Chart, Tooltip } from 'chart.js';
 // Import Tailwind config
 import { tailwindConfig } from '../utils/Utils';
-
+/* eslint-disable */
 Chart.register(Tooltip);
 
 // Define Chart.js default settings

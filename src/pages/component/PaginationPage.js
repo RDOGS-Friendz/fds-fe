@@ -7,7 +7,6 @@ import PaginationClassic from '../../components/PaginationClassic';
 import PaginationNumeric2 from '../../components/PaginationNumeric2';
 
 function PaginationPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

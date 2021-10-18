@@ -8,14 +8,13 @@ import MessagesBody from '../partials/messages/MessagesBody';
 import MessagesFooter from '../partials/messages/MessagesFooter';
 
 function Messages() {
-
-  const contentArea = useRef(null)
+  const contentArea = useRef(null);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [msgSidebarOpen, setMsgSidebarOpen] = useState(true);
 
   useEffect(() => {
-    contentArea.current.scrollTop = 99999999
+    contentArea.current.scrollTop = 99999999;
   }, [msgSidebarOpen]); // automatically scroll the chat and make the most recent message visible
 
   return (
@@ -24,7 +23,7 @@ function Messages() {
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      {/* Content area */} 
+      {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden" ref={contentArea}>
 
         {/*  Site header */}
@@ -47,7 +46,7 @@ function Messages() {
         </main>
 
       </div>
-      
+
     </div>
   );
 }

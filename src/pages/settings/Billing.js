@@ -6,7 +6,6 @@ import SettingsSidebar from '../../partials/settings/SettingsSidebar';
 import BillingPanel from '../../partials/settings/BillingPanel';
 
 function Billing() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

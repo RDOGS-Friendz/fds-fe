@@ -4,7 +4,6 @@ import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 
 function BadgePage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

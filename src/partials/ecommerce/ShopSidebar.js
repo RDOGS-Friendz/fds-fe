@@ -76,7 +76,7 @@ function ShopSidebar() {
             <ul className="space-y-2">
               <li>
                 {/* Rating button */}
-                <button className="flex items-center space-x-2 mr-2">
+                <button type="button" className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
@@ -95,12 +95,16 @@ function ShopSidebar() {
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </div>
-                  <div className="inline-flex text-sm text-gray-500 italic"><span className="sr-only">4 Stars</span> And up</div>
+                  <div className="inline-flex text-sm text-gray-500 italic">
+                    <span className="sr-only">4 Stars</span>
+                    {' '}
+                    And up
+                  </div>
                 </button>
               </li>
               <li>
                 {/* Rating button */}
-                <button className="flex items-center space-x-2 mr-2">
+                <button type="button" className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
@@ -119,12 +123,16 @@ function ShopSidebar() {
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </div>
-                  <div className="inline-flex text-sm text-gray-500 italic"><span className="sr-only">3 Stars</span> And up</div>
+                  <div className="inline-flex text-sm text-gray-500 italic">
+                    <span className="sr-only">3 Stars</span>
+                    {' '}
+                    And up
+                  </div>
                 </button>
               </li>
               <li>
                 {/* Rating button */}
-                <button className="flex items-center space-x-2 mr-2">
+                <button type="button" className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
@@ -143,12 +151,16 @@ function ShopSidebar() {
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </div>
-                  <div className="inline-flex text-sm text-gray-500 italic"><span className="sr-only">2 Stars</span> And up</div>
+                  <div className="inline-flex text-sm text-gray-500 italic">
+                    <span className="sr-only">2 Stars</span>
+                    {' '}
+                    And up
+                  </div>
                 </button>
               </li>
               <li>
                 {/* Rating button */}
-                <button className="flex items-center space-x-2 mr-2">
+                <button type="button" className="flex items-center space-x-2 mr-2">
                   {/* Stars */}
                   <div className="flex space-x-1">
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
@@ -167,7 +179,11 @@ function ShopSidebar() {
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </div>
-                  <div className="inline-flex text-sm text-gray-500 italic"><span className="sr-only">1 Stars</span> And up</div>
+                  <div className="inline-flex text-sm text-gray-500 italic">
+                    <span className="sr-only">1 Stars</span>
+                    {' '}
+                    And up
+                  </div>
                 </button>
               </li>
             </ul>

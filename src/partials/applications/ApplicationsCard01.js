@@ -20,31 +20,31 @@ function ApplicationsCard01(props) {
             <div className="flex items-center space-x-2 mb-4">
               {/* Stars */}
               <div className="flex space-x-1">
-                <button>
+                <button type="button">
                   <span className="sr-only">1 star</span>
                   <svg className={`w-4 h-4 fill-current ${Math.round(props.rating) > 0 ? 'text-yellow-500' : 'text-gray-300'}`} viewBox="0 0 16 16">
                     <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                   </svg>
                 </button>
-                <button>
+                <button type="button">
                   <span className="sr-only">2 stars</span>
                   <svg className={`w-4 h-4 fill-current ${Math.round(props.rating) > 1 ? 'text-yellow-500' : 'text-gray-300'}`} viewBox="0 0 16 16">
                     <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                   </svg>
                 </button>
-                <button>
+                <button type="button">
                   <span className="sr-only">3 stars</span>
                   <svg className={`w-4 h-4 fill-current ${Math.round(props.rating) > 2 ? 'text-yellow-500' : 'text-gray-300'}`} viewBox="0 0 16 16">
                     <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                   </svg>
                 </button>
-                <button>
+                <button type="button">
                   <span className="sr-only">4 stars</span>
                   <svg className={`w-4 h-4 fill-current ${Math.round(props.rating) > 3 ? 'text-yellow-500' : 'text-gray-300'}`} viewBox="0 0 16 16">
                     <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                   </svg>
                 </button>
-                <button>
+                <button type="button">
                   <span className="sr-only">5 stars</span>
                   <svg className={`w-4 h-4 fill-current ${Math.round(props.rating) > 4 ? 'text-yellow-500' : 'text-gray-300'}`} viewBox="0 0 16 16">
                     <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />

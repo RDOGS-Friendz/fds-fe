@@ -8,7 +8,6 @@ import EditMenu from '../../components/DropdownEditMenu';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard03() {
-
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',

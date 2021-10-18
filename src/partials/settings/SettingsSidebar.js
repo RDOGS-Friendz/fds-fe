@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 function SettingsSidebar() {
-
   const location = useLocation();
   const { pathname } = location;
 

@@ -7,9 +7,8 @@ import DropdownImage02 from '../images/channel-02.png';
 import DropdownImage03 from '../images/channel-03.png';
 
 function DropdownSwitch({
-  align
+  align,
 }) {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -39,6 +38,7 @@ function DropdownSwitch({
   return (
     <div className="relative">
       <button
+        type="button"
         ref={trigger}
         className="flex-grow flex items-center truncate"
         aria-haspopup="true"
@@ -104,7 +104,7 @@ function DropdownSwitch({
         </ul>
       </Transition>
     </div>
-  )
+  );
 }
 
 export default DropdownSwitch;

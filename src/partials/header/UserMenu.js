@@ -5,7 +5,6 @@ import Transition from '../../utils/Transition';
 import UserAvatar from '../../images/user-avatar-32.png';
 
 function UserMenu() {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -35,6 +34,7 @@ function UserMenu() {
   return (
     <div className="relative inline-flex">
       <button
+        type="button"
         ref={trigger}
         className="inline-flex justify-center items-center group"
         aria-haspopup="true"
@@ -92,7 +92,7 @@ function UserMenu() {
         </div>
       </Transition>
     </div>
-  )
+  );
 }
 
 export default UserMenu;

@@ -6,7 +6,6 @@ import SettingsSidebar from '../../partials/settings/SettingsSidebar';
 import NotificationsPanel from '../../partials/settings/NotificationsPanel';
 
 function Notifications() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

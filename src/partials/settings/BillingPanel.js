@@ -8,7 +8,14 @@ function BillingPanel() {
       <div className="p-6 space-y-6">
         <div>
           <h2 className="text-2xl text-gray-800 font-bold mb-4">Billing & Invoices</h2>
-          <div className="text-sm">This workspace’s Basic Plan is set to <strong className="font-medium">$34</strong> per month and will renew on <strong className="font-medium">July 9, 2021</strong>.</div>
+          <div className="text-sm">
+            This workspace’s Basic Plan is set to
+            <strong className="font-medium">$34</strong>
+            {' '}
+            per month and will renew on
+            <strong className="font-medium">July 9, 2021</strong>
+            .
+          </div>
         </div>
 
         {/* Billing Information */}
@@ -81,7 +88,7 @@ function BillingPanel() {
                   <div className="font-semibold text-left">Amount</div>
                 </th>
                 <th className="w-full hidden md:w-auto md:table-cell py-2">
-                  <div className="font-semibold text-right"></div>
+                  <div className="font-semibold text-right" />
                 </th>
               </tr>
             </thead>
@@ -101,7 +108,7 @@ function BillingPanel() {
                 <td className="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
                   <div className="text-right flex items-center md:justify-end">
                     <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">HTML</a>
-                    <span className="block w-px h-4 bg-gray-200 mx-2" aria-hidden="true"></span>
+                    <span className="block w-px h-4 bg-gray-200 mx-2" aria-hidden="true" />
                     <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">PDF</a>
                   </div>
                 </td>
@@ -120,7 +127,7 @@ function BillingPanel() {
                 <td className="w-full block md:w-auto md:table-cell py-0.5 md:py-2">
                   <div className="text-right flex items-center md:justify-end">
                     <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">HTML</a>
-                    <span className="block w-px h-4 bg-gray-200 mx-2" aria-hidden="true"></span>
+                    <span className="block w-px h-4 bg-gray-200 mx-2" aria-hidden="true" />
                     <a className="font-medium text-indigo-500 hover:text-indigo-600" href="#0">PDF</a>
                   </div>
                 </td>
@@ -134,8 +141,8 @@ function BillingPanel() {
       <footer>
         <div className="flex flex-col px-6 py-5 border-t border-gray-200">
           <div className="flex self-end">
-            <button className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
-            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
+            <button type="button" className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
+            <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
           </div>
         </div>
       </footer>

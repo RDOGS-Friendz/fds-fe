@@ -4,7 +4,6 @@ import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 
 function BreadcrumbPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

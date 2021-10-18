@@ -13,7 +13,6 @@ import DropdownEditMenu from '../../components/DropdownEditMenu';
 import Datepicker from '../../components/Datepicker';
 
 function DropdownPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -103,7 +102,11 @@ function DropdownPage() {
 
                 {/* Datepicker (built with flatpickr) */}
                 <div>
-                  <h2 className="text-2xl text-gray-800 font-bold mb-6">Datepicker (built with <a className="underline hover:no-underline" href="https://github.com/flatpickr/flatpickr" target="_blank" rel="noreferrer">flatpickr</a>)</h2>
+                  <h2 className="text-2xl text-gray-800 font-bold mb-6">
+                    Datepicker (built with
+                    <a className="underline hover:no-underline" href="https://github.com/flatpickr/flatpickr" target="_blank" rel="noreferrer">flatpickr</a>
+                    )
+                  </h2>
                   <Datepicker />
                 </div>
 

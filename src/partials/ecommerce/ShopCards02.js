@@ -7,7 +7,7 @@ import AppImage08 from '../../images/applications-image-08.jpg';
 
 function ShopCards02() {
   return (
-    <React.Fragment>
+    <>
       {/* Card 1 */}
       <div className="col-span-full sm:col-span-6 xl:col-span-3 bg-white shadow-lg rounded-sm border border-gray-200 overflow-hidden">
         <div className="flex flex-col h-full">
@@ -42,7 +42,9 @@ function ShopCards02() {
                   </svg>
                   {/* Rate */}
                   <div className="text-sm font-medium whitespace-nowrap">
-                    <span>4.7</span> <span className="text-gray-400">(478)</span>
+                    <span>4.7</span>
+                    {' '}
+                    <span className="text-gray-400">(478)</span>
                   </div>
                 </div>
                 {/* Price */}
@@ -84,7 +86,9 @@ function ShopCards02() {
                   </svg>
                   {/* Rate */}
                   <div className="text-sm font-medium whitespace-nowrap">
-                    <span>4.7</span> <span className="text-gray-400">(478)</span>
+                    <span>4.7</span>
+                    {' '}
+                    <span className="text-gray-400">(478)</span>
                   </div>
                 </div>
                 {/* Price */}
@@ -126,7 +130,9 @@ function ShopCards02() {
                   </svg>
                   {/* Rate */}
                   <div className="text-sm font-medium whitespace-nowrap">
-                    <span>4.7</span> <span className="text-gray-400">(478)</span>
+                    <span>4.7</span>
+                    {' '}
+                    <span className="text-gray-400">(478)</span>
                   </div>
                 </div>
                 {/* Price */}
@@ -150,7 +156,9 @@ function ShopCards02() {
           {/* Image */}
           <div className="relative">
             <img className="w-full" src={AppImage08} width="286" height="160" alt="Application 08" />
-          </div> {/* Card Content */}
+          </div>
+          {' '}
+          {/* Card Content */}
           <div className="flex-grow flex flex-col p-5">
             {/* Card body */}
             <div className="flex-grow">
@@ -168,7 +176,9 @@ function ShopCards02() {
                   </svg>
                   {/* Rate */}
                   <div className="text-sm font-medium whitespace-nowrap">
-                    <span>4.7</span> <span className="text-gray-400">(478)</span>
+                    <span>4.7</span>
+                    {' '}
+                    <span className="text-gray-400">(478)</span>
                   </div>
                 </div>
                 {/* Price */}
@@ -184,7 +194,7 @@ function ShopCards02() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

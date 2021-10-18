@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function Info({
   children,
   className,
-  containerClassName
+  containerClassName,
 }) {
-
   const [infoOpen, setInfoOpen] = useState(false);
 
   return (
@@ -18,6 +17,7 @@ function Info({
       onBlur={() => setInfoOpen(false)}
     >
       <button
+        type="button"
         className="block"
         aria-haspopup="true"
         aria-expanded={infoOpen}

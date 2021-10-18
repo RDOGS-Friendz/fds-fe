@@ -24,7 +24,8 @@ function MessagesBody() {
         <img className="rounded-full mr-4" src={User02} width="40" height="40" alt="User 02" />
         <div>
           <div className="text-sm bg-indigo-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent shadow-md mb-1">
-            Hey Dominik Lamakani 👋<br />
+            Hey Dominik Lamakani 👋
+            <br />
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 🙌
           </div>
           <div className="flex items-center justify-between">
@@ -41,7 +42,7 @@ function MessagesBody() {
         <div>
           <div className="flex items-center">
             <img className="rounded-lg shadow-md mb-1" src={ChatImage} width="240" height="180" alt="Chat" />
-            <button className="p-1.5 rounded-full border border-gray-200 ml-4 hover:bg-white transition duration-150">
+            <button type="button" className="p-1.5 rounded-full border border-gray-200 ml-4 hover:bg-white transition duration-150">
               <span className="sr-only">Download</span>
               <svg className="w-4 h-4 flex-shrink-0 fill-current text-gray-400" viewBox="0 0 16 16">
                 <path d="M15 15H1a1 1 0 01-1-1V2a1 1 0 011-1h4v2H2v10h12V3h-3V1h4a1 1 0 011 1v12a1 1 0 01-1 1zM9 7h3l-4 4-4-4h3V1h2v6z" />
@@ -70,7 +71,8 @@ function MessagesBody() {
         <img className="rounded-full mr-4" src={User02} width="40" height="40" alt="User 02" />
         <div>
           <div className="text-sm bg-indigo-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent shadow-md mb-1">
-            Sed euismod nisi porta lorem mollis. Tellus elementum sagittis vitae et leo duis. Viverra justo nec ultrices dui.<br />
+            Sed euismod nisi porta lorem mollis. Tellus elementum sagittis vitae et leo duis. Viverra justo nec ultrices dui.
+            <br />
             Sed lectus vestibulum mattis ullamcorper velit sed. Ut sem nulla pharetra diam sit amet 🎁
           </div>
           <div className="flex items-center justify-between">
@@ -85,14 +87,19 @@ function MessagesBody() {
       <div className="flex justify-center">
         <div className="inline-flex items-center justify-center text-xs font-medium px-2.5 py-1 bg-white border border-gray-200 rounded-full my-5">
           Tuesday, 20 January
-          </div>
+        </div>
       </div>
       {/* Chat msg */}
       <div className="flex items-start mb-4 last:mb-0">
         <img className="rounded-full mr-4" src={User02} width="40" height="40" alt="User 02" />
         <div>
           <div className="text-sm bg-indigo-500 text-white p-3 rounded-lg rounded-tl-none border border-transparent shadow-md mb-1">
-            Can you join <a className="font-medium" href="#0">@dominik</a>? <a className="underline" href="#0">https://meet.google.com/haz-r3gt-idj</a>
+            Can you join
+            {' '}
+            <a className="font-medium" href="#0">@dominik</a>
+            ?
+            {' '}
+            <a className="underline" href="#0">https://meet.google.com/haz-r3gt-idj</a>
           </div>
           <div className="flex items-center justify-between">
             <div className="text-xs text-gray-500 font-medium">10:15 AM</div>

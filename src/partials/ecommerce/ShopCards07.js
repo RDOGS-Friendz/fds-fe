@@ -15,7 +15,7 @@ import AppImage32 from '../../images/applications-image-32.jpg';
 
 function ShopCards07() {
   return (
-    <React.Fragment>
+    <>
       {/* Card 1 */}
       <div className="col-span-full md:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200 overflow-hidden">
         <div className="flex flex-col h-full">
@@ -23,7 +23,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage21} width="301" height="226" alt="Application 21" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -58,31 +58,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -108,7 +108,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage22} width="301" height="226" alt="Application 22" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -134,31 +134,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -184,7 +184,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage23} width="301" height="226" alt="Application 23" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -219,31 +219,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -269,7 +269,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage24} width="301" height="226" alt="Application 24" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -295,31 +295,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -345,7 +345,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage25} width="301" height="226" alt="Application 25" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -371,31 +371,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -421,7 +421,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage26} width="301" height="226" alt="Application 26" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -456,31 +456,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -506,7 +506,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage27} width="301" height="226" alt="Application 27" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -532,31 +532,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -582,7 +582,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage28} width="301" height="226" alt="Application 28" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -608,31 +608,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -658,7 +658,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage29} width="301" height="226" alt="Application 29" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -684,31 +684,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -731,10 +731,15 @@ function ShopCards07() {
       <div className="col-span-full md:order-1 xl:order-none">
         <div className="h-full p-6 bg-gray-800 rounded-sm text-center xl:text-left xl:flex xl:justify-between xl:items-center">
           <div className="mb-4 xl:mb-0 xl:mr-4">
-            <div className="text-xl text-gray-50 font-semibold mb-1">Excepteur sint occaecat <span className="text-indigo-500">cupidatat</span> 🎁</div>
+            <div className="text-xl text-gray-50 font-semibold mb-1">
+              Excepteur sint occaecat
+              <span className="text-indigo-500">cupidatat</span>
+              {' '}
+              🎁
+            </div>
             <div className="m-auto text-sm text-gray-400">Excepteur sint occaecat cupidatat non proidentsunt in culpa qui officia deserunt mollit!</div>
           </div>
-          <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white flex-shrink-0">Reedem Now!</button>
+          <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white flex-shrink-0">Reedem Now!</button>
         </div>
       </div>
 
@@ -745,7 +750,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage30} width="301" height="226" alt="Application 30" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -771,31 +776,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -821,7 +826,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage31} width="301" height="226" alt="Application 31" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -847,31 +852,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -897,7 +902,7 @@ function ShopCards07() {
           <div className="relative">
             <img className="w-full" src={AppImage32} width="301" height="226" alt="Application 32" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -923,31 +928,31 @@ function ShopCards07() {
               <div className="flex items-center space-x-2 mr-2">
                 {/* Stars */}
                 <div className="flex space-x-1">
-                  <button>
+                  <button type="button">
                     <span className="sr-only">1 star</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">2 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">3 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">4 stars</span>
                     <svg className="w-4 h-4 fill-current text-yellow-500" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
                     </svg>
                   </button>
-                  <button>
+                  <button type="button">
                     <span className="sr-only">5 stars</span>
                     <svg className="w-4 h-4 fill-current text-gray-300" viewBox="0 0 16 16">
                       <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z" />
@@ -965,7 +970,7 @@ function ShopCards07() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

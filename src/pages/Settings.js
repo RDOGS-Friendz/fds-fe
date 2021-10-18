@@ -6,7 +6,6 @@ import SettingsSidebar from '../partials/settings/SettingsSidebar';
 import SettingsContent from '../partials/settings/SettingsContent';
 
 function Settings() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -15,7 +14,7 @@ function Settings() {
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      {/* Content area */} 
+      {/* Content area */}
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
 
         {/*  Site header */}
@@ -30,7 +29,7 @@ function Settings() {
               <h1 className="text-2xl md:text-3xl text-gray-800 font-bold">Account Settings ✨</h1>
             </div>
 
-            {/* Content */} 
+            {/* Content */}
             <div className="bg-white shadow-lg rounded-sm mb-8">
               <div className="flex flex-col md:flex-row md:-mr-px">
                 <SettingsSidebar />
@@ -42,7 +41,7 @@ function Settings() {
         </main>
 
       </div>
-      
+
     </div>
   );
 }

@@ -5,7 +5,6 @@ import BarChart from '../../charts/BarChart01';
 import { tailwindConfig } from '../../utils/Utils';
 
 function DashboardCard04() {
-
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',

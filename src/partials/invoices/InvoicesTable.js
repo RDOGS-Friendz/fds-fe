@@ -3,9 +3,8 @@ import { focusHandling } from 'cruip-js-toolkit';
 import Invoices from './InvoicesTableItem';
 
 function InvoicesTable({
-  selectedItems
+  selectedItems,
 }) {
-
   const invoices = [
     {
       id: '0',
@@ -106,7 +105,7 @@ function InvoicesTable({
       issueddate: '17/06/2021',
       paiddate: '-',
       type: 'Subscription',
-    }
+    },
   ];
 
   const [selectAll, setSelectAll] = useState(false);
@@ -124,18 +123,18 @@ function InvoicesTable({
 
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
-    setIsCheck(list.map(li => li.id));
+    setIsCheck(list.map((li) => li.id));
     if (selectAll) {
       setIsCheck([]);
     }
   };
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     const { id, checked } = e.target;
     setSelectAll(false);
     setIsCheck([...isCheck, id]);
     if (!checked) {
-      setIsCheck(isCheck.filter(item => item !== id));
+      setIsCheck(isCheck.filter((item) => item !== id));
     }
   };
 
@@ -147,7 +146,10 @@ function InvoicesTable({
   return (
     <div className="bg-white shadow-lg rounded-sm border border-gray-200 relative">
       <header className="px-5 py-4">
-        <h2 className="font-semibold text-gray-800">Invoices <span className="text-gray-400 font-medium">67</span></h2>
+        <h2 className="font-semibold text-gray-800">
+          Invoices
+          <span className="text-gray-400 font-medium">67</span>
+        </h2>
       </header>
       <div>
 
@@ -194,23 +196,21 @@ function InvoicesTable({
             {/* Table body */}
             <tbody className="text-sm divide-y divide-gray-200">
               {
-                list.map(invoice => {
-                  return (
-                    <Invoices
-                      key={invoice.id}
-                      id={invoice.id}
-                      invoice={invoice.invoice}
-                      total={invoice.total}
-                      status={invoice.status}
-                      customer={invoice.customer}
-                      issueddate={invoice.issueddate}
-                      paiddate={invoice.paiddate}
-                      type={invoice.type}
-                      handleClick={handleClick}
-                      isChecked={isCheck.includes(invoice.id)}
-                    />
-                  )
-                })
+                list.map((invoice) => (
+                  <Invoices
+                    key={invoice.id}
+                    id={invoice.id}
+                    invoice={invoice.invoice}
+                    total={invoice.total}
+                    status={invoice.status}
+                    customer={invoice.customer}
+                    issueddate={invoice.issueddate}
+                    paiddate={invoice.paiddate}
+                    type={invoice.type}
+                    handleClick={handleClick}
+                    isChecked={isCheck.includes(invoice.id)}
+                  />
+                ))
               }
             </tbody>
           </table>

@@ -7,7 +7,7 @@ import AppImage12 from '../../images/applications-image-12.jpg';
 
 function ShopCards03() {
   return (
-    <React.Fragment>
+    <>
       {/* Card 1 */}
       <div className="col-span-full sm:col-span-6 xl:col-span-3 bg-white shadow-lg rounded-sm border border-gray-200 overflow-hidden">
         <div className="flex flex-col h-full">
@@ -15,7 +15,7 @@ function ShopCards03() {
           <div className="relative">
             <img className="w-full" src={AppImage09} width="286" height="160" alt="Application 09" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -63,7 +63,7 @@ function ShopCards03() {
           <div className="relative">
             <img className="w-full" src={AppImage10} width="286" height="160" alt="Application 10" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -111,7 +111,7 @@ function ShopCards03() {
           <div className="relative">
             <img className="w-full" src={AppImage11} width="286" height="160" alt="Application 11" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -159,7 +159,7 @@ function ShopCards03() {
           <div className="relative">
             <img className="w-full" src={AppImage12} width="286" height="160" alt="Application 12" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -199,7 +199,7 @@ function ShopCards03() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

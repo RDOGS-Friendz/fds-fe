@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { focusHandling } from 'cruip-js-toolkit';
-
+/* eslint-disable */
 import {
   Chart, LineController, LineElement, Filler, PointElement, LinearScale, TimeScale, Tooltip,
 } from 'chart.js';
@@ -14,9 +14,8 @@ Chart.register(LineController, LineElement, Filler, PointElement, LinearScale, T
 function LineChart02({
   data,
   width,
-  height
+  height,
 }) {
-
   const canvas = useRef(null);
   const legend = useRef(null);
 
@@ -25,7 +24,7 @@ function LineChart02({
     // eslint-disable-next-line no-unused-vars
     const chart = new Chart(ctx, {
       type: 'line',
-      data: data,
+      data,
       options: {
         layout: {
           padding: 20,
@@ -132,7 +131,7 @@ function LineChart02({
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <div className="px-5 py-3">
         <div className="flex flex-wrap justify-between items-end">
           <div className="flex items-start">
@@ -140,15 +139,15 @@ function LineChart02({
             <div className="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-22%</div>
           </div>
           <div className="flex-grow ml-2 mb-1">
-            <ul ref={legend} className="flex flex-wrap justify-end"></ul>
+            <ul ref={legend} className="flex flex-wrap justify-end" />
           </div>
         </div>
       </div>
       {/* Chart built with Chart.js 3 */}
       <div className="flex-grow">
-        <canvas ref={canvas} width={width} height={height}></canvas>
+        <canvas ref={canvas} width={width} height={height} />
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

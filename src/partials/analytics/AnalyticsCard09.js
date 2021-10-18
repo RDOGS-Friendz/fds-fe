@@ -5,7 +5,6 @@ import DoughnutChart from '../../charts/DoughnutChart';
 import { tailwindConfig } from '../../utils/Utils';
 
 function AnalyticsCard09() {
-
   const chartData = {
     labels: ['<18', '18-24', '24-36', '>35'],
     datasets: [

@@ -4,7 +4,6 @@ import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
 
 function TabsPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -63,7 +62,7 @@ function TabsPage() {
                   <h2 className="text-2xl text-gray-800 font-bold mb-6">With Underline</h2>
                   {/* Start */}
                   <div className="relative mb-8">
-                    <div className="absolute bottom-0 w-full h-px bg-gray-200" aria-hidden="true"></div>
+                    <div className="absolute bottom-0 w-full h-px bg-gray-200" aria-hidden="true" />
                     <ul className="relative text-sm font-medium flex flex-nowrap -mx-4 sm:-mx-6 lg:-mx-8 overflow-x-scroll no-scrollbar">
                       <li className="mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
                         <a className="block pb-3 text-indigo-500 whitespace-nowrap border-b-2 border-indigo-500" href="#0">Account</a>
@@ -142,19 +141,19 @@ function TabsPage() {
                   {/* Start */}
                   <ul className="flex flex-wrap -m-1">
                     <li className="m-1">
-                      <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-white duration-150 ease-in-out">Account</button>
+                      <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-white duration-150 ease-in-out">Account</button>
                     </li>
                     <li className="m-1">
-                      <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Notifications</button>
+                      <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Notifications</button>
                     </li>
                     <li className="m-1">
-                      <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Integrations</button>
+                      <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Integrations</button>
                     </li>
                     <li className="m-1">
-                      <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Plans</button>
+                      <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Plans</button>
                     </li>
                     <li className="m-1">
-                      <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Billing</button>
+                      <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Billing</button>
                     </li>
                   </ul>
                   {/* End */}

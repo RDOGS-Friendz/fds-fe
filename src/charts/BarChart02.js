@@ -13,9 +13,8 @@ Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legen
 function BarChart02({
   data,
   width,
-  height
+  height,
 }) {
-
   const canvas = useRef(null);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ function BarChart02({
     // eslint-disable-next-line no-unused-vars
     const chart = new Chart(ctx, {
       type: 'bar',
-      data: data,
+      data,
       options: {
         layout: {
           padding: {
@@ -92,7 +91,7 @@ function BarChart02({
   }, []);
 
   return (
-    <canvas ref={canvas} width={width} height={height}></canvas>
+    <canvas ref={canvas} width={width} height={height} />
   );
 }
 

@@ -10,7 +10,6 @@ import Toast3 from '../../components/Toast3';
 import Notification from '../../components/Notification';
 
 function AlertPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [bannerWarningOpen, setBannerWarningOpen] = useState(true);
   const [bannerErrorOpen, setBannerErrorOpen] = useState(true);
@@ -73,7 +72,7 @@ function AlertPage() {
 
                     <Banner type="success" open={bannerSuccessOpen} setOpen={setBannerSuccessOpen}>
                       We’re currently experiencing an increase in inquiries. There may be a delay in responses from the Support.
-                    </Banner>                  
+                    </Banner>
 
                     <Banner type="error" open={bannerErrorOpen} setOpen={setBannerErrorOpen}>
                       We’re currently experiencing an increase in inquiries. There may be a delay in responses from the Support.
@@ -81,7 +80,7 @@ function AlertPage() {
 
                     <Banner open={bannerInfoOpen} setOpen={setBannerInfoOpen}>
                       We’re currently experiencing an increase in inquiries. There may be a delay in responses from the Support.
-                    </Banner>                                                      
+                    </Banner>
 
                   </div>
                 </div>
@@ -97,7 +96,7 @@ function AlertPage() {
 
                     <Banner2 type="success" open={banner2SuccessOpen} setOpen={setBanner2SuccessOpen}>
                       We’re currently experiencing an increase in inquiries. There may be a delay in responses from the Support.
-                    </Banner2>                  
+                    </Banner2>
 
                     <Banner2 type="error" open={banner2ErrorOpen} setOpen={setBanner2ErrorOpen}>
                       We’re currently experiencing an increase in inquiries. There may be a delay in responses from the Support.
@@ -105,7 +104,7 @@ function AlertPage() {
 
                     <Banner2 open={banner2InfoOpen} setOpen={setBanner2InfoOpen}>
                       We’re currently experiencing an increase in inquiries. There may be a delay in responses from the Support.
-                    </Banner2> 
+                    </Banner2>
 
                   </div>
                 </div>
@@ -121,7 +120,7 @@ function AlertPage() {
 
                     <Toast type="success" open={toastSuccessOpen} setOpen={setToastSuccessOpen}>
                       A successful toast.
-                    </Toast>                  
+                    </Toast>
 
                     <Toast type="error" open={toastErrorOpen} setOpen={setToastErrorOpen}>
                       A dangerous toast.
@@ -129,7 +128,7 @@ function AlertPage() {
 
                     <Toast open={toastInfoOpen} setOpen={setToastInfoOpen}>
                       An informational toast.
-                    </Toast> 
+                    </Toast>
 
                   </div>
                 </div>
@@ -145,7 +144,7 @@ function AlertPage() {
 
                     <Toast2 type="success" open={toast2SuccessOpen} setOpen={setToast2SuccessOpen}>
                       A successful toast.
-                    </Toast2>                  
+                    </Toast2>
 
                     <Toast2 type="error" open={toast2ErrorOpen} setOpen={setToast2ErrorOpen}>
                       A dangerous toast.
@@ -153,7 +152,7 @@ function AlertPage() {
 
                     <Toast2 open={toast2InfoOpen} setOpen={setToast2InfoOpen}>
                       An informational toast.
-                    </Toast2> 
+                    </Toast2>
 
                   </div>
                 </div>
@@ -169,7 +168,7 @@ function AlertPage() {
 
                     <Toast3 type="success" open={toast3SuccessOpen} setOpen={setToast3SuccessOpen}>
                       A successful toast.
-                    </Toast3>                  
+                    </Toast3>
 
                     <Toast3 type="error" open={toast3ErrorOpen} setOpen={setToast3ErrorOpen}>
                       A dangerous toast.
@@ -195,7 +194,7 @@ function AlertPage() {
                     <Notification type="success" open={notificationSuccessOpen} setOpen={setNotificationSuccessOpen}>
                       <div className="font-medium text-gray-800 mb-1">Merged Pull Request</div>
                       <div>Lorem ipsum dolor sit amet, consectetur adipiscing sed do eiusmod tempor incididunt ut labore et dolore.</div>
-                    </Notification>                  
+                    </Notification>
 
                     <Notification type="error" open={notificationErrorOpen} setOpen={setNotificationErrorOpen}>
                       <div className="font-medium text-gray-800 mb-1">Merged Pull Request</div>

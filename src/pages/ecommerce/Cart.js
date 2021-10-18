@@ -5,7 +5,6 @@ import Header from '../../partials/Header';
 import CartItems from '../../partials/ecommerce/CartItems';
 
 function Cart() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -77,12 +76,16 @@ function Cart() {
                       <div className="text-sm text-gray-400 italic">optional</div>
                     </div>
                     <input id="promo" className="form-input w-full mb-2" type="text" />
-                    <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed shadow-none" disabled>Apply Code</button>
+                    <button type="button" className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed shadow-none" disabled>Apply Code</button>
                   </div>
                   <div className="mb-4">
-                    <button className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Buy Now - $253.00</button>
+                    <button type="button" className="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Buy Now - $253.00</button>
                   </div>
-                  <div className="text-xs text-gray-500 italic text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <a className="underline hover:no-underline" href="#0">Terms</a>.</div>
+                  <div className="text-xs text-gray-500 italic text-center">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    <a className="underline hover:no-underline" href="#0">Terms</a>
+                    .
+                  </div>
                 </div>
               </div>
 

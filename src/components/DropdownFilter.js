@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function DropdownFilter({
-  align
+  align,
 }) {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -34,13 +33,15 @@ function DropdownFilter({
   return (
     <div className="relative inline-flex">
       <button
+        type="button"
         ref={trigger}
         className="btn bg-white border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-600"
         aria-haspopup="true"
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <span className="sr-only">Filter</span><wbr />
+        <span className="sr-only">Filter</span>
+        <wbr />
         <svg className="w-4 h-4 fill-current" viewBox="0 0 16 16">
           <path d="M9 15H7a1 1 0 010-2h2a1 1 0 010 2zM11 11H5a1 1 0 010-2h6a1 1 0 010 2zM13 7H3a1 1 0 010-2h10a1 1 0 010 2zM15 3H1a1 1 0 010-2h14a1 1 0 010 2z" />
         </svg>
@@ -99,10 +100,10 @@ function DropdownFilter({
           <div className="py-2 px-3 border-t border-gray-200 bg-gray-50">
             <ul className="flex items-center justify-between">
               <li>
-                <button className="btn-xs bg-white border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-600">Clear</button>
+                <button type="button" className="btn-xs bg-white border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-600">Clear</button>
               </li>
               <li>
-                <button className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => setDropdownOpen(false)} onBlur={() => setDropdownOpen(false)}>Apply</button>
+                <button type="button" className="btn-xs bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => setDropdownOpen(false)} onBlur={() => setDropdownOpen(false)}>Apply</button>
               </li>
             </ul>
           </div>

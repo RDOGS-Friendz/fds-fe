@@ -14,9 +14,8 @@ import Image09 from '../../images/user-40-09.jpg';
 import Image10 from '../../images/user-40-10.jpg';
 
 function CustomersTable({
-  selectedItems
+  selectedItems,
 }) {
-
   const customers = [
     {
       id: '0',
@@ -28,7 +27,7 @@ function CustomersTable({
       lastOrder: '#123567',
       spent: '$2,890.66',
       refunds: '-',
-      fav: true
+      fav: true,
     },
     {
       id: '1',
@@ -40,7 +39,7 @@ function CustomersTable({
       lastOrder: '#779912',
       spent: '$14,767.04',
       refunds: '4',
-      fav: false
+      fav: false,
     },
     {
       id: '2',
@@ -52,7 +51,7 @@ function CustomersTable({
       lastOrder: '#889924',
       spent: '$4,996.00',
       refunds: '1',
-      fav: true
+      fav: true,
     },
     {
       id: '3',
@@ -64,7 +63,7 @@ function CustomersTable({
       lastOrder: '#897726',
       spent: '$3,220.66',
       refunds: '2',
-      fav: false
+      fav: false,
     },
     {
       id: '4',
@@ -76,7 +75,7 @@ function CustomersTable({
       lastOrder: '#123567',
       spent: '$2,890.66',
       refunds: '-',
-      fav: true
+      fav: true,
     },
     {
       id: '5',
@@ -88,7 +87,7 @@ function CustomersTable({
       lastOrder: '#896644',
       spent: '$1,649.99',
       refunds: '1',
-      fav: true
+      fav: true,
     },
     {
       id: '6',
@@ -100,7 +99,7 @@ function CustomersTable({
       lastOrder: '#136988',
       spent: '$3,569.87',
       refunds: '2',
-      fav: true
+      fav: true,
     },
     {
       id: '7',
@@ -112,7 +111,7 @@ function CustomersTable({
       lastOrder: '#442206',
       spent: '$19,246.07',
       refunds: '6',
-      fav: false
+      fav: false,
     },
     {
       id: '8',
@@ -124,7 +123,7 @@ function CustomersTable({
       lastOrder: '#764321',
       spent: '$12,276.92',
       refunds: '-',
-      fav: true
+      fav: true,
     },
     {
       id: '9',
@@ -136,8 +135,8 @@ function CustomersTable({
       lastOrder: '#908764',
       spent: '$1,289.97',
       refunds: '2',
-      fav: false
-    }
+      fav: false,
+    },
   ];
 
   const [selectAll, setSelectAll] = useState(false);
@@ -155,18 +154,18 @@ function CustomersTable({
 
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
-    setIsCheck(list.map(li => li.id));
+    setIsCheck(list.map((li) => li.id));
     if (selectAll) {
       setIsCheck([]);
     }
   };
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     const { id, checked } = e.target;
     setSelectAll(false);
     setIsCheck([...isCheck, id]);
     if (!checked) {
-      setIsCheck(isCheck.filter(item => item !== id));
+      setIsCheck(isCheck.filter((item) => item !== id));
     }
   };
 
@@ -178,7 +177,10 @@ function CustomersTable({
   return (
     <div className="bg-white shadow-lg rounded-sm border border-gray-200 relative">
       <header className="px-5 py-4">
-        <h2 className="font-semibold text-gray-800">All Customers <span className="text-gray-400 font-medium">248</span></h2>
+        <h2 className="font-semibold text-gray-800">
+          All Customers
+          <span className="text-gray-400 font-medium">248</span>
+        </h2>
       </header>
       <div>
 
@@ -228,25 +230,23 @@ function CustomersTable({
             {/* Table body */}
             <tbody className="text-sm divide-y divide-gray-200">
               {
-                list.map(customer => {
-                  return (
-                    <Customer
-                      key={customer.id}
-                      id={customer.id}
-                      image={customer.image}
-                      name={customer.name}
-                      email={customer.email}
-                      location={customer.location}
-                      orders={customer.orders}
-                      lastOrder={customer.lastOrder}
-                      spent={customer.spent}
-                      refunds={customer.refunds}
-                      fav={customer.fav}
-                      handleClick={handleClick}
-                      isChecked={isCheck.includes(customer.id)}
-                    />
-                  )
-                })
+                list.map((customer) => (
+                  <Customer
+                    key={customer.id}
+                    id={customer.id}
+                    image={customer.image}
+                    name={customer.name}
+                    email={customer.email}
+                    location={customer.location}
+                    orders={customer.orders}
+                    lastOrder={customer.lastOrder}
+                    spent={customer.spent}
+                    refunds={customer.refunds}
+                    fav={customer.fav}
+                    handleClick={handleClick}
+                    isChecked={isCheck.includes(customer.id)}
+                  />
+                ))
               }
             </tbody>
           </table>

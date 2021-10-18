@@ -5,7 +5,6 @@ import DoughnutChart from '../../charts/DoughnutChart';
 import { tailwindConfig } from '../../utils/Utils';
 
 function DashboardCard06() {
-
   const chartData = {
     labels: ['United States', 'Italy', 'Other'],
     datasets: [

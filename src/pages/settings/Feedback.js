@@ -6,7 +6,6 @@ import SettingsSidebar from '../../partials/settings/SettingsSidebar';
 import FeedbackPanel from '../../partials/settings/FeedbackPanel';
 
 function Feedback() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

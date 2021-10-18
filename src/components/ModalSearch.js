@@ -1,21 +1,20 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function ModalSearch({
   id,
   searchId,
   modalOpen,
-  setModalOpen
+  setModalOpen,
 }) {
-
   const modalContent = useRef(null);
   const searchInput = useRef(null);
 
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      if (!modalOpen || modalContent.current.contains(target)) return
+      if (!modalOpen || modalContent.current.contains(target)) return;
       setModalOpen(false);
     };
     document.addEventListener('click', clickHandler);
@@ -33,7 +32,7 @@ function ModalSearch({
   });
 
   useEffect(() => {
-    modalOpen && searchInput.current.focus();
+    modalOpen && searchInput.current.focus(); // eslint-disable-line
   }, [modalOpen]);
 
   return (
@@ -170,7 +169,11 @@ function ModalSearch({
                     <svg className="w-4 h-4 fill-current text-gray-400 group-hover:text-white group-hover:text-opacity-50 flex-shrink-0 mr-3" viewBox="0 0 16 16">
                       <path d="M14 0H2c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h8l5-5V1c0-.6-.4-1-1-1zM3 2h10v8H9v4H3V2z" />
                     </svg>
-                    <span><span className="font-medium text-gray-800 group-hover:text-white">Messages</span> - Conversation / … / Mike Mills</span>
+                    <span>
+                      <span className="font-medium text-gray-800 group-hover:text-white">Messages</span>
+                      {' '}
+                      - Conversation / … / Mike Mills
+                    </span>
                   </Link>
                 </li>
                 <li>
@@ -182,7 +185,11 @@ function ModalSearch({
                     <svg className="w-4 h-4 fill-current text-gray-400 group-hover:text-white group-hover:text-opacity-50 flex-shrink-0 mr-3" viewBox="0 0 16 16">
                       <path d="M14 0H2c-.6 0-1 .4-1 1v14c0 .6.4 1 1 1h8l5-5V1c0-.6-.4-1-1-1zM3 2h10v8H9v4H3V2z" />
                     </svg>
-                    <span><span className="font-medium text-gray-800 group-hover:text-white">Messages</span> - Conversation / … / Eva Patrick</span>
+                    <span>
+                      <span className="font-medium text-gray-800 group-hover:text-white">Messages</span>
+                      {' '}
+                      - Conversation / … / Eva Patrick
+                    </span>
                   </Link>
                 </li>
               </ul>

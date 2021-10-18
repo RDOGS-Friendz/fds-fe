@@ -20,15 +20,24 @@ function Signup() {
               <form>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="email">
+                      Email Address
+                      <span className="text-red-500">*</span>
+                    </label>
                     <input id="email" className="form-input w-full" type="email" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="name">Full Name <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="name">
+                      Full Name
+                      <span className="text-red-500">*</span>
+                    </label>
                     <input id="name" className="form-input w-full" type="text" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="role">Your Role <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="role">
+                      Your Role
+                      <span className="text-red-500">*</span>
+                    </label>
                     <select id="role" className="form-select w-full">
                       <option>Designer</option>
                       <option>Developer</option>
@@ -53,7 +62,9 @@ function Signup() {
               {/* Footer */}
               <div className="pt-5 mt-6 border-t border-gray-200">
                 <div className="text-sm">
-                  Have an account? <Link className="font-medium text-indigo-500 hover:text-indigo-600" to="/signin">Sign In</Link>
+                  Have an account?
+                  {' '}
+                  <Link className="font-medium text-indigo-500 hover:text-indigo-600" to="/signin">Sign In</Link>
                 </div>
               </div>
             </div>

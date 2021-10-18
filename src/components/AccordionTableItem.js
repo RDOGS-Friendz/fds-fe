@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
+/* eslint-disable */
 function AccordionTableItem(props) {
-
   const [open, setOpen] = useState(false);
 
   return (
@@ -38,6 +37,7 @@ function AccordionTableItem(props) {
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
           <div className="flex items-center">
             <button
+              type="button"
               className={`text-gray-400 hover:text-gray-500 transform ${open && 'rotate-180'}`}
               aria-expanded={open}
               onClick={() => setOpen(!open)}

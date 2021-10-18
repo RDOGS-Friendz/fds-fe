@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function ApplicationsCard03(props) {
-
   const handleIcon = (id) => {
     switch (id) {
       case 0:
@@ -42,7 +41,6 @@ function ApplicationsCard03(props) {
           </svg>
         );
       default:
-        return;
     }
   };
 

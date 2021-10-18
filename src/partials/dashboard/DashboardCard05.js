@@ -6,7 +6,6 @@ import RealtimeChart from '../../charts/RealtimeChart';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function DashboardCard05() {
-
   // IMPORTANT:
   // Code below is for demo purpose only, and it's not covered by support.
   // If you need to replace dummy data with real data,
@@ -16,7 +15,7 @@ function DashboardCard05() {
   const [counter, setCounter] = useState(0);
   const [increment, setIncrement] = useState(0);
   const [range, setRange] = useState(35);
-  
+
   // Dummy data to be looped
   const data = [
     57.81, 57.75, 55.48, 54.28, 53.14, 52.25, 51.04, 52.49, 55.49, 56.87,
@@ -46,20 +45,20 @@ function DashboardCard05() {
     const interval = setInterval(() => {
       setCounter(counter + 1);
     }, 2000);
-    return () => clearInterval(interval)
+    return () => clearInterval(interval);
   }, [counter]);
 
   // Loop through data array and update
   useEffect(() => {
     setIncrement(increment + 1);
     if (increment + range < data.length) {
-      setSlicedData(([x, ...slicedData]) => [...slicedData, data[increment + range]]);
+      setSlicedData([...slicedData, data[increment + range]]);
     } else {
       setIncrement(0);
       setRange(0);
     }
-    setSlicedLabels(([x, ...slicedLabels]) => [...slicedLabels, new Date()]);
-    return () => setIncrement(0)
+    setSlicedLabels(([...slicedLabels, new Date()]));
+    return () => setIncrement(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counter]);
 
@@ -87,7 +86,10 @@ function DashboardCard05() {
       <header className="px-5 py-4 border-b border-gray-100 flex items-center">
         <h2 className="font-semibold text-gray-800">Real Time Value</h2>
         <Tooltip className="ml-2">
-          <div className="text-xs text-center whitespace-nowrap">Built with <a className="underline" href="https://www.chartjs.org/" target="_blank" rel="noreferrer">Chart.js</a></div>
+          <div className="text-xs text-center whitespace-nowrap">
+            Built with
+            <a className="underline" href="https://www.chartjs.org/" target="_blank" rel="noreferrer">Chart.js</a>
+          </div>
         </Tooltip>
       </header>
       {/* Chart built with Chart.js 3 */}

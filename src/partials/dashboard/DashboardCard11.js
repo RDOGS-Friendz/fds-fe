@@ -22,7 +22,11 @@ function DashboardCard11() {
               </div>
               <div className="flex-grow flex items-center border-b border-gray-100 text-sm py-2">
                 <div className="flex-grow flex justify-between">
-                  <div className="self-center"><a className="font-medium text-gray-800 hover:text-gray-900" href="#0">Qonto</a> billing</div>
+                  <div className="self-center">
+                    <a className="font-medium text-gray-800 hover:text-gray-900" href="#0">Qonto</a>
+                    {' '}
+                    billing
+                  </div>
                   <div className="flex-shrink-0 self-start ml-2">
                     <span className="font-medium text-gray-800">-$49.88</span>
                   </div>
@@ -38,7 +42,11 @@ function DashboardCard11() {
               </div>
               <div className="flex-grow flex items-center border-b border-gray-100 text-sm py-2">
                 <div className="flex-grow flex justify-between">
-                  <div className="self-center"><a className="font-medium text-gray-800 hover:text-gray-900" href="#0">Cruip.com</a> Market Ltd 70 Wilson St London</div>
+                  <div className="self-center">
+                    <a className="font-medium text-gray-800 hover:text-gray-900" href="#0">Cruip.com</a>
+                    {' '}
+                    Market Ltd 70 Wilson St London
+                  </div>
                   <div className="flex-shrink-0 self-start ml-2">
                     <span className="font-medium text-green-500">+249.88</span>
                   </div>
@@ -86,7 +94,11 @@ function DashboardCard11() {
               </div>
               <div className="flex-grow flex items-center border-b border-gray-100 text-sm py-2">
                 <div className="flex-grow flex justify-between">
-                  <div className="self-center"><a className="font-medium text-gray-800 hover:text-gray-900" href="#0">App.com</a> Market Ltd 70 Wilson St London</div>
+                  <div className="self-center">
+                    <a className="font-medium text-gray-800 hover:text-gray-900" href="#0">App.com</a>
+                    {' '}
+                    Market Ltd 70 Wilson St London
+                  </div>
                   <div className="flex-shrink-0 self-start ml-2">
                     <span className="font-medium text-gray-800 line-through">+$99.99</span>
                   </div>
@@ -102,7 +114,11 @@ function DashboardCard11() {
               </div>
               <div className="flex-grow flex items-center text-sm py-2">
                 <div className="flex-grow flex justify-between">
-                  <div className="self-center"><a className="font-medium text-gray-800 hover:text-gray-900" href="#0">App.com</a> Market Ltd 70 Wilson St London</div>
+                  <div className="self-center">
+                    <a className="font-medium text-gray-800 hover:text-gray-900" href="#0">App.com</a>
+                    {' '}
+                    Market Ltd 70 Wilson St London
+                  </div>
                   <div className="flex-shrink-0 self-start ml-2">
                     <span className="font-medium text-gray-800">-$49.88</span>
                   </div>

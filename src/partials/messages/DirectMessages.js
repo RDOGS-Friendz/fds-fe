@@ -8,14 +8,14 @@ import UserImage05 from '../../images/user-32-05.jpg';
 import UserImage06 from '../../images/user-32-06.jpg';
 
 function DirectMessages({
-  setMsgSidebarOpen
+  setMsgSidebarOpen,
 }) {
   return (
     <div className="mt-4">
       <div className="text-xs font-semibold text-gray-400 uppercase mb-3">Direct messages</div>
       <ul className="mb-6">
         <li className="-mx-2">
-          <button className="flex items-center justify-between w-full p-2 rounded bg-indigo-100" onClick={() => setMsgSidebarOpen(false)}>
+          <button type="button" className="flex items-center justify-between w-full p-2 rounded bg-indigo-100" onClick={() => setMsgSidebarOpen(false)}>
             <div className="flex items-center">
               <img className="w-8 h-8 rounded-full mr-2" src={UserImage01} width="32" height="32" alt="User 01" />
               <div className="truncate">
@@ -28,7 +28,7 @@ function DirectMessages({
           </button>
         </li>
         <li className="-mx-2">
-          <button className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
+          <button type="button" className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
             <div className="flex items-center truncate">
               <img className="w-8 h-8 rounded-full mr-2" src={UserImage02} width="32" height="32" alt="User 02" />
               <div className="truncate">
@@ -41,7 +41,7 @@ function DirectMessages({
           </button>
         </li>
         <li className="-mx-2">
-          <button className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
+          <button type="button" className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
             <div className="flex items-center truncate">
               <img className="w-8 h-8 rounded-full mr-2" src={UserImage03} width="32" height="32" alt="User 03" />
               <div className="truncate">
@@ -54,7 +54,7 @@ function DirectMessages({
           </button>
         </li>
         <li className="-mx-2">
-          <button className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
+          <button type="button" className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
             <div className="flex items-center truncate">
               <img className="w-8 h-8 rounded-full mr-2" src={UserImage04} width="32" height="32" alt="User 04" />
               <div className="truncate">
@@ -69,7 +69,7 @@ function DirectMessages({
           </button>
         </li>
         <li className="-mx-2">
-          <button className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
+          <button type="button" className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
             <div className="flex items-center truncate">
               <img className="w-8 h-8 rounded-full mr-2" src={UserImage05} width="32" height="32" alt="User 05" />
               <div className="truncate">
@@ -84,7 +84,7 @@ function DirectMessages({
           </button>
         </li>
         <li className="-mx-2">
-          <button className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
+          <button type="button" className="flex items-center justify-between w-full p-2 rounded" onClick={() => setMsgSidebarOpen(false)}>
             <div className="flex items-center truncate">
               <img className="w-8 h-8 rounded-full mr-2" src={UserImage06} width="32" height="32" alt="User 06" />
               <div className="truncate">
@@ -100,7 +100,7 @@ function DirectMessages({
         </li>
       </ul>
     </div>
-  )
+  );
 }
 
 export default DirectMessages;

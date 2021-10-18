@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function CampaignsCard(props) {
-
-  const typeColor = (type) => {
-    switch (type) {
+  const typeColor = (t) => {
+    switch (t) {
       case 'One-Time':
         return 'bg-green-100 text-green-600';
       case 'At Risk':
@@ -51,7 +50,7 @@ function CampaignsCard(props) {
           </div>
         );
       default:
-        return (<div></div>);
+        return (<div />);
     }
   };
 
@@ -63,13 +62,11 @@ function CampaignsCard(props) {
             {categoryIcon(props.category)}
             <div className="flex flex-shrink-0 -space-x-3 -ml-px">
               {
-                props.members.map(member => {
-                  return (
-                    <Link key={member.name} className="block" to={member.link}>
-                      <img className="rounded-full border-2 border-white box-content" src={member.image} width="28" height="28" alt={member.name} />
-                    </Link>
-                  )
-                })
+                props.members.map((member) => (
+                  <Link key={member.name} className="block" to={member.link}>
+                    <img className="rounded-full border-2 border-white box-content" src={member.image} width="28" height="28" alt={member.name} />
+                  </Link>
+                ))
               }
             </div>
           </div>
@@ -81,7 +78,13 @@ function CampaignsCard(props) {
           <div className="text-sm">{props.content}</div>
         </div>
         <footer className="mt-5">
-          <div className="text-sm font-medium text-gray-500 mb-2">{props.dates.from} <span className="text-gray-400">-&gt;</span> {props.dates.to}</div>
+          <div className="text-sm font-medium text-gray-500 mb-2">
+            {props.dates.from}
+            {' '}
+            <span className="text-gray-400">-&gt;</span>
+            {' '}
+            {props.dates.to}
+          </div>
           <div className="flex justify-between items-center">
             <div>
               <div className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 ${typeColor(props.type)}`}>{props.type}</div>

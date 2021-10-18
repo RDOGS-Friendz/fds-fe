@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 function OrdersTableItem(props) {
-
   const [descriptionOpen, setDescriptionOpen] = useState(false);
 
   const statusColor = (status) => {
@@ -15,8 +14,8 @@ function OrdersTableItem(props) {
     }
   };
 
-  const typeIcon = (type) => {
-    switch (type) {
+  const typeIcon = (t) => {
+    switch (t) {
       case 'Subscription':
         return (
           <svg className="w-4 h-4 fill-current text-gray-400 flex-shrink-0 mr-2" viewBox="0 0 16 16">
@@ -79,6 +78,7 @@ function OrdersTableItem(props) {
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
           <div className="flex items-center">
             <button
+              type="button"
               className={`text-gray-400 hover:text-gray-500 transform ${descriptionOpen && 'rotate-180'}`}
               aria-expanded={descriptionOpen}
               onClick={() => setDescriptionOpen(!descriptionOpen)}
@@ -97,7 +97,7 @@ function OrdersTableItem(props) {
       Note that you must set a "colSpan" attribute on the <td> element,
       and it should match the number of columns in your table
       */}
-      <tr id={`description-${props.id}`} role="region" className={`${!descriptionOpen && 'hidden'}`}>
+      <tr id={`description-${props.id}`} className={`${!descriptionOpen && 'hidden'}`}>
         <td colSpan="10" className="px-2 first:pl-5 last:pr-5 py-3">
           <div className="flex items-center bg-gray-50 p-3 -mt-3">
             <svg className="w-4 h-4 flex-shrink-0 fill-current text-gray-400 mr-2">

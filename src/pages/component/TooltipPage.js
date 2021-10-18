@@ -5,7 +5,6 @@ import Header from '../../partials/Header';
 import Tooltip from '../../components/Tooltip';
 
 function TooltipPage() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

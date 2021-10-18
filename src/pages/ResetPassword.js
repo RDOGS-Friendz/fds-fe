@@ -19,12 +19,15 @@ function ResetPassword() {
               <form>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address <span className="text-red-500">*</span></label>
+                    <label className="block text-sm font-medium mb-1" htmlFor="email">
+                      Email Address
+                      <span className="text-red-500">*</span>
+                    </label>
                     <input id="email" className="form-input w-full" type="email" />
                   </div>
                 </div>
                 <div className="flex justify-end mt-6">
-                  <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap">Send Reset Link</button>
+                  <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white whitespace-nowrap">Send Reset Link</button>
                 </div>
               </form>
             </div>

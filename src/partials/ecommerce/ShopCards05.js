@@ -2,7 +2,7 @@ import React from 'react';
 
 function ShopCards05() {
   return (
-    <React.Fragment>
+    <>
       {/* Card 1 */}
       <div className="col-span-full sm:col-span-6 xl:col-span-3 bg-white shadow-lg rounded-sm border border-gray-200">
         <div className="flex flex-col h-full text-center p-5">
@@ -78,7 +78,7 @@ function ShopCards05() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

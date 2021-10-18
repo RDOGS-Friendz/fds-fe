@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Transition from '../../utils/Transition';
 
 function Help() {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -33,6 +32,7 @@ function Help() {
   return (
     <div className="relative inline-flex ml-3">
       <button
+        type="button"
         ref={trigger}
         className={`w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition duration-150 rounded-full ${dropdownOpen && 'bg-gray-200'}`}
         aria-haspopup="true"
@@ -103,7 +103,7 @@ function Help() {
         </div>
       </Transition>
     </div>
-  )
+  );
 }
 
 export default Help;

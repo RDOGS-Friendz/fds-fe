@@ -4,9 +4,8 @@ import Transition from './Transition.js';
 function Info({
   children,
   className,
-  containerClassName
+  containerClassName,
 }) {
-
   const [infoOpen, setInfoOpen] = useState(false);
 
   return (
@@ -18,6 +17,7 @@ function Info({
       onBlur={() => setInfoOpen(false)}
     >
       <button
+        type="button"
         className="block"
         href="#0"
         aria-haspopup="true"

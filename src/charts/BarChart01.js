@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { focusHandling } from 'cruip-js-toolkit';
+/* eslint-disable */
 
 import {
   Chart, BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend,
@@ -14,9 +15,8 @@ Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legen
 function BarChart01({
   data,
   width,
-  height
+  height,
 }) {
-
   const canvas = useRef(null);
   const legend = useRef(null);
 
@@ -25,7 +25,7 @@ function BarChart01({
     // eslint-disable-next-line no-unused-vars
     const chart = new Chart(ctx, {
       type: 'bar',
-      data: data,
+      data,
       options: {
         layout: {
           padding: {
@@ -150,14 +150,14 @@ function BarChart01({
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <div className="px-5 py-3">
-        <ul ref={legend} className="flex flex-wrap"></ul>
+        <ul ref={legend} className="flex flex-wrap" />
       </div>
       <div className="flex-grow">
-        <canvas ref={canvas} width={width} height={height}></canvas>
+        <canvas ref={canvas} width={width} height={height} />
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

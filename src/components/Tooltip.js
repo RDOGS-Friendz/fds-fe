@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function Tooltip({
   children,
@@ -8,11 +8,10 @@ function Tooltip({
   size,
   position,
 }) {
-
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
-  const positionOuterClasses = (position) => {
-    switch (position) {
+  const positionOuterClasses = (p) => {
+    switch (p) {
       case 'right':
         return 'left-full top-1/2 transform -translate-y-1/2';
       case 'left':
@@ -22,10 +21,10 @@ function Tooltip({
       default:
         return 'bottom-full left-1/2 transform -translate-x-1/2';
     }
-  }
+  };
 
-  const sizeClasses = (size) => {
-    switch (size) {
+  const sizeClasses = (s) => {
+    switch (s) {
       case 'lg':
         return 'min-w-72  p-3';
       case 'md':
@@ -37,8 +36,8 @@ function Tooltip({
     }
   };
 
-  const positionInnerClasses = (position) => {
-    switch (position) {
+  const positionInnerClasses = (p) => {
+    switch (p) {
       case 'right':
         return 'ml-2';
       case 'left':
@@ -59,6 +58,7 @@ function Tooltip({
       onBlur={() => setTooltipOpen(false)}
     >
       <button
+        type="button"
         className="block"
         aria-haspopup="true"
         aria-expanded={tooltipOpen}

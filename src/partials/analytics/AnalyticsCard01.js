@@ -5,7 +5,6 @@ import LineChart from '../../charts/LineChart03';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function AnalyticsCard01() {
-
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',
@@ -73,7 +72,7 @@ function AnalyticsCard01() {
               </div>
               <div className="text-sm text-gray-500">Unique Visitors</div>
             </div>
-            <div className="hidden md:block w-px h-8 bg-gray-200 mr-5" aria-hidden="true"></div>
+            <div className="hidden md:block w-px h-8 bg-gray-200 mr-5" aria-hidden="true" />
           </div>
           {/* Total Pageviews */}
           <div className="flex items-center py-2">
@@ -84,7 +83,7 @@ function AnalyticsCard01() {
               </div>
               <div className="text-sm text-gray-500">Total Pageviews</div>
             </div>
-            <div className="hidden md:block w-px h-8 bg-gray-200 mr-5" aria-hidden="true"></div>
+            <div className="hidden md:block w-px h-8 bg-gray-200 mr-5" aria-hidden="true" />
           </div>
           {/* Bounce Rate */}
           <div className="flex items-center py-2">
@@ -95,9 +94,9 @@ function AnalyticsCard01() {
               </div>
               <div className="text-sm text-gray-500">Bounce Rate</div>
             </div>
-            <div className="hidden md:block w-px h-8 bg-gray-200 mr-5" aria-hidden="true"></div>
+            <div className="hidden md:block w-px h-8 bg-gray-200 mr-5" aria-hidden="true" />
           </div>
-          {/* Visit Duration*/}
+          {/* Visit Duration */}
           <div className="flex items-center">
             <div>
               <div className="flex items-center">

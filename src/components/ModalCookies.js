@@ -1,20 +1,19 @@
 import React, { useRef, useEffect } from 'react';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function ModalCookies({
   children,
   id,
   title,
   modalOpen,
-  setModalOpen
+  setModalOpen,
 }) {
-
   const modalContent = useRef(null);
 
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      if (!modalOpen || modalContent.current.contains(target)) return
+      if (!modalOpen || modalContent.current.contains(target)) return;
       setModalOpen(false);
     };
     document.addEventListener('click', clickHandler);
@@ -65,7 +64,7 @@ function ModalCookies({
             <div className="mb-2">
               <div className="flex justify-between items-center">
                 <div className="text-lg font-semibold text-gray-800">{title}</div>
-                <button className="text-gray-400 hover:text-gray-500" onClick={(e) => { e.stopPropagation(); setModalOpen(false); }}>
+                <button type="button" className="text-gray-400 hover:text-gray-500" onClick={(e) => { e.stopPropagation(); setModalOpen(false); }}>
                   <div className="sr-only">Close</div>
                   <svg className="w-4 h-4 fill-current">
                     <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />

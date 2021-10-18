@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SearchForm({
-  placeholder
+  placeholder,
 }) {
   return (
     <form className="relative">
@@ -18,7 +18,7 @@ function SearchForm({
 }
 
 SearchForm.defaultProps = {
-  placeholder: 'Search…'
-}
+  placeholder: 'Search…',
+};
 
 export default SearchForm;

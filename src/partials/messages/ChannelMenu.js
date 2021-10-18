@@ -7,7 +7,6 @@ import ChannelImage02 from '../../images/channel-02.png';
 import ChannelImage03 from '../../images/channel-03.png';
 
 function ChannelMenu() {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -37,6 +36,7 @@ function ChannelMenu() {
   return (
     <div className="relative">
       <button
+        type="button"
         ref={trigger}
         className="flex-grow flex items-center truncate"
         aria-haspopup="true"
@@ -102,7 +102,7 @@ function ChannelMenu() {
         </ul>
       </Transition>
     </div>
-  )
+  );
 }
 
 export default ChannelMenu;

@@ -5,7 +5,6 @@ import PolarChart from '../../charts/PolarChart';
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
 
 function AnalyticsCard10() {
-
   const chartData = {
     labels: ['Males', 'Females', 'Unknown'],
     datasets: [

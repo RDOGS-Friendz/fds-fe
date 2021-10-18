@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 function AccordionBasic(props) {
-
   const [open, setOpen] = useState(false);
 
   return (
     <div className="px-5 py-4 rounded-sm border border-gray-200">
       <button
+        type="button"
         className="flex items-center justify-between w-full group mb-1"
         aria-expanded={open}
         onClick={() => setOpen(!open)}

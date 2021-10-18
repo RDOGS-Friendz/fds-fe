@@ -10,12 +10,11 @@ import InvoicesTable from '../../partials/invoices/InvoicesTable';
 import PaginationClassic from '../../components/PaginationClassic';
 
 function Invoices() {
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const handleSelectedItems = (selectedItems) => {
-    setSelectedItems([...selectedItems]);
+  const handleSelectedItems = (s) => {
+    setSelectedItems([...s]);
   };
 
   return (
@@ -46,7 +45,7 @@ function Invoices() {
                 {/* Search form */}
                 <SearchForm placeholder="Search by invoice ID…" />
                 {/* Add member button */}
-                <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
+                <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
                   <svg className="w-4 h-4 fill-current opacity-50 flex-shrink-0" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                   </svg>
@@ -63,16 +62,28 @@ function Invoices() {
               <div className="mb-4 sm:mb-0">
                 <ul className="flex flex-wrap -m-1">
                   <li className="m-1">
-                    <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-white duration-150 ease-in-out">All <span className="ml-1 text-indigo-200">67</span></button>
+                    <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-transparent shadow-sm bg-indigo-500 text-white duration-150 ease-in-out">
+                      All
+                      <span className="ml-1 text-indigo-200">67</span>
+                    </button>
                   </li>
                   <li className="m-1">
-                    <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Paid <span className="ml-1 text-gray-400">14</span></button>
+                    <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">
+                      Paid
+                      <span className="ml-1 text-gray-400">14</span>
+                    </button>
                   </li>
                   <li className="m-1">
-                    <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Due <span className="ml-1 text-gray-400">34</span></button>
+                    <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">
+                      Due
+                      <span className="ml-1 text-gray-400">34</span>
+                    </button>
                   </li>
                   <li className="m-1">
-                    <button className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">Overdue <span className="ml-1 text-gray-400">19</span></button>
+                    <button type="button" className="inline-flex items-center justify-center text-sm font-medium leading-5 rounded-full px-3 py-1 border border-gray-200 hover:border-gray-300 shadow-sm bg-white text-gray-500 duration-150 ease-in-out">
+                      Overdue
+                      <span className="ml-1 text-gray-400">19</span>
+                    </button>
                   </li>
                 </ul>
               </div>

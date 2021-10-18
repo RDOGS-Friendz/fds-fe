@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Transition from '../utils/Transition.js';
+import Transition from '../utils/Transition';
 
 function EditMenu({
   children,
   ...rest
 }) {
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -35,6 +34,7 @@ function EditMenu({
   return (
     <div {...rest}>
       <button
+        type="button"
         ref={trigger}
         className={`text-gray-400 hover:text-gray-500 rounded-full ${dropdownOpen && 'bg-gray-100 text-gray-500'}`}
         aria-haspopup="true"

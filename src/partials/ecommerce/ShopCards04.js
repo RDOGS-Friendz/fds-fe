@@ -7,7 +7,7 @@ import AppImage16 from '../../images/applications-image-16.jpg';
 
 function ShopCards04() {
   return (
-    <React.Fragment>
+    <>
       {/* Card 1 */}
       <div className="col-span-full sm:col-span-6 xl:col-span-3 bg-white shadow-lg rounded-sm border border-gray-200 overflow-hidden">
         <div className="flex flex-col h-full">
@@ -15,7 +15,7 @@ function ShopCards04() {
           <div className="relative">
             <img className="w-full" src={AppImage13} width="286" height="160" alt="Application 13" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -37,12 +37,16 @@ function ShopCards04() {
               {/* Info */}
               <div className="mb-5">
                 <div className="flex justify-between text-sm space-x-2 mb-2">
-                  <div><span className="font-semibold text-gray-800">$789,784</span> <span className="italic">raised</span></div>
+                  <div>
+                    <span className="font-semibold text-gray-800">$789,784</span>
+                    {' '}
+                    <span className="italic">raised</span>
+                  </div>
                   <div>64%</div>
                 </div>
                 {/* Bar */}
                 <div className="relative w-full h-2 rounded-full bg-gray-200 mb-2">
-                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{width: '55%'}}></div>
+                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{ width: '55%' }} />
                 </div>
                 <div className="font-medium text-xs">30 Days Left</div>
               </div>
@@ -62,7 +66,7 @@ function ShopCards04() {
           <div className="relative">
             <img className="w-full" src={AppImage14} width="286" height="160" alt="Application 14" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -84,12 +88,16 @@ function ShopCards04() {
               {/* Info */}
               <div className="mb-5">
                 <div className="flex justify-between text-sm space-x-2 mb-2">
-                  <div><span className="font-semibold text-gray-800">$789,784</span> <span className="italic">raised</span></div>
+                  <div>
+                    <span className="font-semibold text-gray-800">$789,784</span>
+                    {' '}
+                    <span className="italic">raised</span>
+                  </div>
                   <div>64%</div>
                 </div>
                 {/* Bar */}
                 <div className="relative w-full h-2 rounded-full bg-gray-200 mb-2">
-                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{width: '55%'}}></div>
+                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{ width: '55%' }} />
                 </div>
                 <div className="font-medium text-xs">30 Days Left</div>
               </div>
@@ -109,7 +117,7 @@ function ShopCards04() {
           <div className="relative">
             <img className="w-full" src={AppImage15} width="286" height="160" alt="Application 15" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -131,12 +139,16 @@ function ShopCards04() {
               {/* Info */}
               <div className="mb-5">
                 <div className="flex justify-between text-sm space-x-2 mb-2">
-                  <div><span className="font-semibold text-gray-800">$789,784</span> <span className="italic">raised</span></div>
+                  <div>
+                    <span className="font-semibold text-gray-800">$789,784</span>
+                    {' '}
+                    <span className="italic">raised</span>
+                  </div>
                   <div>64%</div>
                 </div>
                 {/* Bar */}
                 <div className="relative w-full h-2 rounded-full bg-gray-200 mb-2">
-                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{width: '55%'}}></div>
+                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{ width: '55%' }} />
                 </div>
                 <div className="font-medium text-xs">30 Days Left</div>
               </div>
@@ -156,7 +168,7 @@ function ShopCards04() {
           <div className="relative">
             <img className="w-full" src={AppImage16} width="286" height="160" alt="Application 16" />
             {/* Like button */}
-            <button className="absolute top-0 right-0 mt-4 mr-4">
+            <button type="button" className="absolute top-0 right-0 mt-4 mr-4">
               <div className="text-gray-100 bg-gray-900 bg-opacity-60 rounded-full">
                 <span className="sr-only">Like</span>
                 <svg className="h-8 w-8 fill-current" viewBox="0 0 32 32">
@@ -178,12 +190,16 @@ function ShopCards04() {
               {/* Info */}
               <div className="mb-5">
                 <div className="flex justify-between text-sm space-x-2 mb-2">
-                  <div><span className="font-semibold text-gray-800">$789,784</span> <span className="italic">raised</span></div>
+                  <div>
+                    <span className="font-semibold text-gray-800">$789,784</span>
+                    {' '}
+                    <span className="italic">raised</span>
+                  </div>
                   <div>64%</div>
                 </div>
                 {/* Bar */}
                 <div className="relative w-full h-2 rounded-full bg-gray-200 mb-2">
-                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{width: '55%'}}></div>
+                  <div className="absolute left-0 top-0 bottom-0 bg-green-500 rounded-full" style={{ width: '55%' }} />
                 </div>
                 <div className="font-medium text-xs">30 Days Left</div>
               </div>
@@ -195,7 +211,7 @@ function ShopCards04() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

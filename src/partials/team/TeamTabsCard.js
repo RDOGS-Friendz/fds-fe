@@ -39,7 +39,10 @@ function TeamTabsCard(props) {
                 <h2 className="text-xl leading-snug justify-center font-semibold">{props.name}</h2>
               </Link>
             </div>
-            <div className="flex justify-center items-center"><span className="text-sm font-medium text-gray-400 -mt-0.5 mr-1">-&gt;</span> <span>{props.location}</span></div>
+            <div className="flex justify-center items-center">
+              <span className="text-sm font-medium text-gray-400 -mt-0.5 mr-1">-&gt;</span>
+              <span>{props.location}</span>
+            </div>
           </header>
           {/* Bio */}
           <div className="text-center mt-2">

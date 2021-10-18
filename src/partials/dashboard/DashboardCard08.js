@@ -5,7 +5,6 @@ import LineChart from '../../charts/LineChart02';
 import { tailwindConfig } from '../../utils/Utils';
 
 function DashboardCard08() {
-
   const chartData = {
     labels: [
       '12-01-2020', '01-01-2021', '02-01-2021',

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 function NotificationsPanel() {
-
   const [comments, setComments] = useState(true);
   const [messages, setMessages] = useState(true);
   const [mentions, setMentions] = useState(false);
@@ -29,7 +28,7 @@ function NotificationsPanel() {
                 <div className="form-switch focus-within:outline-blue">
                   <input type="checkbox" id="comments" className="sr-only" checked={comments} onChange={() => setComments(!comments)} />
                   <label className="bg-gray-400" htmlFor="comments">
-                    <span className="bg-white shadow-sm" aria-hidden="true"></span>
+                    <span className="bg-white shadow-sm" aria-hidden="true" />
                     <span className="sr-only">Enable smart sync</span>
                   </label>
                 </div>
@@ -47,7 +46,7 @@ function NotificationsPanel() {
                 <div className="form-switch focus-within:outline-blue">
                   <input type="checkbox" id="messages" className="sr-only" checked={messages} onChange={() => setMessages(!messages)} />
                   <label className="bg-gray-400" htmlFor="messages">
-                    <span className="bg-white shadow-sm" aria-hidden="true"></span>
+                    <span className="bg-white shadow-sm" aria-hidden="true" />
                     <span className="sr-only">Enable smart sync</span>
                   </label>
                 </div>
@@ -65,7 +64,7 @@ function NotificationsPanel() {
                 <div className="form-switch focus-within:outline-blue">
                   <input type="checkbox" id="mentions" className="sr-only" checked={mentions} onChange={() => setMentions(!mentions)} />
                   <label className="bg-gray-400" htmlFor="mentions">
-                    <span className="bg-white shadow-sm" aria-hidden="true"></span>
+                    <span className="bg-white shadow-sm" aria-hidden="true" />
                     <span className="sr-only">Enable smart sync</span>
                   </label>
                 </div>
@@ -86,7 +85,7 @@ function NotificationsPanel() {
               </div>
               {/* Right */}
               <div className="flex items-center ml-4">
-                <button className="btn-sm border-gray-200 hover:border-gray-300 shadow-sm">Manage</button>
+                <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 shadow-sm">Manage</button>
               </div>
             </li>
             <li className="flex justify-between items-center py-3 border-b border-gray-200">
@@ -97,7 +96,7 @@ function NotificationsPanel() {
               </div>
               {/* Right */}
               <div className="flex items-center ml-4">
-                <button className="btn-sm border-gray-200 hover:border-gray-300 shadow-sm">Manage</button>
+                <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 shadow-sm">Manage</button>
               </div>
             </li>
             <li className="flex justify-between items-center py-3 border-b border-gray-200">
@@ -109,7 +108,7 @@ function NotificationsPanel() {
               {/* Right */}
               <div className="flex items-center ml-4">
                 <div className="text-sm text-gray-400 italic mr-2 hidden md:block">Active</div>
-                <button className="btn-sm border-gray-200 hover:border-gray-300 shadow-sm text-red-500">Disable</button>
+                <button type="button" className="btn-sm border-gray-200 hover:border-gray-300 shadow-sm text-red-500">Disable</button>
               </div>
             </li>
           </ul>
@@ -120,8 +119,8 @@ function NotificationsPanel() {
       <footer>
         <div className="flex flex-col px-6 py-5 border-t border-gray-200">
           <div className="flex self-end">
-            <button className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
-            <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
+            <button type="button" className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
+            <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
           </div>
         </div>
       </footer>
