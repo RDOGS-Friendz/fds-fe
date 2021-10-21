@@ -1,6 +1,6 @@
 import React from 'react';
 import Flatpickr from 'react-flatpickr';
-
+/* eslint-disable */
 function Datepicker() {
   const options = {
     mode: 'range',

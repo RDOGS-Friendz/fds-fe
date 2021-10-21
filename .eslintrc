@@ -13,11 +13,13 @@
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "react-hooks/exhaustive-deps": "warn",
     "import/no-named-as-default": 0,
+    "jsx-a11y/label-has-associated-control": 0,
     "import/no-named-as-default-member": 0,
     "react/destructuring-assignment": [0, "never"],
     "eqeqeq": ["error", "smart"],
     "no-unused-vars": "warn",
     "react/no-unused-state": "warn",
+    "no-param-reassign": 0,
     "no-extra-boolean-cast": "off",
     "react/static-property-placement": "off",
     "comma-dangle": [2, "always-multiline"],
@@ -35,8 +37,7 @@
         "args": "after-used",
         "argsIgnorePattern": "^_"
       }
-    ],
-    "jsx-a11y/label-has-associated-control": "off"
+    ]
   },
   "parser": "babel-eslint",
   "parserOptions": {

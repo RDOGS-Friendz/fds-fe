@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "autoprefixer": "^9.8.5",
+    "axios": "^0.23.0",
     "chart.js": "^3.5.0",
     "chartjs-adapter-moment": "^1.0.0",
     "cruip-js-toolkit": "^1.0.3",

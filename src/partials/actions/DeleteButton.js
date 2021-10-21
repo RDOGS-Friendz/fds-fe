@@ -8,7 +8,6 @@ function DeleteButton({
       <div className="flex items-center">
         <div className="hidden xl:block text-sm italic mr-2 whitespace-nowrap">
           <span>{selectedItems.length}</span>
-          {' '}
           items selected
         </div>
         <button type="button" className="btn bg-white border-gray-200 hover:border-gray-300 text-red-500 hover:text-red-600">Delete</button>

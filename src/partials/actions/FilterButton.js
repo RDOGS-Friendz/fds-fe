@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Transition from '../../utils/Transition.js';
+import Transition from '../../utils/Transition';
 
 function FilterButton() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
