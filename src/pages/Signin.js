@@ -1,10 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import Toast from '../components/Toast';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
+import { login } from '../features/auth/authSlice';
 
 function Signin() {
+  const history = useHistory();
+  const [usernameInput, setUsernameInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [showSigninFailedToast, setShowSigninFailedToast] = useState(false);
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await dispatch(login({ username: usernameInput, password: passwordInput })).unwrap();
+      history.push('/');
+    } catch (error) {
+      setShowSigninFailedToast(true);
+    }
+  };
+  useEffect(() => {
+  }, []);
+
   return (
     <main className="bg-white">
 
@@ -20,26 +42,25 @@ function Signin() {
               <form>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">Email Address</label>
-                    <input id="email" className="form-input w-full" type="email" />
+                    <label className="block text-sm font-medium mb-1" htmlFor="email">Username</label>
+                    <input id="email" className="form-input w-full" type="email" value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-1" htmlFor="password">Password</label>
-                    <input id="password" className="form-input w-full" type="password" autoComplete="on" />
+                    <input id="password" className="form-input w-full" type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} autoComplete="on" />
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-6">
                   <div className="mr-1">
                     <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
                   </div>
-                  <Link className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3" to="/">Sign In</Link>
+                  <button type="submit" className="btn bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-800 text-white ml-3" onClick={handleSubmit}>Sign In</button>
                 </div>
               </form>
               {/* Footer */}
               <div className="pt-5 mt-6 border-t border-gray-200">
                 <div className="text-sm">
                   Don’t you have an account?
-                  {' '}
                   <Link className="font-medium text-indigo-500 hover:text-indigo-600" to="/signup">Sign Up</Link>
                 </div>
                 {/* Warning */}
@@ -56,6 +77,9 @@ function Signin() {
               </div>
             </div>
 
+            <Toast open={showSigninFailedToast} setOpen={setShowSigninFailedToast}>
+              {`Error: ${auth.error}`}
+            </Toast>
           </div>
         </div>
 
