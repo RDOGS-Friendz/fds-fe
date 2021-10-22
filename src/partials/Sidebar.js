@@ -207,15 +207,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   </div>
                 </NavLink>
               </li>
-              {/* Activities */}
+              {/* Events */}
               <li
                 className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-                  pathname.includes('shop-2') && 'bg-gray-900'
+                  pathname.includes('events') && 'bg-gray-900'
                 }`}
               >
                 <NavLink
                   exact
-                  to="/ecommerce/shop-2"
+                  to="/events"
                   className="block text-gray-200 hover:text-white truncate transition duration-150"
                 >
                   <div className="flex">
@@ -226,7 +226,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       <path
                         className={`fill-current text-gray-600 ${
                           pathname.includes(
-                            'shop-2',
+                            'events',
                           ) && 'text-indigo-500'
                         }`}
                         d="M20 7a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 0120 7zM4 23a.75.75 0 01-.75-.75 1.5 1.5 0 00-1.5-1.5.75.75 0 110-1.5 1.5 1.5 0 001.5-1.5.75.75 0 111.5 0 1.5 1.5 0 001.5 1.5.75.75 0 110 1.5 1.5 1.5 0 00-1.5 1.5A.75.75 0 014 23z"
@@ -234,14 +234,14 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       <path
                         className={`fill-current text-gray-400 ${
                           pathname.includes(
-                            'shop-2',
+                            'events',
                           ) && 'text-indigo-300'
                         }`}
                         d="M17 23a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 010-2 4 4 0 004-4 1 1 0 012 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1zM7 13a1 1 0 01-1-1 4 4 0 00-4-4 1 1 0 110-2 4 4 0 004-4 1 1 0 112 0 4 4 0 004 4 1 1 0 010 2 4 4 0 00-4 4 1 1 0 01-1 1z"
                       />
                     </svg>
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                      Activities
+                      Events
                     </span>
                   </div>
                 </NavLink>
@@ -249,15 +249,15 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               {/* Friends */}
               <li
                 className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
-                  pathname === '/team/team-tiles'
+                  pathname === '/friends'
                                     && 'bg-gray-900'
                 }`}
               >
                 <NavLink
                   exact
-                  to="/team/team-tiles"
+                  to="/friends"
                   className={`block text-gray-200 hover:text-white truncate transition duration-150 ${
-                    pathname === '/team/team-tiles'
+                    pathname === '/friends'
                                         && 'hover:text-gray-200'
                   }`}
                 >
@@ -268,14 +268,14 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     >
                       <path
                         className={`fill-current text-gray-600 ${
-                          pathname.includes('team')
+                          pathname.includes('friends')
                                                     && 'text-indigo-500'
                         }`}
                         d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
                       />
                       <path
                         className={`fill-current text-gray-400 ${
-                          pathname.includes('team')
+                          pathname.includes('friends')
                                                     && 'text-indigo-300'
                         }`}
                         d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
@@ -284,6 +284,31 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                       Friends
                     </span>
+                  </div>
+                </NavLink>
+              </li>
+              {/* History */}
+              <li
+                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
+                  pathname === '/history'
+                                    && 'bg-gray-900'
+                }`}
+              >
+                <NavLink
+                  exact
+                  to="/history"
+                  className={`block text-gray-200 hover:text-white truncate transition duration-150 ${
+                    pathname === '/history'
+                                        && 'hover:text-gray-200'
+                  }`}
+                >
+                  <div className="flex">
+                    <svg className="flex-shrink-0 h-6 w-6" viewBox="0 0 24 24">
+                      <path className={`fill-current text-gray-600 ${pathname.includes('history') && 'text-indigo-500'}`} d="M8 1v2H3v19h18V3h-5V1h7v23H1V1z" />
+                      <path className={`fill-current text-gray-600 ${pathname.includes('history') && 'text-indigo-500'}`} d="M1 1h22v23H1z" />
+                      <path className={`fill-current text-gray-400 ${pathname.includes('history') && 'text-indigo-300'}`} d="M15 10.586L16.414 12 11 17.414 7.586 14 9 12.586l2 2zM5 0h14v4H5z" />
+                    </svg>
+                    <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">History</span>
                   </div>
                 </NavLink>
               </li>

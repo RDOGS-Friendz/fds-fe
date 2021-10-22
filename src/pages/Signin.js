@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Toast from '../components/Toast';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
-import { login } from '../features/auth/authSlice';
+import { signIn } from '../features/auth/authSlice';
 
 function Signin() {
   const history = useHistory();
@@ -18,7 +18,7 @@ function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(login({ username: usernameInput, password: passwordInput })).unwrap();
+      await dispatch(signIn({ username: usernameInput, password: passwordInput })).unwrap();
       history.push('/');
     } catch (error) {
       setShowSigninFailedToast(true);
