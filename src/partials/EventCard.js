@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function EventCard({ title, content }) {
+export default function EventCard({ eventId }) {
   return (
     <div className="bg-white shadow-lg rounded-sm border border-gray-200 p-4">
       {/* Body */}
@@ -19,12 +19,12 @@ export default function EventCard({ title, content }) {
       <div className="flex items-center justify-between">
         {/* Left side */}
         <div className="flex flex-shrink-0 -space-x-3 -ml-px">
-          <a className="block" href="#0">
+          {/* <a className="block" href="#0">
             <img className="rounded-full border-2 border-white box-content" src={UserImage01} width="28" height="28" alt="User 12" />
           </a>
           <a className="block" href="#0">
             <img className="rounded-full border-2 border-white box-content" src={UserImage02} width="28" height="28" alt="User 02" />
-          </a>
+          </a> */}
         </div>
         {/* Right side */}
         <div className="flex items-center">

@@ -11,10 +11,13 @@ import { focusHandling } from 'cruip-js-toolkit';
 
 // Import pages
 import Dashboard from './pages/Dashboard';
+import Events from './pages/Events';
 import PageNotFound from './pages/utility/PageNotFound';
 
 import Sidebar from './partials/Sidebar';
 import Header from './partials/Header';
+import History from './pages/History';
+import Friends from './partials/Friends';
 
 function App() {
   const location = useLocation();
@@ -37,13 +40,11 @@ function App() {
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-
-          <Route path="*">
-            <PageNotFound />
-          </Route>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/events" component={Events} />
+          <Route path="/history" component={History} />
+          <Route path="/friends" component={Friends} />
+          <Route path="*" component={PageNotFound} />
         </Switch>
 
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import UserMenu from '../components/DropdownProfile';
 
@@ -6,8 +6,6 @@ function Header({
   sidebarOpen,
   setSidebarOpen,
 }) {
-  const [searchModalOpen, setSearchModalOpen] = useState(false);
-
   return (
     <header className="sticky top-0 bg-white border-b border-gray-200 z-30">
       <div className="px-4 sm:px-6 lg:px-8">
