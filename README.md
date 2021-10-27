@@ -1,5 +1,15 @@
 # FDS Frontend
 
+## Dev Environment
+
+- OS: macOs / Linux 
+- PM: Yarn 
+- IDE: Visual Studio Code (recommended)
+  - required plugins:
+    - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+    - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+    - [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
+
 ## Available Scripts
 
 In the project directory, you can run:
