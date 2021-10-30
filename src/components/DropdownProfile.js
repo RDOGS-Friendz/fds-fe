@@ -1,12 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
 import UserAvatar from '../images/user-avatar-32.png';
 
+import { signOut } from '../slices/auth/authSlice';
+
 function DropdownProfile({
   align,
 }) {
+  const dispatch = useDispatch();
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -32,6 +37,11 @@ function DropdownProfile({
     document.addEventListener('keydown', keyHandler);
     return () => document.removeEventListener('keydown', keyHandler);
   });
+
+  const handleSignOut = async () => {
+    await dispatch(signOut());
+    setDropdownOpen(!dropdownOpen);
+  };
 
   return (
     <div className="relative inline-flex">
@@ -85,7 +95,7 @@ function DropdownProfile({
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
                 to="/signin"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={handleSignOut}
               >
                 Sign Out
               </Link>

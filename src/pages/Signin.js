@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import { signIn } from '../slices/auth/authSlice';
+import TextField from '../partials/TextField';
 
 function Signin() {
   const history = useHistory();
@@ -36,16 +37,8 @@ function Signin() {
               {/* Form */}
               <form>
                 <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">Username</label>
-                    <input id="email" className="form-input w-full" type="email" value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="password">Password</label>
-                    <input id="password" className="form-input w-full" type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} autoComplete="on" />
-                  </div>
-                  {showSigninFailedHelpText
-                  && <div className="text-xs mt-1 text-red-500">Sign in failed. Check your entries and try again.</div>}
+                  <TextField label="Username" id="username" value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
+                  <TextField label="Password" id="password" type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} showHelpText={showSigninFailedHelpText} helpText="Sign in failed. Check your entries and try again." />
                 </div>
                 <div className="flex items-center justify-between mt-6">
                   <div className="mr-1">
