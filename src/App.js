@@ -12,6 +12,7 @@ import { focusHandling } from 'cruip-js-toolkit';
 // Import pages
 import Signin from './pages/Signin';
 import Index from './pages/Index';
+import Signup from './pages/Signup';
 
 function App() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
   return (
     <Switch>
       <Route path="/signin" component={Signin} />
+      <Route path="/signup" component={Signup} />
       <Route path="*" component={Index} />
     </Switch>
   );

@@ -13,6 +13,17 @@ export const signOut = createAction(
   'auth/signOut',
 );
 
+export const signup = createAsyncThunk(
+  'auth/signup',
+  async ({
+    username, password, real_name, email, gender,
+  }) => {
+    await agent.post('/account', {
+      username, password, real_name, email, gender,
+    });
+  },
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: { signedIn: false, token: null, error: null },

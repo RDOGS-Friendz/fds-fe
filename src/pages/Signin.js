@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import { signIn } from '../slices/auth/authSlice';
+import TextField from '../partials/TextField';
 
 function Signin() {
   const history = useHistory();
@@ -36,16 +37,8 @@ function Signin() {
               {/* Form */}
               <form>
                 <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="email">Username</label>
-                    <input id="email" className="form-input w-full" type="email" value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1" htmlFor="password">Password</label>
-                    <input id="password" className="form-input w-full" type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} autoComplete="on" />
-                  </div>
-                  {showSigninFailedHelpText
-                  && <div className="text-xs mt-1 text-red-500">Sign in failed. Check your entries and try again.</div>}
+                  <TextField label="Username" id="username" value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
+                  <TextField label="Password" id="password" type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} showHelpText={showSigninFailedHelpText} helpText="Sign in failed. Check your entries and try again." />
                 </div>
                 <div className="flex items-center justify-between mt-6">
                   <div className="mr-1">
@@ -61,17 +54,6 @@ function Signin() {
                   {' '}
                   <Link className="font-medium text-indigo-500 hover:text-indigo-600" to="/signup">Sign Up</Link>
                 </div>
-                {/* Warning */}
-                {/* <div className="mt-5">
-                  <div className="bg-yellow-100 text-yellow-600 px-3 py-2 rounded">
-                    <svg className="inline w-3 h-3 flex-shrink-0 fill-current mr-2" viewBox="0 0 12 12">
-                      <path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 00.28 6.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28 1.28z" />
-                    </svg>
-                    <span className="text-sm">
-                      To support you during the pandemic super pro features are free until March 31st.
-                    </span>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
@@ -82,9 +64,7 @@ function Signin() {
           <img className="object-cover object-center w-full h-full" src={AuthImage} width="760" height="1024" alt="Authentication" />
           <img className="absolute top-1/4 left-0 transform -translate-x-1/2 ml-8" src={AuthDecoration} width="218" height="224" alt="Authentication decoration" />
         </div>
-
       </div>
-
     </main>
   );
 }
