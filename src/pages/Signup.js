@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
@@ -7,6 +7,7 @@ import TextField from '../partials/TextField';
 import Select from '../partials/Select';
 
 import { signup } from '../slices/auth/authSlice';
+import FeedbackModal from '../partials/FeedbackModal';
 
 function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -15,6 +16,9 @@ function validateEmail(email) {
 
 function Signup() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [showSuccessFeedbackModal, setShowSuccessFeedbackModal] = useState(false);
 
   const [inputs, setInputs] = useState({
     username: '',
@@ -70,6 +74,7 @@ function Signup() {
             username, real_name, email, password, gender,
           }),
         ).unwrap();
+        setShowSuccessFeedbackModal(true);
       } catch (error) {
         // TODO: handle different errors.
         newShowHelpTexts = { ...newShowHelpTexts, confirmPassword: true };
@@ -142,6 +147,20 @@ function Signup() {
 
       </div>
 
+      <FeedbackModal
+        open={showSuccessFeedbackModal}
+        setOpen={setShowSuccessFeedbackModal}
+        variant="success"
+        title="Signup successful!"
+        content="Your account has been created, signin and get started!"
+        buttons={(
+          <>
+            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => history.push('/signin')}>
+              Go to signin
+            </button>
+          </>
+        )}
+      />
     </main>
   );
 }
