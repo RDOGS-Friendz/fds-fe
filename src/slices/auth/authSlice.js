@@ -4,7 +4,7 @@ import agent from '../agent';
 export const signIn = createAsyncThunk(
   'auth/signIn',
   async ({ username, password }) => {
-    const res = await agent.post('/account/jwt', { username, password });
+    const res = await agent.post('/jwt', { username, password });
     return res.data;
   },
 );
@@ -20,6 +20,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signIn.fulfilled, (state, action) => {
+        state.signedIn = true;
         state.token = action.payload.token;
         state.error = null;
       })
