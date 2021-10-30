@@ -10,6 +10,7 @@ import './css/style.scss';
 import { focusHandling } from 'cruip-js-toolkit';
 
 // Import pages
+import Signin from './pages/Signin';
 import Dashboard from './pages/Dashboard';
 import Events from './pages/Events';
 import PageNotFound from './pages/utility/PageNotFound';
@@ -31,23 +32,28 @@ function App() {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      {/* Content area */}
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/events" component={Events} />
-          <Route path="/history" component={History} />
-          <Route path="/friends" component={Friends} />
-          <Route path="*" component={PageNotFound} />
-        </Switch>
 
-      </div>
-    </div>
+    <Switch>
+      <Route path="/signin" component={Signin} />
+      <Route path="*">
+        <div className="flex h-screen overflow-hidden">
+          {/* Sidebar */}
+          <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          {/* Content area */}
+          <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+            {/*  Site header */}
+            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/events" component={Events} />
+              <Route path="/history" component={History} />
+              <Route path="/friends" component={Friends} />
+              <Route path="*" component={PageNotFound} />
+            </Switch>
+          </div>
+        </div>
+      </Route>
+    </Switch>
 
   );
 }
