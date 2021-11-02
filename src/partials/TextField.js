@@ -11,7 +11,7 @@ export default function TextField({
           {required
         && <span className="text-red-500">*</span>}
         </label>
-        <input id={id} className="form-input w-full" type={type} value={value} onChange={(e) => onChange(e)} />
+        <input id={id} className="form-input w-full" type={type} value={value} onChange={e => onChange(e)} />
       </div>
       <div>
         {showHelpText && <div className="text-xs mt-1 text-red-500">{helpText}</div>}
