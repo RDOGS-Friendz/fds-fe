@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
-import { signIn } from '../slices/auth/authSlice';
+import { signIn } from '../slices/authSlice';
 import TextField from '../partials/TextField';
 
 function Signin() {

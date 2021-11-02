@@ -5,7 +5,7 @@ import Transition from '../utils/Transition';
 
 import UserAvatar from '../images/user-avatar-32.png';
 
-import { signOut } from '../slices/auth/authSlice';
+import { signOut } from '../slices/authSlice';
 
 function DropdownProfile({
   align,

@@ -6,7 +6,7 @@ import AuthDecoration from '../images/auth-decoration.png';
 import TextField from '../partials/TextField';
 import Select from '../partials/Select';
 
-import { signup } from '../slices/auth/authSlice';
+import { signup } from '../slices/accountSlice';
 import FeedbackModal from '../partials/FeedbackModal';
 
 function validateEmail(email) {

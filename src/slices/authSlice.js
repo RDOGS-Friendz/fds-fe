@@ -1,5 +1,5 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import agent from '../agent';
+import agent from './agent';
 
 export const signIn = createAsyncThunk(
   'auth/signIn',
@@ -13,32 +13,18 @@ export const signOut = createAction(
   'auth/signOut',
 );
 
-export const signup = createAsyncThunk(
-  'auth/signup',
-  async ({
-    username, password, real_name, email, gender,
-  }) => {
-    await agent.post('/account', {
-      username, password, real_name, email, gender,
-    });
-  },
-);
-
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { signedIn: false, token: null, error: null },
+  initialState: { signedIn: false, token: null },
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(signIn.fulfilled, (state, action) => {
+        console.log(action);
         state.signedIn = true;
         state.token = action.payload.token;
-        state.error = null;
       })
-      .addCase(signIn.rejected, (state, action) => {
-        state.error = action.error.message;
-      })
-      .addCase(signOut, (state) => {
+      .addCase(signOut, state => {
         state.signedIn = false;
         state.token = null;
       });
