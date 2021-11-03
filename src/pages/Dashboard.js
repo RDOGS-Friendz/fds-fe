@@ -1,5 +1,6 @@
 import React from 'react';
 import Icons from '../icons';
+import Button from '../partials/basic/Button';
 import DashboardCard from '../partials/DashboardCard';
 
 function Dashboard() {
@@ -13,11 +14,7 @@ function Dashboard() {
           <h1 className="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Dashboard 🚗</h1>
           {/* Right: Actions */}
           <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-
-            <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
-              <Icons.Add />
-              <span className="hidden xs:block ml-2">Add Event</span>
-            </button>
+            <Button variant="secondary" icon={<Icons.Add />}>Add Event</Button>
           </div>
 
         </div>

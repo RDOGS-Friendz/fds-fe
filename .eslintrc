@@ -38,7 +38,8 @@
         "args": "after-used",
         "argsIgnorePattern": "^_"
       }
-    ]
+    ],
+    "react/button-has-type": "warn"
   },
   "parser": "babel-eslint",
   "parserOptions": {

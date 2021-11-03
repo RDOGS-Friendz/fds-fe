@@ -3,8 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
-import TextField from '../partials/TextField';
-import Select from '../partials/Select';
+import TextField from '../partials/basic/TextField';
+import Select from '../partials/basic/Select';
 
 import { signup } from '../slices/accountSlice';
 import FeedbackModal from '../partials/FeedbackModal';

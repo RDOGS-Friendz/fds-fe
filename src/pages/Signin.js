@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
 import { signIn } from '../slices/authSlice';
-import TextField from '../partials/TextField';
+import TextField from '../partials/basic/TextField';
+import Button from '../partials/basic/Button';
 
 function Signin() {
   const history = useHistory();
@@ -44,7 +45,7 @@ function Signin() {
                   <div className="mr-1">
                     <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
                   </div>
-                  <button type="submit" className="btn bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-800 text-white ml-3" onClick={handleSubmit}>Sign In</button>
+                  <Button type="submit" onClick={handleSubmit}>Sign In</Button>
                 </div>
               </form>
               {/* Footer */}
