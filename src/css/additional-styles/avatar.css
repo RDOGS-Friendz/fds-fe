@@ -1,0 +1,25 @@
+.initials-avatar {
+
+	cursor: pointer;
+	border-bottom-left-radius: 50%;
+	border-bottom-right-radius: 50%;
+	border-top-right-radius: 50%;
+	border-top-left-radius: 50%;
+	
+	outline-width: 4px;
+	outline-color: white;
+	
+	background-color: #6366F1;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+.initials-avatar.md {
+	width: 32px;
+	height: 32px;
+}
+
+.initials-avatar.sm {
+	width: 28px;
+	height: 28px;
+}
