@@ -6,16 +6,16 @@ const getClassNames = (variant, color) => {
       return 'btn bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-800 text-white';
     }
     case 'secondary-default': {
-      return 'btn border-gray-200 hover:border-gray-300 text-indigo-500';
+      return 'btn bg-white border-gray-200 hover:border-gray-300 active:border-gray-400 text-indigo-500';
     }
     case 'primary-danger': {
-      return 'btn bg-red-500 hover:bg-red-600 text-white';
+      return 'btn bg-red-500 hover:bg-red-600 active:bg-indigo-800 text-white';
     }
     case 'secondary-danger': {
-      return 'btn border-gray-200 hover:border-gray-300 text-red-500';
+      return 'btn bg-white border-gray-200 hover:border-gray-300 active:border-gray-400 text-red-500';
     }
     default: {
-      return 'btn border-gray-200 hover:border-gray-300 text-gray-600';
+      return 'btn border-gray-200 hover:border-gray-300 active:border-gray-400 text-gray-600';
     }
   }
 };
