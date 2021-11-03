@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Switch,
   Route,
@@ -10,16 +10,12 @@ import './css/style.scss';
 import { focusHandling } from 'cruip-js-toolkit';
 
 // Import pages
-import Dashboard from './pages/Dashboard';
-import PageNotFound from './pages/utility/PageNotFound';
-
-import Sidebar from './partials/Sidebar';
-import Header from './partials/Header';
+import Signin from './pages/Signin';
+import Index from './pages/Index';
+import Signup from './pages/Signup';
 
 function App() {
   const location = useLocation();
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   useEffect(() => {
     document.querySelector('html').style.scrollBehavior = 'auto';
     window.scroll({ top: 0 });
@@ -28,27 +24,11 @@ function App() {
   }, [location.pathname]); // triggered on route change
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      {/* Content area */}
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-
-        <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-
-      </div>
-    </div>
-
+    <Switch>
+      <Route path="/signin" component={Signin} />
+      <Route path="/signup" component={Signup} />
+      <Route path="*" component={Index} />
+    </Switch>
   );
 }
 

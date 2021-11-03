@@ -1,5 +1,15 @@
 # FDS Frontend
 
+## Dev Environment
+
+- OS: macOs / Linux 
+- PM: Yarn 
+- IDE: Visual Studio Code (recommended)
+  - required plugins:
+    - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+    - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+    - [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -69,4 +79,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## Support notes
 We are shipping our templates with a very basic CRA configuration to let you quickly get into the development process, but we don't discourage you from using any other configuration or framework built on the top of React. So, please note that any request dealing with React (e.g. extra features, customisations, et cetera) is to be considered out of the support scope.
-

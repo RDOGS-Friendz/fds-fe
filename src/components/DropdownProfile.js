@@ -1,12 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
 import UserAvatar from '../images/user-avatar-32.png';
 
+import { signOut } from '../slices/authSlice';
+
 function DropdownProfile({
   align,
 }) {
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+  const accounts = useSelector(state => state.accounts);
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
@@ -33,6 +40,11 @@ function DropdownProfile({
     return () => document.removeEventListener('keydown', keyHandler);
   });
 
+  const handleSignOut = async () => {
+    await dispatch(signOut());
+    setDropdownOpen(!dropdownOpen);
+  };
+
   return (
     <div className="relative inline-flex">
       <button
@@ -45,7 +57,7 @@ function DropdownProfile({
       >
         <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">Acme Inc.</span>
+          <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">{accounts.entities[auth.userAccountId]?.username}</span>
           <svg className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400" viewBox="0 0 12 12">
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
@@ -85,7 +97,7 @@ function DropdownProfile({
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
                 to="/signin"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={handleSignOut}
               >
                 Sign Out
               </Link>
