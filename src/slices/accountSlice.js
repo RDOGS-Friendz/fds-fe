@@ -85,14 +85,23 @@ export const readAccountProfile = createAsyncThunk(
 export const readAccountFriends = createAsyncThunk(
   'accounts/readAccountFriends',
   async ({ authToken, accountId }) => {
-    const config = {
+    const config1 = {
       headers: {
         'auth-token': authToken,
       },
     };
 
-    const res = await agent.get(`/account/${accountId}/friends`, config);
-    return res.data;
+    const { data: { friend_account_id } } = await agent.get(`/account/${accountId}/friends`, config1);
+    const config2 = {
+      headers: {
+        'auth-token': authToken,
+      },
+      params: {
+        account_ids: JSON.stringify(friend_account_id),
+      },
+    };
+    const { data } = await agent.get('/account/batch', config2);
+    return data;
   },
 );
 

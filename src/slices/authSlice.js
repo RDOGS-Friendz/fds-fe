@@ -14,9 +14,9 @@ export const signIn = createAsyncThunk(
         account_ids: JSON.stringify([account_id]),
       },
     };
-    const { real_name } = await agent.get('/account/batch', config);
+    const { data } = await agent.get('/account/batch', config);
     return {
-      token, account_id, username, real_name,
+      token, account_id, username, real_name: data[0].real_name,
     };
   },
 );
