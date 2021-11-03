@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalBlank from './ModalBlank';
+import ModalBlank from './basic/ModalBlank';
 
 export default function FeedbackModal({
   open, setOpen, buttons = null, variant, content,

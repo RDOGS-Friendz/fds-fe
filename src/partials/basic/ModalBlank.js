@@ -1,10 +1,9 @@
 import React, { useRef, useEffect } from 'react';
-import Transition from '../utils/Transition';
+import Transition from '../../utils/Transition';
 
-export default function ModalBasic({
+function ModalBlank({
   children,
   id,
-  title,
   modalOpen,
   setModalOpen,
 }) {
@@ -13,7 +12,7 @@ export default function ModalBasic({
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      if (!modalOpen || modalContent.current.contains(target)) return;
+      if (!modalOpen || modalContent.current?.contains(target)) return;
       setModalOpen(false);
     };
     document.addEventListener('click', clickHandler);
@@ -59,21 +58,11 @@ export default function ModalBasic({
         leaveEnd="opacity-0 translate-y-4"
       >
         <div ref={modalContent} className="bg-white rounded shadow-lg overflow-auto max-w-lg w-full max-h-full">
-          {/* Modal header */}
-          <div className="px-5 py-3 border-b border-gray-200">
-            <div className="flex justify-between items-center">
-              <div className="font-semibold text-gray-800">{title}</div>
-              <button type="button" className="text-gray-400 hover:text-gray-500" onClick={(e) => { e.stopPropagation(); setModalOpen(false); }}>
-                <div className="sr-only">Close</div>
-                <svg className="w-4 h-4 fill-current">
-                  <path d="M7.95 6.536l4.242-4.243a1 1 0 111.415 1.414L9.364 7.95l4.243 4.242a1 1 0 11-1.415 1.415L7.95 9.364l-4.243 4.243a1 1 0 01-1.414-1.415L6.536 7.95 2.293 3.707a1 1 0 011.414-1.414L7.95 6.536z" />
-                </svg>
-              </button>
-            </div>
-          </div>
           {children}
         </div>
       </Transition>
     </>
   );
 }
+
+export default ModalBlank;
