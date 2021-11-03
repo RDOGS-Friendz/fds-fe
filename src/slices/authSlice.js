@@ -5,7 +5,7 @@ import agent from './agent';
 export const signIn = createAsyncThunk(
   'auth/signIn',
   async ({ username, password }) => {
-    const { data: { token, account_id } } = await agent.post('/jwt', { username, password });
+    const { data: { auth_token: token, account_id } } = await agent.post('/jwt', { username, password });
     const config = {
       headers: {
         'auth-token': token,
