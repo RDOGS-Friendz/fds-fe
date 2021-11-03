@@ -29,6 +29,7 @@
     "max-len": "off",
     "camelcase": "off",
     "unused-imports/no-unused-imports": "error",
+    "arrow-parens": ["error", "as-needed"],
     "unused-imports/no-unused-vars": [
       "warn",
       {

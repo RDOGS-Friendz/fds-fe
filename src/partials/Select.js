@@ -12,7 +12,7 @@ export default function Select({
           && <span className="text-red-500">*</span>}
         </label>
         <select id={id} className="form-select w-full" value={value} onChange={onChange}>
-          {options.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}
+          {options.map(item => <option key={item.value} value={item.value}>{item.label}</option>)}
         </select>
       </div>
       <div>

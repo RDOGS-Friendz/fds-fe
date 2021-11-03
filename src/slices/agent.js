@@ -6,8 +6,8 @@ const agent = axios.create({
 });
 
 agent.interceptors.response.use(
-  (res) => res,
-  (error) => {
+  res => res,
+  error => {
     console.log(error.toString());
     return Promise.reject(error);
   }, // not 2xx

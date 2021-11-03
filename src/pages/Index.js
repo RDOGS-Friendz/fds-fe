@@ -14,7 +14,7 @@ import Friends from '../partials/Friends';
 export default function Index() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector(state => state.auth);
 
   if (!auth.signedIn) {
     return <Redirect to="/signin" />;

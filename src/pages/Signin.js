@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
-import { signIn } from '../slices/auth/authSlice';
+import { signIn } from '../slices/authSlice';
 import TextField from '../partials/TextField';
 
 function Signin() {
@@ -13,9 +13,9 @@ function Signin() {
   const [passwordInput, setPasswordInput] = useState('');
   const [showSigninFailedHelpText, setShowSigninFailedHelpText] = useState(false);
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector(state => state.auth);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
       await dispatch(signIn({ username: usernameInput, password: passwordInput })).unwrap();
@@ -37,8 +37,8 @@ function Signin() {
               {/* Form */}
               <form>
                 <div className="space-y-4">
-                  <TextField label="Username" id="username" value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
-                  <TextField label="Password" id="password" type="password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} showHelpText={showSigninFailedHelpText} helpText="Sign in failed. Check your entries and try again." />
+                  <TextField label="Username" id="username" value={usernameInput} onChange={e => setUsernameInput(e.target.value)} />
+                  <TextField label="Password" id="password" type="password" value={passwordInput} onChange={e => setPasswordInput(e.target.value)} showHelpText={showSigninFailedHelpText} helpText="Sign in failed. Check your entries and try again." />
                 </div>
                 <div className="flex items-center justify-between mt-6">
                   <div className="mr-1">

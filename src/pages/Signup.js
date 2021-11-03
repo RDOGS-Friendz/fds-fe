@@ -6,7 +6,7 @@ import AuthDecoration from '../images/auth-decoration.png';
 import TextField from '../partials/TextField';
 import Select from '../partials/Select';
 
-import { signup } from '../slices/auth/authSlice';
+import { signup } from '../slices/accountSlice';
 import FeedbackModal from '../partials/FeedbackModal';
 
 function validateEmail(email) {
@@ -44,7 +44,7 @@ function Signup() {
     confirmPassword: '',
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const newInputs = Object.keys(inputs).reduce((acc, item) => ({ ...acc, [item]: inputs[item].trim() }), {});
     let hasError = Object.keys(newInputs).reduce((acc, item) => acc || newInputs[item] === '', false); // check empty
@@ -86,9 +86,9 @@ function Signup() {
     setHelpTexts(newHelpTexts);
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const { id, value } = event.target;
-    setInputs((input) => ({ ...input, [id]: value }));
+    setInputs(input => ({ ...input, [id]: value }));
   };
 
   return (
