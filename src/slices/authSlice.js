@@ -1,11 +1,23 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import agent from './agent';
 
 export const signIn = createAsyncThunk(
   'auth/signIn',
   async ({ username, password }) => {
-    const res = await agent.post('/jwt', { username, password });
-    return res.data;
+    const { data: { token, account_id } } = await agent.post('/jwt', { username, password });
+    const config = {
+      headers: {
+        'auth-token': token,
+      },
+      params: {
+        account_ids: JSON.stringify([account_id]),
+      },
+    };
+    const { real_name } = await agent.get('/account/batch', config);
+    return {
+      token, account_id, username, real_name,
+    };
   },
 );
 
@@ -15,14 +27,14 @@ export const signOut = createAction(
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { signedIn: false, token: null },
+  initialState: { signedIn: false, token: null, userAccountId: null },
   reducers: {},
   extraReducers: builder => {
     builder
       .addCase(signIn.fulfilled, (state, action) => {
-        console.log(action);
         state.signedIn = true;
         state.token = action.payload.token;
+        state.userAccountId = action.payload.account_id;
       })
       .addCase(signOut, state => {
         state.signedIn = false;

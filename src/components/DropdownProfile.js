@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
@@ -11,6 +11,8 @@ function DropdownProfile({
   align,
 }) {
   const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+  const accounts = useSelector(state => state.accounts);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -42,6 +44,8 @@ function DropdownProfile({
     await dispatch(signOut());
     setDropdownOpen(!dropdownOpen);
   };
+
+  console.log(auth, accounts);
 
   return (
     <div className="relative inline-flex">
