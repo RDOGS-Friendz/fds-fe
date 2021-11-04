@@ -6,12 +6,13 @@
 	border-top-right-radius: 50%;
 	border-top-left-radius: 50%;
 	
-	outline-width: 4px;
-	outline-color: white;
+	border-width: 2px;
+	border-color: white;
 	
 	background-color: #6366F1;
 	display: inline-block;
 	box-sizing: border-box;
+
 }
 
 .initials-avatar.md {
@@ -22,4 +23,6 @@
 .initials-avatar.sm {
 	width: 28px;
 	height: 28px;
+	vertical-align: middle;
+	font-size: x-small;
 }

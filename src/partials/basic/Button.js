@@ -28,9 +28,10 @@ export default function Button({
   type = 'button',
   disabled,
   onClick,
+  className,
 }) {
   return (
-    <button className={`${getClassNames(variant, color)} disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed shadow-none`} type={type} disabled={disabled} onClick={onClick}>
+    <button className={`${getClassNames(variant, color)} disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed shadow-none ${className}`} type={type} disabled={disabled} onClick={onClick}>
       {icon}
       <span className={`${icon && 'hidden xs:block ml-2'}`}>
         {children}
