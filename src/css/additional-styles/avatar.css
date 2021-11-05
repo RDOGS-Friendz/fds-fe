@@ -9,7 +9,7 @@
 	border-width: 2px;
 	border-color: white;
 	
-	background-color: #6366F1;
+	/* background-color: #6366F1; */
 	display: inline-block;
 	box-sizing: border-box;
 
@@ -25,4 +25,15 @@
 	height: 28px;
 	vertical-align: middle;
 	font-size: x-small;
+}
+
+
+.initials-avatar div{
+	color:#fff;
+	height:100%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	font-style:inherit;
+	font-weight:inherit
 }

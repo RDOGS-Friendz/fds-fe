@@ -3,6 +3,30 @@ import agent from './agent';
 
 const eventsAdapter = createEntityAdapter({});
 
+export const browseEvent = createAsyncThunk(
+  'events/browseEvent',
+  async ({
+    authToken, view, search, limit, offset, reportEventIds,
+  }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+      params: {
+        view,
+        search: JSON.stringify(search),
+        limit,
+        offset,
+      },
+    };
+
+    const res = await agent.get('/event', config);
+
+    reportEventIds(res.data.map(item => item.id));
+    return res.data;
+  },
+);
+
 export const addEvent = createAsyncThunk(
   'events/addEvent',
   async ({

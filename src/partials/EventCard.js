@@ -1,12 +1,12 @@
 import React from 'react';
-
+import { BsFillBookmarkFill } from 'react-icons/bs';
 import AvatarCollection from './basic/AvatarCollection';
 import Badge from './basic/Badge';
 import Button from './basic/Button';
 
 export default function EventCard({ eventId, itemId }) {
   return (
-    <div id={eventId} className="bg-white shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 mb-4">
+    <div id={eventId} className="bg-white shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 mb-4 select-none">
       {/* Body */}
       <div className="mb-3">
         {/* Info */}
@@ -29,14 +29,14 @@ export default function EventCard({ eventId, itemId }) {
         <Badge>Ball</Badge>
       </div>
       <div className="mb-3 flex flex-row">
-        <AvatarCollection names={['Derek Lu', 'Timmy Chen', 'Fredred', 'Brian Chen']} />
+        <AvatarCollection names={['Derek Lu', 'Timmy Chen', 'RDOGS', 'Brian Chen']} />
         <div className="ml-1">
           <span className="text-gray-800 hover:underline text-sm align-middle" href="#0">3/4 joined</span>
         </div>
       </div>
       <div className="flex flex-row space-x-1 w-full">
         <Button className="w-full">JOIN</Button>
-        <Button className="w-15" variant="secondary">SAVE</Button>
+        <Button icon={<BsFillBookmarkFill />} className="w-15" variant="secondary" />
       </div>
     </div>
   );

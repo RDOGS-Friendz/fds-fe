@@ -9933,6 +9933,11 @@ react-horizontal-scrolling-menu@^2.5.1:
   resolved "https://registry.yarnpkg.com/react-horizontal-scrolling-menu/-/react-horizontal-scrolling-menu-2.5.1.tgz#830fc3e8184d4db5518362344519fdc281d6cfb9"
   integrity sha512-00FWMzamtsKG61RVs1WrO4yi0d+rjZrGIFM/wLCyYXkZUnTX5wQClwcYJ6BfG1hGU+L2qpM7y3tJjkDdmCBJig==
 
+react-icons@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+  integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
+
 react-initials-avatar@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/react-initials-avatar/-/react-initials-avatar-1.1.2.tgz#e3e08e4d2a1ddac37aea723885860c011f59f548"
