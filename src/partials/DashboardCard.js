@@ -8,7 +8,7 @@ export default function DashboardCard({ title, children }) {
       </header>
       {/* Chart built with Chart.js 3 */}
       {/* Change the height attribute to adjust the chart height */}
-      <div className="px-5 py-3">
+      <div className="px-5 py-5">
         {children}
       </div>
     </div>

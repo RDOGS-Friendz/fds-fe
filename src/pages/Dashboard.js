@@ -3,6 +3,9 @@ import Icons from '../icons';
 import Button from '../partials/basic/Button';
 import DashboardCard from '../partials/DashboardCard';
 
+import '../css/additional-styles/horizontalScrollingMenu.css';
+import EventGallery from '../partials/EventGallery';
+
 function Dashboard() {
   return (
     <main>
@@ -21,7 +24,25 @@ function Dashboard() {
 
         {/* Cards */}
         <div className="grid grid-cols-12 gap-6">
-          <DashboardCard title="Events You May Like">Hi</DashboardCard>
+          <DashboardCard title="Events You May Like ✨">
+            <EventGallery eventIds={[1, 2, 3, 4]} />
+          </DashboardCard>
+          <DashboardCard title="Your Upcoming Event ➡️️">
+            <EventGallery eventIds={[1, 2, 3, 4]} />
+
+          </DashboardCard>
+          <DashboardCard title="Bookmarked Events 📌">
+            <EventGallery eventIds={[1, 2, 3, 4]} />
+          </DashboardCard>
+
+          <DashboardCard title="Event Joined by Friends 👥️">
+            <EventGallery eventIds={[1, 2, 3, 4]} />
+          </DashboardCard>
+
+          <DashboardCard title="Events You Host 📣">
+            <EventGallery eventIds={[1, 2, 3, 4]} />
+          </DashboardCard>
+
         </div>
 
       </div>
