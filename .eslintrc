@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["airbnb", "airbnb/hooks", "plugin:react/recommended"],
+  "extends": ["airbnb", "airbnb/hooks", "plugin:react/recommended", "prettier"],
   "plugins": ["unused-imports"],
   "rules": {
     "no-console": "off",
