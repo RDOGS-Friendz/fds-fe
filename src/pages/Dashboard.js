@@ -1,8 +1,11 @@
 import React from 'react';
-import DashboardCard from '../partials/DashboardCard';
+import { MdAdd } from 'react-icons/md';
 
+import Button from '../partials/basic/Button';
+import DashboardCard from '../partials/DashboardCard';
 import '../css/additional-styles/horizontalScrollingMenu.css';
 import EventGallery from '../partials/EventGallery';
+import EventTable from '../partials/EventTable';
 
 function Dashboard() {
   return (
@@ -25,12 +28,13 @@ function Dashboard() {
           <DashboardCard title="Events You May Like ✨">
             <EventGallery eventIds={[1, 2, 3, 4]} />
           </DashboardCard>
+
           <DashboardCard title="Your Upcoming Event ➡️️">
             <EventGallery eventIds={[1, 2, 3, 4]} />
-
           </DashboardCard>
+
           <DashboardCard title="Bookmarked Events 📌">
-            <EventGallery eventIds={[1, 2, 3, 4]} />
+            <EventTable numItems={5} action="bookmark" />
           </DashboardCard>
 
           <DashboardCard title="Event Joined by Friends 👥️">
@@ -38,7 +42,12 @@ function Dashboard() {
           </DashboardCard>
 
           <DashboardCard title="Events You Host 📣">
-            <EventGallery eventIds={[1, 2, 3, 4]} />
+            <div className="flex flex-col justify-center space-y-1">
+              <EventTable numItems={4} action="edit" />
+              <div className="flex justify-center">
+                <Button icon={<MdAdd />}>Add Event</Button>
+              </div>
+            </div>
           </DashboardCard>
 
         </div>
