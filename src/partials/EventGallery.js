@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import EventCard from './EventCard';
 import useDrag from '../hooks/useDrag';
@@ -12,14 +12,6 @@ export default function EventGallery({ eventIds }) {
       scrollContainer.current.scrollLeft += posDiff;
     }
   });
-
-  const [selected, setSelected] = useState('');
-  const handleItemClick = itemId => () => {
-    if (dragging) {
-      return;
-    }
-    setSelected(selected !== itemId ? itemId : '');
-  };
 
   const onWheel = (apiObj, ev) => {
     // const isThouchpad = Math.abs(ev.deltaX) !== 0 || Math.abs(ev.deltaY) < 50;
@@ -43,7 +35,7 @@ export default function EventGallery({ eventIds }) {
       onMouseUp={() => dragStop}
       onMouseMove={handleDrag}
     >
-      {eventIds.map((item, index) => <EventCard eventId={item} itemId={`${item}-${index}`} key={item} />)}
+      {eventIds.map((item, index) => <EventCard eventId={item} itemId={`${item}-${index}`} key={item} dragging={dragging} />)}
     </ScrollMenu>
   );
 }

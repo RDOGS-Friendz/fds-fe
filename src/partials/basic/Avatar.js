@@ -5,16 +5,16 @@ import stringHash from 'string-hash';
 import '../../css/additional-styles/avatar.css';
 
 export default function Avatar({ name, size = 'md', color = null }) {
-  const colors = ['indigo', 'light-blue', 'green', 'yellow', 'red', 'blue'];
   const [computedColor, setComputedColor] = useState('indigo');
 
   useEffect(() => {
+    const colors = ['indigo', 'light-blue', 'green', 'yellow', 'red', 'blue'];
     if (color == null) {
       setComputedColor(colors[stringHash(name) % colors.length]);
     } else {
       setComputedColor(color);
     }
-  }, [color, colors, name]);
+  }, [color, name]);
 
   switch (computedColor) {
     case 'indigo':

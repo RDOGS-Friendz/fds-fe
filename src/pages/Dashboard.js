@@ -1,6 +1,4 @@
 import React from 'react';
-import Icons from '../icons';
-import Button from '../partials/basic/Button';
 import DashboardCard from '../partials/DashboardCard';
 
 import '../css/additional-styles/horizontalScrollingMenu.css';
@@ -17,7 +15,7 @@ function Dashboard() {
           <h1 className="text-2xl md:text-3xl text-gray-800 font-bold mb-1">Dashboard 🚗</h1>
           {/* Right: Actions */}
           <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-            <Button variant="secondary" icon={<Icons.Add />}>Add Event</Button>
+            {/* <Button variant="secondary" icon={<Icons.Add />}>Add Event</Button> */}
           </div>
 
         </div>
