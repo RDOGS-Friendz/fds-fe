@@ -8,9 +8,9 @@ import EventDetail from './EventDetail';
 export default function EventCard({ eventId, itemId, dragging }) {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
 
-  const toggleDetailModalOpen = e => {
+  const onOpenEventDetail = e => {
     e.stopPropagation();
-    setDetailModalOpen(true);
+    if (!dragging) setDetailModalOpen(true);
   };
 
   const onJoinEvent = e => {
@@ -24,7 +24,7 @@ export default function EventCard({ eventId, itemId, dragging }) {
   return (
     <>
 
-      <div id={eventId} role="presentation" className="bg-white hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 mb-4 select-none overflow-visible" onClick={toggleDetailModalOpen}>
+      <div id={eventId} role="presentation" className="bg-white hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 mb-4 select-none overflow-visible" onClick={onOpenEventDetail}>
         {/* Body */}
         <div className="mb-3">
           {/* Info */}
