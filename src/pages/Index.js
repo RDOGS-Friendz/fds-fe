@@ -9,7 +9,7 @@ import PageNotFound from './utility/PageNotFound';
 import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import History from './History';
-import Friends from '../partials/Friends';
+import Friends from './Friends';
 
 export default function Index() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
