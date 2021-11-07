@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import stringHash from 'string-hash';
 
 export default function Badge({ children, color = null }) {
-  const colors = ['indigo', 'light-blue', 'green', 'yellow', 'red', 'blue', 'white', 'grey'];
   const [computedColor, setComputedColor] = useState('indigo');
 
   useEffect(() => {
+    const colors = ['indigo', 'light-blue', 'green', 'yellow', 'red', 'blue', 'white', 'grey'];
     if (color == null) {
       setComputedColor(colors[stringHash(children) % colors.length]);
     } else {
       setComputedColor(color);
     }
-  }, [children, color, colors]);
+  }, [children, color]);
 
   switch (computedColor) {
     case 'indigo':

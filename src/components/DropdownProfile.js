@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
-import Avatar from '../partials/basic/Avatar';
+import AvatarAndName from '../partials/basic/AvatarAndName';
 
 import { signOut } from '../slices/authSlice';
 
@@ -50,18 +50,12 @@ function DropdownProfile({
       <button
         type="button"
         ref={trigger}
-        className="inline-flex justify-center items-center group"
+        className=""
         aria-haspopup="true"
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <Avatar name={accounts.entities[auth.userAccountId]?.username} />
-        <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">{accounts.entities[auth.userAccountId]?.username}</span>
-          <svg className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400" viewBox="0 0 12 12">
-            <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-          </svg>
-        </div>
+        <AvatarAndName name={accounts.entities[auth.userAccountId]?.username} />
       </button>
 
       <Transition

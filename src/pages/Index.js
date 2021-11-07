@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import moment from 'moment';
 import Dashboard from './Dashboard';
 import Events from './Events';
 import PageNotFound from './utility/PageNotFound';
@@ -10,15 +11,34 @@ import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import History from './History';
 import Friends from '../partials/Friends';
+import { resumeSignIn } from '../slices/authSlice';
 
 export default function Index() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
+  const history = useHistory();
 
-  if (!auth.signedIn) {
-    return <Redirect to="/signin" />;
-  }
+  useEffect(() => {
+    const resumeSignInFromLocalStorage = async (token, account_id) => {
+      try {
+        await dispatch(resumeSignIn({ token, account_id })).unwrap();
+      } catch (error) {
+        history.push('/signin');
+      }
+    };
+
+    if (!auth.signedIn) {
+      const savedSignInInfoExpirationTime = localStorage.getItem('signInInfoExpirationTime');
+      if (savedSignInInfoExpirationTime && moment(savedSignInInfoExpirationTime) > moment()) { // not expired yet
+        const savedAuthToken = localStorage.getItem('authToken');
+        const savedUserAccountId = localStorage.getItem('userAccountId');
+        resumeSignInFromLocalStorage(savedAuthToken, savedUserAccountId);
+      } else {
+        history.push('/signin');
+      }
+    }
+  }, [auth.signedIn, dispatch, history]);
 
   return (
     <div className="flex h-screen overflow-hidden">
