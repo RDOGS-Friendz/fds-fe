@@ -1,9 +1,10 @@
 {
   "root": true,
-  "extends": ["airbnb", "airbnb/hooks", "plugin:react/recommended", "prettier"],
+  "extends": ["airbnb", "airbnb/hooks", "plugin:react/recommended"],
   "plugins": ["unused-imports"],
   "rules": {
     "no-console": "off",
+    "object-curly-newline": "off",
     "react/jsx-filename-extension": [
       1,
       {
