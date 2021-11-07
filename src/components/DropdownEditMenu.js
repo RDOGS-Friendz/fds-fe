@@ -34,8 +34,8 @@ function DropdownEditMenu({ children, align, ...rest }) {
     <div {...rest}>
       <Button
         className={`p-1.5 flex-shrink-0 ${dropdownOpen && 'bg-gray-200 text-gray-500'}`}
-        variant="secondary"
-        color="tertiary"
+        variant="tertiary"
+        color="default"
         onClick={() => setDropdownOpen(!dropdownOpen)}
         ref={trigger}
         aria-haspopup="true"
