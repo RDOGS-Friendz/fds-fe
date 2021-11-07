@@ -15,6 +15,21 @@
 
 }
 
+.initials-avatar.profile {
+	width: 82px;
+	height: 82px;
+}
+
+.initials-avatar.xl {
+	width: 64px;
+	height: 64px;
+}
+
+.initials-avatar.lg {
+	width: 40px;
+	height: 40px;
+}
+
 .initials-avatar.md {
 	width: 32px;
 	height: 32px;
