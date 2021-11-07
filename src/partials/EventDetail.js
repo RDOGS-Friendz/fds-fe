@@ -4,6 +4,7 @@ import ModalBasic from './basic/ModalBasic';
 import Badge from './basic/Badge';
 import Button from './basic/Button';
 import AvatarAndName from './basic/AvatarAndName';
+import AvatarExpandable from './basic/AvatarExpandable';
 
 export default function EventDetail({ open, setOpen }) {
   return (
@@ -50,23 +51,7 @@ export default function EventDetail({ open, setOpen }) {
             <h3 className="font-medium mb-2 text-gray-500" href="#0">
               5/7 Joined
             </h3>
-            <ul className="space-y-2">
-              <li>
-                <AvatarAndName name="dodofk" />
-              </li>
-              <li>
-                <AvatarAndName name="dodofk1" />
-              </li>
-              <li>
-                <AvatarAndName name="dodofk2" />
-              </li>
-              <li>
-                <AvatarAndName name="dodofk3" />
-              </li>
-              <li>
-                <AvatarAndName name="dodofk4" />
-              </li>
-            </ul>
+            <AvatarExpandable names={['dodofk', 'dodofk1', 'dodofk2', 'dodofk3', 'dodofk4']} />
           </div>
         </div>
         <div className="mb-3 flex flex-col">

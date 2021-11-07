@@ -1,0 +1,30 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  max-height: 9rem;
+  align-content: flex-start;
+  margin-bottom: -20px;
+}
+
+.list > * {
+  margin-right: 8pt;
+  margin-bottom: 4pt;
+}
+
+.list.expandable {
+  max-height: 9rem;
+}
+
+.list.expandable.expanded {
+  max-height: none;
+  height: 100%;
+}
+
+.expandButton {
+    position: relative;
+    display: flex;
+    margin: auto;
+    font-size: 32px;
+}
+  
+
