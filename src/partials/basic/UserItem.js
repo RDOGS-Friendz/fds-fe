@@ -1,13 +1,13 @@
 import React from 'react';
 import Avatar from './Avatar';
 
-export default function UserItem({ setProfileSidebarOpen, userName, isActive, request }) {
+export default function UserItem({ setFriendSidebarOpen, userName, isActive, request }) {
   return (
     <li className="-mx-2 rounded hover:bg-gray-100">
       {request ? (
         <button
           className={`w-full p-2 rounded ${isActive && 'bg-indigo-100'}`}
-          onClick={() => setProfileSidebarOpen(false)}
+          onClick={() => setFriendSidebarOpen(false)}
           type="button"
         >
           <div className="flex justify-between group">
@@ -36,7 +36,7 @@ export default function UserItem({ setProfileSidebarOpen, userName, isActive, re
       ) : (
         <button
           className={`w-full p-2 rounded ${isActive && 'bg-indigo-100'}`}
-          onClick={() => setProfileSidebarOpen(false)}
+          onClick={() => setFriendSidebarOpen(false)}
         >
           <div className="flex items-center">
             <div className="relative mr-2">
