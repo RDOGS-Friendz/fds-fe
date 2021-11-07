@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 import agent from './agent';
 
-import { signIn } from './authSlice';
+import { resumeSignIn, signIn } from './authSlice';
 
 const accountsAdapter = createEntityAdapter({
   sortComparer: (a, b) => a.username?.localeCompare(b.username) ?? -1,
@@ -187,6 +187,12 @@ const accountsSlice = createSlice({
 
       .addCase(
         signIn.fulfilled, (state, action) => {
+          const { account_id: id, username, real_name } = action.payload;
+          accountsAdapter.upsertOne(state, { id, username, real_name });
+        },
+      )
+      .addCase(
+        resumeSignIn.fulfilled, (state, action) => {
           const { account_id: id, username, real_name } = action.payload;
           accountsAdapter.upsertOne(state, { id, username, real_name });
         },

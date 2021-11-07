@@ -2,7 +2,7 @@
 
 ## Dev Environment
 
-- OS: macOs / Linux 
+- OS: macOS / Linux 
 - PM: Yarn 
 - IDE: Visual Studio Code (recommended)
   - required plugins:

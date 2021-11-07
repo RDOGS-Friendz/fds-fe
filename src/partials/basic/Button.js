@@ -16,7 +16,7 @@ const getClassNames = (variant, color) => {
       return 'btn bg-white border-gray-200 hover:border-gray-300 active:border-gray-400 text-red-500';
     }
     case 'tertiary-default': {
-      return 'btn bg-white border-gray-200 hover:border-gray-300 text-gray-600 active:border-gray-400';
+      return 'btn bg-gray-50 border-gray-200 hover:border-gray-300 active:border-gray-400 text-gray-600';
     }
     default: {
       return 'btn border-gray-200 hover:border-gray-300 active:border-gray-400 text-gray-600';
