@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import agent from './agent';
+import { browseEvent } from './eventsSlice';
 
 const categoriesAdapter = createEntityAdapter({});
 
@@ -41,6 +42,10 @@ const categoriesSlice = createSlice({
     builder
       .addCase(readCategory.fulfilled, (state, action) => {
         categoriesAdapter.upsertOne(state, action.payload);
+      })
+
+      .addCase(browseEvent.fulfilled, (state, action) => {
+        categoriesAdapter.upsertMany(state, action.payload.categories);
       });
   },
 });

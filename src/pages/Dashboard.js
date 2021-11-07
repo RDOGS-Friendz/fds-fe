@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdAdd } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 
 import Button from '../partials/basic/Button';
 import DashboardCard from '../partials/DashboardCard';
@@ -8,6 +9,7 @@ import EventGallery from '../partials/EventGallery';
 import EventTable from '../partials/EventTable';
 
 function Dashboard() {
+  const auth = useSelector(state => state.auth);
   return (
     <main>
       <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
@@ -26,28 +28,28 @@ function Dashboard() {
         {/* Cards */}
         <div className="grid grid-cols-12 gap-6">
           <DashboardCard title="Events You May Like ✨">
-            <EventGallery eventIds={[1, 2, 3, 4]} />
+            <EventGallery view="suggested" />
           </DashboardCard>
 
           <DashboardCard title="Your Upcoming Event ➡️️">
-            <EventGallery eventIds={[1, 2, 3, 4]} />
+            <EventGallery view="upcoming" />
           </DashboardCard>
 
           <DashboardCard title="Bookmarked Events 📌">
-            <EventTable numItems={5} action="bookmark" />
+            <EventTable numItems={5} action="bookmark" view="bookmarked" />
           </DashboardCard>
 
           <DashboardCard title="Event Joined by Friends 👥️">
-            <EventGallery eventIds={[1, 2, 3, 4]} />
+            <EventGallery view="joined-by-friend" />
           </DashboardCard>
 
           <DashboardCard title="Events You Host 📣">
-            <div className="flex flex-col justify-center space-y-1">
-              <EventTable numItems={4} action="edit" />
-              <div className="flex justify-center">
-                <Button icon={<MdAdd />}>Add Event</Button>
-              </div>
-            </div>
+            <EventTable
+              numItems={4}
+              search={[['creator_account_id', auth.userAccountId]]}
+              footerButton={<Button icon={<MdAdd />}>Add Event</Button>}
+              emptyActionButton={<Button icon={<MdAdd />}>Add Event</Button>}
+            />
           </DashboardCard>
 
         </div>
