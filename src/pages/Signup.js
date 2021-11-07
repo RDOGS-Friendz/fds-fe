@@ -122,17 +122,19 @@ function Signup() {
                   />
                   <TextField required label="Password" id="password" type="password" value={inputs.password} onChange={handleChange} showHelpText={showHelpTexts.password} helpText={helpTexts.password} />
                   <TextField required label="Confirm Password" id="confirmPassword" type="password" value={inputs.confirmPassword} onChange={handleChange} showHelpText={showHelpTexts.confirmPassword} helpText={helpTexts.confirmPassword} />
-
+                  <div className="flex justify-end mt-6">
+                    <button type="submit" onClick={handleSubmit} className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap">Sign Up</button>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between mt-6">
+
+                <div className="pt-5 mt-6 border-t border-gray-200">
                   <div className="mr-1">
                     <div className="text-sm">
-                      Have an account?
+                      Already have an account?
                       {' '}
                       <Link className="font-medium text-indigo-500 hover:text-indigo-600" to="/signin">Sign In</Link>
                     </div>
                   </div>
-                  <button type="submit" onClick={handleSubmit} className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap">Sign Up</button>
                 </div>
               </form>
             </div>

@@ -1,46 +1,59 @@
+/* eslint-disable */
 import React, { useState, useRef, useEffect } from 'react';
 import Transition from '../utils/Transition';
-/* eslint-disable */
-function DropdownEditMenu({
-  children,
-  align,
-  ...rest
-}) {
+import Button from '../partials/basic/Button';
+
+function DropdownEditMenu({ children, align, ...rest }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
-  // close on click outside
-  useEffect(() => {
-    const clickHandler = ({ target }) => {
-      if (!dropdown.current) return;
-      if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target)) return;
-      setDropdownOpen(false);
-    };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
-  });
+  // // close on click outside
+  // useEffect(() => {
+  //   const clickHandler = ({ target }) => {
+  //     if (!dropdown.current) return;
+  //     if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target)) return;
+  //     setDropdownOpen(false);
+  //   };
+  //   document.addEventListener('click', clickHandler);
+  //   return () => document.removeEventListener('click', clickHandler);
+  // });
 
-  // close if the esc key is pressed
-  useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
-      if (!dropdownOpen || keyCode !== 27) return;
-      setDropdownOpen(false);
-    };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
-  });
+  // // close if the esc key is pressed
+  // useEffect(() => {
+  //   const keyHandler = ({ keyCode }) => {
+  //     if (!dropdownOpen || keyCode !== 27) return;
+  //     setDropdownOpen(false);
+  //   };
+  //   document.addEventListener('keydown', keyHandler);
+  //   return () => document.removeEventListener('keydown', keyHandler);
+  // });
 
   return (
     <div {...rest}>
-      <button
-        type="button"
-        ref={trigger}
-        className={`text-gray-400 hover:text-gray-500 rounded-full ${dropdownOpen && 'bg-gray-100 text-gray-500'}`}
-        aria-haspopup="true"
+      <Button
+        className={`p-1.5 flex-shrink-0 ${dropdownOpen && 'bg-gray-200 text-gray-500'}`}
+        variant="tertiary"
+        color="default"
         onClick={() => setDropdownOpen(!dropdownOpen)}
+        ref={trigger}
+        aria-haspopup="true"
         aria-expanded={dropdownOpen}
+      >
+        <span className="sr-only">Menu</span>
+        <svg className="w-4 h-1 fill-current" viewBox="0 0 16 4">
+          <circle cx="8" cy="2" r="2" />
+          <circle cx="2" cy="2" r="2" />
+          <circle cx="14" cy="2" r="2" />
+        </svg>
+      </Button>
+      {/* <button
+        className={`text-gray-400 hover:text-gray-500 rounded-full ${dropdownOpen && 'bg-gray-100 text-gray-500'}`}
+        ref={trigger}
+        aria-haspopup="true"
+        aria-expanded={dropdownOpen}
+        onClick={() => setDropdownOpen(!dropdownOpen)}
       >
         <span className="sr-only">Menu</span>
         <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32">
@@ -48,11 +61,13 @@ function DropdownEditMenu({
           <circle cx="10" cy="16" r="2" />
           <circle cx="22" cy="16" r="2" />
         </svg>
-      </button>
+      </button> */}
       <Transition
         show={dropdownOpen}
         tag="div"
-        className={`origin-top-right z-10 absolute top-full min-w-36 bg-white border border-gray-200 py-1.5 rounded shadow-lg overflow-hidden mt-1 ${align === 'right' ? 'right-0' : 'left-0'}`}
+        className={`origin-top-right z-10 absolute top-full min-w-36 bg-white border border-gray-200 py-1.5 rounded shadow-lg overflow-hidden mt-1 ${
+          align === 'right' ? 'right-0' : 'left-0'
+        }`}
         enter="transition ease-out duration-200 transform"
         enterStart="opacity-0 -translate-y-2"
         enterEnd="opacity-100 translate-y-0"
@@ -60,11 +75,7 @@ function DropdownEditMenu({
         leaveStart="opacity-100"
         leaveEnd="opacity-0"
       >
-        <ul
-          ref={dropdown}
-          onFocus={() => setDropdownOpen(true)}
-          onBlur={() => setDropdownOpen(false)}
-        >
+        <ul ref={dropdown} onFocus={() => setDropdownOpen(true)} onBlur={() => setDropdownOpen(false)}>
           {children}
         </ul>
       </Transition>

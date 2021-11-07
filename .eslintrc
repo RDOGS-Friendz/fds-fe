@@ -4,6 +4,7 @@
   "plugins": ["unused-imports"],
   "rules": {
     "no-console": "off",
+    "object-curly-newline": "off",
     "react/jsx-filename-extension": [
       1,
       {
