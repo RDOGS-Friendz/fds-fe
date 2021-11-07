@@ -51,7 +51,7 @@ export default function EventDetail({ open, setOpen }) {
             <h3 className="font-medium mb-2 text-gray-500" href="#0">
               5/7 Joined
             </h3>
-            <AvatarExpandable names={['dodofk', 'dodofk1', 'dodofk2', 'dodofk3', 'dodofk4']} />
+            <AvatarExpandable names={['dodofk', 'dodofk1', 'dodofk2', 'dodofk3', 'dodofk4']} id="event-expandable" />
           </div>
         </div>
         <div className="mb-3 flex flex-col">

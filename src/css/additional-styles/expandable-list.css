@@ -20,11 +20,9 @@
   height: 100%;
 }
 
-.expandButton {
+.expand-button {
     position: relative;
     display: flex;
     margin: auto;
     font-size: 32px;
 }
-  
-
