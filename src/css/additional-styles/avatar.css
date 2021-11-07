@@ -18,6 +18,8 @@
 .initials-avatar.profile {
 	width: 82px;
 	height: 82px;
+	vertical-align: middle;
+	font-size: 2.4rem;
 }
 
 .initials-avatar.xl {
