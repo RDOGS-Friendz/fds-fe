@@ -9,8 +9,10 @@ export default function EventCard({ eventId, itemId, dragging }) {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
 
   const onOpenEventDetail = e => {
-    e.stopPropagation();
-    if (!dragging) setDetailModalOpen(true);
+    if (!dragging) {
+      e.stopPropagation();
+      setDetailModalOpen(true);
+    }
   };
 
   const onJoinEvent = e => {
