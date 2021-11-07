@@ -15,7 +15,7 @@ const getClassNames = (variant, color) => {
     case 'secondary-danger': {
       return 'btn bg-white border-gray-200 hover:border-gray-300 active:border-gray-400 text-red-500';
     }
-    case 'secondary-tertiary': {
+    case 'tertiary-default': {
       return 'btn bg-white border-gray-200 hover:border-gray-300 text-gray-600 active:border-gray-400';
     }
     default: {
