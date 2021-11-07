@@ -50,7 +50,7 @@ export default function EventCard({ eventId, itemId, dragging }) {
         <div className="mb-3 flex flex-row">
           <AvatarCollection names={['Derek Lu', 'Timmy Chen', 'RDOGS', 'Brian Chen']} />
           <div className="ml-1">
-            <span className="text-gray-800 hover:underline text-sm align-middle" href="#0">3/4 joined</span>
+            <span className="text-gray-800 hover:underline text-sm align-middle" href="#0">5/7 joined</span>
           </div>
         </div>
         <div className="flex flex-row space-x-1 w-full">

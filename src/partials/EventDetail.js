@@ -63,6 +63,9 @@ export default function EventDetail({ open, setOpen }) {
               <li>
                 <AvatarAndName name="dodofk3" />
               </li>
+              <li>
+                <AvatarAndName name="dodofk4" />
+              </li>
             </ul>
           </div>
         </div>
