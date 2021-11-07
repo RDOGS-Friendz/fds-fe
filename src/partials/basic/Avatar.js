@@ -4,7 +4,7 @@ import stringHash from 'string-hash';
 
 import '../../css/additional-styles/avatar.css';
 
-export default function Avatar({ name, size = 'md', color = null }) {
+export default function Avatar({ name = '', size = 'md', color = null }) {
   const [computedColor, setComputedColor] = useState('indigo');
 
   useEffect(() => {
