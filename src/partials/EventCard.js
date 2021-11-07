@@ -39,13 +39,13 @@ export default function EventCard({ eventId, itemId, dragging }) {
             </div>
           </div>
           {/* Title */}
-          <h2 className="font-semibold text-xl text-gray-800">Design new diagrams</h2>
-          <a className="font-light text-red-600" href="#0">09:30 am - 11:30 am</a>
+          <h2 className="font-semibold text-xl text-gray-800">公館水岸夜跑</h2>
+          <a className="font-light text-pink-600" href="#0">公館水岸三號水門入口處</a>
         </div>
         <div className="flex flex-shrink-0 space-x-1 mb-3">
-          <Badge>Swimming</Badge>
-          <Badge>Basketball</Badge>
-          <Badge>Ball</Badge>
+          <Badge color="purple">Running</Badge>
+          <Badge color="green">High Intensity</Badge>
+          <Badge color="yellow">Male Only</Badge>
         </div>
         <div className="mb-3 flex flex-row">
           <AvatarCollection names={['Derek Lu', 'Timmy Chen', 'RDOGS', 'Brian Chen']} />
