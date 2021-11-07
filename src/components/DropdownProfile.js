@@ -55,7 +55,7 @@ function DropdownProfile({
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <AvatarAndName name={accounts.entities[auth.userAccountId]?.username} />
+        <AvatarAndName real_name={accounts.entities[auth.userAccountId]?.real_name} username={accounts.entities[auth.userAccountId]?.username} />
       </button>
 
       <Transition

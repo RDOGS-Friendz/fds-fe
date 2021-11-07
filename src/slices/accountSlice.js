@@ -2,8 +2,10 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/too
 import agent from './agent';
 
 import { resumeSignIn, signIn } from './authSlice';
+import { browseEvent } from './eventsSlice';
 
 const accountsAdapter = createEntityAdapter({
+  selectId: account => account.account_id,
   sortComparer: (a, b) => a.username?.localeCompare(b.username) ?? -1,
 });
 
@@ -176,25 +178,32 @@ const accountsSlice = createSlice({
       )
       .addCase(
         readAccountFriends.fulfilled, (state, action) => {
-          accountsAdapter.upsertOne(state, { id: action.meta.arg.accountId, friendAccountIds: action.payload });
+          accountsAdapter.upsertOne(state, { account_id: action.meta.arg.accountId, friendAccountIds: action.payload });
         },
       )
       .addCase(
         readAccountFriendRequests.fulfilled, (state, action) => {
-          accountsAdapter.upsertOne(state, { id: action.meta.arg.accountId, friendRequestIds: action.payload });
+          accountsAdapter.upsertOne(state, { account_id: action.meta.arg.accountId, friendRequestIds: action.payload });
         },
       )
 
       .addCase(
         signIn.fulfilled, (state, action) => {
-          const { account_id: id, username, real_name } = action.payload;
-          accountsAdapter.upsertOne(state, { id, username, real_name });
+          const { account_id, username, real_name } = action.payload;
+          accountsAdapter.upsertOne(state, { account_id, username, real_name });
         },
       )
       .addCase(
         resumeSignIn.fulfilled, (state, action) => {
-          const { account_id: id, username, real_name } = action.payload;
-          accountsAdapter.upsertOne(state, { id, username, real_name });
+          const { account_id, username, real_name } = action.payload;
+          accountsAdapter.upsertOne(state, { account_id, username, real_name });
+        },
+      )
+
+      .addCase(
+        browseEvent.fulfilled, (state, action) => {
+          const { accounts } = action.payload;
+          accountsAdapter.upsertMany(state, accounts);
         },
       );
   },

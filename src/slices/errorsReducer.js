@@ -9,7 +9,7 @@ const errorsReducer = createReducer(
       .addMatcher(
         action => action.type.endsWith('rejected') && !locallyHandledErrors.includes(action.type),
         (state, action) => {
-          state[action.type.slice(0, -('/rejected'.length()))] = action.error;
+          state[action.type.slice(0, -('/rejected'.length))] = action.error;
         },
       );
   },
