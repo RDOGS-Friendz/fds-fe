@@ -33,9 +33,7 @@ export default function AvatarExpandable({ participants }) {
       }}
     >
       {participants.map(({ id, real_name, username }) => (
-        <li key={id}>
-          <AvatarAndName real_name={real_name} username={username} />
-        </li>
+        <AvatarAndName key={id} real_name={real_name} username={username} />
       ))}
     </TruncatedList>
   );
