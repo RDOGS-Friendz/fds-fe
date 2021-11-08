@@ -3,20 +3,21 @@ import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { PulseLoader } from 'react-spinners';
 import EventCard from './EventCard';
 import useDrag from '../hooks/useDrag';
-import useEventCardsView from '../hooks/useEventsView';
 
 export default function EventGallery({
-  view,
-  search,
   emptyMessage = 'Oops. There’s nothing to show.',
   emptyActionButton = null,
+  events,
+  totalCount,
+  loading,
+  fetchMore,
+  joinReset,
+  bookmarkReset,
 }) {
-  // const [apiRef] = useHookWithRefCallback({ current: { isLastItemVisible: false } });
   const {
     dragStart, dragStop, dragMove, dragging,
   } = useDrag();
 
-  const [events, totalCount, loading, fetchMore] = useEventCardsView(view, search);
   const handleDrag = ({ scrollContainer }) => ev => dragMove(ev, posDiff => {
     if (scrollContainer.current) {
       scrollContainer.current.scrollLeft += posDiff;
@@ -39,8 +40,7 @@ export default function EventGallery({
   };
 
   const onUpdate = apiObj => {
-    // console.log(apiObj);
-    if ((apiObj.isLastItemVisible) && !loading) {
+    if (((apiObj.isLastItemVisible) && !loading) || totalCount === Infinity) {
       fetchMore();
     }
   };
@@ -57,16 +57,32 @@ export default function EventGallery({
       )
       : (
         <ScrollMenu
-      // apiRef={apiRef}
+          scrollContainerClassName="items-stretch"
           onUpdate={onUpdate}
           onWheel={onWheel}
           onMouseDown={() => dragStart}
           onMouseUp={() => dragStop}
           onMouseMove={handleDrag}
         >
-          {events.map(item => <EventCard event={item} itemId={item.id} key={item.id} dragging={dragging} />)}
-          {(totalCount === Infinity || loading) && <PulseLoader size={6} color="gray" />}
+          {events.map(item => (
+            <EventCard
+              event={item}
+              itemId={item.id}
+              key={item.id}
+              dragging={dragging}
+              joinReset={joinReset}
+              bookmarkReset={bookmarkReset}
+            />
+          ))}
+          {(totalCount !== events.length)
+            && (
+            <div id="loader" role="presentation" className="bg-white hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 mx-2 w-36 h-full select-none overflow-visible flex flex-row items-center justify-center">
+              {/* Body */}
+              <PulseLoader speedMultiplier={loading ? 1 : 0} size={6} color="gray" />
+            </div>
+            )}
         </ScrollMenu>
+
       )
   );
 }

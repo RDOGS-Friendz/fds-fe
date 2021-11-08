@@ -13,6 +13,6 @@
 
 @tailwind utilities;
 
-@layer utilities {
-
+textarea {
+  resize: none;
 }

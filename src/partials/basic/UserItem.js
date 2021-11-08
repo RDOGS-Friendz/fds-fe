@@ -30,6 +30,7 @@ export default function UserItem({ setFriendSidebarOpen, userName, isActive, req
         </button>
       ) : (
         <button
+          type="button"
           className={`w-full p-2 rounded ${isActive && 'bg-indigo-100'}`}
           onClick={() => setFriendSidebarOpen(false)}
         >

@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { browseEvent } from '../slices/eventsSlice';
 
-export default function useEventCardsView(view = 'all', search = []) {
-  const limit = 5;
+export default function useEventCardsView(view = 'all', search = [], limit = 5) {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const events = useSelector(state => state.events);
@@ -26,7 +25,7 @@ export default function useEventCardsView(view = 'all', search = []) {
           limit,
           offset: numItemsFetched,
           reportEventIds: (fetchedEventIds, fetchedTotalCount) => {
-            setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [numItemsFetched * limit + index]: item }), state));
+            setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [numItemsFetched + index]: item }), state));
             setTotalCount(fetchedTotalCount);
             setNumItemsFetched(state => state + fetchedEventIds.length);
           },
@@ -34,10 +33,17 @@ export default function useEventCardsView(view = 'all', search = []) {
         setLoading(false);
       }
     } catch (err) {
-      console.log('error fetching events', err);
       setError(err);
       setLoading(false);
     }
+  };
+
+  const reset = () => {
+    setLoading(false);
+    setEventIds({});
+    setNumItemsFetched(0);
+    setTotalCount(Infinity);
+    setError(null);
   };
 
   useEffect(() => {
@@ -50,5 +56,6 @@ export default function useEventCardsView(view = 'all', search = []) {
     loading,
     fetchMore,
     error,
+    reset,
   ];
 }

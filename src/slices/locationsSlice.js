@@ -21,7 +21,7 @@ export const readLocation = createAsyncThunk(
 
 export const browseAllLocation = createAsyncThunk(
   'locations/browseAllLocation',
-  async ({ authToken, search }) => {
+  async ({ authToken, search, reportLocationIds }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -33,6 +33,7 @@ export const browseAllLocation = createAsyncThunk(
 
     const res = await agent.get('/location', config);
 
+    reportLocationIds(res.data);
     return res.data;
   },
 );
@@ -69,7 +70,6 @@ const locationsSlice = createSlice({
         locationsAdapter.upsertMany(state, action.payload);
       })
       .addCase(browseEvent.fulfilled, (state, action) => {
-        console.log(action);
         locationsAdapter.upsertMany(state, action.payload.locations);
       });
   },

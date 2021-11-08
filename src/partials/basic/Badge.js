@@ -22,7 +22,7 @@ export default function Badge({ children, color = null }) {
       );
     case 'light-blue':
       return (
-        <div className="text-xs inline-flex font-medium bg-light-blue-600 text-light-blue-600 rounded-full text-center px-2.5 py-1">
+        <div className="text-xs inline-flex font-medium bg-light-blue-100 text-light-blue-600 rounded-full text-center px-2.5 py-1">
           {children}
         </div>
       );
