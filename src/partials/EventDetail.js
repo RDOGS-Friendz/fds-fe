@@ -82,11 +82,11 @@ export default function EventDetail({ open, setOpen, event }) {
           </div>
           <div className="mb-3 flex flex-col">
             <h3 className="font-medium mb-2 text-gray-500" href="#0">{`${event?.participant_ids.length}/${event?.max_participant_count} joined`}</h3>
-            <AvatarExpandable participants={event?.participant_ids.map(id => accounts.entities[id])} id="event-expandable" />
+            <AvatarExpandable participants={event?.participant_ids.map(id => accounts.entities[id])} />
           </div>
         </div>
         <div className="mb-3 flex flex-col">
-          <h3 className="font-medium mb-1 text-gray-500" href="#0">Description</h3>
+          <h3 className="font-semibold mb-1 text-gray-500" href="#0">Description</h3>
           <span>{event?.description}</span>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function EventDetail({ open, setOpen, event }) {
         </div>
         <span>{`Still need ${Math.max(event?.max_participant_count - event?.participant_ids.length, 0)} people`}</span>
       </div>
-      <div className="px-5 mb-3">
+      <div className="text-sm px-5 mb-3">
         <span>{`Created on ${moment(event?.create_time).format('MMM D YYYY')}`}</span>
       </div>
     </ModalBasic>
