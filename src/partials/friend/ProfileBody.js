@@ -6,7 +6,7 @@ import FriendAction from '../basic/FriendAction';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
 
-function FriendBody({ friendSidebarOpen, setFriendSidebarOpen }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
   return (
     <div
       className={`flex-grow flex flex-col md:translate-x-0 transform transition-transform duration-300 ease-in-out ${
@@ -161,4 +161,4 @@ function FriendBody({ friendSidebarOpen, setFriendSidebarOpen }) {
   );
 }
 
-export default FriendBody;
+export default ProfileBody;

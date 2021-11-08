@@ -6,7 +6,7 @@ import AvatarAndName from './AvatarAndName';
 import 'react-truncate-list/dist/styles.css';
 import '../../css/additional-styles/expandable-list.css';
 
-export default function AvatarExpandable({ names }) {
+export default function AvatarExpandable({ participants }) {
   const [expanded, setExpanded] = useState(false);
   const expand = () => setExpanded(true);
   const collapse = () => setExpanded(false);
@@ -22,7 +22,7 @@ export default function AvatarExpandable({ names }) {
             </button>
           );
         }
-        if (names.length <= 3) {
+        if (participants.length <= 3) {
           return <div className="mb-0" />;
         }
         return (
@@ -32,7 +32,11 @@ export default function AvatarExpandable({ names }) {
         );
       }}
     >
-      {names.map(item => <AvatarAndName key={item} name={item} />)}
+      {participants.map(({ id, real_name, username }) => (
+        <li key={id}>
+          <AvatarAndName real_name={real_name} username={username} />
+        </li>
+      ))}
     </TruncatedList>
   );
 }

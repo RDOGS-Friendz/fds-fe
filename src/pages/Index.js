@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
+import { PulseLoader } from 'react-spinners';
 import { useDispatch, useSelector } from 'react-redux';
 
 import moment from 'moment';
@@ -11,6 +12,7 @@ import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import History from './History';
 import Friends from './Friends';
+import Profile from './Profile';
 import { resumeSignIn } from '../slices/authSlice';
 
 export default function Index() {
@@ -41,21 +43,31 @@ export default function Index() {
   }, [auth.signedIn, dispatch, history]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      {/* Content area */}
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        {/*  Site header */}
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/events" component={Events} />
-          <Route path="/history" component={History} />
-          <Route path="/friends" component={Friends} />
-          <Route path="*" component={PageNotFound} />
-        </Switch>
-      </div>
-    </div>
-  );
+    auth.signedIn
+      ? (
+        <div className="flex h-screen overflow-hidden">
+          {/* Sidebar */}
+          <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          {/* Content area */}
+          <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+            {/*  Site header */}
+            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/events" component={Events} />
+              <Route path="/history" component={History} />
+              <Route path="/friends" component={Friends} />
+              <Route path="/profile" component={Profile} />
+              <Route path="*" component={PageNotFound} />
+            </Switch>
+          </div>
+        </div>
+      ) : (
+        // loading screen
+        <div className="h-screen flex flex-col justify-center">
+          <div className="flex flex-row justify-center my-auto">
+            <PulseLoader size={10} color="gray" />
+          </div>
+        </div>
+      ));
 }
