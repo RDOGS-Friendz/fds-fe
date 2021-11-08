@@ -6,11 +6,11 @@ import AvatarCollection from './basic/AvatarCollection';
 import Badge from './basic/Badge';
 import Button from './basic/Button';
 import {
-  joinEvent, cancelJoinEvent, addBookmark, deleteBookmark,
+  joinEvent, cancelJoinEvent, addBookmark, deleteBookmark, readEvent,
 } from '../slices/eventsSlice';
 import EventDetail from './EventDetail';
 
-export default function EventCard({ event, itemId, dragging }) {
+export default function EventCard({ event, dragging }) {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
@@ -34,30 +34,34 @@ export default function EventCard({ event, itemId, dragging }) {
     }
   };
 
-  const onJoinEvent = e => {
+  const onJoinEvent = async e => {
     e.stopPropagation();
-    dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
-  const onCancelJoinedEvent = e => {
+  const onCancelJoinedEvent = async e => {
     e.stopPropagation();
-    dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
-  const onBookmarkEvent = e => {
+  const onBookmarkEvent = async e => {
     e.stopPropagation();
-    dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
-  const onDeleteBookmarkEvent = e => {
+  const onDeleteBookmarkEvent = async e => {
     e.stopPropagation();
-    dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
   return (
     <>
 
-      <div id={event.id} role="presentation" className="bg-white hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 mb-4 select-none overflow-visible" onClick={onOpenEventDetail}>
+      <div id={event.id} role="presentation" className="bg-white hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 h-full select-none overflow-visible" onClick={onOpenEventDetail}>
         {/* Body */}
         <div className="mb-3">
           {/* Info */}

@@ -7,7 +7,7 @@ import Button from './basic/Button';
 import Badge from './basic/Badge';
 import AvatarAndName from './basic/AvatarAndName';
 import {
-  joinEvent, cancelJoinEvent, addBookmark, deleteBookmark,
+  joinEvent, cancelJoinEvent, addBookmark, deleteBookmark, readEvent,
 } from '../slices/eventsSlice';
 
 export default function EventDetail({ open, setOpen, event }) {
@@ -26,29 +26,32 @@ export default function EventDetail({ open, setOpen, event }) {
     }
   };
 
-  const onJoinEvent = e => {
+  const onJoinEvent = async e => {
     e.stopPropagation();
-    dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
-  const onCancelJoinedEvent = e => {
+  const onCancelJoinedEvent = async e => {
     e.stopPropagation();
-    dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
-  const onBookmarkEvent = e => {
+  const onBookmarkEvent = async e => {
     e.stopPropagation();
-    dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
-  const onDeleteBookmarkEvent = e => {
+  const onDeleteBookmarkEvent = async e => {
     e.stopPropagation();
-    dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
+    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
   return (
     <ModalBasic modalOpen={open} setModalOpen={setOpen}>
-
       <div className="px-5 pt-4 pb-1">
         <div className="mb-3">
           {/* Info */}
@@ -64,7 +67,7 @@ export default function EventDetail({ open, setOpen, event }) {
               </a>
             </div>
             <div>
-              <a className="font-medium text-gray-800" href="#0">{`⏳ ${moment(event?.end_time).subtract(moment(event?.start_time)).format('m')} mins`}</a>
+              <a className="font-medium text-gray-800" href="#0">{`⏳ ${moment(event?.end_time).diff(moment(event?.start_time), 'minutes')} mins`}</a>
             </div>
           </div>
           {/* Title */}

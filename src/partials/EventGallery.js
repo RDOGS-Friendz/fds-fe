@@ -39,7 +39,6 @@ export default function EventGallery({
   };
 
   const onUpdate = apiObj => {
-    // console.log(apiObj);
     if ((apiObj.isLastItemVisible) && !loading) {
       fetchMore();
     }
@@ -57,7 +56,7 @@ export default function EventGallery({
       )
       : (
         <ScrollMenu
-      // apiRef={apiRef}
+          scrollContainerClassName="items-stretch"
           onUpdate={onUpdate}
           onWheel={onWheel}
           onMouseDown={() => dragStart}
@@ -65,8 +64,15 @@ export default function EventGallery({
           onMouseMove={handleDrag}
         >
           {events.map(item => <EventCard event={item} itemId={item.id} key={item.id} dragging={dragging} />)}
-          {(totalCount === Infinity || loading) && <PulseLoader size={6} color="gray" />}
+          {(totalCount !== events.length)
+            && (
+            <div id="loader" role="presentation" className="bg-white hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 mx-2 w-36 h-full select-none overflow-visible flex flex-row items-center justify-center">
+              {/* Body */}
+              <PulseLoader speedMultiplier={loading ? 1 : 0} size={6} color="gray" />
+            </div>
+            )}
         </ScrollMenu>
+
       )
   );
 }

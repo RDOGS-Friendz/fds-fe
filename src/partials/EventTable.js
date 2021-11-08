@@ -1,47 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { BsFillBookmarkFill } from 'react-icons/bs';
 import moment from 'moment';
-import { useSelector, useDispatch } from 'react-redux';
-import { RiPencilFill } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
 import TableSimple from './TableSimple/TableSimple';
 import TableSimpleRow from './TableSimple/TableSimpleRow';
 import EventDetail from './EventDetail';
 import TableSimpleCell from './TableSimple/TableSimpleCell';
 import useEventCardsView from '../hooks/useEventsView';
-import Button from './basic/Button';
 
 export default function EventTable({
   view = 'all',
   search = [],
   numItems = 5,
-  action,
   footerButton = null,
+  getEventActionButton = () => null,
   emptyMessage = 'Oops. There’s nothing to show.',
   emptyActionButton = null,
 }) {
-  const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth);
   const locations = useSelector(state => state.locations);
   const categories = useSelector(state => state.categories);
 
-  const getActionVariant = event => {
-    if (action === 'bookmark') {
-      if (event?.bookmarked) {
-        return 'secondary'; // highlight bookmarked event
-      } return 'tertiary';
-    } return 'tertiary';
-  };
-  const getActionIcon = () => {
-    switch (action) {
-      case 'bookmark': return <BsFillBookmarkFill />;
-      case 'edit': return <RiPencilFill />;
-      default: return <BsFillBookmarkFill />;
-    }
-  };
-
   const [detailModalOpen, setDetailModalOpen] = useState(Array(numItems).fill(false));
 
-  const [events, totalCount, loading, fetchMore, error] = useEventCardsView(view, search);
+  const [events, totalCount, loading, fetchMore, error] = useEventCardsView(view, search, numItems);
 
   const setDetailModalOpenByIndex = index => value => setDetailModalOpen(state => state.map((item, itemIndex) => (index === itemIndex ? value : state[itemIndex])));
 
@@ -85,12 +65,14 @@ export default function EventTable({
                 <TableSimpleCell>{categories.entities[event?.category_id]?.name}</TableSimpleCell>
                 <TableSimpleCell>{locations.entities[event?.location_id]?.name}</TableSimpleCell>
                 <TableSimpleCell>{moment(event?.start_time).format('MMM D YYYY')}</TableSimpleCell>
-                <TableSimpleCell><Button variant={getActionVariant(event)} icon={getActionIcon()} /></TableSimpleCell>
+                <TableSimpleCell>
+                  {getEventActionButton(event)}
+                </TableSimpleCell>
               </TableSimpleRow>
             ))}
           </TableSimple>
-          {events.map((item, index) => (
-            <EventDetail key={item} open={detailModalOpen[index]} setOpen={setDetailModalOpenByIndex(index)} />
+          {events.map((event, index) => (
+            <EventDetail key={event.id} event={event} open={detailModalOpen[index]} setOpen={setDetailModalOpenByIndex(index)} />
           ))}
           <div className="flex justify-center mt-3">
             {footerButton}
