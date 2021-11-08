@@ -7,6 +7,7 @@ import { addBookmark, deleteBookmark, readEvent } from '../slices/eventsSlice';
 
 import '../css/additional-styles/horizontalScrollingMenu.css';
 
+import useEventsView from '../hooks/useEventsView';
 import Button from '../partials/basic/Button';
 import DashboardCard from '../partials/DashboardCard';
 import EventEditCard from '../partials/EventEditCard';
@@ -18,6 +19,46 @@ function Dashboard() {
   const dispatch = useDispatch();
   const [openEventEditCard, setOpenEventEditCard] = useState(false);
   const [editingEventId, setEditingEventId] = useState(null);
+
+  const [
+    suggestedEvents,
+    suggestedTotalCount,
+    suggestedLoading,
+    suggestedFetchMore,,
+    suggestedReset,
+  ] = useEventsView('suggested', '');
+
+  const [
+    upcomingEvents,
+    upcomingTotalCount,
+    upcomingLoading,
+    upcomingFetchMore,,
+    upcomingReset,
+  ] = useEventsView('upcoming', '');
+
+  const [
+    joinedByFriendsEvents,
+    joinedByFriendsTotalCount,
+    joinedByFriendsLoading,
+    joinedByFriendsFetchMore,
+  ] = useEventsView('joined-by-friend', '');
+
+  const [
+    bookmarkedEvents,
+    bookmarkedTotalCount,
+    bookmarkedLoading,
+    bookmarkedFetchMore,
+    bookmarkedError,
+  ] = useEventsView('bookmarked', '', 10);
+
+  const [
+    hostByYouEvents,
+    hostByYouTotalCount,
+    hostByYouLoading,
+    hostByYouFetchMore,
+    hostByYouError,
+    hostByYouReset,
+  ] = useEventsView('all', [['creator_account_id', auth.userAccountId]], 10);
 
   const onClickAddEvent = e => {
     e.stopPropagation();
@@ -57,17 +98,34 @@ function Dashboard() {
           {/* Cards */}
           <div className="grid grid-cols-12 gap-6">
             <DashboardCard title="Events You May Like ✨">
-              <EventGallery view="suggested" />
+              <EventGallery
+                events={suggestedEvents}
+                totalCount={suggestedTotalCount}
+                loading={suggestedLoading}
+                fetchMore={suggestedFetchMore}
+                joinReset={[upcomingReset]}
+              />
             </DashboardCard>
 
             <DashboardCard title="Your Upcoming Event ➡️️">
-              <EventGallery view="upcoming" />
+              <EventGallery
+                events={upcomingEvents}
+                totalCount={upcomingTotalCount}
+                loading={upcomingLoading}
+                fetchMore={upcomingFetchMore}
+                joinReset={[upcomingReset]}
+              />
             </DashboardCard>
 
             <DashboardCard title="Bookmarked Events 📌">
               <EventTable
-                numItems={5}
-                view="bookmarked"
+                events={bookmarkedEvents}
+                totalCount={bookmarkedTotalCount}
+                loading={bookmarkedLoading}
+                fetchMore={bookmarkedFetchMore}
+                error={bookmarkedError}
+                joinReset={[upcomingReset]}
+                numItems={10}
                 getEventActionButton={
                   event => (
                     <Button
@@ -81,13 +139,24 @@ function Dashboard() {
             </DashboardCard>
 
             <DashboardCard title="Event Joined by Friends 👥️">
-              <EventGallery view="joined-by-friend" />
+              <EventGallery
+                events={joinedByFriendsEvents}
+                totalCount={joinedByFriendsTotalCount}
+                loading={joinedByFriendsLoading}
+                fetchMore={joinedByFriendsFetchMore}
+                joinReset={[upcomingReset]}
+              />
             </DashboardCard>
 
             <DashboardCard title="Events You Host 📣">
               <EventTable
-                numItems={4}
-                search={[['creator_account_id', auth.userAccountId]]}
+                events={hostByYouEvents}
+                totalCount={hostByYouTotalCount}
+                loading={hostByYouLoading}
+                fetchMore={hostByYouFetchMore}
+                error={hostByYouError}
+                joinReset={[upcomingReset]}
+                numItems={10}
                 getEventActionButton={
                   event => (
                     <Button
@@ -101,7 +170,11 @@ function Dashboard() {
                 emptyActionButton={<Button onClick={onClickAddEvent} icon={<MdAdd />}>Add Event</Button>}
               />
             </DashboardCard>
-            <EventEditCard open={openEventEditCard} setOpen={setOpenEventEditCard} />
+            <EventEditCard
+              open={openEventEditCard}
+              setOpen={setOpenEventEditCard}
+              resets={[upcomingReset, hostByYouReset]}
+            />
           </div>
         </div>
 

@@ -5,23 +5,23 @@ import TableSimple from './TableSimple/TableSimple';
 import TableSimpleRow from './TableSimple/TableSimpleRow';
 import EventDetail from './EventDetail';
 import TableSimpleCell from './TableSimple/TableSimpleCell';
-import useEventCardsView from '../hooks/useEventsView';
 
 export default function EventTable({
-  view = 'all',
-  search = [],
   numItems = 5,
   footerButton = null,
   getEventActionButton = () => null,
   emptyMessage = 'Oops. There’s nothing to show.',
   emptyActionButton = null,
+  events,
+  totalCount,
+  loading,
+  fetchMore,
+  error,
 }) {
   const locations = useSelector(state => state.locations);
   const categories = useSelector(state => state.categories);
 
   const [detailModalOpen, setDetailModalOpen] = useState(Array(numItems).fill(false));
-
-  const [events, totalCount, loading, fetchMore, error] = useEventCardsView(view, search, numItems);
 
   const setDetailModalOpenByIndex = index => value => setDetailModalOpen(state => state.map((item, itemIndex) => (index === itemIndex ? value : state[itemIndex])));
 

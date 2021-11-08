@@ -38,6 +38,14 @@ export default function useEventCardsView(view = 'all', search = [], limit = 5) 
     }
   };
 
+  const reset = () => {
+    setLoading(false);
+    setEventIds({});
+    setNumItemsFetched(0);
+    setTotalCount(Infinity);
+    setError(null);
+  };
+
   useEffect(() => {
     setMoreToFetch(numItemsFetched < totalCount);
   }, [numItemsFetched, totalCount]);
@@ -48,5 +56,6 @@ export default function useEventCardsView(view = 'all', search = [], limit = 5) 
     loading,
     fetchMore,
     error,
+    reset,
   ];
 }

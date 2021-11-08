@@ -10,7 +10,7 @@ import {
 } from '../slices/eventsSlice';
 import EventDetail from './EventDetail';
 
-export default function EventCard({ event, dragging }) {
+export default function EventCard({ event, dragging, joinReset = [], bookmarkReset = [] }) {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
@@ -38,24 +38,28 @@ export default function EventCard({ event, dragging }) {
     e.stopPropagation();
     await dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
     await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+    joinReset.map(f => f());
   };
 
   const onCancelJoinedEvent = async e => {
     e.stopPropagation();
     await dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
     await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+    joinReset.map(f => f());
   };
 
   const onBookmarkEvent = async e => {
     e.stopPropagation();
     await dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
     await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+    bookmarkReset.map(f => f());
   };
 
   const onDeleteBookmarkEvent = async e => {
     e.stopPropagation();
     await dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
     await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+    bookmarkReset.map(f => f());
   };
 
   return (

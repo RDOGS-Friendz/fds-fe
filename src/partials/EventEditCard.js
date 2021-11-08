@@ -12,7 +12,7 @@ import useCategorySearch from '../hooks/useCategorySearch';
 import DropdownClassic from './basic/DropdownClassic';
 import { addEvent } from '../slices/eventsSlice';
 
-export default function EventEditCard({ newEvent = true, open, setOpen }) {
+export default function EventEditCard({ newEvent = true, open, setOpen, resets }) {
   const intensityOptions = [
     { value: 'LOW', label: 'Low' },
     { value: 'INTERMEDIATE', label: 'Intermediate' },
@@ -154,6 +154,8 @@ export default function EventEditCard({ newEvent = true, open, setOpen }) {
         num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
         description,
       }));
+
+      resets.map(reset => reset());
       handleClose();
     }
   };
