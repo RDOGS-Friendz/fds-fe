@@ -12,7 +12,7 @@ export default function Friends() {
         <FriendSidebar friendSidebarOpen={friendSidebarOpen} setFriendSidebarOpen={setFriendSidebarOpen} />
 
         {/* Profile body */}
-        <ProfileBody friendSidebarOpen={friendSidebarOpen} setFriendSidebarOpen={setFriendSidebarOpen} />
+        <ProfileBody friendSidebarOpen={friendSidebarOpen} setFriendSidebarOpen={setFriendSidebarOpen} action="friend" />
       </div>
     </main>
   );

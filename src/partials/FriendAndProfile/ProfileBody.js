@@ -6,7 +6,7 @@ import FriendAction from '../basic/FriendAction';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
 
-function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
   return (
     <div
       className={`flex-grow flex flex-col md:translate-x-0 transform transition-transform duration-300 ease-in-out ${
@@ -69,7 +69,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
         <div className="relative mb-6 sm:mb-3">
           <div className="absolute bottom-0 w-full h-px bg-gray-200" aria-hidden="true" />
           <div className="flex flex-col items-center">
-            <FriendAction action="friend" />
+            <FriendAction action={action} />
           </div>
         </div>
 
