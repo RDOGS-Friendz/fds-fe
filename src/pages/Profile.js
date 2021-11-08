@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ProfileBody from '../partials/friend/ProfileBody';
+import ProfileBody from '../partials/FriendAndProfile/ProfileBody';
 
 export default function Profile() {
   const [friendSidebarOpen, setFriendSidebarOpen] = useState(false);

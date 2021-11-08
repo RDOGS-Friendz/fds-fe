@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import FriendSidebar from '../partials/friend/FriendSidebar';
-import ProfileBody from '../partials/friend/ProfileBody';
+import FriendSidebar from '../partials/FriendAndProfile/FriendSidebar';
+import ProfileBody from '../partials/FriendAndProfile/ProfileBody';
 
 export default function Friends() {
   const [friendSidebarOpen, setFriendSidebarOpen] = useState(false);
