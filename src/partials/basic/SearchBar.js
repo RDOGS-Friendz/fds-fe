@@ -32,6 +32,7 @@ export default function SearchBar(
               value={inputValue}
               onChange={onInputChange}
               onBlur={onInputBlur}
+              autoComplete="off"
             />
             {/* <div className="absolute inset-0 right-auto left-2 flex items-center pointer-events-none">{icon}</div> */}
           </div>
@@ -62,7 +63,7 @@ export default function SearchBar(
                 className="flex items-center justify-between w-full hover:bg-gray-50 py-2 px-3 cursor-pointer"
                 onClick={onSelectSuggestion}
               >
-                <p>{suggestion.name}</p>
+                {suggestion.name}
               </button>
             ))}
             {suggestions.length === 0 && (
