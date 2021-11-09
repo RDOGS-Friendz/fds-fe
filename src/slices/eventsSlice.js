@@ -34,9 +34,6 @@ export const browseEvent = createAsyncThunk(
       },
     };
 
-    const res2 = await Promise.all(locationIds.map(async item => (await agent.get(`/location/${item}`, config2)).data));
-    const res3 = await Promise.all(categoryIds.map(async item => (await agent.get(`/category/${item}`, config2)).data));
-
     const config3 = {
       headers: {
         'auth-token': authToken,
@@ -46,7 +43,13 @@ export const browseEvent = createAsyncThunk(
       },
     };
 
-    const res4 = await agent.get('/account/batch', config3);
+    const [res2, res3, res4] = await Promise.all(
+      [
+        Promise.all([...new Set(locationIds)].map(async item => (await agent.get(`/location/${item}`, config2)).data)),
+        Promise.all([...new Set(categoryIds)].map(async item => (await agent.get(`/category/${item}`, config2)).data)),
+        agent.get('/account/batch', config3),
+      ],
+    );
 
     reportEventIds(res1.data.data.map(item => item.id), res1.data.total_count);
 

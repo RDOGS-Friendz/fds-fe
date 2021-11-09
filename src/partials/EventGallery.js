@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { PulseLoader } from 'react-spinners';
 import EventCard from './EventCard';
@@ -39,8 +39,14 @@ export default function EventGallery({
     }
   };
 
+  useEffect(() => {
+    if (totalCount === Infinity && !loading) {
+      fetchMore();
+    }
+  }, [fetchMore, loading, totalCount]);
+
   const onUpdate = apiObj => {
-    if (((apiObj.isLastItemVisible) && !loading) || totalCount === Infinity) {
+    if (((apiObj.isLastItemVisible) && !loading)) {
       fetchMore();
     }
   };
