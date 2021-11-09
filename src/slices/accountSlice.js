@@ -28,10 +28,10 @@ const accountsAdapter = createEntityAdapter({
 export const signup = createAsyncThunk(
   'accounts/signup',
   async ({
-    username, password, realName, email, gender,
+    username, password, real_name, email, gender,
   }) => {
     await agent.post('/account', {
-      username, password, real_name: realName, email, gender,
+      username, password, real_name, email, gender,
     });
   },
 );
