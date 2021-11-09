@@ -25,7 +25,6 @@ export default function useCategorySearch() {
 
   const onSelectSuggestion = e => {
     e.stopPropagation();
-    console.log(categories.entities[e.target.value]?.name);
     setInputValue(categories.entities[e.target.value]?.name ?? '');
     setSelectedCategoryId(e.target.value);
     setShowSuggestions(false);
