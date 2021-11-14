@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import stringHash from 'string-hash';
 
-export default function Badge({ children, color = null }) {
+export default function Badge({ children = '', color = null }) {
   const [computedColor, setComputedColor] = useState('indigo');
 
   useEffect(() => {

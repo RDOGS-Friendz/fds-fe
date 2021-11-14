@@ -169,10 +169,10 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
               <h3 className="font-medium text-gray-800">Real Name</h3>
               <div>{accounts.entities[activeAccountId].real_name}</div>
             </div>
-            <div className="text-sm">
+            {/* <div className="text-sm">
               <h3 className="font-medium text-gray-800">Gender</h3>
               <div>{accounts.entities[activeAccountId].gender}</div>
-            </div>
+            </div> */}
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Department</h3>
               <div>{accounts.entities[activeAccountId].department}</div>
