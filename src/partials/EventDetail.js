@@ -82,7 +82,7 @@ export default function EventDetail({ open, setOpen, event }) {
           </div>
           <div className="mb-3 flex flex-col">
             <h3 className="font-medium mb-2 text-gray-500" href="#0">{`${event?.participant_ids.length}/${event?.max_participant_count} joined`}</h3>
-            {event?.participant_ids && <AvatarExpandable participants={event?.participant_ids.map(id => accounts.entities[id])} />}
+            <AvatarExpandable participants={event?.participant_ids.map(id => accounts.entities[id]) ?? []} />
           </div>
         </div>
         <div className="mb-3 flex flex-col">
