@@ -74,10 +74,19 @@ function DropdownProfile({
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200">
-            <div className="font-medium text-gray-800">Acme Inc.</div>
-            <div className="text-xs text-gray-500 italic">Administrator</div>
+            <div className="font-medium text-gray-800">{accounts.entities[auth.userAccountId]?.real_name}</div>
+            <div className="text-xs text-gray-500">{accounts.entities[auth.userAccountId]?.username}</div>
           </div>
           <ul>
+            <li>
+              <Link
+                className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+                to="/profile"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                View Profile
+              </Link>
+            </li>
             <li>
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
@@ -89,7 +98,7 @@ function DropdownProfile({
             </li>
             <li>
               <Link
-                className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+                className="border-0 border-t border-solid font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center pt-1 pb-0.5 px-3"
                 to="/signin"
                 onClick={handleSignOut}
               >

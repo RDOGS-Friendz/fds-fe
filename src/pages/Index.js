@@ -12,6 +12,7 @@ import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import History from './History';
 import Friends from './Friends';
+import Profile from './Profile';
 import { resumeSignIn } from '../slices/authSlice';
 
 export default function Index() {
@@ -56,6 +57,7 @@ export default function Index() {
               <Route path="/events" component={Events} />
               <Route path="/history" component={History} />
               <Route path="/friends" component={Friends} />
+              <Route path="/profile" component={Profile} />
               <Route path="*" component={PageNotFound} />
             </Switch>
           </div>

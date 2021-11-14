@@ -7,7 +7,7 @@ import useEventsView from '../../hooks/useEventsView';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
 
-function FriendBody({ friendSidebarOpen, setFriendSidebarOpen }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
   const [
     upcomingEvents,
     upcomingTotalCount,
@@ -77,7 +77,7 @@ function FriendBody({ friendSidebarOpen, setFriendSidebarOpen }) {
         <div className="relative mb-6 sm:mb-3">
           <div className="absolute bottom-0 w-full h-px bg-gray-200" aria-hidden="true" />
           <div className="flex flex-col items-center">
-            <FriendAction action="friend" />
+            <FriendAction action={action} />
           </div>
         </div>
 
@@ -172,4 +172,4 @@ function FriendBody({ friendSidebarOpen, setFriendSidebarOpen }) {
   );
 }
 
-export default FriendBody;
+export default ProfileBody;

@@ -43,6 +43,14 @@ export default function FriendAction({ action = 'friend' }) {
           </Button>
         </div>
       );
+    case 'self':
+      return (
+        <div className="flex space-x-2 mb-5">
+          <Button icon="👀" variant="secondary" notHidden disabled>
+            This is how your profile looks like to Friends
+          </Button>
+        </div>
+      );
     default:
       break;
   }
