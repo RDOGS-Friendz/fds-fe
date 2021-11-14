@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import AuthImage from '../images/auth-image.jpg';
 import AuthDecoration from '../images/auth-decoration.png';
@@ -14,7 +14,7 @@ function Signin() {
   const [passwordInput, setPasswordInput] = useState('');
   const [showSigninFailedHelpText, setShowSigninFailedHelpText] = useState(false);
   const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth);
+  // const auth = useSelector(state => state.auth);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -38,8 +38,25 @@ function Signin() {
               {/* Form */}
               <form>
                 <div className="space-y-4">
-                  <TextField label="Username" id="username" value={usernameInput} onChange={e => setUsernameInput(e.target.value)} />
-                  <TextField label="Password" id="password" type="password" value={passwordInput} onChange={e => setPasswordInput(e.target.value)} showHelpText={showSigninFailedHelpText} helpText="Sign in failed. Check your entries and try again." />
+                  <TextField
+                    label="Username"
+                    id="username"
+                    value={usernameInput}
+                    wrapperClassName="w-full"
+                    inputClassName="w-full"
+                    onChange={e => setUsernameInput(e.target.value)}
+                  />
+                  <TextField
+                    label="Password"
+                    id="password"
+                    type="password"
+                    value={passwordInput}
+                    wrapperClassName="w-full"
+                    inputClassName="w-full"
+                    onChange={e => setPasswordInput(e.target.value)}
+                    showHelpText={showSigninFailedHelpText}
+                    helpText="Sign in failed. Check your entries and try again."
+                  />
                 </div>
                 <div className="flex items-center justify-between mt-6">
                   <div className="mr-1">

@@ -17,7 +17,7 @@ export default function AvatarExpandable({ participants }) {
       renderTruncator={({ hiddenItemsCount }) => {
         if (hiddenItemsCount > 0) {
           return (
-            <button onClick={expand} className="expand-button">
+            <button type="button" onClick={expand} className="expand-button">
               <MdExpandMore />
             </button>
           );
@@ -26,7 +26,7 @@ export default function AvatarExpandable({ participants }) {
           return <div className="mb-0" />;
         }
         return (
-          <button onClick={collapse} className="expand-button">
+          <button type="button" onClick={collapse} className="expand-button">
             <MdExpandLess />
           </button>
         );

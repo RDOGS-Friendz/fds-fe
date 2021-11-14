@@ -17,6 +17,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
       <div className="relative h-24">
         {/* Close button */}
         <button
+          type="button"
           className="md:hidden absolute top-4 left-4 sm:left-6 text-white opacity-80 hover:opacity-100"
           onClick={() => setFriendSidebarOpen(!friendSidebarOpen)}
           aria-controls="profile-sidebar"

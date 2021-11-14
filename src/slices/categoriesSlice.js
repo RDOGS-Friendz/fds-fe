@@ -21,15 +21,19 @@ export const readCategory = createAsyncThunk(
 
 export const browseAllCategory = createAsyncThunk(
   'categories/browseAllCategory',
-  async ({ authToken }) => {
+  async ({ authToken, search, reportCategoryIds }) => {
     const config = {
       headers: {
         'auth-token': authToken,
+      },
+      params: {
+        search,
       },
     };
 
     const res = await agent.get('/category', config);
 
+    reportCategoryIds(res.data);
     return res.data;
   },
 );
@@ -42,6 +46,9 @@ const categoriesSlice = createSlice({
     builder
       .addCase(readCategory.fulfilled, (state, action) => {
         categoriesAdapter.upsertOne(state, action.payload);
+      })
+      .addCase(browseAllCategory.fulfilled, (state, action) => {
+        categoriesAdapter.upsertMany(state, action.payload);
       })
 
       .addCase(browseEvent.fulfilled, (state, action) => {
