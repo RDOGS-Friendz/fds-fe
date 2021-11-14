@@ -84,6 +84,25 @@ export const readAccountProfile = createAsyncThunk(
   },
 );
 
+export const editAccountProfile = createAsyncThunk(
+  'accounts/editAccountProfile',
+  async ({ authToken, account_id, tagline, department, social_media_acct, birthday, preferred_category_id }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+    };
+
+    await agent.patch(`/account/${account_id}/profile`, {
+      tagline,
+      department,
+      social_media_acct,
+      birthday,
+      preferred_category_id,
+    }, config);
+  },
+);
+
 export const readAccountFriends = createAsyncThunk(
   'accounts/readAccountFriends',
   async ({ authToken, accountId }) => {
