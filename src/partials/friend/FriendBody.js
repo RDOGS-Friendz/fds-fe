@@ -3,10 +3,17 @@ import Avatar from '../basic/Avatar';
 import Badge from '../basic/Badge';
 import FriendAction from '../basic/FriendAction';
 // import DashboardCard from '../DashboardCard';
+import useEventsView from '../../hooks/useEventsView';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
 
 function FriendBody({ friendSidebarOpen, setFriendSidebarOpen }) {
+  const [
+    upcomingEvents,
+    upcomingTotalCount,
+    upcomingLoading,
+    upcomingFetchMore,
+  ] = useEventsView('upcoming', '');
   return (
     <div
       className={`flex-grow flex flex-col md:translate-x-0 transform transition-transform duration-300 ease-in-out ${
@@ -126,9 +133,12 @@ function FriendBody({ friendSidebarOpen, setFriendSidebarOpen }) {
               <h2 className="text-gray-800 font-semibold mb-2">Past Event Joined by icheft</h2>
               {/* Cards */}
               <div className="grid grid-cols-1 gap-6">
-                <EventGallery eventIds={[1, 2, 3, 4]} />
-                {/* <DashboardCard title="Events You May Like ✨">
-                </DashboardCard> */}
+                <EventGallery
+                  events={upcomingEvents}
+                  totalCount={upcomingTotalCount}
+                  loading={upcomingLoading}
+                  fetchMore={upcomingFetchMore}
+                />
               </div>
             </div>
           </div>
