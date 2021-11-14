@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { browseEvent } from '../slices/eventsSlice';
 
-export default function useEventCardsView(view = 'all', search = [], limit = 5) {
+export default function useEventsView(view = 'all', search = [], limit = 5) {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const events = useSelector(state => state.events);
