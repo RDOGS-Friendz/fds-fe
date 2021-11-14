@@ -7,7 +7,7 @@ export default function Friends() {
 
   return (
     <main>
-      <div className="relative flex">
+      <div className="relative flex bg-white">
         {/* Profile sidebar */}
         <FriendSidebar friendSidebarOpen={friendSidebarOpen} setFriendSidebarOpen={setFriendSidebarOpen} />
 

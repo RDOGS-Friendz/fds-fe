@@ -6,7 +6,7 @@ export default function Profile() {
 
   return (
     <main>
-      <div className="relative flex">
+      <div className="relative flex bg-white">
         {/* Profile body */}
         <ProfileBody friendSidebarOpen={friendSidebarOpen} setFriendSidebarOpen={setFriendSidebarOpen} action="self" />
       </div>
