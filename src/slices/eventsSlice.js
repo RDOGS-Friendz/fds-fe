@@ -1,6 +1,7 @@
 import {
   createAsyncThunk, createEntityAdapter, createSlice,
 } from '@reduxjs/toolkit';
+import { batchGetAccount } from './utilThunks';
 import agent from './agent';
 
 const eventsAdapter = createEntityAdapter({});
@@ -9,7 +10,7 @@ export const browseEvent = createAsyncThunk(
   'events/browseEvent',
   async ({
     authToken, view, search, limit, offset, reportEventIds,
-  }) => {
+  }, { dispatch }) => {
     const config1 = {
       headers: {
         'auth-token': authToken,
@@ -34,20 +35,11 @@ export const browseEvent = createAsyncThunk(
       },
     };
 
-    const config3 = {
-      headers: {
-        'auth-token': authToken,
-      },
-      params: {
-        account_ids: JSON.stringify(participantAccountIds),
-      },
-    };
-
-    const [res2, res3, res4] = await Promise.all(
+    const [res2, res3] = await Promise.all(
       [
         Promise.all([...new Set(locationIds)].map(async item => (await agent.get(`/location/${item}`, config2)).data)),
         Promise.all([...new Set(categoryIds)].map(async item => (await agent.get(`/category/${item}`, config2)).data)),
-        agent.get('/account/batch', config3),
+        dispatch(batchGetAccount({ authToken, accountIds: participantAccountIds })),
       ],
     );
 
@@ -57,7 +49,6 @@ export const browseEvent = createAsyncThunk(
       events: res1.data.data,
       locations: res2,
       categories: res3,
-      accounts: res4.data,
     };
   },
 );

@@ -1,8 +1,16 @@
 import React from 'react';
-// import Avatar from '../basic/Avatar';
+import { useSelector } from 'react-redux';
+
 import UserItem from '../basic/UserItem';
 
-function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
+function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen, activeAccountId, setActiveAccountId }) {
+  const auth = useSelector(state => state.auth);
+  const accounts = useSelector(state => state.accounts);
+
+  // if (!accounts.entities[auth.userAccountId]) { return (<PageNotFound />); }
+
+  console.log(accounts);
+
   return (
     <div
       id="profile-sidebar"
@@ -39,24 +47,35 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
             </form>
             {/* Request */}
             <div className="mt-4">
-              <div className="text-xs font-semibold text-gray-400 uppercase mb-3">Requests (3)</div>
+              <div className="text-xs font-semibold text-gray-400 uppercase mb-3">{`Requests (${accounts.entities[auth.userAccountId].friendRequestAccountIds?.length ?? 0})`}</div>
               <ul className="mb-6">
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="cooking_hamster" request />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="garyhu" request />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="oppa_derek" request />
+                {(accounts.entities[auth.userAccountId].friendRequestAccountIds?.map(id => (
+                  <UserItem
+                    key={id}
+                    onClick={() => setActiveAccountId(id)}
+                    isActive={activeAccountId === id}
+                    setFriendSidebarOpen={setFriendSidebarOpen}
+                    username={accounts.entities[id]?.username}
+                    real_name={accounts.entities[id]?.real_name}
+                    request
+                  />
+                )))}
               </ul>
             </div>
             {/* Friends */}
             <div className="mt-4">
-              <div className="text-xs font-semibold text-gray-400 uppercase mb-3">Friends (7)</div>
+              <div className="text-xs font-semibold text-gray-400 uppercase mb-3">{`Friends (${accounts.entities[auth.userAccountId].friendAccountIds?.length ?? 0})`}</div>
               <ul className="mb-6">
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="icheft" isActive />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="dododofk" />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="dofk" />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="donotfk" />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="brainchen" />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="st_vincent" />
-                <UserItem setFriendSidebarOpen={setFriendSidebarOpen} userName="taiwan_no_one" />
+                {(accounts.entities[auth.userAccountId].friendAccountIds?.map(id => (
+                  <UserItem
+                    key={id}
+                    onClick={() => setActiveAccountId(id)}
+                    isActive={activeAccountId === id}
+                    setFriendSidebarOpen={setFriendSidebarOpen}
+                    username={accounts.entities[id]?.username}
+                    real_name={accounts.entities[id]?.real_name}
+                  />
+                )))}
               </ul>
             </div>
           </div>

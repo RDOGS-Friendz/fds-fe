@@ -1,23 +1,9 @@
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import agent from './agent';
+import { readCategory } from './utilThunks';
 import { browseEvent } from './eventsSlice';
 
 const categoriesAdapter = createEntityAdapter({});
-
-export const readCategory = createAsyncThunk(
-  'categories/readEvent',
-  async ({ authToken, category_id }) => {
-    const config = {
-      headers: {
-        'auth-token': authToken,
-      },
-    };
-
-    const res = await agent.get(`/category/${category_id}`, config);
-
-    return res.data;
-  },
-);
 
 export const browseAllCategory = createAsyncThunk(
   'categories/browseAllCategory',

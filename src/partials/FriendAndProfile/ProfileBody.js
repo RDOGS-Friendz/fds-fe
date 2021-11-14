@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import Avatar from '../basic/Avatar';
 import Badge from '../basic/Badge';
 import FriendAction from '../basic/FriendAction';
@@ -6,14 +9,44 @@ import FriendAction from '../basic/FriendAction';
 import useEventsView from '../../hooks/useEventsView';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
+import PageNotFound from '../../pages/utility/PageNotFound';
+import { readAccountProfile } from '../../slices/accountSlice';
 
-function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAccountId }) {
+  const auth = useSelector(state => state.auth);
+  const accounts = useSelector(state => state.accounts);
+  const categories = useSelector(state => state.categories);
+  const dispatch = useDispatch();
+
   const [
     upcomingEvents,
     upcomingTotalCount,
     upcomingLoading,
     upcomingFetchMore,
   ] = useEventsView('upcoming', '');
+
+  useEffect(() => {
+    if (activeAccountId) {
+      dispatch(readAccountProfile({ authToken: auth.token, accountId: activeAccountId }));
+    }
+  }, [activeAccountId, auth.token, dispatch]);
+
+  if (!activeAccountId) {
+    return (
+      <div
+        className={`flex flex-col w-full items-center justify-center ${
+          friendSidebarOpen ? 'translate-x-1/3' : 'translate-x-0'
+        }`}
+      >
+        <h2 className="text-gray-800 font-semibold text-4xl mb-3">🔍</h2>
+        <h2 className="text-gray-800 font-semibold">Select a friend or friend request to view here.</h2>
+
+      </div>
+    );
+  }
+
+  if (!accounts.entities[activeAccountId]) { return (<PageNotFound />); }
+
   return (
     <div
       className={`flex-grow flex flex-col md:translate-x-0 transform transition-transform duration-300 ease-in-out ${
@@ -44,7 +77,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
           <div className="flex flex-col items-center">
             {/* Avatar */}
             <div className="inline-flex -ml-1 -mt-1 -mb-2 md:-mb-1">
-              <Avatar name="icheft" size="profile" />
+              <Avatar name={accounts.entities[activeAccountId].real_name} size="profile" />
             </div>
           </div>
         </div>
@@ -53,21 +86,22 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
         <header className="text-center mb-4">
           {/* Name */}
           <div className="inline-flex items-start mb-2">
-            <h1 className="text-2xl text-gray-800 font-bold">icheft</h1>
+            <h1 className="text-2xl text-gray-800 font-bold">{accounts.entities[activeAccountId].username}</h1>
           </div>
           {/* Bio */}
-          <div className="text-sm mb-3">Nothing more than a fitness fanatic.</div>
+
+          <div className="text-sm mb-3">{accounts.entities[activeAccountId].tagline || <Skeleton />}</div>
           {/* Meta */}
           <div className="flex flex-wrap justify-center space-x-4">
             <div className="flex items-center">
               <LinkIcon extraClass="text-gray-400" />
               <a
                 className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2"
-                href="https://www.instagram.com/brian_lxchen/"
+                href={`https://www.instagram.com/${accounts.entities[activeAccountId]?.social_media_acct}/`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                brian_lxchen
+                {accounts.entities[activeAccountId]?.social_media_acct}
               </a>
             </div>
           </div>
@@ -91,24 +125,13 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
               <div className="text-sm space-y-2">
                 <div className="sm:ml-0 mt-2 sm:mt-0">
                   <ul className="flex flex-wrap sm:justify-start -m-1">
-                    <li className="m-1">
-                      <Badge>Running</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Workout</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Tennis</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Cycling</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Swimming</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>American Football</Badge>
-                    </li>
+                    {
+                      accounts.entities[activeAccountId].preferred_category_id?.map(id => (
+                        <li key="id" className="m-1">
+                          <Badge>{categories.entities[id]?.name}</Badge>
+                        </li>
+                      ))
+                    }
                   </ul>
                 </div>
               </div>
@@ -118,19 +141,16 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
             <div>
               <h2 className="text-gray-800 font-semibold mb-2">About Me</h2>
               <div className="text-sm space-y-2">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </p>
-                <p>Consectetur adipiscing elit, sed do eiusmod tempor magna aliqua.</p>
+                {accounts.entities[activeAccountId].about}
               </div>
             </div>
 
-            {/* Departments */}
             <div>
-              <h2 className="text-gray-800 font-semibold mb-2">Past Event Joined by icheft</h2>
+              <h2 className="text-gray-800 font-semibold mb-2">
+                Past Event Joined by
+                {' '}
+                {accounts.entities[activeAccountId].username}
+              </h2>
               {/* Cards */}
               <div className="grid grid-cols-1 gap-6">
                 <EventGallery
@@ -147,24 +167,24 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
           <aside className="xl:min-w-56 xl:w-56 space-y-3">
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Real Name</h3>
-              <div>Brian L. Chen</div>
+              <div>{accounts.entities[activeAccountId].real_name}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Gender</h3>
-              <div>Male</div>
+              <div>{accounts.entities[activeAccountId].gender}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Department</h3>
-              <div>Information Management, National Taiwan University</div>
+              <div>{accounts.entities[activeAccountId].department}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Birthday</h3>
-              <div className="uppercase">Jan 06, 2000</div>
+              <div className="uppercase">{moment(accounts.entities[activeAccountId].birthday).format('MMM DD, YYYY')}</div>
             </div>
-            <div className="text-sm">
+            {/* <div className="text-sm">
               <h3 className="font-medium text-gray-800">Joined Date</h3>
-              <div>Sep 01, 2021</div>
-            </div>
+              <div>{moment(accounts.entities[activeAccountId].birthday).format('MMM DD, YYYY')}</</div>
+            </div> */}
           </aside>
         </div>
       </div>

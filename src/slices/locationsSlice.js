@@ -1,23 +1,9 @@
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import agent from './agent';
 import { browseEvent } from './eventsSlice';
+import { readLocation } from './utilThunks';
 
 const locationsAdapter = createEntityAdapter({});
-
-export const readLocation = createAsyncThunk(
-  'locations/readEvent',
-  async ({ authToken, location_id }) => {
-    const config = {
-      headers: {
-        'auth-token': authToken,
-      },
-    };
-
-    const res = await agent.get(`/location/${location_id}`, config);
-
-    return res.data;
-  },
-);
 
 export const browseAllLocation = createAsyncThunk(
   'locations/browseAllLocation',

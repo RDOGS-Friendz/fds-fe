@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/too
 import agent from './agent';
 
 import { resumeSignIn, signIn } from './authSlice';
-import { browseEvent } from './eventsSlice';
+import { batchGetAccount, readCategory } from './utilThunks';
 
 const accountsAdapter = createEntityAdapter({
   selectId: account => account.account_id,
@@ -36,22 +36,6 @@ export const signup = createAsyncThunk(
   },
 );
 
-export const batchGetAccount = createAsyncThunk(
-  'accounts/batchGetAccount',
-  async ({ authToken, accountIds }) => {
-    const config = {
-      headers: {
-        'auth-token': authToken,
-      },
-      params: {
-        account_ids: JSON.stringify(accountIds),
-      },
-    };
-    const res = await agent.get('/account/batch', config);
-    return res.data;
-  },
-);
-
 export const editAccountPrivacy = createAsyncThunk(
   'accounts/batchGetAccount',
   async ({
@@ -72,7 +56,7 @@ export const editAccountPrivacy = createAsyncThunk(
 
 export const readAccountProfile = createAsyncThunk(
   'accounts/readAccountProfile',
-  async ({ authToken, accountId }) => {
+  async ({ authToken, accountId }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -80,6 +64,8 @@ export const readAccountProfile = createAsyncThunk(
     };
 
     const res = await agent.get(`/account/${accountId}/profile`, config);
+    console.log(res);
+    res.data.preferred_category_id.map(id => dispatch(readCategory({ authToken, category_id: id })));
     return res.data;
   },
 );
@@ -105,30 +91,23 @@ export const editAccountProfile = createAsyncThunk(
 
 export const readAccountFriends = createAsyncThunk(
   'accounts/readAccountFriends',
-  async ({ authToken, accountId }) => {
+  async ({ authToken, accountId }, { dispatch }) => {
     const config1 = {
       headers: {
         'auth-token': authToken,
       },
     };
 
-    const { data: { friend_account_id } } = await agent.get(`/account/${accountId}/friends`, config1);
-    const config2 = {
-      headers: {
-        'auth-token': authToken,
-      },
-      params: {
-        account_ids: JSON.stringify(friend_account_id),
-      },
-    };
-    const { data } = await agent.get('/account/batch', config2);
-    return data;
+    const res = await agent.get(`/account/${accountId}/friends`, config1);
+
+    dispatch(batchGetAccount({ authToken, accountIds: res.data.friend_account_id }));
+    return res.data;
   },
 );
 
 export const readAccountFriendRequests = createAsyncThunk(
   'accounts/readAccountFriendRequests',
-  async ({ authToken, accountId }) => {
+  async ({ authToken, accountId }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -136,13 +115,15 @@ export const readAccountFriendRequests = createAsyncThunk(
     };
 
     const res = await agent.get(`/account/${accountId}/friend-request`, config);
+
+    dispatch(batchGetAccount({ authToken, accountIds: res.data.friend_request_id }));
     return res.data;
   },
 );
 
 export const sendFriendRequest = createAsyncThunk(
   'accounts/sendFriendRequest',
-  async ({ authToken, accountId, otherAccountId }) => {
+  async ({ authToken, accountId, otherAccountId }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -150,25 +131,28 @@ export const sendFriendRequest = createAsyncThunk(
     };
 
     await agent.post(`/account/${accountId}/friend-request`, { friend_account_id: otherAccountId }, config);
+    dispatch(readAccountFriendRequests({ authToken, accountId }));
   },
 );
 
 export const acceptFriendRequest = createAsyncThunk(
   'accounts/acceptFriendRequest',
-  async ({ authToken, accountId, friendRequestId }) => {
+  async ({ authToken, accountId, friendRequestId }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
 
-    await agent.patch(`/account/${accountId}/friend-request`, { friends_request_id: friendRequestId, action: 'accept' }, config);
+    await agent.patch(`/account/${accountId}/friend-request`, { friend_request_id: friendRequestId, action: 'accept' }, config);
+    dispatch(readAccountFriendRequests({ authToken, accountId }));
+    dispatch(readAccountFriends({ authToken, accountId }));
   },
 );
 
 export const declineFriendRequest = createAsyncThunk(
   'accounts/declineFriendRequest',
-  async ({ authToken, accountId, friendRequestId }) => {
+  async ({ authToken, accountId, friendRequestId }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -176,6 +160,7 @@ export const declineFriendRequest = createAsyncThunk(
     };
 
     await agent.patch(`/account/${accountId}/friend-request`, { friends_request_id: friendRequestId, action: 'decline' }, config);
+    dispatch(readAccountFriendRequests({ authToken, accountId }));
   },
 );
 
@@ -197,12 +182,12 @@ const accountsSlice = createSlice({
       )
       .addCase(
         readAccountFriends.fulfilled, (state, action) => {
-          accountsAdapter.upsertOne(state, { account_id: action.meta.arg.accountId, friendAccountIds: action.payload });
+          accountsAdapter.upsertOne(state, { account_id: action.meta.arg.accountId, friendAccountIds: action.payload.friend_account_id });
         },
       )
       .addCase(
         readAccountFriendRequests.fulfilled, (state, action) => {
-          accountsAdapter.upsertOne(state, { account_id: action.meta.arg.accountId, friendRequestIds: action.payload });
+          accountsAdapter.upsertOne(state, { account_id: action.meta.arg.accountId, friendRequestAccountIds: action.payload.friend_request_id });
         },
       )
 
@@ -216,13 +201,6 @@ const accountsSlice = createSlice({
         resumeSignIn.fulfilled, (state, action) => {
           const { account_id, username, real_name } = action.payload;
           accountsAdapter.upsertOne(state, { account_id, username, real_name });
-        },
-      )
-
-      .addCase(
-        browseEvent.fulfilled, (state, action) => {
-          const { accounts } = action.payload;
-          accountsAdapter.upsertMany(state, accounts);
         },
       );
   },
