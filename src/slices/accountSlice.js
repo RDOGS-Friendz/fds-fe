@@ -48,7 +48,7 @@ export const readAccountProfile = createAsyncThunk(
     };
 
     const res = await agent.get(`/account/${accountId}/profile`, config);
-    console.log(res);
+
     res.data.preferred_category_id.map(id => dispatch(readCategory({ authToken, category_id: id })));
     return res.data;
   },
@@ -160,7 +160,7 @@ export const deleteFriend = createAsyncThunk(
       },
     };
 
-    await agent.delete(`/account/${accountId}/friend`, config);
+    await agent.delete(`/account/${accountId}`, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
   },
 );

@@ -9,8 +9,6 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen, activeAccountI
 
   // if (!accounts.entities[auth.userAccountId]) { return (<PageNotFound />); }
 
-  console.log(accounts);
-
   return (
     <div
       id="profile-sidebar"

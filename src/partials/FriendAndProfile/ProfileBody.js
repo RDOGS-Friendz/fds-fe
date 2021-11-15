@@ -92,19 +92,24 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
 
           <div className="text-sm mb-3">{accounts.entities[activeAccountId].tagline || <Skeleton />}</div>
           {/* Meta */}
-          <div className="flex flex-wrap justify-center space-x-4">
-            <div className="flex items-center">
-              <LinkIcon extraClass="text-gray-400" />
-              <a
-                className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2"
-                href={`https://www.instagram.com/${accounts.entities[activeAccountId]?.social_media_acct}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {accounts.entities[activeAccountId]?.social_media_acct}
-              </a>
+          {
+            accounts.entities[activeAccountId]?.social_media_acct
+            && (
+            <div className="flex flex-wrap justify-center space-x-4">
+              <div className="flex items-center">
+                <LinkIcon extraClass="text-gray-400" />
+                <a
+                  className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2"
+                  href={`https://www.instagram.com/${accounts.entities[activeAccountId]?.social_media_acct}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {accounts.entities[activeAccountId]?.social_media_acct}
+                </a>
+              </div>
             </div>
-          </div>
+            )
+          }
         </header>
 
         {/* Actions */}
@@ -116,7 +121,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
         </div>
 
         {/* Profile content */}
-        <div className="flex flex-col xl:flex-row xl:space-x-16">
+        <div className="flex flex-col xl:flex-row xl:space-x-16 justify-between px-3">
           {/* Main content */}
           <div className="space-y-5 mb-8 xl:mb-0">
             {/* About Me */}

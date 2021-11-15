@@ -10,7 +10,7 @@ export default function Friends() {
 
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
-  const accounts = useSelector(state => state.accounts);
+  // const accounts = useSelector(state => state.accounts);
 
   useEffect(() => {
     dispatch(readAccountFriends({ authToken: auth.token, accountId: auth.userAccountId }));

@@ -23,11 +23,18 @@ export const browseEvent = createAsyncThunk(
       },
     };
 
-    const res1 = await agent.get('/event', config1);
+    const res = await agent.get('/event', config1);
 
-    const locationIds = [...new Set(res1.data.data.map(item => item.location_id))];
-    const categoryIds = [...new Set(res1.data.data.map(item => item.category_id))];
-    const participantAccountIds = [...new Set(res1.data.data.map(item => item.participant_ids.concat([item.creator_account_id])).flat())];
+    const locationIds = [...new Set(res.data.data.map(item => item.location_id))];
+    const categoryIds = [...new Set(res.data.data.map(item => item.category_id))];
+    const participantAccountIds = [
+      ...new Set(
+        res.data.data
+          .map(item => item.participant_ids
+            .concat([item.creator_account_id]))
+          .flat(),
+      ),
+    ];
 
     await Promise.all(
       [
@@ -37,9 +44,9 @@ export const browseEvent = createAsyncThunk(
       ],
     );
 
-    reportEventIds(res1.data.data.map(item => item.id), res1.data.total_count);
+    reportEventIds(res.data.data.map(item => item.id), res.data.total_count);
 
-    return res1.data.data;
+    return res.data.data;
   },
 );
 

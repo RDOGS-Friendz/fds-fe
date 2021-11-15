@@ -30,7 +30,7 @@ export default function useCategorySearch() {
     setShowSuggestions(false);
   };
 
-  const onBlur = e => {
+  const onBlur = () => {
     // e.stopPropagation();
     // setInputValue(categories.entities[selectedCategoryId]?.name ?? '');
     // setShowSuggestions(false);
