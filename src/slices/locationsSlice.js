@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import agent from './agent';
-import { browseEvent } from './eventsSlice';
-import { readLocation } from './utilThunks';
+import { readLocation, batchGetLocation } from './utilThunks';
 
 const locationsAdapter = createEntityAdapter({});
 
@@ -55,8 +54,8 @@ const locationsSlice = createSlice({
       .addCase(browseAllLocation.fulfilled, (state, action) => {
         locationsAdapter.upsertMany(state, action.payload);
       })
-      .addCase(browseEvent.fulfilled, (state, action) => {
-        locationsAdapter.upsertMany(state, action.payload.locations);
+      .addCase(batchGetLocation.fulfilled, (state, action) => {
+        locationsAdapter.upsertMany(state, action.payload);
       });
   },
 });

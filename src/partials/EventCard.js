@@ -34,30 +34,30 @@ export default function EventCard({ event, dragging, joinReset = [], bookmarkRes
     }
   };
 
-  const onJoinEvent = async e => {
+  const onJoinEvent = e => {
     e.stopPropagation();
-    await dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
+    dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
 
     joinReset.map(f => f());
   };
 
-  const onCancelJoinedEvent = async e => {
+  const onCancelJoinEvent = e => {
     e.stopPropagation();
-    await dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
+    dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
 
     joinReset.map(f => f());
   };
 
-  const onBookmarkEvent = async e => {
+  const onBookmarkEvent = e => {
     e.stopPropagation();
-    await dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
+    dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
 
     bookmarkReset.map(f => f());
   };
 
-  const onDeleteBookmarkEvent = async e => {
+  const onDeleteBookmarkEvent = e => {
     e.stopPropagation();
-    await dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
+    dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
 
     bookmarkReset.map(f => f());
   };
@@ -98,7 +98,7 @@ export default function EventCard({ event, dragging, joinReset = [], bookmarkRes
         <div className="flex flex-row space-x-1 w-full">
           {
             event?.participant_ids.includes(Number(auth.userAccountId))
-              ? <Button className="w-full" variant="tertiary" onClick={onCancelJoinedEvent}>JOINED</Button>
+              ? <Button className="w-full" variant="tertiary" onClick={onCancelJoinEvent}>JOINED</Button>
               : <Button className="w-full" onClick={onJoinEvent}>JOIN</Button>
           }
           {

@@ -4,6 +4,7 @@ import agent from './agent';
 export const batchGetAccount = createAsyncThunk(
   'accounts/batchGetAccount',
   async ({ authToken, accountIds }) => {
+    if (accountIds.length === 0) return [];
     const config = {
       headers: {
         'auth-token': authToken,
@@ -20,6 +21,7 @@ export const batchGetAccount = createAsyncThunk(
 export const batchGetCategory = createAsyncThunk(
   'categories/batchGetCategory',
   async ({ authToken, categoryIds }) => {
+    if (categoryIds.length === 0) return [];
     const config = {
       headers: {
         'auth-token': authToken,
@@ -36,6 +38,7 @@ export const batchGetCategory = createAsyncThunk(
 export const batchGetLocation = createAsyncThunk(
   'locations/batchGetLocation',
   async ({ authToken, locationIds }) => {
+    if (locationIds.length === 0) return [];
     const config = {
       headers: {
         'auth-token': authToken,
