@@ -17,6 +17,38 @@ export const batchGetAccount = createAsyncThunk(
   },
 );
 
+export const batchGetCategory = createAsyncThunk(
+  'categories/batchGetCategory',
+  async ({ authToken, categoryIds }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+      params: {
+        category_ids: JSON.stringify(categoryIds),
+      },
+    };
+    const res = await agent.get('/category/batch', config);
+    return res.data;
+  },
+);
+
+export const batchGetLocation = createAsyncThunk(
+  'locations/batchGetLocation',
+  async ({ authToken, locationIds }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+      params: {
+        location_ids: JSON.stringify(locationIds),
+      },
+    };
+    const res = await agent.get('/location/batch', config);
+    return res.data;
+  },
+);
+
 export const readCategory = createAsyncThunk(
   'categories/readEvent',
   async ({ authToken, category_id }) => {

@@ -1,7 +1,7 @@
 import {
   createAsyncThunk, createEntityAdapter, createSlice,
 } from '@reduxjs/toolkit';
-import { batchGetAccount } from './utilThunks';
+import { batchGetAccount, batchGetCategory, batchGetLocation } from './utilThunks';
 import agent from './agent';
 
 const eventsAdapter = createEntityAdapter({});
@@ -29,27 +29,17 @@ export const browseEvent = createAsyncThunk(
     const categoryIds = [...new Set(res1.data.data.map(item => item.category_id))];
     const participantAccountIds = [...new Set(res1.data.data.map(item => item.participant_ids.concat([item.creator_account_id])).flat())];
 
-    const config2 = {
-      headers: {
-        'auth-token': authToken,
-      },
-    };
-
-    const [res2, res3] = await Promise.all(
+    await Promise.all(
       [
-        Promise.all([...new Set(locationIds)].map(async item => (await agent.get(`/location/${item}`, config2)).data)),
-        Promise.all([...new Set(categoryIds)].map(async item => (await agent.get(`/category/${item}`, config2)).data)),
         dispatch(batchGetAccount({ authToken, accountIds: participantAccountIds })),
+        dispatch(batchGetCategory({ authToken, categoryIds })),
+        dispatch(batchGetLocation({ authToken, locationIds })),
       ],
     );
 
     reportEventIds(res1.data.data.map(item => item.id), res1.data.total_count);
 
-    return {
-      events: res1.data.data,
-      locations: res2,
-      categories: res3,
-    };
+    return res1.data.data;
   },
 );
 
@@ -154,7 +144,7 @@ const eventsSlice = createSlice({
         eventsAdapter.upsertOne(state, action.payload);
       })
       .addCase(browseEvent.fulfilled, (state, action) => {
-        eventsAdapter.upsertMany(state, action.payload.events);
+        eventsAdapter.upsertMany(state, action.payload);
       });
   },
 });
