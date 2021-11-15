@@ -53,23 +53,6 @@ export const browseEvent = createAsyncThunk(
   },
 );
 
-export const addEvent = createAsyncThunk(
-  'events/addEvent',
-  async ({
-    authToken, title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
-  }) => {
-    const config = {
-      headers: {
-        'auth-token': authToken,
-      },
-    };
-
-    await agent.post('/event', {
-      title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
-    }, config);
-  },
-);
-
 export const readEvent = createAsyncThunk(
   'events/readEvent',
   async ({ authToken, event_id }) => {
@@ -85,33 +68,56 @@ export const readEvent = createAsyncThunk(
   },
 );
 
+export const addEvent = createAsyncThunk(
+  'events/addEvent',
+  async ({
+    authToken, title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+  }, { dispatch }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+    };
+
+    const res = await agent.post('/event', {
+      title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+    }, config);
+
+    dispatch(readEvent({ authToken, event_id: res.data.id }));
+  },
+);
+
 export const joinEvent = createAsyncThunk(
   'events/joinEvent',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
     await agent.post(`/event/${event_id}/join`, {}, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
 export const cancelJoinEvent = createAsyncThunk(
   'events/cancelJoinEvent',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
     await agent.delete(`/event/${event_id}/join`, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
 export const addBookmark = createAsyncThunk(
   'events/addBookmark',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -119,18 +125,22 @@ export const addBookmark = createAsyncThunk(
     };
 
     await agent.post(`/event/${event_id}/bookmark`, {}, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
 export const deleteBookmark = createAsyncThunk(
   'events/deleteBookmark',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
     await agent.delete(`/event/${event_id}/bookmark`, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 

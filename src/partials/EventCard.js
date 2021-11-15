@@ -6,7 +6,7 @@ import AvatarCollection from './basic/AvatarCollection';
 import Badge from './basic/Badge';
 import Button from './basic/Button';
 import {
-  joinEvent, cancelJoinEvent, addBookmark, deleteBookmark, readEvent,
+  joinEvent, cancelJoinEvent, addBookmark, deleteBookmark,
 } from '../slices/eventsSlice';
 import EventDetail from './EventDetail';
 
@@ -37,28 +37,28 @@ export default function EventCard({ event, dragging, joinReset = [], bookmarkRes
   const onJoinEvent = async e => {
     e.stopPropagation();
     await dispatch(joinEvent({ authToken: auth.token, event_id: event.id }));
-    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+
     joinReset.map(f => f());
   };
 
   const onCancelJoinedEvent = async e => {
     e.stopPropagation();
     await dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
-    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+
     joinReset.map(f => f());
   };
 
   const onBookmarkEvent = async e => {
     e.stopPropagation();
     await dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
-    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+
     bookmarkReset.map(f => f());
   };
 
   const onDeleteBookmarkEvent = async e => {
     e.stopPropagation();
     await dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
-    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
+
     bookmarkReset.map(f => f());
   };
 

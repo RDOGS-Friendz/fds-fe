@@ -9,22 +9,6 @@ const accountsAdapter = createEntityAdapter({
   sortComparer: (a, b) => a.username?.localeCompare(b.username) ?? -1,
 });
 
-// export const browseAccount = createAsyncThunk(
-//   'accounts/browseAccount',
-//   async ({ authToken, search }) => {
-//     const config = {
-//       headers: {
-//         'auth-token': authToken,
-//       },
-//       params: {
-//         search: JSON.stringify(search ?? []),
-//       },
-//     };
-//     const res = await agent.get('/account', config);
-//     return res.data;
-//   },
-// );
-
 export const signup = createAsyncThunk(
   'accounts/signup',
   async ({
@@ -137,14 +121,14 @@ export const sendFriendRequest = createAsyncThunk(
 
 export const acceptFriendRequest = createAsyncThunk(
   'accounts/acceptFriendRequest',
-  async ({ authToken, accountId, friendRequestId }, { dispatch }) => {
+  async ({ authToken, accountId, otherAccountId }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
 
-    await agent.patch(`/account/${accountId}/friend-request`, { friend_request_id: friendRequestId, action: 'accept' }, config);
+    await agent.patch(`/account/${accountId}/friend-request`, { friend_request_id: otherAccountId, action: 'accept' }, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
     dispatch(readAccountFriends({ authToken, accountId }));
   },
@@ -152,14 +136,31 @@ export const acceptFriendRequest = createAsyncThunk(
 
 export const declineFriendRequest = createAsyncThunk(
   'accounts/declineFriendRequest',
-  async ({ authToken, accountId, friendRequestId }, { dispatch }) => {
+  async ({ authToken, accountId, otherAccountId }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
 
-    await agent.patch(`/account/${accountId}/friend-request`, { friends_request_id: friendRequestId, action: 'decline' }, config);
+    await agent.patch(`/account/${accountId}/friend-request`, { friends_request_id: otherAccountId, action: 'decline' }, config);
+    dispatch(readAccountFriendRequests({ authToken, accountId }));
+  },
+);
+
+export const deleteFriend = createAsyncThunk(
+  'accounts/deleteFriend',
+  async ({ authToken, accountId, friendAccountId }, { dispatch }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+      data: {
+        friend_id: friendAccountId,
+      },
+    };
+
+    await agent.delete(`/account/${accountId}/friend`, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
   },
 );
