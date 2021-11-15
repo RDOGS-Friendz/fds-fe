@@ -6,7 +6,7 @@ import AvatarAndName from './AvatarAndName';
 import 'react-truncate-list/dist/styles.css';
 import '../../css/additional-styles/expandable-list.css';
 
-export default function AvatarExpandable({ participants }) {
+export default function AvatarExpandable({ participants = [] }) {
   const [expanded, setExpanded] = useState(false);
   const expand = () => setExpanded(true);
   const collapse = () => setExpanded(false);

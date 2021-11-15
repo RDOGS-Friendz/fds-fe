@@ -1,8 +1,30 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from './Button';
 import DropdownEditMenu from '../../components/DropdownEditMenu';
+import { sendFriendRequest, acceptFriendRequest, declineFriendRequest, deleteFriend } from '../../slices/accountSlice';
 
-export default function FriendAction({ action = 'friend' }) {
+export default function FriendAction({ action = 'friend', accountId }) {
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
+  const accounts = useSelector(state => state.accounts);
+
+  const onClickUnfriend = () => {
+    dispatch(deleteFriend({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));
+  };
+
+  const onClickSendFriendRequest = () => {
+    dispatch(sendFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
+  };
+
+  const onClickAcceptFriendRequest = () => {
+    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));
+  };
+
+  const onClickDeclineFriendRequest = () => {
+    dispatch(declineFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));
+  };
+
   /* Actions */
   switch (action) {
     case 'friend':
@@ -13,7 +35,11 @@ export default function FriendAction({ action = 'friend' }) {
           </Button>
           <DropdownEditMenu className="relative inline-flex">
             <li>
-              <a className="font-medium text-sm text-red-500 hover:text-red-700 flex py-1 px-3" href="#0">
+              <a
+                className="font-medium text-sm text-red-500 hover:text-red-700 flex py-1 px-3"
+                href="#0"
+                onClick={onClickUnfriend}
+              >
                 ❌ Unfriend
               </a>
             </li>
@@ -23,10 +49,12 @@ export default function FriendAction({ action = 'friend' }) {
     case 'request':
       return (
         <div className="flex space-x-2 mb-5">
-          <Button variant="secondary" color="danger">
+          <Button variant="secondary" color="danger" onClick={onClickDeclineFriendRequest}>
             Decline
           </Button>
-          <Button>Accept</Button>
+          <Button onClick={onClickAcceptFriendRequest}>
+            Accept
+          </Button>
         </div>
       );
     case 'request-sent':
@@ -38,7 +66,7 @@ export default function FriendAction({ action = 'friend' }) {
     case 'not-friend':
       return (
         <div className="flex space-x-2 mb-5">
-          <Button icon="📩" variant="secondary" notHidden>
+          <Button icon="📩" variant="secondary" notHidden onClick={onClickSendFriendRequest}>
             Add Friend
           </Button>
         </div>

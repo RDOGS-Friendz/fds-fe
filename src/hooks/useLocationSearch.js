@@ -30,7 +30,7 @@ export default function useLocationSearch() {
     setShowSuggestions(false);
   };
 
-  const onBlur = e => {
+  const onBlur = () => {
     // e.stopPropagation();
     // setInputValue(locations.entities[selectedLocationId]?.name ?? '');
     // setShowSuggestions(false);
