@@ -134,7 +134,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
                   <ul className="flex flex-wrap sm:justify-start -m-1">
                     {
                       accounts.entities[accountId].preferred_category_id?.map(id => (
-                        <li key="id" className="m-1">
+                        <li key={id} className="m-1">
                           <Badge>{categories.entities[id]?.name}</Badge>
                         </li>
                       ))

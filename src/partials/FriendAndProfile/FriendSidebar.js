@@ -2,16 +2,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import UserItem from '../basic/UserItem';
-   
+
 function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
-  const history = useHistory()
+  const history = useHistory();
   const auth = useSelector(state => state.auth);
   const accounts = useSelector(state => state.accounts);
-  const {accountId} = useParams()
+  const { accountId } = useParams();
 
   // if (!accounts.entities[auth.userAccountId]) { return (<PageNotFound />); }
 
-  return ( 
+  return (
     <div
       id="profile-sidebar"
       className={`absolute z-20 top-0 bottom-0 w-full md:w-auto md:static md:top-auto md:bottom-auto -mr-px md:translate-x-0 transform transition-transform duration-200 ease-in-out ${
@@ -42,10 +42,10 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                 >
                   <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
                   <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
-                </svg> 
+                </svg>
               </button>
             </form>
-            {/* Request */} 
+            {/* Request */}
             <div className="mt-4">
               <div className="text-xs font-semibold text-gray-400 uppercase mb-3">{`Requests (${accounts.entities[auth.userAccountId].friendRequestAccountIds?.length ?? 0})`}</div>
               <ul className="mb-6">
@@ -53,7 +53,7 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                   <UserItem
                     key={id}
                     onClick={() => history.push(`/friends/${id}`)}
-                    isActive={accountId === id}
+                    isActive={Number(accountId) === id}
                     setFriendSidebarOpen={setFriendSidebarOpen}
                     username={accounts.entities[id]?.username}
                     real_name={accounts.entities[id]?.real_name}
@@ -70,7 +70,7 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                   <UserItem
                     key={id}
                     onClick={() => history.push(`/friends/${id}`)}
-                    isActive={accountId === id}
+                    isActive={Number(accountId) === id}
                     setFriendSidebarOpen={setFriendSidebarOpen}
                     username={accounts.entities[id]?.username}
                     real_name={accounts.entities[id]?.real_name}
