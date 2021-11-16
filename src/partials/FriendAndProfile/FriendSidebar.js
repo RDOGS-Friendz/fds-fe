@@ -69,6 +69,7 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                           .map(({ account_id, username, real_name }) => (
                             <UserItem
                               key={account_id}
+                              accountId={account_id}
                               onClick={() => history.push(`/friends/${account_id}`)}
                               isActive={Number(accountId) === account_id}
                               setFriendSidebarOpen={setFriendSidebarOpen}
@@ -90,6 +91,7 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                           .map(({ account_id, username, real_name }) => (
                             <UserItem
                               key={account_id}
+                              accountId={account_id}
                               onClick={() => history.push(`/friends/${account_id}`)}
                               isActive={Number(accountId) === account_id}
                               setFriendSidebarOpen={setFriendSidebarOpen}
@@ -111,6 +113,7 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                         {(accounts.entities[auth.userAccountId].friendRequestAccountIds?.map(id => (
                           <UserItem
                             key={id}
+                            accountId={id}
                             onClick={() => history.push(`/friends/${id}`)}
                             isActive={Number(accountId) === id}
                             setFriendSidebarOpen={setFriendSidebarOpen}
@@ -128,6 +131,7 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                         {(accounts.entities[auth.userAccountId].friendAccountIds?.map(id => (
                           <UserItem
                             key={id}
+                            accountId={id}
                             onClick={() => history.push(`/friends/${id}`)}
                             isActive={Number(accountId) === id}
                             setFriendSidebarOpen={setFriendSidebarOpen}

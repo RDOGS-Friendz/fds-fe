@@ -17,11 +17,11 @@ export default function FriendAction({ action = 'friend', accountId }) {
   };
 
   const onClickAcceptFriendRequest = () => {
-    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));
+    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   const onClickDeclineFriendRequest = () => {
-    dispatch(declineFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));
+    dispatch(declineFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   /* Actions */

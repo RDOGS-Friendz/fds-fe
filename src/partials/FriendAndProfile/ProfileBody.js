@@ -41,8 +41,10 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
       setAction('friend');
     } else if (accounts.entities[auth.userAccountId].friendRequestAccountIds?.includes(Number(accountId))) {
       setAction('request');
-    } else if (accounts.entities[auth.userAccountId].pendingRequestAccountIds?.includes(Number(accountId))) {
+    } else if (accounts.entities[auth.userAccountId].pendingFriendRequestAccountIds?.includes(Number(accountId))) {
       setAction('request-sent');
+    } else if (auth.userAccountId === accountId) {
+      setAction('self');
     } else {
       setAction('not-friend');
     }
@@ -100,14 +102,19 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
         </div>
 
         {/* Header */}
-        <header className="text-center mb-4">
+        <header className="text-center mb-3">
           {/* Name */}
           <div className="inline-flex items-start mb-2">
             <h1 className="text-2xl text-gray-800 font-bold">{accounts.entities[accountId].username}</h1>
           </div>
           {/* Bio */}
 
-          <div className="text-sm mb-3">{accounts.entities[accountId].tagline || <Skeleton />}</div>
+          {accounts.entities[accountId].tagline !== ''
+            && (
+            <div className="text-sm mb-2">
+              {accounts.entities[accountId].tagline || <Skeleton />}
+            </div>
+            )}
           {/* Meta */}
           {
             accounts.entities[accountId]?.social_media_acct

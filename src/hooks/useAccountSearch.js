@@ -18,7 +18,7 @@ export default function useAccountSearch() {
   const onInputChange = async e => {
     setInputValue(e.target.value);
 
-    if (e.target.value.length >= 3) { // search only when >= 3 character
+    if (e.target.value.length >= 2) { // search only when >= 2 character
       setShowSuggestions(true);
       await dispatch(browseAllAccount({ authToken: auth.token, search: e.target.value.trim(), reportAccountIds }));
     } else {

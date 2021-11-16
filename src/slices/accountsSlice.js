@@ -59,12 +59,16 @@ export const editAccountPrivacy = createAsyncThunk(
 
 export const readAccountProfile = createAsyncThunk(
   'accounts/readAccountProfile',
-  async ({ authToken, accountId }, { dispatch }) => {
+  async ({ authToken, accountId }, { dispatch, getState }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
+
+    if (!getState().accounts.entities[accountId]) { // get basic information first
+      dispatch(batchGetAccount({ authToken, accountIds: [accountId] }));
+    }
 
     const res = await agent.get(`/account/${accountId}/profile`, config);
 
@@ -135,7 +139,6 @@ export const sendFriendRequest = createAsyncThunk(
         'auth-token': authToken,
       },
     };
-    console.log(otherAccountId);
 
     await agent.post(`/account/${accountId}/friend-request`, { friend_account_id: otherAccountId }, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
@@ -151,7 +154,9 @@ export const acceptFriendRequest = createAsyncThunk(
       },
     };
 
-    await agent.patch(`/account/${accountId}/friend-request`, { friend_request_id: otherAccountId, action: 'accept' }, config);
+    await agent.patch(`/account/${accountId}/friend-request`, {
+      friend_request_id: otherAccountId, action: 'accept',
+    }, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
     dispatch(readAccountFriends({ authToken, accountId }));
   },
@@ -166,7 +171,7 @@ export const declineFriendRequest = createAsyncThunk(
       },
     };
 
-    await agent.patch(`/account/${accountId}/friend-request`, { friends_request_id: otherAccountId, action: 'decline' }, config);
+    await agent.patch(`/account/${accountId}/friend-request`, { friend_request_id: otherAccountId, action: 'decline' }, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
   },
 );
@@ -178,13 +183,10 @@ export const deleteFriend = createAsyncThunk(
       headers: {
         'auth-token': authToken,
       },
-      data: {
-        friend_id: friendAccountId,
-      },
     };
 
-    await agent.delete(`/account/${accountId}`, config);
-    dispatch(readAccountFriendRequests({ authToken, accountId }));
+    await agent.delete(`/account/${accountId}/friend/${friendAccountId}`, config);
+    dispatch(readAccountFriends({ authToken, accountId }));
   },
 );
 

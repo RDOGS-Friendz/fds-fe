@@ -10,14 +10,14 @@ import { acceptFriendRequest, declineFriendRequest } from '../../slices/accounts
 export default function UserItem({ setFriendSidebarOpen, onClick, accountId, username = '', real_name = '', isActive, request }) {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
-  const accounts = useSelector(state => state.accounts);
+  // const accounts = useSelector(state => state.accounts);
 
   const onClickAcceptFriendRequest = () => {
-    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: accounts.entities[auth.userAccountId], friendAccountId: accountId }));
+    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   const onClickDeclineFriendRequest = () => {
-    dispatch(declineFriendRequest({ authToken: auth.token, accountId: accounts.entities[auth.userAccountId], friendAccountId: accountId }));
+    dispatch(declineFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   return (
