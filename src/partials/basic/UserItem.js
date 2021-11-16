@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Avatar from './Avatar';
+import Avatar from './Avatar'; 
 import Button from './Button';
 import Trashcan from '../../icons/Trashcan';
 import Check from '../../icons/Check';
-
+ 
 import { acceptFriendRequest, declineFriendRequest } from '../../slices/accountSlice';
 
 export default function UserItem({ setFriendSidebarOpen, onClick, accountId, username = '', real_name = '', isActive, request }) {

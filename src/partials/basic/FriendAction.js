@@ -7,7 +7,6 @@ import { sendFriendRequest, acceptFriendRequest, declineFriendRequest, deleteFri
 export default function FriendAction({ action = 'friend', accountId }) {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
-  const accounts = useSelector(state => state.accounts);
 
   const onClickUnfriend = () => {
     dispatch(deleteFriend({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));

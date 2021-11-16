@@ -1,7 +1,7 @@
 {
   "root": true,
   "extends": ["airbnb", "airbnb/hooks", "plugin:react/recommended"],
-  "plugins": ["unused-imports"],
+  "plugins": ["unused-imports", "@babel"],
   "rules": {
     "no-console": "off",
     "object-curly-newline": "off",
@@ -42,10 +42,13 @@
     ],
     "react/button-has-type": "warn"
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "sourceType": "module",
-    "allowImportExportEverywhere": "true"
+    "allowImportExportEverywhere": "true",
+    "babelOptions": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
   },
   "env": {
     "browser": true,

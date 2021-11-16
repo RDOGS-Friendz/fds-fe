@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import Avatar from '../basic/Avatar';
 import Badge from '../basic/Badge';
@@ -12,8 +13,9 @@ import LinkIcon from '../../icons/LinkIcon';
 import PageNotFound from '../../pages/utility/PageNotFound';
 import { readAccountProfile } from '../../slices/accountSlice';
 
-function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAccountId }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
   const auth = useSelector(state => state.auth);
+  const { accountId } = useParams();
   const accounts = useSelector(state => state.accounts);
   const categories = useSelector(state => state.categories);
   const dispatch = useDispatch();
@@ -26,12 +28,12 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
   ] = useEventsView('upcoming', '');
 
   useEffect(() => {
-    if (activeAccountId) {
-      dispatch(readAccountProfile({ authToken: auth.token, accountId: activeAccountId }));
+    if (accountId) {
+      dispatch(readAccountProfile({ authToken: auth.token, accountId }));
     }
-  }, [activeAccountId, auth.token, dispatch]);
+  }, [accountId, auth.token, dispatch]);
 
-  if (!activeAccountId) {
+  if (!accountId) {
     return (
       <div
         className={`flex flex-col w-full items-center justify-center ${
@@ -45,7 +47,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
     );
   }
 
-  if (!accounts.entities[activeAccountId]) { return (<PageNotFound />); }
+  if (!accounts.entities[accountId]) { return (<PageNotFound />); }
 
   return (
     <div
@@ -77,7 +79,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
           <div className="flex flex-col items-center">
             {/* Avatar */}
             <div className="inline-flex -ml-1 -mt-1 -mb-2 md:-mb-1">
-              <Avatar name={accounts.entities[activeAccountId].real_name} size="profile" />
+              <Avatar name={accounts.entities[accountId].real_name} size="profile" />
             </div>
           </div>
         </div>
@@ -86,25 +88,25 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
         <header className="text-center mb-4">
           {/* Name */}
           <div className="inline-flex items-start mb-2">
-            <h1 className="text-2xl text-gray-800 font-bold">{accounts.entities[activeAccountId].username}</h1>
+            <h1 className="text-2xl text-gray-800 font-bold">{accounts.entities[accountId].username}</h1>
           </div>
           {/* Bio */}
 
-          <div className="text-sm mb-3">{accounts.entities[activeAccountId].tagline || <Skeleton />}</div>
+          <div className="text-sm mb-3">{accounts.entities[accountId].tagline || <Skeleton />}</div>
           {/* Meta */}
           {
-            accounts.entities[activeAccountId]?.social_media_acct
+            accounts.entities[accountId]?.social_media_acct
             && (
             <div className="flex flex-wrap justify-center space-x-4">
               <div className="flex items-center">
                 <LinkIcon extraClass="text-gray-400" />
                 <a
                   className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2"
-                  href={`https://www.instagram.com/${accounts.entities[activeAccountId]?.social_media_acct}/`}
+                  href={`https://www.instagram.com/${accounts.entities[accountId]?.social_media_acct}/`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {accounts.entities[activeAccountId]?.social_media_acct}
+                  {accounts.entities[accountId]?.social_media_acct}
                 </a>
               </div>
             </div>
@@ -131,7 +133,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
                 <div className="sm:ml-0 mt-2 sm:mt-0">
                   <ul className="flex flex-wrap sm:justify-start -m-1">
                     {
-                      accounts.entities[activeAccountId].preferred_category_id?.map(id => (
+                      accounts.entities[accountId].preferred_category_id?.map(id => (
                         <li key="id" className="m-1">
                           <Badge>{categories.entities[id]?.name}</Badge>
                         </li>
@@ -146,7 +148,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
             <div>
               <h2 className="text-gray-800 font-semibold mb-2">About Me</h2>
               <div className="text-sm space-y-2">
-                {accounts.entities[activeAccountId].about}
+                {accounts.entities[accountId].about}
               </div>
             </div>
 
@@ -154,7 +156,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
               <h2 className="text-gray-800 font-semibold mb-2">
                 Past Event Joined by
                 {' '}
-                {accounts.entities[activeAccountId].username}
+                {accounts.entities[accountId].username}
               </h2>
               {/* Cards */}
               <div className="grid grid-cols-1 gap-6">
@@ -172,23 +174,23 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action, activeAc
           <aside className="xl:min-w-56 xl:w-56 space-y-3">
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Real Name</h3>
-              <div>{accounts.entities[activeAccountId].real_name}</div>
+              <div>{accounts.entities[accountId].real_name}</div>
             </div>
             {/* <div className="text-sm">
               <h3 className="font-medium text-gray-800">Gender</h3>
-              <div>{accounts.entities[activeAccountId].gender}</div>
+              <div>{accounts.entities[accountId].gender}</div>
             </div> */}
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Department</h3>
-              <div>{accounts.entities[activeAccountId].department}</div>
+              <div>{accounts.entities[accountId].department}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Birthday</h3>
-              <div className="uppercase">{moment(accounts.entities[activeAccountId].birthday).format('MMM DD, YYYY')}</div>
+              <div className="uppercase">{moment(accounts.entities[accountId].birthday).format('MMM DD, YYYY')}</div>
             </div>
             {/* <div className="text-sm">
               <h3 className="font-medium text-gray-800">Joined Date</h3>
-              <div>{moment(accounts.entities[activeAccountId].birthday).format('MMM DD, YYYY')}</</div>
+              <div>{moment(accounts.entities[accountId].birthday).format('MMM DD, YYYY')}</</div>
             </div> */}
           </aside>
         </div>
