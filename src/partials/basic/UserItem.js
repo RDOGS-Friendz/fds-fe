@@ -5,19 +5,19 @@ import Button from './Button';
 import Trashcan from '../../icons/Trashcan';
 import Check from '../../icons/Check';
 
-import { acceptFriendRequest, declineFriendRequest } from '../../slices/accountSlice';
+import { acceptFriendRequest, declineFriendRequest } from '../../slices/accountsSlice';
 
 export default function UserItem({ setFriendSidebarOpen, onClick, accountId, username = '', real_name = '', isActive, request }) {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
-  const accounts = useSelector(state => state.accounts);
+  // const accounts = useSelector(state => state.accounts);
 
   const onClickAcceptFriendRequest = () => {
-    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: accounts.entities[auth.userAccountId], friendAccountId: accountId }));
+    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   const onClickDeclineFriendRequest = () => {
-    dispatch(declineFriendRequest({ authToken: auth.token, accountId: accounts.entities[auth.userAccountId], friendAccountId: accountId }));
+    dispatch(declineFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   return (

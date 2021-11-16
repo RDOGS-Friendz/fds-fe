@@ -20,6 +20,25 @@ export const signup = createAsyncThunk(
   },
 );
 
+export const browseAllAccount = createAsyncThunk(
+  'accounts/browseAllAccount',
+  async ({ authToken, search, reportAccountIds }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+      params: {
+        search,
+      },
+    };
+
+    const res = await agent.get('/account', config);
+
+    reportAccountIds(res.data);
+    return res.data;
+  },
+);
+
 export const editAccountPrivacy = createAsyncThunk(
   'accounts/batchGetAccount',
   async ({
@@ -40,12 +59,16 @@ export const editAccountPrivacy = createAsyncThunk(
 
 export const readAccountProfile = createAsyncThunk(
   'accounts/readAccountProfile',
-  async ({ authToken, accountId }, { dispatch }) => {
+  async ({ authToken, accountId }, { dispatch, getState }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
+
+    if (!getState().accounts.entities[accountId]) { // get basic information first
+      dispatch(batchGetAccount({ authToken, accountIds: [accountId] }));
+    }
 
     const res = await agent.get(`/account/${accountId}/profile`, config);
 
@@ -100,7 +123,10 @@ export const readAccountFriendRequests = createAsyncThunk(
 
     const res = await agent.get(`/account/${accountId}/friend-request`, config);
 
-    dispatch(batchGetAccount({ authToken, accountIds: res.data.friend_request_id }));
+    dispatch(batchGetAccount({
+      authToken,
+      accountIds: [].concat(res.data.friend_request_id).concat(res.data.pending_friend_request_id),
+    }));
     return res.data;
   },
 );
@@ -128,7 +154,9 @@ export const acceptFriendRequest = createAsyncThunk(
       },
     };
 
-    await agent.patch(`/account/${accountId}/friend-request`, { friend_request_id: otherAccountId, action: 'accept' }, config);
+    await agent.patch(`/account/${accountId}/friend-request`, {
+      friend_request_id: otherAccountId, action: 'accept',
+    }, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
     dispatch(readAccountFriends({ authToken, accountId }));
   },
@@ -143,7 +171,7 @@ export const declineFriendRequest = createAsyncThunk(
       },
     };
 
-    await agent.patch(`/account/${accountId}/friend-request`, { friends_request_id: otherAccountId, action: 'decline' }, config);
+    await agent.patch(`/account/${accountId}/friend-request`, { friend_request_id: otherAccountId, action: 'decline' }, config);
     dispatch(readAccountFriendRequests({ authToken, accountId }));
   },
 );
@@ -155,13 +183,10 @@ export const deleteFriend = createAsyncThunk(
       headers: {
         'auth-token': authToken,
       },
-      data: {
-        friend_id: friendAccountId,
-      },
     };
 
-    await agent.delete(`/account/${accountId}`, config);
-    dispatch(readAccountFriendRequests({ authToken, accountId }));
+    await agent.delete(`/account/${accountId}/friend/${friendAccountId}`, config);
+    dispatch(readAccountFriends({ authToken, accountId }));
   },
 );
 
@@ -177,6 +202,11 @@ const accountsSlice = createSlice({
         },
       )
       .addCase(
+        browseAllAccount.fulfilled, (state, action) => {
+          accountsAdapter.upsertMany(state, action.payload);
+        },
+      )
+      .addCase(
         readAccountProfile.fulfilled, (state, action) => {
           accountsAdapter.upsertOne(state, action.payload);
         },
@@ -188,7 +218,11 @@ const accountsSlice = createSlice({
       )
       .addCase(
         readAccountFriendRequests.fulfilled, (state, action) => {
-          accountsAdapter.upsertOne(state, { account_id: action.meta.arg.accountId, friendRequestAccountIds: action.payload.friend_request_id });
+          accountsAdapter.upsertOne(state, {
+            account_id: action.meta.arg.accountId,
+            friendRequestAccountIds: action.payload.friend_request_id,
+            pendingFriendRequestAccountIds: action.payload.pending_friend_request_id,
+          });
         },
       )
 

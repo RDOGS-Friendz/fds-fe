@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -11,14 +11,17 @@ import useEventsView from '../../hooks/useEventsView';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
 import PageNotFound from '../../pages/utility/PageNotFound';
-import { readAccountProfile } from '../../slices/accountSlice';
+import { readAccountProfile } from '../../slices/accountsSlice';
+import genderTypeTransform from '../../functions/genderTypeTransform';
 
-function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
   const auth = useSelector(state => state.auth);
   const { accountId } = useParams();
   const accounts = useSelector(state => state.accounts);
   const categories = useSelector(state => state.categories);
   const dispatch = useDispatch();
+
+  const [action, setAction] = useState('not-friend');
 
   const [
     upcomingEvents,
@@ -32,6 +35,20 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
       dispatch(readAccountProfile({ authToken: auth.token, accountId }));
     }
   }, [accountId, auth.token, dispatch]);
+
+  useEffect(() => {
+    if (accounts.entities[auth.userAccountId].friendAccountIds?.includes(Number(accountId))) {
+      setAction('friend');
+    } else if (accounts.entities[auth.userAccountId].friendRequestAccountIds?.includes(Number(accountId))) {
+      setAction('request');
+    } else if (accounts.entities[auth.userAccountId].pendingFriendRequestAccountIds?.includes(Number(accountId))) {
+      setAction('request-sent');
+    } else if (auth.userAccountId === accountId) {
+      setAction('self');
+    } else {
+      setAction('not-friend');
+    }
+  }, [accountId, accounts.entities, auth.userAccountId]);
 
   if (!accountId) {
     return (
@@ -85,14 +102,19 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
         </div>
 
         {/* Header */}
-        <header className="text-center mb-4">
+        <header className="text-center mb-3">
           {/* Name */}
           <div className="inline-flex items-start mb-2">
             <h1 className="text-2xl text-gray-800 font-bold">{accounts.entities[accountId].username}</h1>
           </div>
           {/* Bio */}
 
-          <div className="text-sm mb-3">{accounts.entities[accountId].tagline || <Skeleton />}</div>
+          {accounts.entities[accountId].tagline !== ''
+            && (
+            <div className="text-sm mb-2">
+              {accounts.entities[accountId].tagline || <Skeleton />}
+            </div>
+            )}
           {/* Meta */}
           {
             accounts.entities[accountId]?.social_media_acct
@@ -118,7 +140,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
         <div className="relative mb-6 sm:mb-3">
           <div className="absolute bottom-0 w-full h-px bg-gray-200" aria-hidden="true" />
           <div className="flex flex-col items-center">
-            <FriendAction action={action} />
+            <FriendAction action={action} accountId={accountId} />
           </div>
         </div>
 
@@ -176,10 +198,10 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
               <h3 className="font-medium text-gray-800">Real Name</h3>
               <div>{accounts.entities[accountId].real_name}</div>
             </div>
-            {/* <div className="text-sm">
+            <div className="text-sm">
               <h3 className="font-medium text-gray-800">Gender</h3>
-              <div>{accounts.entities[accountId].gender}</div>
-            </div> */}
+              <div>{genderTypeTransform(accounts.entities[accountId].gender)}</div>
+            </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Department</h3>
               <div>{accounts.entities[accountId].department}</div>
@@ -188,10 +210,10 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
               <h3 className="font-medium text-gray-800">Birthday</h3>
               <div className="uppercase">{moment(accounts.entities[accountId].birthday).format('MMM DD, YYYY')}</div>
             </div>
-            {/* <div className="text-sm">
-              <h3 className="font-medium text-gray-800">Joined Date</h3>
-              <div>{moment(accounts.entities[accountId].birthday).format('MMM DD, YYYY')}</</div>
-            </div> */}
+            <div className="text-sm">
+              <h3 className="font-medium text-gray-800 ">Joined Date</h3>
+              <div className="uppercase">{moment(accounts.entities[accountId].joined_date).format('MMM DD, YYYY')}</div>
+            </div>
           </aside>
         </div>
       </div>

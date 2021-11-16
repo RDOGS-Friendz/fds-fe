@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from './Button';
 import DropdownEditMenu from '../../components/DropdownEditMenu';
-import { sendFriendRequest, acceptFriendRequest, declineFriendRequest, deleteFriend } from '../../slices/accountSlice';
+import { sendFriendRequest, acceptFriendRequest, declineFriendRequest, deleteFriend } from '../../slices/accountsSlice';
 
 export default function FriendAction({ action = 'friend', accountId }) {
   const dispatch = useDispatch();
@@ -17,11 +17,11 @@ export default function FriendAction({ action = 'friend', accountId }) {
   };
 
   const onClickAcceptFriendRequest = () => {
-    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));
+    dispatch(acceptFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   const onClickDeclineFriendRequest = () => {
-    dispatch(declineFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, friendAccountId: accountId }));
+    dispatch(declineFriendRequest({ authToken: auth.token, accountId: auth.userAccountId, otherAccountId: accountId }));
   };
 
   /* Actions */

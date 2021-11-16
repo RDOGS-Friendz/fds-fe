@@ -3,14 +3,15 @@ import agent from './agent';
 
 export const batchGetAccount = createAsyncThunk(
   'accounts/batchGetAccount',
-  async ({ authToken, accountIds }) => {
-    if (accountIds.length === 0) return [];
+  async ({ authToken, accountIds }, { getState }) => {
+    const newAccountIds = accountIds.filter(id => !getState().accounts.ids.includes(id)); // not currently present
+    if (newAccountIds.length === 0) return [];
     const config = {
       headers: {
         'auth-token': authToken,
       },
       params: {
-        account_ids: JSON.stringify(accountIds),
+        account_ids: JSON.stringify(newAccountIds),
       },
     };
     const res = await agent.get('/account/batch', config);

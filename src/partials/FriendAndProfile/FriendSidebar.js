@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import useAccountSearch from '../../hooks/useAccountSearch';
 import UserItem from '../basic/UserItem';
 
 function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
@@ -9,7 +10,12 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
   const accounts = useSelector(state => state.accounts);
   const { accountId } = useParams();
 
-  // if (!accounts.entities[auth.userAccountId]) { return (<PageNotFound />); }
+  const [
+    accountSearchInputValue,
+    onAccountSearchInputChange,
+    showAccountSearchSuggestions,
+    accountSearchSuggestions,
+  ] = useAccountSearch();
 
   return (
     <div
@@ -33,6 +39,8 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                 className="form-input w-full pl-9 focus:border-gray-300"
                 type="search"
                 placeholder="Search…"
+                value={accountSearchInputValue}
+                onChange={onAccountSearchInputChange}
               />
               <button className="absolute inset-0 right-auto group" type="submit" aria-label="Search">
                 <svg
@@ -45,39 +53,97 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                 </svg>
               </button>
             </form>
-            {/* Request */}
-            <div className="mt-4">
-              <div className="text-xs font-semibold text-gray-400 uppercase mb-3">{`Requests (${accounts.entities[auth.userAccountId].friendRequestAccountIds?.length ?? 0})`}</div>
-              <ul className="mb-6">
-                {(accounts.entities[auth.userAccountId].friendRequestAccountIds?.map(id => (
-                  <UserItem
-                    key={id}
-                    onClick={() => history.push(`/friends/${id}`)}
-                    isActive={Number(accountId) === id}
-                    setFriendSidebarOpen={setFriendSidebarOpen}
-                    username={accounts.entities[id]?.username}
-                    real_name={accounts.entities[id]?.real_name}
-                    request
-                  />
-                )))}
-              </ul>
-            </div>
-            {/* Friends */}
-            <div className="mt-4">
-              <div className="text-xs font-semibold text-gray-400 uppercase mb-3">{`Friends (${accounts.entities[auth.userAccountId].friendAccountIds?.length ?? 0})`}</div>
-              <ul className="mb-6">
-                {(accounts.entities[auth.userAccountId].friendAccountIds?.map(id => (
-                  <UserItem
-                    key={id}
-                    onClick={() => history.push(`/friends/${id}`)}
-                    isActive={Number(accountId) === id}
-                    setFriendSidebarOpen={setFriendSidebarOpen}
-                    username={accounts.entities[id]?.username}
-                    real_name={accounts.entities[id]?.real_name}
-                  />
-                )))}
-              </ul>
-            </div>
+            {
+              showAccountSearchSuggestions
+                ? (
+                  <>
+                    {/* Friends */}
+                    <div className="mt-4">
+                      <div className="text-xs font-semibold text-gray-400 uppercase mb-3">
+                        {`Friends (${accountSearchSuggestions
+                          .filter(item => accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id)).length})`}
+                      </div>
+                      <ul className="mb-6">
+                        {(accountSearchSuggestions
+                          .filter(item => accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id))
+                          .map(({ account_id, username, real_name }) => (
+                            <UserItem
+                              key={account_id}
+                              accountId={account_id}
+                              onClick={() => history.push(`/friends/${account_id}`)}
+                              isActive={Number(accountId) === account_id}
+                              setFriendSidebarOpen={setFriendSidebarOpen}
+                              username={username}
+                              real_name={real_name}
+                            />
+                          )))}
+                      </ul>
+                    </div>
+                    {/* Other people */}
+                    <div className="mt-4">
+                      <div className="text-xs font-semibold text-gray-400 uppercase mb-3">
+                        {`Other People (${accountSearchSuggestions
+                          .filter(item => !accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id)).length})`}
+                      </div>
+                      <ul className="mb-6">
+                        {(accountSearchSuggestions
+                          .filter(item => !accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id))
+                          .map(({ account_id, username, real_name }) => (
+                            <UserItem
+                              key={account_id}
+                              accountId={account_id}
+                              onClick={() => history.push(`/friends/${account_id}`)}
+                              isActive={Number(accountId) === account_id}
+                              setFriendSidebarOpen={setFriendSidebarOpen}
+                              username={username}
+                              real_name={real_name}
+                            />
+                          )))}
+                      </ul>
+                    </div>
+
+                  </>
+                )
+                : (
+                  <>
+                    {/* Request */}
+                    <div className="mt-4">
+                      <div className="text-xs font-semibold text-gray-400 uppercase mb-3">{`Requests (${accounts.entities[auth.userAccountId].friendRequestAccountIds?.length ?? 0})`}</div>
+                      <ul className="mb-6">
+                        {(accounts.entities[auth.userAccountId].friendRequestAccountIds?.map(id => (
+                          <UserItem
+                            key={id}
+                            accountId={id}
+                            onClick={() => history.push(`/friends/${id}`)}
+                            isActive={Number(accountId) === id}
+                            setFriendSidebarOpen={setFriendSidebarOpen}
+                            username={accounts.entities[id]?.username}
+                            real_name={accounts.entities[id]?.real_name}
+                            request
+                          />
+                        )))}
+                      </ul>
+                    </div>
+                    {/* Friends */}
+                    <div className="mt-4">
+                      <div className="text-xs font-semibold text-gray-400 uppercase mb-3">{`Friends (${accounts.entities[auth.userAccountId].friendAccountIds?.length ?? 0})`}</div>
+                      <ul className="mb-6">
+                        {(accounts.entities[auth.userAccountId].friendAccountIds?.map(id => (
+                          <UserItem
+                            key={id}
+                            accountId={id}
+                            onClick={() => history.push(`/friends/${id}`)}
+                            isActive={Number(accountId) === id}
+                            setFriendSidebarOpen={setFriendSidebarOpen}
+                            username={accounts.entities[id]?.username}
+                            real_name={accounts.entities[id]?.real_name}
+                          />
+                        )))}
+                      </ul>
+                    </div>
+                  </>
+                )
+              }
           </div>
         </div>
       </div>
