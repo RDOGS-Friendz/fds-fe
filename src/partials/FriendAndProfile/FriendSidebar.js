@@ -1,11 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
+import { useHistory, useParams } from 'react-router-dom';
 import UserItem from '../basic/UserItem';
 
-function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen, activeAccountId, setActiveAccountId }) {
+function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
+  const history = useHistory();
   const auth = useSelector(state => state.auth);
   const accounts = useSelector(state => state.accounts);
+  const { accountId } = useParams();
 
   // if (!accounts.entities[auth.userAccountId]) { return (<PageNotFound />); }
 
@@ -50,8 +52,8 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen, activeAccountI
                 {(accounts.entities[auth.userAccountId].friendRequestAccountIds?.map(id => (
                   <UserItem
                     key={id}
-                    onClick={() => setActiveAccountId(id)}
-                    isActive={activeAccountId === id}
+                    onClick={() => history.push(`/friends/${id}`)}
+                    isActive={Number(accountId) === id}
                     setFriendSidebarOpen={setFriendSidebarOpen}
                     username={accounts.entities[id]?.username}
                     real_name={accounts.entities[id]?.real_name}
@@ -67,8 +69,8 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen, activeAccountI
                 {(accounts.entities[auth.userAccountId].friendAccountIds?.map(id => (
                   <UserItem
                     key={id}
-                    onClick={() => setActiveAccountId(id)}
-                    isActive={activeAccountId === id}
+                    onClick={() => history.push(`/friends/${id}`)}
+                    isActive={Number(accountId) === id}
                     setFriendSidebarOpen={setFriendSidebarOpen}
                     username={accounts.entities[id]?.username}
                     real_name={accounts.entities[id]?.real_name}
