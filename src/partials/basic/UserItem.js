@@ -5,7 +5,7 @@ import Button from './Button';
 import Trashcan from '../../icons/Trashcan';
 import Check from '../../icons/Check';
 
-import { acceptFriendRequest, declineFriendRequest } from '../../slices/accountSlice';
+import { acceptFriendRequest, declineFriendRequest } from '../../slices/accountsSlice';
 
 export default function UserItem({ setFriendSidebarOpen, onClick, accountId, username = '', real_name = '', isActive, request }) {
   const dispatch = useDispatch();

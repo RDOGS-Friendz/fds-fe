@@ -20,6 +20,25 @@ export const signup = createAsyncThunk(
   },
 );
 
+export const browseAllAccount = createAsyncThunk(
+  'accounts/browseAllAccount',
+  async ({ authToken, search, reportAccountIds }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+      params: {
+        search,
+      },
+    };
+
+    const res = await agent.get('/account', config);
+
+    reportAccountIds(res.data);
+    return res.data;
+  },
+);
+
 export const editAccountPrivacy = createAsyncThunk(
   'accounts/batchGetAccount',
   async ({
@@ -173,6 +192,11 @@ const accountsSlice = createSlice({
     builder
       .addCase(
         batchGetAccount.fulfilled, (state, action) => {
+          accountsAdapter.upsertMany(state, action.payload);
+        },
+      )
+      .addCase(
+        browseAllAccount.fulfilled, (state, action) => {
           accountsAdapter.upsertMany(state, action.payload);
         },
       )

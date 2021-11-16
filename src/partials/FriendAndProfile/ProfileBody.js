@@ -11,7 +11,8 @@ import useEventsView from '../../hooks/useEventsView';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
 import PageNotFound from '../../pages/utility/PageNotFound';
-import { readAccountProfile } from '../../slices/accountSlice';
+import { readAccountProfile } from '../../slices/accountsSlice';
+import genderTypeTransform from '../../functions/genderTypeTransform';
 
 function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
   const auth = useSelector(state => state.auth);
@@ -176,10 +177,10 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
               <h3 className="font-medium text-gray-800">Real Name</h3>
               <div>{accounts.entities[accountId].real_name}</div>
             </div>
-            {/* <div className="text-sm">
+            <div className="text-sm">
               <h3 className="font-medium text-gray-800">Gender</h3>
-              <div>{accounts.entities[accountId].gender}</div>
-            </div> */}
+              <div>{genderTypeTransform(accounts.entities[accountId].gender)}</div>
+            </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Department</h3>
               <div>{accounts.entities[accountId].department}</div>
@@ -188,10 +189,10 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
               <h3 className="font-medium text-gray-800">Birthday</h3>
               <div className="uppercase">{moment(accounts.entities[accountId].birthday).format('MMM DD, YYYY')}</div>
             </div>
-            {/* <div className="text-sm">
-              <h3 className="font-medium text-gray-800">Joined Date</h3>
-              <div>{moment(accounts.entities[accountId].birthday).format('MMM DD, YYYY')}</</div>
-            </div> */}
+            <div className="text-sm">
+              <h3 className="font-medium text-gray-800 ">Joined Date</h3>
+              <div className="uppercase">{moment(accounts.entities[accountId].joined_date).format('MMM DD, YYYY')}</div>
+            </div>
           </aside>
         </div>
       </div>

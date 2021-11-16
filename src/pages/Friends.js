@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import FriendSidebar from '../partials/FriendAndProfile/FriendSidebar';
 import ProfileBody from '../partials/FriendAndProfile/ProfileBody';
-import { readAccountFriendRequests, readAccountFriends } from '../slices/accountSlice';
+import { readAccountFriendRequests, readAccountFriends } from '../slices/accountsSlice';
 
 export default function Friends() {
   const [friendSidebarOpen, setFriendSidebarOpen] = useState(false);
