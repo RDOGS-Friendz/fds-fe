@@ -48,7 +48,6 @@ export default function Friends() {
               friendSidebarOpen={friendSidebarOpen}
               setFriendSidebarOpen={setFriendSidebarOpen}
               activeAccountId={activeFriendAccountId}
-              action="friend"
             />
           </Route>
           <Route path="/friends">

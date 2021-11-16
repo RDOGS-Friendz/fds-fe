@@ -17,8 +17,6 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
     accountSearchSuggestions,
   ] = useAccountSearch();
 
-  console.log(accountSearchSuggestions);
-
   return (
     <div
       id="profile-sidebar"
@@ -63,11 +61,11 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                     <div className="mt-4">
                       <div className="text-xs font-semibold text-gray-400 uppercase mb-3">
                         {`Friends (${accountSearchSuggestions
-                          .filter(item => accounts.entities[auth.userAccountId].friendAccountIds.includes(item.id)).length})`}
+                          .filter(item => accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id)).length})`}
                       </div>
                       <ul className="mb-6">
                         {(accountSearchSuggestions
-                          .filter(item => accounts.entities[auth.userAccountId].friendAccountIds.includes(item.id))
+                          .filter(item => accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id))
                           .map(({ account_id, username, real_name }) => (
                             <UserItem
                               key={account_id}
@@ -84,11 +82,11 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
                     <div className="mt-4">
                       <div className="text-xs font-semibold text-gray-400 uppercase mb-3">
                         {`Other People (${accountSearchSuggestions
-                          .filter(item => !accounts.entities[auth.userAccountId].friendAccountIds.includes(item.id)).length})`}
+                          .filter(item => !accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id)).length})`}
                       </div>
                       <ul className="mb-6">
                         {(accountSearchSuggestions
-                          .filter(item => !accounts.entities[auth.userAccountId].friendAccountIds.includes(item.id))
+                          .filter(item => !accounts.entities[auth.userAccountId].friendAccountIds.includes(item.account_id))
                           .map(({ account_id, username, real_name }) => (
                             <UserItem
                               key={account_id}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -14,12 +14,14 @@ import PageNotFound from '../../pages/utility/PageNotFound';
 import { readAccountProfile } from '../../slices/accountsSlice';
 import genderTypeTransform from '../../functions/genderTypeTransform';
 
-function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
   const auth = useSelector(state => state.auth);
   const { accountId } = useParams();
   const accounts = useSelector(state => state.accounts);
   const categories = useSelector(state => state.categories);
   const dispatch = useDispatch();
+
+  const [action, setAction] = useState('not-friend');
 
   const [
     upcomingEvents,
@@ -33,6 +35,18 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
       dispatch(readAccountProfile({ authToken: auth.token, accountId }));
     }
   }, [accountId, auth.token, dispatch]);
+
+  useEffect(() => {
+    if (accounts.entities[auth.userAccountId].friendAccountIds?.includes(Number(accountId))) {
+      setAction('friend');
+    } else if (accounts.entities[auth.userAccountId].friendRequestAccountIds?.includes(Number(accountId))) {
+      setAction('request');
+    } else if (accounts.entities[auth.userAccountId].pendingRequestAccountIds?.includes(Number(accountId))) {
+      setAction('request-sent');
+    } else {
+      setAction('not-friend');
+    }
+  }, [accountId, accounts.entities, auth.userAccountId]);
 
   if (!accountId) {
     return (
@@ -119,7 +133,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
         <div className="relative mb-6 sm:mb-3">
           <div className="absolute bottom-0 w-full h-px bg-gray-200" aria-hidden="true" />
           <div className="flex flex-col items-center">
-            <FriendAction action={action} />
+            <FriendAction action={action} accountId={accountId} />
           </div>
         </div>
 

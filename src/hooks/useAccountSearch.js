@@ -26,8 +26,6 @@ export default function useAccountSearch() {
     }
   };
 
-  console.log(suggestedAccountIds);
-
   return [
     inputValue,
     onInputChange,
