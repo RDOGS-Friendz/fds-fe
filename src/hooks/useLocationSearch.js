@@ -16,6 +16,11 @@ export default function useLocationSearch() {
     setSuggestedLocationIds(reportedLocations.map(item => item.id));
   };
 
+  const setState = (input, selectedId) => {
+    setInputValue(input);
+    setSelectedLocationId(selectedId);
+  };
+
   const onInputChange = async e => {
     setShowSuggestions(true);
     setInputValue(e.target.value);
@@ -52,5 +57,6 @@ export default function useLocationSearch() {
     showSuggestions,
     suggestedLocationIds.map(id => locations.entities[id]).filter(item => item !== undefined),
     reset,
+    setState,
   ];
 }

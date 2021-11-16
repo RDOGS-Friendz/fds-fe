@@ -125,7 +125,7 @@ export const readAccountFriendRequests = createAsyncThunk(
 
     dispatch(batchGetAccount({
       authToken,
-      accountIds: [].concat(res.data.friend_request_id).concat(res.data.pending_friend_request_id),
+      accountIds: [].concat(res.data.friend_request_id, res.data.pending_friend_request_id),
     }));
     return res.data;
   },
