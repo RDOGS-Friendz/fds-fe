@@ -14,13 +14,14 @@ import PageNotFound from '../../pages/utility/PageNotFound';
 import { readAccountProfile } from '../../slices/accountsSlice';
 import genderTypeTransform from '../../functions/genderTypeTransform';
 
-function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) {
   const auth = useSelector(state => state.auth);
-  const { accountId } = useParams();
+  const { accountId: accountIdParam } = useParams();
   const accounts = useSelector(state => state.accounts);
   const categories = useSelector(state => state.categories);
   const dispatch = useDispatch();
 
+  const [accountId, setAccountId] = useState(null);
   const [action, setAction] = useState('not-friend');
 
   const [
@@ -29,6 +30,14 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen }) {
     upcomingLoading,
     upcomingFetchMore,
   ] = useEventsView('upcoming', '');
+
+  useEffect(() => {
+    if (self) {
+      setAccountId(auth.userAccountId);
+    } else {
+      setAccountId(accountIdParam);
+    }
+  }, [self, auth.userAccountId, accountIdParam]);
 
   useEffect(() => {
     if (accountId) {
