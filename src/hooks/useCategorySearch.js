@@ -16,6 +16,11 @@ export default function useCategorySearch() {
     setSuggestedCategoryIds(reportedCategories.map(item => item.id));
   };
 
+  const setState = (input, selectedId) => {
+    setInputValue(input);
+    setSelectedCategoryId(selectedId);
+  };
+
   const onInputChange = async e => {
     setShowSuggestions(true);
     setInputValue(e.target.value);
@@ -52,5 +57,6 @@ export default function useCategorySearch() {
     showSuggestions,
     suggestedCategoryIds.map(id => categories.entities[id]).filter(item => item !== undefined),
     reset,
+    setState,
   ];
 }

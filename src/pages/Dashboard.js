@@ -25,7 +25,7 @@ function Dashboard() {
     suggestedTotalCount,
     suggestedLoading,
     suggestedFetchMore,,
-    suggestedReset,
+    // suggestedReset,
   ] = useEventsView('suggested', '');
 
   const [
@@ -172,6 +172,7 @@ function Dashboard() {
               open={openEventEditCard}
               setOpen={setOpenEventEditCard}
               resets={[upcomingReset, hostByYouReset]}
+              editingEventId={editingEventId}
             />
           </div>
         </div>

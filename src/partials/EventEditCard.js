@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoClock } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
@@ -10,9 +10,9 @@ import SearchBar from './basic/SearchBar';
 import useLocationSearch from '../hooks/useLocationSearch';
 import useCategorySearch from '../hooks/useCategorySearch';
 import DropdownClassic from './basic/DropdownClassic';
-import { addEvent } from '../slices/eventsSlice';
+import { addEvent, deleteEvent, editEvent } from '../slices/eventsSlice';
 
-export default function EventEditCard({ newEvent = true, open, setOpen, resets }) {
+export default function EventEditCard({ open, setOpen, resets, editingEventId = null }) {
   const intensityOptions = [
     { value: 'LOW', label: 'Low' },
     { value: 'INTERMEDIATE', label: 'Intermediate' },
@@ -20,6 +20,9 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
   ];
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
+  const events = useSelector(state => state.events);
+  const locations = useSelector(state => state.locations);
+  const categories = useSelector(state => state.categories);
 
   const [date, setDate] = useState(Date());
 
@@ -36,6 +39,7 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
     locationShowSuggestions,
     locationSuggestions,
     locationReset,
+    setLocation,
   ] = useLocationSearch();
 
   const [
@@ -47,12 +51,13 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
     categoryShowSuggestions,
     categorySuggestions,
     categoryReset,
+    setCategory,
   ] = useCategorySearch();
 
   const [startTimeValue, setStartTimeValue] = useState(moment());
   const [endTimeValue, setEndTimeValue] = useState(moment().add(1, 'h'));
   const [isPrivate, setIsPrivate] = useState(false);
-  const [selectedIntensityIndex, setSelectedIntensityIndex] = useState(0);
+  const [selectedIntensityValue, setSelectedIntensityValue] = useState('LOW');
   const [numberOfPeopleNeeded, setNumberOfPeopleNeeded] = useState(6);
   const [description, setDescription] = useState('');
 
@@ -60,6 +65,24 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
   const [showLocationHelpTexts, setShowLocationHelpTexts] = useState(false);
   const [showCategoryHelpTexts, setShowCategoryHelpTexts] = useState(false);
   const [showNumberOfPeopleHelpTexts, setShowNumberOfPeopleHelpTexts] = useState(false);
+
+  useEffect(() => {
+    if (editingEventId && events.entities[editingEventId]) { // initialize when editing event
+      const editingEvent = events.entities[editingEventId];
+      setDate(Date(editingEvent.start_time));
+      setStartTime(moment(editingEvent.start_time).format('h:mm a'));
+      setEndTime(moment(editingEvent.end_time).format('h:mm a'));
+      setTitle(editingEvent.title);
+      setLocation(locations.entities[editingEvent.location_id].name, editingEvent.location_id);
+      setCategory(categories.entities[editingEvent.category_id].name, editingEvent.category_id);
+      setStartTimeValue(moment(editingEvent.start_time));
+      setEndTimeValue(moment(editingEvent.end_time));
+      setIsPrivate(editingEvent.is_private);
+      setSelectedIntensityValue(editingEvent.intensity);
+      setNumberOfPeopleNeeded(editingEvent.num_people_wanted);
+      setDescription(editingEvent.description);
+    }
+  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation]);
 
   const onStartTimeBlur = e => {
     e.preventDefault();
@@ -95,7 +118,7 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
     setEndTimeValue(moment().add(1, 'h'));
     setTitle('');
     setIsPrivate(false);
-    setSelectedIntensityIndex(0);
+    setSelectedIntensityValue(0);
     setNumberOfPeopleNeeded(6);
     setDescription('');
     setOpen(false);
@@ -142,22 +165,43 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
         .set('hour', endTimeValue.get('hour'))
         .set('minute', endTimeValue.get('minute'));
 
-      await dispatch(addEvent({
-        authToken: auth.token,
-        title,
-        is_private: isPrivate,
-        location_id: selectedLocationId,
-        category_id: selectedCategoryId,
-        intensity: intensityOptions[selectedIntensityIndex].value,
-        start_time: composedStartTime.toISOString(),
-        end_time: composedEndTime.toISOString(),
-        num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
-        description,
-      }));
+      if (editingEventId) {
+        await dispatch(editEvent({
+          authToken: auth.token,
+          event_id: editingEventId,
+          title,
+          is_private: isPrivate,
+          location_id: selectedLocationId,
+          category_id: selectedCategoryId,
+          intensity: intensityOptions.find(item => item.value === selectedIntensityValue)?.value,
+          start_time: composedStartTime.toISOString(),
+          end_time: composedEndTime.toISOString(),
+          num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
+          description,
+        }));
+      } else {
+        await dispatch(addEvent({
+          authToken: auth.token,
+          title,
+          is_private: isPrivate,
+          location_id: selectedLocationId,
+          category_id: selectedCategoryId,
+          intensity: intensityOptions.find(item => item.value === selectedIntensityValue)?.value,
+          start_time: composedStartTime.toISOString(),
+          end_time: composedEndTime.toISOString(),
+          num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
+          description,
+        }));
+      }
 
       resets.map(reset => reset());
       handleClose();
     }
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteEvent({ authToken: auth.token, event_id: editingEventId }));
+    handleClose();
   };
 
   return (
@@ -267,8 +311,8 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
           <div className="mb-4">
             <DropdownClassic
               label="Intensity"
-              selected={selectedIntensityIndex}
-              setSelected={setSelectedIntensityIndex}
+              selected={selectedIntensityValue}
+              setSelected={setSelectedIntensityValue}
               options={intensityOptions}
             />
           </div>
@@ -301,15 +345,31 @@ export default function EventEditCard({ newEvent = true, open, setOpen, resets }
           </div>
 
           {/* Modal footer */}
-          <div className="flex flex-wrap justify-end space-x-2">
+          <div className="flex flex-wrap justify-between">
             {
-              newEvent
+              editingEventId
                 ? (
                   <>
-                    <Button variant="tertiary" onClick={handleClose}>Discard</Button>
-                    <Button onClick={handleSubmit}>Publish</Button>
+                    <div>
+                      <Button color="danger" variant="secondary" onClick={handleDelete}>Delete Event</Button>
+                    </div>
+                    <div className="flex flex-wrap space-x-2">
+                      <Button variant="tertiary" onClick={handleClose}>Discard Changes</Button>
+                      <Button onClick={handleSubmit}>Save</Button>
+                    </div>
                   </>
-                ) : <></>
+                )
+
+                : (
+                  <>
+                    {/* New Event */}
+                    <div />
+                    <div className="flex flex-wrap space-x-2">
+                      <Button variant="tertiary" onClick={handleClose}>Discard</Button>
+                      <Button onClick={handleSubmit}>Publish</Button>
+                    </div>
+                  </>
+                )
             }
             {/* <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={e => { e.stopPropagation(); setSuccessModalOpen(false); }}>Cancel</button>
             <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Yes, Upgrade it</button> */}

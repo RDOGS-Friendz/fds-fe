@@ -84,6 +84,39 @@ export const addEvent = createAsyncThunk(
   },
 );
 
+export const deleteEvent = createAsyncThunk(
+  'events/deleteEvent',
+  async ({ authToken, event_id }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+    };
+    await agent.delete(`/event/${event_id}`, config);
+
+    return event_id;
+  },
+);
+
+export const editEvent = createAsyncThunk(
+  'events/editEvent',
+  async ({
+    authToken, event_id, title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+  }, { dispatch }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+    };
+
+    const res = await agent.patch(`/event/${event_id}`, {
+      title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+    }, config);
+
+    dispatch(readEvent({ authToken, event_id: res.data.id }));
+  },
+);
+
 export const joinEvent = createAsyncThunk(
   'events/joinEvent',
   async ({ authToken, event_id }, { dispatch }) => {
@@ -149,6 +182,9 @@ const eventsSlice = createSlice({
     builder
       .addCase(readEvent.fulfilled, (state, action) => {
         eventsAdapter.upsertOne(state, action.payload);
+      })
+      .addCase(deleteEvent.fulfilled, (state, action) => {
+        eventsAdapter.removeOne(state, action.payload);
       })
       .addCase(browseEvent.fulfilled, (state, action) => {
         eventsAdapter.upsertMany(state, action.payload);
