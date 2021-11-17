@@ -1,29 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import useEventsView from '../hooks/useEventsView';
+import EventTable from '../partials/EventTable';
+import { readAccountProfile } from '../slices/accountsSlice';
 
 export default function History() {
+  const auth = useSelector(state => state.auth);
+  const { accountId: accountIdParam } = useParams();
+  const dispatch = useDispatch();
+
+  const [accountId, setAccountId] = useState(null);
+  const [
+    pastEvents,
+    pastTotalCount,
+    pastLoading,
+    pastFetchMore,
+    pastError,
+  ] = useEventsView('all', [], 10, true, accountId);
+
+  useEffect(() => {
+    setAccountId(auth.userAccountId);
+  }, [auth.userAccountId, accountIdParam]);
+
+  useEffect(() => {
+    if (accountId) {
+      dispatch(readAccountProfile({ authToken: auth.token, accountId }));
+    }
+  }, [accountId, auth.token, dispatch]);
+
   return (
     <main>
       <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-
         <div className="sm:flex sm:justify-between sm:items-center mb-8">
-
           <h1 className="text-2xl md:text-3xl text-gray-800 font-bold mb-1">History 🏯</h1>
-          {/* Right: Actions */}
-          <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-
-            {/* <button type="button" className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
-
-              <span className="hidden xs:block ">Search</span>
-            </button> */}
-          </div>
-
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-12 gap-6">
-          {/* <DashboardCard title="Events You May Like">Hi</DashboardCard> */}
+        <div className="mb-2">
+          <EventTable
+            events={pastEvents}
+            totalCount={pastTotalCount}
+            loading={pastLoading}
+            fetchMore={pastFetchMore}
+            error={pastError}
+            numItems={10}
+          />
         </div>
-
       </div>
     </main>
   );
