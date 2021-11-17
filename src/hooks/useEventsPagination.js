@@ -13,47 +13,53 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
   const [loading, setLoading] = useState(false);
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
-  const reportEventIds = (offset, fetchedEventIds, fetchedTotalCount) => {
+  const reportEventIds = (fetchedEventIds, fetchedTotalCount, offset) => {
     setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [offset + index]: item }), state));
     setTotalCount(fetchedTotalCount);
   };
 
-  const switchPage = async pageIndex => {
-    try {
-      if (Array(itemsPerPage)
-        .fill()
-        .filter((_, i) => pageIndex * itemsPerPage + i < totalCount)
-        .reduce((acc, _, i) => acc || eventIds[pageIndex * itemsPerPage + i] === undefined, false)) { // some eventId is unknown, fetch needed
-        if (!loading) {
-          setLoading(true);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        if (Array(itemsPerPage)
+          .fill()
+          .filter((_, i) => currentPageIndex * itemsPerPage + i < totalCount)
+          .reduce((acc, _, i) => acc || eventIds[currentPageIndex * itemsPerPage + i] === undefined, false)) { // some eventId is unknown, fetch needed
+          if (!loading) {
+            setLoading(true);
 
-          if (byAccount && accountId) {
-            await dispatch(browseEventByAccount({
-              authToken: auth.token,
-              account_id: accountId,
-              view,
-              limit: itemsPerPage,
-              offset: itemsPerPage * pageIndex,
-              reportEventIds,
-            })).unwrap();
-          } else {
-            await dispatch(browseEvent({
-              authToken: auth.token,
-              view,
-              search,
-              limit: itemsPerPage,
-              offset: itemsPerPage * pageIndex,
-              reportEventIds,
-            })).unwrap();
+            if (byAccount && accountId) {
+              await dispatch(browseEventByAccount({
+                authToken: auth.token,
+                account_id: accountId,
+                view,
+                limit: itemsPerPage,
+                offset: itemsPerPage * currentPageIndex,
+                reportEventIds,
+              })).unwrap();
+            } else {
+              await dispatch(browseEvent({
+                authToken: auth.token,
+                view,
+                search,
+                limit: itemsPerPage,
+                offset: itemsPerPage * currentPageIndex,
+                reportEventIds,
+              })).unwrap();
+            }
+            setLoading(false);
           }
-          setLoading(false);
-          setCurrentPageIndex(pageIndex);
         }
+      } catch (err) {
+        setError(err);
+        setLoading(false);
       }
-    } catch (err) {
-      setError(err);
-      setLoading(false);
-    }
+    };
+    fetchEvents();
+  }, [accountId, auth.token, byAccount, currentPageIndex, dispatch, eventIds, itemsPerPage, loading, search, totalCount, view]);
+
+  const switchPage = async pageIndex => {
+    setCurrentPageIndex(pageIndex);
   };
 
   const reset = () => {
@@ -63,6 +69,12 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
     setCurrentPageIndex(0);
     setError(null);
   };
+
+  useEffect(() => {
+    if (currentPageIndex >= (totalCount === Infinity ? 1 : Math.ceil(totalCount / itemsPerPage))) {
+      setCurrentPageIndex(totalCount === Infinity ? 1 : Math.max(Math.ceil(totalCount / itemsPerPage) - 1, 1));
+    }
+  }, [currentPageIndex, itemsPerPage, totalCount]);
 
   useEffect(() => {
     reset();
@@ -75,7 +87,7 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
       .filter(item => item !== undefined),
     initialized: totalCount === Infinity,
     currentPageIndex,
-    totalNumberOfPage: totalCount === Infinity ? 1 : Math.ceil(totalCount / itemsPerPage),
+    totalNumberOfPage: totalCount === Infinity ? 1 : Math.max(Math.ceil(totalCount / itemsPerPage), 1),
     switchPage,
     loading,
     error,

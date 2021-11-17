@@ -44,7 +44,7 @@ export const browseEvent = createAsyncThunk(
       ],
     );
 
-    reportEventIds(res.data.data.map(item => item.id), res.data.total_count);
+    reportEventIds(res.data.data.map(item => item.id), res.data.total_count, offset);
 
     return res.data.data;
   },
