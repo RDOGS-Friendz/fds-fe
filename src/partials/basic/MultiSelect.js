@@ -21,10 +21,16 @@ const customStyles = {
   }),
 };
 
-export default function MultiSelect({ name, placeholder = 'Select...', value, options, onChange }) {
+export default function MultiSelect({ label, id, name, placeholder = 'Select...', value, options, onChange, required = false }) {
   return (
     <div>
+      <label className="block text-sm font-medium mb-1" htmlFor={id}>
+        {label}
+        {required
+        && <span className="text-red-500">*</span>}
+      </label>
       <Select
+        id={id}
         name={name}
         placeholder={placeholder}
         value={value}
