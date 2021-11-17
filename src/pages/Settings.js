@@ -1,29 +1,10 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import Select, { components } from 'react-select';
 import Datepicker from '../partials/basic/DatePicker';
+import MultiSelect from '../partials/basic/MultiSelect';
+import Select from '../partials/basic/Select';
 import TextField from '../partials/basic/TextField';
 
-const Input = props => (
-  <components.Input {...props} inputClassName="outline-none border-none shadow-none focus:ring-transparent" />
-);
-
-const customStyles = {
-  control: (provided, state) => ({
-    ...provided,
-    '*': {
-      boxShadow: 'none !important',
-    },
-    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05);',
-    // className="text-sm text-gray-800 bg-white border rounded leading-5 border-gray-200 hover:border-gray-300 focus:border-indigo-300 shadow-sm"
-    borderColor: state.isFocused ? 'rgba(165, 180, 252)' : 'rgba(229, 231, 235)',
-    '&:hover': {
-      borderColor: state.isFocused ? 'rgba(165, 180, 252)' : 'rgba(209, 213, 219)',
-    },
-  }),
-};
-
-const options = [
+const sports_categories = [
   { label: 'Running', value: '1' },
   { label: 'Walking', value: '2' },
   { label: 'Swimming', value: '3' },
@@ -34,8 +15,16 @@ const options = [
   { label: 'Table Tennis', value: '14' },
 ];
 
+const departments = [
+  { label: 'Information Management', value: '1' },
+  { label: 'Chinese Literature', value: '2' },
+  { label: 'Computer Science', value: '3' },
+  { label: 'International Business', value: '4' },
+];
+
 function Settings() {
   const [showRealName, setShowRealName] = useState(false);
+  const [dept, setDept] = useState('');
   const [showBday, setShowBday] = useState(false);
   const [date, setDate] = useState(Date());
   const [description, setDescription] = useState('');
@@ -115,14 +104,14 @@ function Settings() {
                         <TextField inputClassName="w-80" label="Instagram  Username" value="icheft" />
                       </div>
                       <div className="mb-3">
-                        <label className="block text-sm font-medium mb-1" htmlFor="country">
-                          Department
-                        </label>
-                        <select id="country" className="form-select w-80">
-                          <option>Information Management</option>
-                          <option>Chinese Literature</option>
-                          <option>Accounting</option>
-                        </select>
+                        <Select
+                          label="Department"
+                          id="dept"
+                          value={dept}
+                          options={departments}
+                          onChange={e => setDept(e.target.value)}
+                          inputClassName="w-80"
+                        />
                       </div>
                       <div className="flex justify-between items-center pb-3">
                         {/* Left */}
@@ -155,17 +144,12 @@ function Settings() {
                         <label className="block text-sm font-medium mb-1" htmlFor="country">
                           Preferred Sports
                         </label>
-                        <Select
+                        <MultiSelect
                           name="preference"
                           placeholder="Select..."
                           value={preferredCategory}
-                          options={options}
-                          closeMenuOnSelect={false}
+                          options={sports_categories}
                           onChange={setPreferredCategory}
-                          components={{ Input }}
-                          isMulti
-                          isSearchable
-                          styles={customStyles}
                         />
                       </div>
                       <div>
