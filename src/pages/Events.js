@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TextField from '../partials/basic/TextField';
 import SearchBar from '../partials/basic/SearchBar';
 import DateRangePicker from '../partials/basic/DateRangePicker';
@@ -47,6 +47,8 @@ export default function Events() {
 
   const [numItemsPerPage, setNumItemsPerPage] = useState(9);
 
+  const dateRangePickerRef = useRef(null);
+
   const [
     categoryInputValue,
     selectedCategoryId,
@@ -65,8 +67,8 @@ export default function Events() {
         ['intensity', selectedIntensityValue],
         ['day_time', selectedDayTimeValue],
         ['duration', selectedDurationValue],
-        ['start_date', dateRange[0] && isValidDate(dateRange[0]) ? dateRange[0].toISOString() : null],
-        ['end_date', dateRange[1] && isValidDate(dateRange[1]) ? dateRange[1].toISOString() : null],
+        ['start_date', dateRange[0]?.toISOString()],
+        ['end_date', dateRange[1]?.toISOString()],
         ['is_private', privateOnly],
       ].filter(item => item[1] !== null && item[1] !== undefined && item[1] !== ''),
     );
@@ -208,7 +210,7 @@ export default function Events() {
             </div>
             <div className="">
               <h2 className="font-semibold text-gray-800 mb-3">Date</h2>
-              <DateRangePicker setValue={setDateRange} />
+              <DateRangePicker setValue={setDateRange} ref={dateRangePickerRef} />
             </div>
           </div>
           <div className="flex justify-end flex-wrap space-x-2">
