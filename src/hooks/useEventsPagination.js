@@ -7,6 +7,8 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
   const auth = useSelector(state => state.auth);
   const events = useSelector(state => state.events);
 
+  const [privateOnly, setPrivateOnly] = useState(false);
+
   const [eventIds, setEventIds] = useState({});
   const [totalCount, setTotalCount] = useState(Infinity);
   const [error, setError] = useState(null);
@@ -41,7 +43,7 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
               await dispatch(browseEvent({
                 authToken: auth.token,
                 view,
-                search,
+                search: [].concat(search, privateOnly ? [['is_private', 'true']] : []),
                 limit: itemsPerPage,
                 offset: itemsPerPage * currentPageIndex,
                 reportEventIds,
@@ -56,13 +58,14 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
       }
     };
     fetchEvents();
-  }, [accountId, auth.token, byAccount, currentPageIndex, dispatch, eventIds, itemsPerPage, loading, search, totalCount, view]);
+  }, [accountId, auth.token, byAccount, currentPageIndex, dispatch, eventIds, itemsPerPage, loading, privateOnly, search, totalCount, view]);
 
   const switchPage = async pageIndex => {
     setCurrentPageIndex(pageIndex);
   };
 
-  const reset = () => {
+  const reset = pri => {
+    setPrivateOnly(pri);
     setLoading(false);
     setEventIds({});
     setTotalCount(Infinity);
@@ -92,5 +95,6 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
     loading,
     error,
     reset,
+    privateOnly,
   };
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { PulseLoader } from 'react-spinners';
 import TextField from '../partials/basic/TextField';
 import SearchBar from '../partials/basic/SearchBar';
 import DateRangePicker from '../partials/basic/DateRangePicker';
@@ -11,10 +12,6 @@ import EventCard from '../partials/EventCard';
 import PaginationNumeric from '../partials/basic/PaginationNumeric';
 
 export default function Events() {
-  function isValidDate(d) {
-    return d instanceof Date && !d.toString() === 'Invalid Date';
-  }
-
   const intensityOptions = {
     LOW: 'Low',
     INTERMEDIATE: 'Intermediate',
@@ -41,7 +38,6 @@ export default function Events() {
   const [selectedDayTimeValue, setSelectedDayTimeValue] = useState(null);
   const [selectedDurationValue, setSelectedDurationValue] = useState(null);
   const [dateRange, setDateRange] = useState([null, null]);
-  const [privateOnly, setPrivateOnly] = useState(false);
 
   const [eventSearch, setEventSearch] = useState([]);
 
@@ -69,10 +65,9 @@ export default function Events() {
         ['duration', selectedDurationValue],
         ['start_date', dateRange[0]?.toISOString()],
         ['end_date', dateRange[1]?.toISOString()],
-        ['is_private', privateOnly],
       ].filter(item => item[1] !== null && item[1] !== undefined && item[1] !== ''),
     );
-  }, [dateRange, privateOnly, searchInputValue, selectedCategoryId, selectedDayTimeValue, selectedDurationValue, selectedIntensityValue]);
+  }, [dateRange, searchInputValue, selectedCategoryId, selectedDayTimeValue, selectedDurationValue, selectedIntensityValue]);
 
   useEffect(() => {
     if (width < 768) {
@@ -95,6 +90,7 @@ export default function Events() {
     loading,
     error,
     reset,
+    privateOnly,
   } = useEventsPagination('all', eventSearch, numItemsPerPage);
 
   const handleClickIntensityOption = value => {
@@ -221,13 +217,37 @@ export default function Events() {
         </div>
 
         <div className="flex flex-shrink-0 space-x-2 col-span-full mb-5">
-          <Badge color={privateOnly ? 'plain' : 'active'} onClick={() => { setPrivateOnly(false); }}>View All</Badge>
-          <Badge color={!privateOnly ? 'plain' : 'active'} onClick={() => setPrivateOnly(true)}>Private Only</Badge>
+          <Badge
+            color={privateOnly ? 'plain' : 'active'}
+            onClick={() => {
+              if (privateOnly) { reset(false); }
+            }}
+          >
+            View All
+
+          </Badge>
+          <Badge
+            color={!privateOnly ? 'plain' : 'active'}
+            onClick={() => {
+              if (!privateOnly) { reset(true); }
+            }}
+          >
+            Private Only
+
+          </Badge>
         </div>
 
         {/* Cards */}
         <div className="grid md:grid-cols-6 xl:grid-cols-9 2xl:grid-cols-12 gap-6 justify-items-center mb-5">
-          {displayItems.map(item => <EventCard key={item.id} event={item} />)}
+          {
+          loading
+            ? (
+              <div className="col-span-full row-span-full h-96 flex items-center align-middle">
+                <PulseLoader size={6} color="gray" />
+              </div>
+            )
+            : displayItems.map(item => <EventCard key={item.id} event={item} />)
+}
         </div>
 
         <div className="flex flex-shrink-0 justify-center col-span-full">
