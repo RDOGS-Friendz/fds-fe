@@ -28,15 +28,15 @@ function PaginationNumeric({ pageIndex, setPageIndex, numOfPage = 12 }) {
           </button>
         </div>
         <ul className="inline-flex text-sm font-medium -space-x-px shadow-sm">
-          {displayItems.map(item => (item === '…'
+          {displayItems.map((item, index) => (item === '…'
             ? (
-              <li>
+              <li key={index === 1 ? 'ellipse 1' : 'ellipse 2'}>
                 <button type="button" disabled className="cursor-default">
                   <span className="inline-flex items-center justify-center rounded-l leading-5 px-3.5 py-2 bg-white border border-gray-200 text-indigo-500">…</span>
                 </button>
               </li>
             ) : (
-              <li>
+              <li key={item}>
                 <button type="button" onClick={() => setPageIndex(item - 1)}>
                   <span className={`inline-flex items-center justify-center rounded-l leading-5 px-3.5 py-2 bg-white border border-gray-200 ${pageIndex === item - 1 && 'text-indigo-500'}`}>{item}</span>
                 </button>
