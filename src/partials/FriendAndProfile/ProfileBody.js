@@ -23,13 +23,13 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
 
   const [accountId, setAccountId] = useState(null);
   const [action, setAction] = useState('not-friend');
-
   const [
-    upcomingEvents,
-    upcomingTotalCount,
-    upcomingLoading,
-    upcomingFetchMore,
-  ] = useEventsView('upcoming', '');
+    pastEvents,
+    pastTotalCount,
+    pastLoading,
+    pastFetchMore,
+    pastError,
+  ] = useEventsView('history', [], 5, true, accountId);
 
   useEffect(() => {
     if (self) {
@@ -192,10 +192,11 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
               {/* Cards */}
               <div className="grid grid-cols-1 gap-6">
                 <EventGallery
-                  events={upcomingEvents}
-                  totalCount={upcomingTotalCount}
-                  loading={upcomingLoading}
-                  fetchMore={upcomingFetchMore}
+                  events={pastEvents}
+                  totalCount={pastTotalCount}
+                  loading={pastLoading}
+                  fetchMore={pastFetchMore}
+                  error={pastError}
                 />
               </div>
             </div>

@@ -42,6 +42,7 @@ export default function Button({
         variant,
         color,
       )} disabled:border-gray-200 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed shadow-none ${className}`}
+      // eslint-disable-next-line
       type={type}
       disabled={disabled}
       onClick={onClick}

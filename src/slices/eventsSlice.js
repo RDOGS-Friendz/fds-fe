@@ -11,7 +11,7 @@ export const browseEvent = createAsyncThunk(
   async ({
     authToken, view, search, limit, offset, reportEventIds,
   }, { dispatch }) => {
-    const config1 = {
+    const config = {
       headers: {
         'auth-token': authToken,
       },
@@ -23,7 +23,48 @@ export const browseEvent = createAsyncThunk(
       },
     };
 
-    const res = await agent.get('/event', config1);
+    const res = await agent.get('/event', config);
+
+    const locationIds = [...new Set(res.data.data.map(item => item.location_id))];
+    const categoryIds = [...new Set(res.data.data.map(item => item.category_id))];
+    const participantAccountIds = [
+      ...new Set(
+        res.data.data
+          .map(item => item.participant_ids
+            .concat([item.creator_account_id]))
+          .flat(),
+      ),
+    ];
+
+    await Promise.all(
+      [
+        dispatch(batchGetAccount({ authToken, accountIds: participantAccountIds })),
+        dispatch(batchGetCategory({ authToken, categoryIds })),
+        dispatch(batchGetLocation({ authToken, locationIds })),
+      ],
+    );
+
+    reportEventIds(res.data.data.map(item => item.id), res.data.total_count);
+
+    return res.data.data;
+  },
+);
+
+export const browseEventByAccount = createAsyncThunk(
+  'events/browseEventByAccount',
+  async ({ authToken, account_id, view = 'ALL', limit, offset, reportEventIds }, { dispatch }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+      params: {
+        view,
+        limit,
+        offset,
+      },
+    };
+
+    const res = await agent.get(`/account/${account_id}/event`, config);
 
     const locationIds = [...new Set(res.data.data.map(item => item.location_id))];
     const categoryIds = [...new Set(res.data.data.map(item => item.category_id))];
@@ -187,6 +228,9 @@ const eventsSlice = createSlice({
         eventsAdapter.removeOne(state, action.payload);
       })
       .addCase(browseEvent.fulfilled, (state, action) => {
+        eventsAdapter.upsertMany(state, action.payload);
+      })
+      .addCase(browseEventByAccount.fulfilled, (state, action) => {
         eventsAdapter.upsertMany(state, action.payload);
       });
   },

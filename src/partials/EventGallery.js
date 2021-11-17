@@ -10,6 +10,7 @@ export default function EventGallery({
   events,
   totalCount,
   loading,
+  error,
   fetchMore,
   joinReset,
   bookmarkReset,
@@ -40,16 +41,28 @@ export default function EventGallery({
   };
 
   useEffect(() => {
-    if (totalCount === Infinity && !loading) {
+    if (totalCount === Infinity && !loading && !error) {
       fetchMore();
     }
-  }, [fetchMore, loading, totalCount]);
+  }, [error, fetchMore, loading, totalCount]);
 
   const onUpdate = apiObj => {
     if (((apiObj.isLastItemVisible) && !loading)) {
       fetchMore();
     }
   };
+
+  if (error) {
+    return (
+      <div className="flex flex-col justify-center w-full h-full">
+        <div className="font-semibold text-gray-800 mx-auto my-auto">
+          Oops, some error occurred:
+          {' '}
+          {error.message}
+        </div>
+      </div>
+    );
+  }
 
   return (
     totalCount === 0
