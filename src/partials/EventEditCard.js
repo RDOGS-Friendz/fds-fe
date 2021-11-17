@@ -118,7 +118,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
     setEndTimeValue(moment().add(1, 'h'));
     setTitle('');
     setIsPrivate(false);
-    setSelectedIntensityValue(0);
+    setSelectedIntensityValue('LOW');
     setNumberOfPeopleNeeded(6);
     setDescription('');
     setOpen(false);
