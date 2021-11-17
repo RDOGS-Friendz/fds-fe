@@ -45,7 +45,7 @@ function DropdownClassic({ label, selected, setSelected, options }) {
           aria-expanded={dropdownOpen}
         >
           <span className="flex items-center">
-            <span>{options[selected].label}</span>
+            <span>{options.find(item => item.value === selected)?.label}</span>
           </span>
           <svg
             className="flex-shrink-0 ml-1 fill-current text-gray-400"
@@ -73,22 +73,22 @@ function DropdownClassic({ label, selected, setSelected, options }) {
             onFocus={() => setDropdownOpen(true)}
             onBlur={() => setDropdownOpen(false)}
           >
-            {options.map((option, index) => (
+            {options.map(option => (
               <button
                 type="button"
                 key={option.value}
                 tabIndex="0"
                 className={`flex items-center w-full hover:bg-gray-50 py-1 px-3 cursor-pointer ${
-                  index === selected && 'text-indigo-500'
+                  option.value === selected && 'text-indigo-500'
                 }`}
                 onClick={() => {
-                  setSelected(index);
+                  setSelected(option.value);
                   setDropdownOpen(false);
                 }}
               >
                 <svg
                   className={`flex-shrink-0 mr-2 fill-current text-indigo-500 ${
-                    index !== selected && 'invisible'
+                    option.value !== selected && 'invisible'
                   }`}
                   width="12"
                   height="9"

@@ -8,7 +8,7 @@ export default function Profile() {
     <main>
       <div className="relative flex bg-white">
         {/* Profile body */}
-        <ProfileBody friendSidebarOpen={friendSidebarOpen} setFriendSidebarOpen={setFriendSidebarOpen} action="self" />
+        <ProfileBody self friendSidebarOpen={friendSidebarOpen} setFriendSidebarOpen={setFriendSidebarOpen} />
       </div>
     </main>
   );

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { browseEvent } from '../slices/eventsSlice';
+import { browseEvent, browseEventByAccount } from '../slices/eventsSlice';
 
-export default function useEventsView(view = 'all', search = [], limit = 5) {
+export default function useEventsView(view = 'all', search = [], limit = 5, byAccount = false, accountId = null) {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const events = useSelector(state => state.events);
@@ -14,22 +14,36 @@ export default function useEventsView(view = 'all', search = [], limit = 5) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const reportEventIds = (fetchedEventIds, fetchedTotalCount) => {
+    setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [numItemsFetched + index]: item }), state));
+    setTotalCount(fetchedTotalCount);
+    setNumItemsFetched(state => state + fetchedEventIds.length);
+  };
+
   const fetchMore = async () => {
     try {
       if (moreToFetch && !loading) {
         setLoading(true);
-        await dispatch(browseEvent({
-          authToken: auth.token,
-          view,
-          search,
-          limit,
-          offset: numItemsFetched,
-          reportEventIds: (fetchedEventIds, fetchedTotalCount) => {
-            setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [numItemsFetched + index]: item }), state));
-            setTotalCount(fetchedTotalCount);
-            setNumItemsFetched(state => state + fetchedEventIds.length);
-          },
-        })).unwrap();
+
+        if (byAccount && accountId) {
+          await dispatch(browseEventByAccount({
+            authToken: auth.token,
+            account_id: accountId,
+            view,
+            limit,
+            offset: numItemsFetched,
+            reportEventIds,
+          })).unwrap();
+        } else {
+          await dispatch(browseEvent({
+            authToken: auth.token,
+            view,
+            search,
+            limit,
+            offset: numItemsFetched,
+            reportEventIds,
+          })).unwrap();
+        }
         setLoading(false);
       }
     } catch (err) {
@@ -49,6 +63,10 @@ export default function useEventsView(view = 'all', search = [], limit = 5) {
   useEffect(() => {
     setMoreToFetch(numItemsFetched < totalCount);
   }, [numItemsFetched, totalCount]);
+
+  useEffect(() => {
+    reset();
+  }, [accountId]);
 
   return [
     (Array(numItemsFetched).fill().map((_, i) => events.entities[eventIds[i]])).filter(item => item !== undefined),

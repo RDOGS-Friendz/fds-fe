@@ -1,6 +1,7 @@
 import {
   createAsyncThunk, createEntityAdapter, createSlice,
 } from '@reduxjs/toolkit';
+import { batchGetAccount, batchGetCategory, batchGetLocation } from './utilThunks';
 import agent from './agent';
 
 const eventsAdapter = createEntityAdapter({});
@@ -9,8 +10,8 @@ export const browseEvent = createAsyncThunk(
   'events/browseEvent',
   async ({
     authToken, view, search, limit, offset, reportEventIds,
-  }) => {
-    const config1 = {
+  }, { dispatch }) => {
+    const config = {
       headers: {
         'auth-token': authToken,
       },
@@ -22,60 +23,71 @@ export const browseEvent = createAsyncThunk(
       },
     };
 
-    const res1 = await agent.get('/event', config1);
+    const res = await agent.get('/event', config);
 
-    const locationIds = [...new Set(res1.data.data.map(item => item.location_id))];
-    const categoryIds = [...new Set(res1.data.data.map(item => item.category_id))];
-    const participantAccountIds = [...new Set(res1.data.data.map(item => item.participant_ids.concat([item.creator_account_id])).flat())];
+    const locationIds = [...new Set(res.data.data.map(item => item.location_id))];
+    const categoryIds = [...new Set(res.data.data.map(item => item.category_id))];
+    const participantAccountIds = [
+      ...new Set(
+        res.data.data
+          .map(item => item.participant_ids
+            .concat([item.creator_account_id]))
+          .flat(),
+      ),
+    ];
 
-    const config2 = {
-      headers: {
-        'auth-token': authToken,
-      },
-    };
-
-    const config3 = {
-      headers: {
-        'auth-token': authToken,
-      },
-      params: {
-        account_ids: JSON.stringify(participantAccountIds),
-      },
-    };
-
-    const [res2, res3, res4] = await Promise.all(
+    await Promise.all(
       [
-        Promise.all([...new Set(locationIds)].map(async item => (await agent.get(`/location/${item}`, config2)).data)),
-        Promise.all([...new Set(categoryIds)].map(async item => (await agent.get(`/category/${item}`, config2)).data)),
-        agent.get('/account/batch', config3),
+        dispatch(batchGetAccount({ authToken, accountIds: participantAccountIds })),
+        dispatch(batchGetCategory({ authToken, categoryIds })),
+        dispatch(batchGetLocation({ authToken, locationIds })),
       ],
     );
 
-    reportEventIds(res1.data.data.map(item => item.id), res1.data.total_count);
+    reportEventIds(res.data.data.map(item => item.id), res.data.total_count);
 
-    return {
-      events: res1.data.data,
-      locations: res2,
-      categories: res3,
-      accounts: res4.data,
-    };
+    return res.data.data;
   },
 );
 
-export const addEvent = createAsyncThunk(
-  'events/addEvent',
-  async ({
-    authToken, title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
-  }) => {
+export const browseEventByAccount = createAsyncThunk(
+  'events/browseEventByAccount',
+  async ({ authToken, account_id, view = 'ALL', limit, offset, reportEventIds }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
+      params: {
+        view,
+        limit,
+        offset,
+      },
     };
 
-    await agent.post('/event', {
-      title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
-    }, config);
+    const res = await agent.get(`/account/${account_id}/event`, config);
+
+    const locationIds = [...new Set(res.data.data.map(item => item.location_id))];
+    const categoryIds = [...new Set(res.data.data.map(item => item.category_id))];
+    const participantAccountIds = [
+      ...new Set(
+        res.data.data
+          .map(item => item.participant_ids
+            .concat([item.creator_account_id]))
+          .flat(),
+      ),
+    ];
+
+    await Promise.all(
+      [
+        dispatch(batchGetAccount({ authToken, accountIds: participantAccountIds })),
+        dispatch(batchGetCategory({ authToken, categoryIds })),
+        dispatch(batchGetLocation({ authToken, locationIds })),
+      ],
+    );
+
+    reportEventIds(res.data.data.map(item => item.id), res.data.total_count);
+
+    return res.data.data;
   },
 );
 
@@ -94,33 +106,89 @@ export const readEvent = createAsyncThunk(
   },
 );
 
+export const addEvent = createAsyncThunk(
+  'events/addEvent',
+  async ({
+    authToken, title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+  }, { dispatch }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+    };
+
+    const res = await agent.post('/event', {
+      title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+    }, config);
+
+    dispatch(readEvent({ authToken, event_id: res.data.id }));
+  },
+);
+
+export const deleteEvent = createAsyncThunk(
+  'events/deleteEvent',
+  async ({ authToken, event_id }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+    };
+    await agent.delete(`/event/${event_id}`, config);
+
+    return event_id;
+  },
+);
+
+export const editEvent = createAsyncThunk(
+  'events/editEvent',
+  async ({
+    authToken, event_id, title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+  }, { dispatch }) => {
+    const config = {
+      headers: {
+        'auth-token': authToken,
+      },
+    };
+
+    const res = await agent.patch(`/event/${event_id}`, {
+      title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
+    }, config);
+
+    dispatch(readEvent({ authToken, event_id: res.data.id }));
+  },
+);
+
 export const joinEvent = createAsyncThunk(
   'events/joinEvent',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
     await agent.post(`/event/${event_id}/join`, {}, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
 export const cancelJoinEvent = createAsyncThunk(
   'events/cancelJoinEvent',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
     await agent.delete(`/event/${event_id}/join`, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
 export const addBookmark = createAsyncThunk(
   'events/addBookmark',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -128,18 +196,22 @@ export const addBookmark = createAsyncThunk(
     };
 
     await agent.post(`/event/${event_id}/bookmark`, {}, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
 export const deleteBookmark = createAsyncThunk(
   'events/deleteBookmark',
-  async ({ authToken, event_id }) => {
+  async ({ authToken, event_id }, { dispatch }) => {
     const config = {
       headers: {
         'auth-token': authToken,
       },
     };
     await agent.delete(`/event/${event_id}/bookmark`, config);
+
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
@@ -152,8 +224,14 @@ const eventsSlice = createSlice({
       .addCase(readEvent.fulfilled, (state, action) => {
         eventsAdapter.upsertOne(state, action.payload);
       })
+      .addCase(deleteEvent.fulfilled, (state, action) => {
+        eventsAdapter.removeOne(state, action.payload);
+      })
       .addCase(browseEvent.fulfilled, (state, action) => {
-        eventsAdapter.upsertMany(state, action.payload.events);
+        eventsAdapter.upsertMany(state, action.payload);
+      })
+      .addCase(browseEventByAccount.fulfilled, (state, action) => {
+        eventsAdapter.upsertMany(state, action.payload);
       });
   },
 });

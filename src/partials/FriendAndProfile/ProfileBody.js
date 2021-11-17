@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import moment from 'moment';
 import Avatar from '../basic/Avatar';
 import Badge from '../basic/Badge';
 import FriendAction from '../basic/FriendAction';
@@ -6,14 +10,71 @@ import FriendAction from '../basic/FriendAction';
 import useEventsView from '../../hooks/useEventsView';
 import EventGallery from '../EventGallery';
 import LinkIcon from '../../icons/LinkIcon';
+import PageNotFound from '../../pages/utility/PageNotFound';
+import { readAccountProfile } from '../../slices/accountsSlice';
+import genderTypeTransform from '../../functions/genderTypeTransform';
 
-function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
+function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) {
+  const auth = useSelector(state => state.auth);
+  const { accountId: accountIdParam } = useParams();
+  const accounts = useSelector(state => state.accounts);
+  const categories = useSelector(state => state.categories);
+  const dispatch = useDispatch();
+
+  const [accountId, setAccountId] = useState(null);
+  const [action, setAction] = useState('not-friend');
   const [
-    upcomingEvents,
-    upcomingTotalCount,
-    upcomingLoading,
-    upcomingFetchMore,
-  ] = useEventsView('upcoming', '');
+    pastEvents,
+    pastTotalCount,
+    pastLoading,
+    pastFetchMore,
+    pastError,
+  ] = useEventsView('history', [], 5, true, accountId);
+
+  useEffect(() => {
+    if (self) {
+      setAccountId(auth.userAccountId);
+    } else {
+      setAccountId(accountIdParam);
+    }
+  }, [self, auth.userAccountId, accountIdParam]);
+
+  useEffect(() => {
+    if (accountId) {
+      dispatch(readAccountProfile({ authToken: auth.token, accountId }));
+    }
+  }, [accountId, auth.token, dispatch]);
+
+  useEffect(() => {
+    if (accounts.entities[auth.userAccountId].friendAccountIds?.includes(Number(accountId))) {
+      setAction('friend');
+    } else if (accounts.entities[auth.userAccountId].friendRequestAccountIds?.includes(Number(accountId))) {
+      setAction('request');
+    } else if (accounts.entities[auth.userAccountId].pendingFriendRequestAccountIds?.includes(Number(accountId))) {
+      setAction('request-sent');
+    } else if (auth.userAccountId === accountId) {
+      setAction('self');
+    } else {
+      setAction('not-friend');
+    }
+  }, [accountId, accounts.entities, auth.userAccountId]);
+
+  if (!accountId) {
+    return (
+      <div
+        className={`flex flex-col w-full items-center justify-center ${
+          friendSidebarOpen ? 'translate-x-1/3' : 'translate-x-0'
+        }`}
+      >
+        <h2 className="text-gray-800 font-semibold text-4xl mb-3">🔍</h2>
+        <h2 className="text-gray-800 font-semibold">Select a friend or friend request to view here.</h2>
+
+      </div>
+    );
+  }
+
+  if (!accounts.entities[accountId]) { return (<PageNotFound />); }
+
   return (
     <div
       className={`flex-grow flex flex-col md:translate-x-0 transform transition-transform duration-300 ease-in-out ${
@@ -44,45 +105,56 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
           <div className="flex flex-col items-center">
             {/* Avatar */}
             <div className="inline-flex -ml-1 -mt-1 -mb-2 md:-mb-1">
-              <Avatar name="icheft" size="profile" />
+              <Avatar name={accounts.entities[accountId].real_name} size="profile" />
             </div>
           </div>
         </div>
 
         {/* Header */}
-        <header className="text-center mb-4">
+        <header className="text-center mb-3">
           {/* Name */}
           <div className="inline-flex items-start mb-2">
-            <h1 className="text-2xl text-gray-800 font-bold">icheft</h1>
+            <h1 className="text-2xl text-gray-800 font-bold">{accounts.entities[accountId].username}</h1>
           </div>
           {/* Bio */}
-          <div className="text-sm mb-3">Nothing more than a fitness fanatic.</div>
-          {/* Meta */}
-          <div className="flex flex-wrap justify-center space-x-4">
-            <div className="flex items-center">
-              <LinkIcon extraClass="text-gray-400" />
-              <a
-                className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2"
-                href="https://www.instagram.com/brian_lxchen/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                brian_lxchen
-              </a>
+
+          {accounts.entities[accountId].tagline !== ''
+            && (
+            <div className="text-sm mb-2">
+              {accounts.entities[accountId].tagline || <Skeleton />}
             </div>
-          </div>
+            )}
+          {/* Meta */}
+          {
+            accounts.entities[accountId]?.social_media_acct
+            && (
+            <div className="flex flex-wrap justify-center space-x-4">
+              <div className="flex items-center">
+                <LinkIcon extraClass="text-gray-400" />
+                <a
+                  className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-600 ml-2"
+                  href={`https://www.instagram.com/${accounts.entities[accountId]?.social_media_acct}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {accounts.entities[accountId]?.social_media_acct}
+                </a>
+              </div>
+            </div>
+            )
+          }
         </header>
 
         {/* Actions */}
         <div className="relative mb-6 sm:mb-3">
           <div className="absolute bottom-0 w-full h-px bg-gray-200" aria-hidden="true" />
           <div className="flex flex-col items-center">
-            <FriendAction action={action} />
+            <FriendAction action={action} accountId={accountId} />
           </div>
         </div>
 
         {/* Profile content */}
-        <div className="flex flex-col xl:flex-row xl:space-x-16">
+        <div className="flex flex-col xl:flex-row xl:space-x-16 justify-between px-3">
           {/* Main content */}
           <div className="space-y-5 mb-8 xl:mb-0">
             {/* About Me */}
@@ -91,24 +163,13 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
               <div className="text-sm space-y-2">
                 <div className="sm:ml-0 mt-2 sm:mt-0">
                   <ul className="flex flex-wrap sm:justify-start -m-1">
-                    <li className="m-1">
-                      <Badge>Running</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Workout</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Tennis</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Cycling</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>Swimming</Badge>
-                    </li>
-                    <li className="m-1">
-                      <Badge>American Football</Badge>
-                    </li>
+                    {
+                      accounts.entities[accountId].preferred_category_id?.map(id => (
+                        <li key={id} className="m-1">
+                          <Badge>{categories.entities[id]?.name}</Badge>
+                        </li>
+                      ))
+                    }
                   </ul>
                 </div>
               </div>
@@ -118,26 +179,24 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
             <div>
               <h2 className="text-gray-800 font-semibold mb-2">About Me</h2>
               <div className="text-sm space-y-2">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </p>
-                <p>Consectetur adipiscing elit, sed do eiusmod tempor magna aliqua.</p>
+                {accounts.entities[accountId].about}
               </div>
             </div>
 
-            {/* Departments */}
             <div>
-              <h2 className="text-gray-800 font-semibold mb-2">Past Event Joined by icheft</h2>
+              <h2 className="text-gray-800 font-semibold mb-2">
+                Past Event Joined by
+                {' '}
+                {accounts.entities[accountId].username}
+              </h2>
               {/* Cards */}
               <div className="grid grid-cols-1 gap-6">
                 <EventGallery
-                  events={upcomingEvents}
-                  totalCount={upcomingTotalCount}
-                  loading={upcomingLoading}
-                  fetchMore={upcomingFetchMore}
+                  events={pastEvents}
+                  totalCount={pastTotalCount}
+                  loading={pastLoading}
+                  fetchMore={pastFetchMore}
+                  error={pastError}
                 />
               </div>
             </div>
@@ -147,23 +206,23 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, action }) {
           <aside className="xl:min-w-56 xl:w-56 space-y-3">
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Real Name</h3>
-              <div>Brian L. Chen</div>
+              <div>{accounts.entities[accountId].real_name}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Gender</h3>
-              <div>Male</div>
+              <div>{genderTypeTransform(accounts.entities[accountId].gender)}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Department</h3>
-              <div>Information Management, National Taiwan University</div>
+              <div>{accounts.entities[accountId].department}</div>
             </div>
             <div className="text-sm">
               <h3 className="font-medium text-gray-800">Birthday</h3>
-              <div className="uppercase">Jan 06, 2000</div>
+              <div className="uppercase">{moment(accounts.entities[accountId].birthday).format('MMM DD, YYYY')}</div>
             </div>
             <div className="text-sm">
-              <h3 className="font-medium text-gray-800">Joined Date</h3>
-              <div>Sep 01, 2021</div>
+              <h3 className="font-medium text-gray-800 ">Joined Date</h3>
+              <div className="uppercase">{moment(accounts.entities[accountId].joined_date).format('MMM DD, YYYY')}</div>
             </div>
           </aside>
         </div>

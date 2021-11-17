@@ -3,7 +3,7 @@ import { MdAdd } from 'react-icons/md';
 import { RiPencilFill } from 'react-icons/ri';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBookmark, deleteBookmark, readEvent } from '../slices/eventsSlice';
+import { addBookmark, deleteBookmark } from '../slices/eventsSlice';
 
 import '../css/additional-styles/horizontalScrollingMenu.css';
 
@@ -25,7 +25,7 @@ function Dashboard() {
     suggestedTotalCount,
     suggestedLoading,
     suggestedFetchMore,,
-    suggestedReset,
+    // suggestedReset,
   ] = useEventsView('suggested', '');
 
   const [
@@ -71,15 +71,13 @@ function Dashboard() {
     setOpenEventEditCard(true);
   };
 
-  const getOnBookmarkEvent = event => async e => {
+  const getOnBookmarkEvent = event => e => {
     e.stopPropagation();
     if (event.bookmarked) {
-      await dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
+      dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
     } else {
-      await dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
+      dispatch(addBookmark({ authToken: auth.token, event_id: event.id }));
     }
-
-    await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
   return (
@@ -103,7 +101,7 @@ function Dashboard() {
                 totalCount={suggestedTotalCount}
                 loading={suggestedLoading}
                 fetchMore={suggestedFetchMore}
-                joinReset={[upcomingReset]}
+                // joinReset={[upcomingReset]}
               />
             </DashboardCard>
 
@@ -113,7 +111,7 @@ function Dashboard() {
                 totalCount={upcomingTotalCount}
                 loading={upcomingLoading}
                 fetchMore={upcomingFetchMore}
-                joinReset={[upcomingReset]}
+                // joinReset={[upcomingReset]}
               />
             </DashboardCard>
 
@@ -174,6 +172,7 @@ function Dashboard() {
               open={openEventEditCard}
               setOpen={setOpenEventEditCard}
               resets={[upcomingReset, hostByYouReset]}
+              editingEventId={editingEventId}
             />
           </div>
         </div>
