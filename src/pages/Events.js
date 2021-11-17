@@ -127,6 +127,7 @@ export default function Events() {
     setSelectedDayTimeValue(null);
     setSelectedDurationValue(null);
     setDateRange([null, null]);
+    dateRangePickerRef.current.flatpickr.clear();
   };
 
   return (
