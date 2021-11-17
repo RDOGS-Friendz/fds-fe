@@ -105,9 +105,9 @@ function Signup() {
               {/* Form */}
               <form>
                 <div className="space-y-4">
-                  <TextField required label="Username" id="username" value={inputs.username} onChange={handleChange} showHelpText={showHelpTexts.username} helpText={helpTexts.username} />
-                  <TextField required label="Real Name" id="real_name" value={inputs.real_name} onChange={handleChange} showHelpText={showHelpTexts.real_name} helpText={helpTexts.real_name} />
-                  <TextField required label="Email" id="email" value={inputs.email} onChange={handleChange} showHelpText={showHelpTexts.email} helpText={helpTexts.email} />
+                  <TextField required label="Username" id="username" value={inputs.username} onChange={handleChange} showHelpText={showHelpTexts.username} helpText={helpTexts.username} inputClassName="w-full" />
+                  <TextField required label="Real Name" id="real_name" value={inputs.real_name} onChange={handleChange} showHelpText={showHelpTexts.real_name} helpText={helpTexts.real_name} inputClassName="w-full" />
+                  <TextField required label="Email" id="email" value={inputs.email} onChange={handleChange} showHelpText={showHelpTexts.email} helpText={helpTexts.email} inputClassName="w-full" />
                   <Select
                     required
                     label="Gender"
@@ -120,8 +120,8 @@ function Signup() {
                     value={inputs.gender}
                     onChange={handleChange}
                   />
-                  <TextField required label="Password" id="password" type="password" value={inputs.password} onChange={handleChange} showHelpText={showHelpTexts.password} helpText={helpTexts.password} />
-                  <TextField required label="Confirm Password" id="confirmPassword" type="password" value={inputs.confirmPassword} onChange={handleChange} showHelpText={showHelpTexts.confirmPassword} helpText={helpTexts.confirmPassword} />
+                  <TextField required label="Password" id="password" type="password" value={inputs.password} onChange={handleChange} showHelpText={showHelpTexts.password} helpText={helpTexts.password} inputClassName="w-full" />
+                  <TextField required label="Confirm Password" id="confirmPassword" type="password" value={inputs.confirmPassword} onChange={handleChange} showHelpText={showHelpTexts.confirmPassword} helpText={helpTexts.confirmPassword} inputClassName="w-full" />
                   <div className="flex justify-end mt-6">
                     <button type="submit" onClick={handleSubmit} className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap">Sign Up</button>
                   </div>
