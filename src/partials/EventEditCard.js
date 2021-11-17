@@ -13,11 +13,11 @@ import DropdownClassic from './basic/DropdownClassic';
 import { addEvent, deleteEvent, editEvent } from '../slices/eventsSlice';
 
 export default function EventEditCard({ open, setOpen, resets, editingEventId = null }) {
-  const intensityOptions = [
-    { value: 'LOW', label: 'Low' },
-    { value: 'INTERMEDIATE', label: 'Intermediate' },
-    { value: 'HIGH', label: 'High' },
-  ];
+  const intensityOptions = {
+    LOW: 'Low',
+    INTERMEDIATE: 'Intermediate',
+    HIGH: 'High',
+  };
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const events = useSelector(state => state.events);
@@ -118,7 +118,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
     setEndTimeValue(moment().add(1, 'h'));
     setTitle('');
     setIsPrivate(false);
-    setSelectedIntensityValue(0);
+    setSelectedIntensityValue('LOW');
     setNumberOfPeopleNeeded(6);
     setDescription('');
     setOpen(false);
@@ -173,7 +173,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
           is_private: isPrivate,
           location_id: selectedLocationId,
           category_id: selectedCategoryId,
-          intensity: intensityOptions.find(item => item.value === selectedIntensityValue)?.value,
+          intensity: selectedIntensityValue,
           start_time: composedStartTime.toISOString(),
           end_time: composedEndTime.toISOString(),
           num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
@@ -186,7 +186,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
           is_private: isPrivate,
           location_id: selectedLocationId,
           category_id: selectedCategoryId,
-          intensity: intensityOptions.find(item => item.value === selectedIntensityValue)?.value,
+          intensity: selectedIntensityValue,
           start_time: composedStartTime.toISOString(),
           end_time: composedEndTime.toISOString(),
           num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
@@ -216,7 +216,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
 
           {/* Modal content */}
           <div className="mb-4">
-            <Datepicker icon={<GoClock />} label="Date" mode="single" setValue={setDate} />
+            <Datepicker icon={<GoClock />} label="Date" setValue={setDate} />
           </div>
           <div className="mb-4">
             <TextField
@@ -313,7 +313,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
               label="Intensity"
               selected={selectedIntensityValue}
               setSelected={setSelectedIntensityValue}
-              options={intensityOptions}
+              options={Object.keys(intensityOptions).map(key => ({ value: key, label: intensityOptions[key] }))}
             />
           </div>
 

@@ -65,7 +65,7 @@ export default function EventCard({ event, dragging, joinReset = [], bookmarkRes
   return (
     <>
 
-      <div id={event.id} role="presentation" className="bg-white hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 h-full select-none overflow-visible" onClick={onOpenEventDetail}>
+      <div id={event.id} role="presentation" className="bg-white col-span-3 hover:bg-gray-50 active:bg-gray-100 cursor-pointer shadow-md rounded-sm border border-gray-200 p-4 pt-2 mx-2 w-80 h-full select-none overflow-visible" onClick={onOpenEventDetail}>
         {/* Body */}
         <div className="mb-3">
           {/* Info */}
