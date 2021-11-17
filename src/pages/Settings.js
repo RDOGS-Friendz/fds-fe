@@ -3,6 +3,8 @@ import Datepicker from '../partials/basic/DatePicker';
 import MultiSelect from '../partials/basic/MultiSelect';
 import Select from '../partials/basic/Select';
 import TextField from '../partials/basic/TextField';
+import Button from '../partials/basic/Button';
+import Toggle from '../partials/basic/Toggle';
 
 const sports_categories = [
   { label: 'Running', value: '1' },
@@ -67,23 +69,15 @@ function Settings() {
                         {/* Right */}
                         <div>
                           {/* Display My Real Name */}
-                          <div className="flex items-center ml-4">
-                            <div className="text-sm text-gray-500 mr-2 ">Display My Real Name</div>
-                            <div className="text-sm text-gray-400 italic mr-2 ml-2">{showRealName ? 'On' : 'Off'}</div>
-                            <div className="form-switch focus-within:outline-blue">
-                              <input
-                                type="checkbox"
-                                id="real-name"
-                                className="sr-only"
-                                checked={showRealName}
-                                onChange={() => setShowRealName(!showRealName)}
-                              />
-                              <label className="bg-gray-400" htmlFor="real-name">
-                                <span className="bg-white shadow-sm" aria-hidden="true" />
-                                <span className="sr-only">Show Real Name</span>
-                              </label>
-                            </div>
-                          </div>
+                          <Toggle
+                            id="real-name"
+                            checked={showRealName}
+                            onChange={() => setShowRealName(!showRealName)}
+                            DisplayName="Display My Real Name"
+                            AltName="Show Real Name"
+                            onValue="On"
+                            offValue="Off"
+                          />
                         </div>
                       </div>
                       <div>
@@ -121,30 +115,21 @@ function Settings() {
                         {/* Right */}
                         <div>
                           {/* Display My Real Name */}
-                          <div className="flex items-center ml-4">
-                            <div className="text-sm text-gray-500 mr-2">Display My Birthday</div>
-                            <div className="text-sm text-gray-400 italic mr-2 ml-2">{showBday ? 'On' : 'Off'}</div>
-                            <div className="form-switch focus-within:outline-blue">
-                              <input
-                                type="checkbox"
-                                id="bday"
-                                className="sr-only"
-                                checked={showBday}
-                                onChange={() => setShowBday(!showBday)}
-                              />
-                              <label className="bg-gray-400" htmlFor="bday">
-                                <span className="bg-white shadow-sm" aria-hidden="true" />
-                                <span className="sr-only">Show Birthday</span>
-                              </label>
-                            </div>
-                          </div>
+                          <Toggle
+                            id="bday"
+                            checked={showBday}
+                            onChange={() => setShowBday(!showBday)}
+                            DisplayName="Display My Birthday"
+                            AltName="Show Birthday"
+                            onValue="On"
+                            offValue="Off"
+                          />
                         </div>
                       </div>
                       <div className="mb-3">
-                        <label className="block text-sm font-medium mb-1" htmlFor="country">
-                          Preferred Sports
-                        </label>
                         <MultiSelect
+                          label="Preferred Sports"
+                          id="preference"
                           name="preference"
                           placeholder="Select..."
                           value={preferredCategory}
@@ -166,9 +151,9 @@ function Settings() {
                   {/* Panel footer */}
                   <footer>
                     <div className="flex flex-col px-6 py-5 border-t border-gray-200">
-                      <div className="flex self-end">
-                        <button className="btn border-gray-200 hover:border-gray-300 text-gray-600">Cancel</button>
-                        <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3">Save Changes</button>
+                      <div className="flex self-end space-x-2">
+                        <Button variant="secondary">Cancel</Button>
+                        <Button>Save Changes</Button>
                       </div>
                     </div>
                   </footer>
