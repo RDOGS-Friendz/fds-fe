@@ -36,9 +36,16 @@ export default function useCategorySearch() {
   };
 
   const onBlur = () => {
-    // e.stopPropagation();
-    // setInputValue(categories.entities[selectedCategoryId]?.name ?? '');
-    // setShowSuggestions(false);
+    setInputValue('');
+    setSelectedCategoryId(null);
+    setShowSuggestions(false);
+  };
+
+  const onCancel = e => {
+    e.stopPropagation();
+    setInputValue('');
+    setSelectedCategoryId(null);
+    setShowSuggestions(false);
   };
 
   const reset = () => {
@@ -58,5 +65,6 @@ export default function useCategorySearch() {
     suggestedCategoryIds.map(id => categories.entities[id]).filter(item => item !== undefined),
     reset,
     setState,
+    onCancel,
   ];
 }

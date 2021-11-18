@@ -36,9 +36,9 @@ export default function useLocationSearch() {
   };
 
   const onBlur = () => {
-    // e.stopPropagation();
-    // setInputValue(locations.entities[selectedLocationId]?.name ?? '');
-    // setShowSuggestions(false);
+    setInputValue('');
+    setSelectedLocationId(null);
+    setShowSuggestions(false);
   };
 
   const reset = () => {

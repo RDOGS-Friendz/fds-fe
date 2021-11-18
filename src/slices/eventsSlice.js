@@ -44,7 +44,7 @@ export const browseEvent = createAsyncThunk(
       ],
     );
 
-    reportEventIds(res.data.data.map(item => item.id), res.data.total_count);
+    reportEventIds(res.data.data.map(item => item.id), res.data.total_count, offset);
 
     return res.data.data;
   },
@@ -154,7 +154,7 @@ export const editEvent = createAsyncThunk(
       title, is_private, location_id, category_id, intensity, start_time, end_time, num_people_wanted, description,
     }, config);
 
-    dispatch(readEvent({ authToken, event_id: res.data.id }));
+    dispatch(readEvent({ authToken, event_id }));
   },
 );
 
