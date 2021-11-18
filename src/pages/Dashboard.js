@@ -62,6 +62,7 @@ function Dashboard() {
 
   const onClickAddEvent = e => {
     e.stopPropagation();
+    setEditingEventId(null);
     setOpenEventEditCard(true);
   };
 
