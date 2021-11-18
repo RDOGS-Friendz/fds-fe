@@ -153,12 +153,12 @@ function Signup() {
         open={showSuccessFeedbackModal}
         setOpen={setShowSuccessFeedbackModal}
         variant="success"
-        title="Signup successful!"
-        content="Your account has been created, signin and get started!"
+        title={`Welcome, ${inputs.username} 👋🏾`}
+        content="Your account has been created. Now, sign in and let's get started!"
         buttons={(
           <>
             <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => history.push('/signin')}>
-              Go to signin
+              🤲 Sign In Now
             </button>
           </>
         )}

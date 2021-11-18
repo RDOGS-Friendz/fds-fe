@@ -402,8 +402,6 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
                   </>
                 )
             }
-            {/* <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={e => { e.stopPropagation(); setSuccessModalOpen(false); }}>Cancel</button>
-            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Yes, Upgrade it</button> */}
           </div>
         </div>
       </div>
