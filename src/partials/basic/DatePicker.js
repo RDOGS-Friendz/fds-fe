@@ -22,6 +22,7 @@ function Datepicker({
       setValue(moment(dateStr, ['MMM D, YYYY']).toDate());
       instance.element.value = dateStr;
     },
+    disableMobile: 'true',
   };
 
   return (
