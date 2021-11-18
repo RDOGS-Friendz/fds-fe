@@ -19,11 +19,13 @@ export default function TextField({
   return (
     <>
       <div className={`w-full ${wrapperClassName}`}>
+        {(label || required) && (
         <label className="block text-sm font-medium mb-1" htmlFor={id}>
           {label}
           {required
         && <span className="text-red-500">*</span>}
         </label>
+        )}
         <div className="relative w-full">
           {rows === 1
             ? <input id={id} className={`form-input w-70 ${icon ? 'pl-9' : 'pr-9'} ${inputClassName}`} type={type} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />

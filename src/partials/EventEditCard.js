@@ -13,11 +13,11 @@ import DropdownClassic from './basic/DropdownClassic';
 import { addEvent, deleteEvent, editEvent } from '../slices/eventsSlice';
 
 export default function EventEditCard({ open, setOpen, resets, editingEventId = null }) {
-  const intensityOptions = [
-    { value: 'LOW', label: 'Low' },
-    { value: 'INTERMEDIATE', label: 'Intermediate' },
-    { value: 'HIGH', label: 'High' },
-  ];
+  const intensityOptions = {
+    LOW: 'Low',
+    INTERMEDIATE: 'Intermediate',
+    HIGH: 'High',
+  };
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const events = useSelector(state => state.events);
@@ -66,8 +66,9 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
   const [showCategoryHelpTexts, setShowCategoryHelpTexts] = useState(false);
   const [showNumberOfPeopleHelpTexts, setShowNumberOfPeopleHelpTexts] = useState(false);
 
+  const [hasInitialized, setHasInitialized] = useState(false);
   useEffect(() => {
-    if (editingEventId && events.entities[editingEventId]) { // initialize when editing event
+    if (editingEventId && events.entities[editingEventId] && !hasInitialized) { // initialize when editing event
       const editingEvent = events.entities[editingEventId];
       setDate(Date(editingEvent.start_time));
       setStartTime(moment(editingEvent.start_time).format('h:mm a'));
@@ -79,10 +80,37 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
       setEndTimeValue(moment(editingEvent.end_time));
       setIsPrivate(editingEvent.is_private);
       setSelectedIntensityValue(editingEvent.intensity);
-      setNumberOfPeopleNeeded(editingEvent.num_people_wanted);
+      setNumberOfPeopleNeeded(editingEvent.max_participant_count);
       setDescription(editingEvent.description);
+      setHasInitialized(true);
+      setShowTitleHelpTexts(false);
+      setShowLocationHelpTexts(false);
+      setShowCategoryHelpTexts(false);
+      setShowNumberOfPeopleHelpTexts(false);
+    } else if (editingEventId === null && !hasInitialized) {
+      locationReset();
+      categoryReset();
+      setDate(Date());
+      setStartTime(moment().format('h:mm a'));
+      setEndTime(moment().add(1, 'h').format('h:mm a'));
+      setStartTimeValue(moment());
+      setEndTimeValue(moment().add(1, 'h'));
+      setTitle('');
+      setIsPrivate(false);
+      setSelectedIntensityValue('LOW');
+      setNumberOfPeopleNeeded(6);
+      setDescription('');
+      setHasInitialized(true);
+      setShowTitleHelpTexts(false);
+      setShowLocationHelpTexts(false);
+      setShowCategoryHelpTexts(false);
+      setShowNumberOfPeopleHelpTexts(false);
     }
-  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation]);
+  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation, hasInitialized]);
+
+  useEffect(() => {
+    setHasInitialized(false);
+  }, [editingEventId]);
 
   const onStartTimeBlur = e => {
     e.preventDefault();
@@ -118,10 +146,11 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
     setEndTimeValue(moment().add(1, 'h'));
     setTitle('');
     setIsPrivate(false);
-    setSelectedIntensityValue(0);
+    setSelectedIntensityValue('LOW');
     setNumberOfPeopleNeeded(6);
     setDescription('');
     setOpen(false);
+    setHasInitialized(false);
   };
 
   const handleSubmit = async () => {
@@ -173,7 +202,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
           is_private: isPrivate,
           location_id: selectedLocationId,
           category_id: selectedCategoryId,
-          intensity: intensityOptions.find(item => item.value === selectedIntensityValue)?.value,
+          intensity: selectedIntensityValue,
           start_time: composedStartTime.toISOString(),
           end_time: composedEndTime.toISOString(),
           num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
@@ -186,7 +215,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
           is_private: isPrivate,
           location_id: selectedLocationId,
           category_id: selectedCategoryId,
-          intensity: intensityOptions.find(item => item.value === selectedIntensityValue)?.value,
+          intensity: selectedIntensityValue,
           start_time: composedStartTime.toISOString(),
           end_time: composedEndTime.toISOString(),
           num_people_wanted: Number.parseInt(numberOfPeopleNeeded, 10),
@@ -216,7 +245,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
 
           {/* Modal content */}
           <div className="mb-4">
-            <Datepicker icon={<GoClock />} label="Date" mode="single" setValue={setDate} />
+            <Datepicker icon={<GoClock />} label="Date" setValue={setDate} />
           </div>
           <div className="mb-4">
             <TextField
@@ -313,7 +342,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
               label="Intensity"
               selected={selectedIntensityValue}
               setSelected={setSelectedIntensityValue}
-              options={intensityOptions}
+              options={Object.keys(intensityOptions).map(key => ({ value: key, label: intensityOptions[key] }))}
             />
           </div>
 
@@ -329,6 +358,8 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
                   setNumberOfPeopleNeeded(parseInt(e.target.value, 10));
                 } else if (e.target.value.trim() === '') {
                   setNumberOfPeopleNeeded('');
+                } else {
+                  console.log('something happened!');
                 }
               }}
             />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import stringHash from 'string-hash';
 
-export default function Badge({ children = '', color = null }) {
+export default function Badge({ children = '', color = null, onClick }) {
   const [computedColor, setComputedColor] = useState('indigo');
 
   useEffect(() => {
@@ -62,6 +62,21 @@ export default function Badge({ children = '', color = null }) {
           {children}
         </div>
       );
+
+    // as button
+    case 'active':
+      return (
+        <button type="button" className="text-xs inline-flex font-medium bg-indigo-500 text-white rounded-full text-center px-2.5 py-1 hover:opacity-70 cursor-pointer transition-all" onClick={onClick}>
+          {children}
+        </button>
+      );
+    case 'plain':
+      return (
+        <button type="button" className="text-xs inline-flex font-medium bg-white text-gray-500 rounded-full text-center px-2.5 py-1 hover:opacity-70 cursor-pointer transition-all" onClick={onClick}>
+          {children}
+        </button>
+      );
+
     default:
       return (
         <div className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1">
