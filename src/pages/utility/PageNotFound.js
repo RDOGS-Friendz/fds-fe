@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NotFoundImage from '../../images/404-illustration.svg';
+import NotFoundImage from '../../images/404-illustration-1.png';
 
 function PageNotFound() {
   return (

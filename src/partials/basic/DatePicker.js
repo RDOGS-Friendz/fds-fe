@@ -6,7 +6,7 @@ function Datepicker({
   align, mode, id, label, setValue, inputClassName = '',
 }) {
   const options = {
-    mode,
+    mode: 'single',
     static: true,
     monthSelectorType: 'static',
     dateFormat: 'M j, Y',
