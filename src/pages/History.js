@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import useEventsView from '../hooks/useEventsView';
-import EventTable from '../partials/EventTable';
+import EventTable from '../partials/HistoryTable';
 import { readAccountProfile } from '../slices/accountsSlice';
 
 export default function History() {
