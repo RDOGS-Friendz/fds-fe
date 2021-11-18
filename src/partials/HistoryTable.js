@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
-import TableSimple from './TableFull/TableSimple';
-import TableSimpleRow from './TableFull/TableSimpleRow';
+import TableFull from './TableFull/TableFull';
+import TableFullRow from './TableFull/TableFullRow';
+import TableFullCell from './TableFull/TableFullCell';
 import EventDetail from './EventDetail';
-import TableSimpleCell from './TableFull/TableSimpleCell';
 import Badge from './basic/Badge';
 
-export default function EventTable({
+export default function HistoryTable({
   numItems = 5,
   footerButton = null,
   getEventActionButton = () => null,
@@ -68,25 +68,25 @@ export default function EventTable({
       )
       : (
         <div className="bg-white shadow-lg rounded-sm border border-gray-200 relative">
-          <TableSimple columns={['DATE', 'TIME', 'LOCATION', 'TITLE', 'CATEGORY', 'INTENSITY', 'JOINED PEOPLE']}>
+          <TableFull columns={['DATE', 'TIME', 'LOCATION', 'TITLE', 'CATEGORY', 'INTENSITY', 'JOINED PEOPLE']}>
             {events.map((event, index) => (
-              <TableSimpleRow key={event.id} onClick={e => onOpenEventDetail(e, index)}>
-                <TableSimpleCell>{moment(event?.start_time).format('MMM D YYYY')}</TableSimpleCell>
-                <TableSimpleCell>
+              <TableFullRow key={event.id} onClick={e => onOpenEventDetail(e, index)}>
+                <TableFullCell>{moment(event?.start_time).format('MMM D YYYY')}</TableFullCell>
+                <TableFullCell>
                   {moment(event?.start_time).format('h:mm a')}
                   {' '}
                   -
                   {' '}
                   {moment(event?.end_time).format('h:mm a')}
-                </TableSimpleCell>
-                <TableSimpleCell>{locations.entities[event?.location_id]?.name}</TableSimpleCell>
-                <TableSimpleCell>{event?.title}</TableSimpleCell>
-                <TableSimpleCell><Badge>{categories.entities[event?.category_id]?.name}</Badge></TableSimpleCell>
-                <TableSimpleCell><Badge>{getIntensityBadgeText(event?.intensity)}</Badge></TableSimpleCell>
-                <TableSimpleCell>{event?.participant_ids.length}</TableSimpleCell>
-              </TableSimpleRow>
+                </TableFullCell>
+                <TableFullCell>{locations.entities[event?.location_id]?.name}</TableFullCell>
+                <TableFullCell>{event?.title}</TableFullCell>
+                <TableFullCell><Badge>{categories.entities[event?.category_id]?.name}</Badge></TableFullCell>
+                <TableFullCell><Badge>{getIntensityBadgeText(event?.intensity)}</Badge></TableFullCell>
+                <TableFullCell>{event?.participant_ids.length}</TableFullCell>
+              </TableFullRow>
             ))}
-          </TableSimple>
+          </TableFull>
           {events.map((event, index) => (
             <EventDetail key={event.id} event={event} open={detailModalOpen[index]} setOpen={setDetailModalOpenByIndex(index)} />
           ))}

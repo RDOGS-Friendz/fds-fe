@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TableSimple({ columns = [], children }) {
+export default function TableFull({ columns = [], children }) {
   return (
     <div className="overflow-x-auto">
       <table className="table-auto w-full divide-y divide-gray-200">
