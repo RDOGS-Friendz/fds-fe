@@ -66,8 +66,9 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
   const [showCategoryHelpTexts, setShowCategoryHelpTexts] = useState(false);
   const [showNumberOfPeopleHelpTexts, setShowNumberOfPeopleHelpTexts] = useState(false);
 
+  const [hasInitialized, setHasInitialized] = useState(false);
   useEffect(() => {
-    if (editingEventId && events.entities[editingEventId]) { // initialize when editing event
+    if (editingEventId && events.entities[editingEventId] && !hasInitialized) { // initialize when editing event
       const editingEvent = events.entities[editingEventId];
       setDate(Date(editingEvent.start_time));
       setStartTime(moment(editingEvent.start_time).format('h:mm a'));
@@ -79,10 +80,37 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
       setEndTimeValue(moment(editingEvent.end_time));
       setIsPrivate(editingEvent.is_private);
       setSelectedIntensityValue(editingEvent.intensity);
-      setNumberOfPeopleNeeded(editingEvent.num_people_wanted);
+      setNumberOfPeopleNeeded(editingEvent.max_participant_count);
       setDescription(editingEvent.description);
+      setHasInitialized(true);
+      setShowTitleHelpTexts(false);
+      setShowLocationHelpTexts(false);
+      setShowCategoryHelpTexts(false);
+      setShowNumberOfPeopleHelpTexts(false);
+    } else if (editingEventId === null && !hasInitialized) {
+      locationReset();
+      categoryReset();
+      setDate(Date());
+      setStartTime(moment().format('h:mm a'));
+      setEndTime(moment().add(1, 'h').format('h:mm a'));
+      setStartTimeValue(moment());
+      setEndTimeValue(moment().add(1, 'h'));
+      setTitle('');
+      setIsPrivate(false);
+      setSelectedIntensityValue('LOW');
+      setNumberOfPeopleNeeded(6);
+      setDescription('');
+      setHasInitialized(true);
+      setShowTitleHelpTexts(false);
+      setShowLocationHelpTexts(false);
+      setShowCategoryHelpTexts(false);
+      setShowNumberOfPeopleHelpTexts(false);
     }
-  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation]);
+  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation, hasInitialized]);
+
+  useEffect(() => {
+    setHasInitialized(false);
+  }, [editingEventId]);
 
   const onStartTimeBlur = e => {
     e.preventDefault();
@@ -122,6 +150,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
     setNumberOfPeopleNeeded(6);
     setDescription('');
     setOpen(false);
+    setHasInitialized(false);
   };
 
   const handleSubmit = async () => {
@@ -329,6 +358,8 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
                   setNumberOfPeopleNeeded(parseInt(e.target.value, 10));
                 } else if (e.target.value.trim() === '') {
                   setNumberOfPeopleNeeded('');
+                } else {
+                  console.log('something happened!');
                 }
               }}
             />
