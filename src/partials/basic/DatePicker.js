@@ -2,11 +2,11 @@ import moment from 'moment';
 import React from 'react';
 import Flatpickr from 'react-flatpickr';
 
-function Datepicker({
-  align, mode, id, label, setValue,
+function DatePicker({
+  align, id, label, setValue,
 }) {
   const options = {
-    mode,
+    mode: 'single',
     static: true,
     monthSelectorType: 'static',
     dateFormat: 'M j, Y',
@@ -39,4 +39,4 @@ function Datepicker({
   );
 }
 
-export default Datepicker;
+export default DatePicker;

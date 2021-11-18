@@ -88,7 +88,7 @@ function DropdownClassic() {
           onBlur={() => setDropdownOpen(false)}
         >
           {
-            options.map((option) => (
+            options.map(option => (
               <button
                 type="button"
                 key={option.id}

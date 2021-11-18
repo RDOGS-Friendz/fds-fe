@@ -14,6 +14,7 @@ export default function SearchBar(
     onInputBlur,
     showSuggestions = false,
     suggestions = [],
+    placeholder,
   },
 ) {
   return (
@@ -25,7 +26,7 @@ export default function SearchBar(
             {required
         && <span className="text-red-500">*</span>}
           </label>
-          <div className="relative w-70">
+          <div className="relative w-72">
             <input
               id={id}
               className={`form-input w-70${icon ? ' pl-9' : ' pr-9'}`}
@@ -33,6 +34,7 @@ export default function SearchBar(
               onChange={onInputChange}
               onBlur={onInputBlur}
               autoComplete="off"
+              placeholder={placeholder}
             />
             {/* <div className="absolute inset-0 right-auto left-2 flex items-center pointer-events-none">{icon}</div> */}
           </div>
