@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Select({
-  label, id, value, onChange, options, required = false, showHelpText = false, helpText = null,
+  label, id, value, onChange, options, required = false, showHelpText = false, helpText = null, inputClassName = '',
 }) {
   return (
     <>
@@ -11,7 +11,7 @@ export default function Select({
           {required
           && <span className="text-red-500">*</span>}
         </label>
-        <select id={id} className="form-select w-full" value={value} onChange={onChange}>
+        <select id={id} className={`form-select w-full ${inputClassName}`} value={value} onChange={onChange}>
           {options.map(item => <option key={item.value} value={item.value}>{item.label}</option>)}
         </select>
       </div>
