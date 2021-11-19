@@ -91,6 +91,7 @@ export default function Events() {
     error,
     reset,
     privateOnly,
+    totalCount,
   } = useEventsPagination('all', eventSearch, numItemsPerPage);
 
   const handleClickIntensityOption = value => {

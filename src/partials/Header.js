@@ -1,6 +1,7 @@
 import React from 'react';
 
 import UserMenu from '../components/DropdownProfile';
+import AddEventButton from './basic/AddEventButton';
 
 function Header({
   sidebarOpen,
@@ -49,8 +50,9 @@ function Header({
             <SearchModal id="search-modal" searchId="search" modalOpen={searchModalOpen} setModalOpen={setSearchModalOpen} />
             <Notifications align="right" />
             <Help align="right" /> */}
+            <AddEventButton align="right" />
             {/*  Divider */}
-            {/* <hr className="w-px h-6 bg-gray-200 mx-3" /> */}
+            <hr className="w-px h-6 bg-gray-200 mx-1" />
             <UserMenu align="right" />
 
           </div>
