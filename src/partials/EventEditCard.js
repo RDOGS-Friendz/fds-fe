@@ -106,7 +106,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
       setShowCategoryHelpTexts(false);
       setShowNumberOfPeopleHelpTexts(false);
     }
-  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation, hasInitialized]);
+  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation, hasInitialized, categoryReset, locationReset]);
 
   useEffect(() => {
     setHasInitialized(false);
