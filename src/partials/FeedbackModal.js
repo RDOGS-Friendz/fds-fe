@@ -2,7 +2,7 @@ import React from 'react';
 import ModalBlank from './basic/ModalBlank';
 
 export default function FeedbackModal({
-  open, setOpen, buttons = null, variant, content,
+  open, setOpen, buttons = null, variant, content, title = '',
 }) {
   const renderIcon = () => {
     switch (variant) {
@@ -49,7 +49,7 @@ export default function FeedbackModal({
         <div>
           {/* Modal header */}
           <div className="mb-2">
-            <div className="text-lg font-semibold text-gray-800">Upgrade your Subscription?</div>
+            <div className="text-lg font-semibold text-gray-800">{title}</div>
           </div>
           {/* Modal content */}
           <div className="text-sm mb-10">

@@ -14,13 +14,13 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-
-  const reportEventIds = (fetchedEventIds, fetchedTotalCount, offset) => {
-    setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [offset + index]: item }), state));
-    setTotalCount(fetchedTotalCount);
-  };
+  // const [currentOffset, setCurrentOffset] = useState(0);
 
   useEffect(() => {
+    const reportEventIds = (fetchedEventIds, fetchedTotalCount, offset) => {
+      setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [offset + index]: item }), state));
+      setTotalCount(fetchedTotalCount);
+    };
     const fetchEvents = async () => {
       try {
         if (Array(itemsPerPage)
@@ -29,7 +29,6 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
           .reduce((acc, _, i) => acc || eventIds[currentPageIndex * itemsPerPage + i] === undefined, false)) { // some eventId is unknown, fetch needed
           if (!loading) {
             setLoading(true);
-
             if (byAccount && accountId) {
               await dispatch(browseEventByAccount({
                 authToken: auth.token,
@@ -39,7 +38,8 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
                 offset: itemsPerPage * currentPageIndex,
                 reportEventIds,
               })).unwrap();
-            } else {
+              // setCurrentOffset(currentPageIndex * itemsPerPage);
+            } else if (!byAccount) {
               await dispatch(browseEvent({
                 authToken: auth.token,
                 view,
@@ -96,5 +96,6 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
     error,
     reset,
     privateOnly,
+    totalCount,
   };
 }
