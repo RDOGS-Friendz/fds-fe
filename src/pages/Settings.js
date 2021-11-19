@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Datepicker from '../partials/basic/DatePicker';
 import MultiSelect from '../partials/basic/MultiSelect';
 import Select from '../partials/basic/Select';
 import TextField from '../partials/basic/TextField';
 import Button from '../partials/basic/Button';
 import Toggle from '../partials/basic/Toggle';
+
+import { editAccountPrivacy } from '../slices/accountsSlice';
 
 const sports_categories = [
   { label: 'Running', value: '1' },
@@ -25,12 +29,32 @@ const departments = [
 ];
 
 function Settings() {
+  const dispatch = useDispatch();
+  const auth = useSelector(state => state.auth);
   const [showRealName, setShowRealName] = useState(false);
   const [dept, setDept] = useState('');
   const [showBday, setShowBday] = useState(false);
   const [date, setDate] = useState(Date());
   const [description, setDescription] = useState('');
   const [preferredCategory, setPreferredCategory] = useState([]);
+
+  const handleEdit = async () => {
+    await dispatch(editAccountPrivacy({
+      authToken: auth.token,
+      accountId: auth.userAccountId,
+      displayRealName: showRealName,
+      displayBirthday: showBday,
+    }));
+    // await dispatch(editAccountProfile({
+    //   authToken: auth.token,
+    //   accountId: auth.userAccountId,
+    //   tagline,
+    //   department: dept,
+    //   social_media_acct,
+    //   birthday,
+    //   preferred_category_id: preferredCategory,
+    // }));
+  };
 
   return (
     <div className="flex h-screen overflow-hidden">
