@@ -25,6 +25,7 @@ export default function AddEventButton({ align }) {
     <>
       <div className="relative inline-flex">
         <button
+          type="button"
           className="w-8 h-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition duration-150 rounded-full"
           aria-haspopup="true"
           onClick={onClickAddEvent}
@@ -34,9 +35,6 @@ export default function AddEventButton({ align }) {
           <MdAdd />
         </button>
       </div>
-      {/* <Button onClick={onClickAddEvent} icon={<MdAdd />}>
-        Add Event
-      </Button> */}
       <EventEditCard
         open={openEventEditCard}
         setOpen={setOpenEventEditCard}
