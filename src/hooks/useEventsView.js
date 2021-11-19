@@ -14,13 +14,15 @@ export default function useEventsView(view = 'all', search = [], limit = 5, byAc
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const reportEventIds = (fetchedEventIds, fetchedTotalCount) => {
+  const reportEventIds = (fetchedEventIds, fetchedTotalCount, offset) => {
+    // console.log(eventIds, numItemsFetched, fetchedEventIds, fetchedTotalCount);
     setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [numItemsFetched + index]: item }), state));
     setTotalCount(fetchedTotalCount);
-    setNumItemsFetched(state => state + fetchedEventIds.length);
+    setNumItemsFetched(offset + fetchedEventIds.length);
   };
 
   const fetchMore = async () => {
+    // console.log('fetch more', moreToFetch, loading);
     try {
       if (moreToFetch && !loading) {
         setLoading(true);
@@ -61,11 +63,12 @@ export default function useEventsView(view = 'all', search = [], limit = 5, byAc
   };
 
   useEffect(() => {
+    // console.log([numItemsFetched, totalCount]);
     setMoreToFetch(numItemsFetched < totalCount);
   }, [numItemsFetched, totalCount]);
 
   useEffect(() => {
-    reset();
+    if (accountId) { reset(); }
   }, [accountId]);
 
   return [
