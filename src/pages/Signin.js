@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Tooltip from '../components/Tooltip';
 import AuthImage from '../images/auth-image-1.jpg';
 import { signIn } from '../slices/authSlice';
 import TextField from '../partials/basic/TextField';
@@ -58,7 +59,13 @@ function Signin() {
                     helpText="Sign in failed. Check your entries and try again."
                   />
                 </div>
-                <div className="flex items-center justify-end mt-6">
+                <div className="flex items-center justify-between mt-6">
+                  <div className="flex items-center space-x-2">
+                    <Tooltip size="md">
+                      <div className="text-xs text-gray-500">Forgot password? No worries, we&apos;ve got you covered. Please, though, send a request to us so that we can help you out 😉</div>
+                    </Tooltip>
+                    <button type="button" className="text-sm underline hover:no-underline">Forgot password?</button>
+                  </div>
                   <Button type="submit" onClick={handleSubmit}>Sign In</Button>
                 </div>
               </form>
@@ -85,7 +92,7 @@ function Signin() {
         setOpen={setShowQuestionModel}
         variant="info"
         title="Forget your password?"
-        content="Now worries we've got you covered. Please, though, send a request to us so that we can help you out 😉"
+        content="No worries we've got you covered. Please, though, send a request to us so that we can help you out 😉"
         buttons={(
           <>
             <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => setShowQuestionModel(false)}>
