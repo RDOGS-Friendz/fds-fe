@@ -14,9 +14,10 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const [currentOffset, setCurrentOffset] = useState(0);
 
   const reportEventIds = (fetchedEventIds, fetchedTotalCount, offset) => {
-    setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [offset + index]: item }), state));
+    setEventIds(state => fetchedEventIds.reduce((acc, item, index) => ({ ...acc, [currentOffset + index]: item }), state));
     setTotalCount(fetchedTotalCount);
   };
 
@@ -39,6 +40,7 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
                 offset: itemsPerPage * currentPageIndex,
                 reportEventIds,
               })).unwrap();
+              setCurrentOffset(currentPageIndex * itemsPerPage);
             } else {
               await dispatch(browseEvent({
                 authToken: auth.token,
@@ -96,5 +98,6 @@ export default function useEventsPagination(view = 'all', search = [], itemsPerP
     error,
     reset,
     privateOnly,
+    totalCount,
   };
 }

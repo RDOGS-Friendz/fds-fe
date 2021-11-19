@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react'; // numItemsPerPage
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import TableFull from './TableFull/TableFull';
@@ -43,20 +43,6 @@ export default function HistoryTable({
     setDetailModalOpenByIndex(index)(true);
   };
 
-  useEffect(() => {
-    if (totalCount === Infinity && loading === false && error === null) { fetchMore(); }
-  }, [error, fetchMore, loading, totalCount]);
-
-  if (error) {
-    return (
-      <div className="flex flex-col justify-center w-full h-full">
-        <div className="font-semibold text-gray-800 mx-auto my-auto">
-          Oops. Some error occurred.
-        </div>
-      </div>
-    );
-  }
-
   return (
     totalCount === 0
       ? (
@@ -90,7 +76,7 @@ export default function HistoryTable({
           {events.map((event, index) => (
             <EventDetail key={event.id} event={event} open={detailModalOpen[index]} setOpen={setDetailModalOpenByIndex(index)} />
           ))}
-          <div className="flex justify-center mt-3">
+          <div className="flex justify-center mt-1">
             {footerButton}
           </div>
         </div>

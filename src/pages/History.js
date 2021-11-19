@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import useEventsView from '../hooks/useEventsView';
+// import { useParams } from 'react-router-dom';
 import HistoryTable from '../partials/HistoryTable';
 import { readAccountProfile } from '../slices/accountsSlice';
 import PaginationNumeric from '../partials/basic/PaginationNumeric';
@@ -9,20 +8,22 @@ import useEventsPagination from '../hooks/useEventsPagination';
 
 export default function History() {
   const auth = useSelector(state => state.auth);
-  const { accountId: accountIdParam } = useParams();
+  // const { accountId: accountIdParam } = useParams();
   const dispatch = useDispatch();
-
   const [accountId, setAccountId] = useState(null);
-  const [pastEvents, pastTotalCount, pastLoading, pastFetchMore, pastError] = useEventsView(
-    'all',
-    [],
-    10,
-    true,
-    accountId,
-  );
 
-  const [numItemsPerPage, setNumItemsPerPage] = useState(9);
-  const [eventSearch, setEventSearch] = useState([]);
+  useEffect(() => {
+    setAccountId(auth.userAccountId);
+  }, [auth.userAccountId]);
+
+  useEffect(() => {
+    if (accountId) {
+      dispatch(readAccountProfile({ authToken: auth.token, accountId }));
+    }
+  }, [accountId, auth.token, dispatch]);
+
+  const [numItemsPerPage, setNumItemsPerPage] = useState(5);
+
   const {
     displayItems,
     initialized,
@@ -31,19 +32,9 @@ export default function History() {
     switchPage,
     loading,
     error,
-    reset,
     privateOnly,
-  } = useEventsPagination('all', eventSearch, numItemsPerPage);
-
-  useEffect(() => {
-    setAccountId(auth.userAccountId);
-  }, [auth.userAccountId, accountIdParam]);
-
-  useEffect(() => {
-    if (accountId) {
-      dispatch(readAccountProfile({ authToken: auth.token, accountId }));
-    }
-  }, [accountId, auth.token, dispatch]);
+    totalCount,
+  } = useEventsPagination('history', [], numItemsPerPage, true, accountId);
 
   return (
     <main>
@@ -51,29 +42,27 @@ export default function History() {
         <div className="sm:flex sm:justify-between sm:items-center mb-8">
           <h1 className="text-2xl md:text-3xl text-gray-800 font-bold mb-1">History 🏯</h1>
         </div>
-
         <div className="mb-2">
           <HistoryTable
-            events={pastEvents}
-            totalCount={pastTotalCount}
-            loading={pastLoading}
-            fetchMore={pastFetchMore}
-            error={pastError}
-            numItems={10}
+            events={displayItems}
+            totalCount={totalCount}
+            loading={loading}
+            error={error}
+            numItems={numItemsPerPage}
           />
         </div>
         <div className="text-sm text-gray-500 text-center sm:text-right">
           Showing
           {' '}
-          <span className="font-medium text-gray-600">1</span>
+          <span className="font-medium text-gray-600">{currentPageIndex * numItemsPerPage + 1}</span>
           {' '}
           to
           {' '}
-          <span className="font-medium text-gray-600">10</span>
+          <span className="font-medium text-gray-600">{(currentPageIndex + 1) * numItemsPerPage > totalCount ? totalCount : (currentPageIndex + 1) * numItemsPerPage}</span>
           {' '}
           of
           {' '}
-          <span className="font-medium text-gray-600">467</span>
+          <span className="font-medium text-gray-600">{totalCount}</span>
           {' '}
           results
         </div>
