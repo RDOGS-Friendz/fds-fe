@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import AuthImage from '../images/auth-image.jpg';
-import AuthDecoration from '../images/auth-decoration.png';
+import AuthImage from '../images/auth-image-2.jpg';
 import TextField from '../partials/basic/TextField';
 import Select from '../partials/basic/Select';
 
@@ -105,9 +104,9 @@ function Signup() {
               {/* Form */}
               <form>
                 <div className="space-y-4">
-                  <TextField required label="Username" id="username" value={inputs.username} onChange={handleChange} showHelpText={showHelpTexts.username} helpText={helpTexts.username} />
-                  <TextField required label="Real Name" id="real_name" value={inputs.real_name} onChange={handleChange} showHelpText={showHelpTexts.real_name} helpText={helpTexts.real_name} />
-                  <TextField required label="Email" id="email" value={inputs.email} onChange={handleChange} showHelpText={showHelpTexts.email} helpText={helpTexts.email} />
+                  <TextField required label="Username" id="username" value={inputs.username} onChange={handleChange} showHelpText={showHelpTexts.username} helpText={helpTexts.username} inputClassName="w-full" />
+                  <TextField required label="Real Name" id="real_name" value={inputs.real_name} onChange={handleChange} showHelpText={showHelpTexts.real_name} helpText={helpTexts.real_name} inputClassName="w-full" />
+                  <TextField required label="Email" id="email" value={inputs.email} onChange={handleChange} showHelpText={showHelpTexts.email} helpText={helpTexts.email} inputClassName="w-full" />
                   <Select
                     required
                     label="Gender"
@@ -120,8 +119,8 @@ function Signup() {
                     value={inputs.gender}
                     onChange={handleChange}
                   />
-                  <TextField required label="Password" id="password" type="password" value={inputs.password} onChange={handleChange} showHelpText={showHelpTexts.password} helpText={helpTexts.password} />
-                  <TextField required label="Confirm Password" id="confirmPassword" type="password" value={inputs.confirmPassword} onChange={handleChange} showHelpText={showHelpTexts.confirmPassword} helpText={helpTexts.confirmPassword} />
+                  <TextField required label="Password" id="password" type="password" value={inputs.password} onChange={handleChange} showHelpText={showHelpTexts.password} helpText={helpTexts.password} inputClassName="w-full" />
+                  <TextField required label="Confirm Password" id="confirmPassword" type="password" value={inputs.confirmPassword} onChange={handleChange} showHelpText={showHelpTexts.confirmPassword} helpText={helpTexts.confirmPassword} inputClassName="w-full" />
                   <div className="flex justify-end mt-6">
                     <button type="submit" onClick={handleSubmit} className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap">Sign Up</button>
                   </div>
@@ -144,7 +143,6 @@ function Signup() {
         {/* Image */}
         <div className="hidden md:block absolute top-0 bottom-0 right-0 md:w-1/2" aria-hidden="true">
           <img className="object-cover object-center w-full h-full" src={AuthImage} width="760" height="1024" alt="Authentication" />
-          <img className="absolute top-1/4 left-0 transform -translate-x-1/2 ml-8" src={AuthDecoration} width="218" height="224" alt="Authentication decoration" />
         </div>
 
       </div>
