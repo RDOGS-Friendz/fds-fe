@@ -22,7 +22,7 @@ export default function History() {
     }
   }, [accountId, auth.token, dispatch]);
 
-  const [numItemsPerPage, setNumItemsPerPage] = useState(5);
+  const [numItemsPerPage, setNumItemsPerPage] = useState(15);
 
   const {
     displayItems,
