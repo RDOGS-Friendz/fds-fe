@@ -5,6 +5,7 @@ import AuthImage from '../images/auth-image-1.jpg';
 import { signIn } from '../slices/authSlice';
 import TextField from '../partials/basic/TextField';
 import Button from '../partials/basic/Button';
+// import FeedbackModal from '../partials/FeedbackModal';
 
 function Signin() {
   const history = useHistory();
@@ -12,6 +13,7 @@ function Signin() {
   const [passwordInput, setPasswordInput] = useState('');
   const [showSigninFailedHelpText, setShowSigninFailedHelpText] = useState(false);
   const dispatch = useDispatch();
+  // const [showQuestionModel, setShowQuestionModel] = useState(false);
   // const auth = useSelector(state => state.auth);
 
   const handleSubmit = async e => {
@@ -56,10 +58,7 @@ function Signin() {
                     helpText="Sign in failed. Check your entries and try again."
                   />
                 </div>
-                <div className="flex items-center justify-between mt-6">
-                  <div className="mr-1">
-                    <Link className="text-sm underline hover:no-underline" to="/reset-password">Forgot Password?</Link>
-                  </div>
+                <div className="flex items-center justify-end mt-6">
                   <Button type="submit" onClick={handleSubmit}>Sign In</Button>
                 </div>
               </form>
@@ -74,13 +73,27 @@ function Signin() {
             </div>
           </div>
         </div>
-
         {/* Image */}
         <div className="hidden md:block absolute top-0 bottom-0 right-0 md:w-1/2" aria-hidden="true">
           <img className="object-cover object-center w-full h-full" src={AuthImage} width="760" height="1024" alt="Authentication" />
           {/* <img className="absolute top-1/4 left-0 transform -translate-x-1/2 ml-8" src={AuthDecoration} width="218" height="224" alt="Authentication decoration" /> */}
         </div>
       </div>
+      {/* <button type="button" className="text-sm underline hover:no-underline" onClick={() => console.log('fuck')}>Forgot password?</button>
+      <FeedbackModal
+        open={showQuestionModel}
+        setOpen={setShowQuestionModel}
+        variant="info"
+        title="Forget your password?"
+        content="Now worries we've got you covered. Please, though, send a request to us so that we can help you out 😉"
+        buttons={(
+          <>
+            <button type="button" className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white" onClick={() => setShowQuestionModel(false)}>
+              I understand.
+            </button>
+          </>
+        )}
+      /> */}
     </main>
   );
 }
