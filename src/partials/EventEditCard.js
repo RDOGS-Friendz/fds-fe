@@ -319,7 +319,7 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
               </label>
               <div className="text-sm text-gray-400 italic mr-2">{ isPrivate ? 'On' : 'Off' }</div>
               <div className="form-switch focus-within:outline-blue">
-                <input type="checkbox" id="switch-1" className="sr-only" checked={isPrivate} onChange={() => setIsPrivate(!isPrivate)} />
+                <input type="checkbox" id="switch-1" className="sr-only" disabled={editingEventId} checked={isPrivate} onChange={() => { console.log('hello'); setIsPrivate(!isPrivate); }} />
                 <label className="bg-gray-400" htmlFor="switch-1">
                   <span className="bg-white shadow-sm" aria-hidden="true" />
                   <span className="sr-only">Switch label</span>

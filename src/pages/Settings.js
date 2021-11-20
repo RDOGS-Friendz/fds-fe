@@ -78,7 +78,7 @@ function Settings() {
   const [categoryOptions, setCategoryOptions] = useState([]);
 
   const [showRealName, setShowRealName] = useState(false);
-  const [dept, setDept] = useState('');
+  const [dept, setDept] = useState('Information Management');
   const [showBday, setShowBday] = useState(false);
   const [date, setDate] = useState(null);
   const [description, setDescription] = useState('');
@@ -103,7 +103,7 @@ function Settings() {
       authToken: auth.token,
       account_id: auth.userAccountId,
       tagline,
-      department: dept,
+      department: dept || '',
       social_media_acct: socialMediaLink,
       birthday: moment(date).toISOString() ? date : '',
       preferred_category_id: preferredCategory.map((item => item.value)),
@@ -115,7 +115,7 @@ function Settings() {
 
   const handleCancel = () => {
     setDept(accounts.entities[auth.userAccountId].department);
-    setDate(accounts.entities[auth.userAccountId]?.birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : '');
+    setDate(accounts.entities[auth.userAccountId].birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : null);
     setDescription(accounts.entities[auth.userAccountId].about);
     setTagline(accounts.entities[auth.userAccountId].tagline);
     setSocialMediaLink(accounts.entities[auth.userAccountId].social_media_acct);
@@ -136,8 +136,8 @@ function Settings() {
   }, [auth.token, dispatch]);
 
   useEffect(() => {
-    setDept(accounts.entities[auth.userAccountId].department);
-    setDate(accounts.entities[auth.userAccountId]?.birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : '');
+    setDept(accounts.entities[auth.userAccountId].department ? accounts.entities[auth.userAccountId].department : 'Information Management');
+    setDate(accounts.entities[auth.userAccountId].birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : null);
     setDescription(accounts.entities[auth.userAccountId].about);
     setTagline(accounts.entities[auth.userAccountId].tagline);
     setSocialMediaLink(accounts.entities[auth.userAccountId].social_media_acct);
