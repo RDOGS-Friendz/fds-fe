@@ -26,7 +26,7 @@ function Tooltip({
   const sizeClasses = s => {
     switch (s) {
       case 'lg':
-        return 'min-w-72  p-3';
+        return 'min-w-full md:w-72  p-3';
       case 'md':
         return 'min-w-56 p-3';
       case 'sm':

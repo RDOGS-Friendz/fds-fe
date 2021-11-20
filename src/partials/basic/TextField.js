@@ -28,8 +28,8 @@ export default function TextField({
         )}
         <div className="relative w-full">
           {rows === 1
-            ? <input id={id} className={`form-input w-70 ${icon ? 'pl-9' : 'pr-9'} ${inputClassName}`} type={type} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
-            : <textarea id={id} className={`form-input w-70 ${icon ? 'pl-9' : 'pr-9'} ${inputClassName}`} type={type} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} rows={rows} />}
+            ? <input id={id} className={`form-input w-full md:w-72 ${icon ? 'pl-9' : 'pr-9'} ${inputClassName}`} type={type} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
+            : <textarea id={id} className={`form-input w-full md:w-72 ${icon ? 'pl-9' : 'pr-9'} ${inputClassName}`} type={type} value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} rows={rows} />}
           <div className="absolute inset-0 right-auto left-2 flex items-center pointer-events-none">{icon}</div>
         </div>
       </div>

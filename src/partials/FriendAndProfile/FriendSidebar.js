@@ -24,7 +24,7 @@ function FriendSidebar({ friendSidebarOpen, setFriendSidebarOpen }) {
         friendSidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
-      <div className="sticky top-16 bg-white overflow-x-hidden overflow-y-auto no-scrollbar flex-shrink-0 border-r border-gray-200 md:w-72 xl:w-80 h-[calc(100vh-64px)]">
+      <div className="sticky top-16 bg-white overflow-x-hidden overflow-y-auto no-scrollbar flex-shrink-0 border-r border-gray-200 md:w-full md:w-72 xl:w-80 h-[calc(100vh-64px)]">
         {/* Profile group */}
         <div>
           {/* Group body */}
