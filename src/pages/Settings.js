@@ -202,7 +202,7 @@ function Settings() {
                       <div className="text-sm mb-3">Modify the content so that friends can know you better.</div>
                       <div className="mb-3">
                         <TextField
-                          inputClassName="w-80"
+                          inputClassName="w-full"
                           label="Tagline"
                           value={tagline}
                           onChange={e => setTagline(e.target.value)}
@@ -210,7 +210,7 @@ function Settings() {
                       </div>
                       <div className="mb-3">
                         <TextField
-                          inputClassName="w-80"
+                          inputClassName="w-full"
                           label="Instagram  Username"
                           value={socialMediaLink}
                           onChange={e => setSocialMediaLink(e.target.value)}
@@ -223,11 +223,11 @@ function Settings() {
                           value={dept}
                           options={departments}
                           onChange={e => setDept(e.target.value)}
-                          inputClassName="w-80"
+                          inputClassName="w-full"
                         />
                       </div>
                       <div className="mb-3">
-                        <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={date} />
+                        {date && <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={moment(date).format('MMM D, YYYY')} />}
                       </div>
                       <div className="mb-3">
                         <MultiSelect
@@ -242,7 +242,7 @@ function Settings() {
                       </div>
                       <div>
                         <TextField
-                          inputClassName="w-full h-40"
+                          inputClassName="w-full md:w-full h-40"
                           label="Description"
                           value={description}
                           onChange={e => setDescription(e.target.value)}

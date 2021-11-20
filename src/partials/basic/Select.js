@@ -11,7 +11,7 @@ export default function Select({
           {required
           && <span className="text-red-500">*</span>}
         </label>
-        <select id={id} className={`form-select w-full ${inputClassName}`} value={value} onChange={onChange}>
+        <select id={id} className={`form-select w-full md:w-72 ${inputClassName}`} value={value} onChange={onChange}>
           {options.map(item => <option key={item.value} value={item.value}>{item.label}</option>)}
         </select>
       </div>
