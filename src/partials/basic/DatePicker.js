@@ -26,8 +26,6 @@ function Datepicker({
     disableMobile: 'true',
   };
 
-  console.log(date);
-
   return (
     <div className="relative w-full">
       <label className="block text-sm font-medium mb-1" htmlFor={id}>

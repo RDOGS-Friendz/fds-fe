@@ -24,7 +24,7 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
   const locations = useSelector(state => state.locations);
   const categories = useSelector(state => state.categories);
 
-  const [date, setDate] = useState(Date());
+  const [date, setDate] = useState('');
 
   const [startTime, setStartTime] = useState(moment().format('h:mm a'));
   const [endTime, setEndTime] = useState(moment().add(1, 'h').format('h:mm a'));
@@ -71,7 +71,7 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
   useEffect(() => {
     if (editingEventId && events.entities[editingEventId] && !hasInitialized) { // initialize when editing event
       const editingEvent = events.entities[editingEventId];
-      setDate(Date(editingEvent.start_time));
+      setDate(new Date(editingEvent.start_time));
       setStartTime(moment(editingEvent.start_time).format('h:mm a'));
       setEndTime((moment(editingEvent.end_time).isAfter(moment().startOf('d').add(23, 'h'))
         ? moment(editingEvent.end_time).subtract(1, 'd').format('h:mm a')
@@ -147,7 +147,7 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
   const handleClose = () => {
     locationReset();
     categoryReset();
-    setDate(Date());
+    setDate('');
     setStartTime(moment().startOf('h').add(1, 'h').format('h:mm a'));
     setEndTime(moment().startOf('h').add(2, 'h').format('h:mm a'));
     setStartTimeValue(moment().startOf('h').add(1, 'h'));
@@ -245,6 +245,8 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
     handleClose();
   };
 
+  console.log(date);
+
   return (
     <ModalBlank
       id="success-modal"
@@ -257,7 +259,7 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
 
           {/* Modal content */}
           <div className="mb-4">
-            <Datepicker icon={<GoClock />} label="Date" setValue={setDate} date={date} />
+            {date && date !== '' && <Datepicker icon={<GoClock />} label="Date" setValue={setDate} date={moment(date).format('MMM D, YYYY')} />}
           </div>
           <div className="mb-4">
             <TextField

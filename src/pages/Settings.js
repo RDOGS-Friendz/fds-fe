@@ -112,7 +112,7 @@ function Settings() {
 
   const handleCancel = () => {
     setDept(accounts.entities[auth.userAccountId].department);
-    setDate(new Date(accounts.entities[auth.userAccountId].birthday));
+    setDate(accounts.entities[auth.userAccountId].birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : '');
     setDescription(accounts.entities[auth.userAccountId].about);
     setTagline(accounts.entities[auth.userAccountId].tagline);
     setSocialMediaLink(accounts.entities[auth.userAccountId].social_media_acct);
@@ -134,7 +134,7 @@ function Settings() {
 
   useEffect(() => {
     setDept(accounts.entities[auth.userAccountId].department);
-    setDate(new Date(accounts.entities[auth.userAccountId].birthday));
+    setDate(accounts.entities[auth.userAccountId].birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : '');
     setDescription(accounts.entities[auth.userAccountId].about);
     setTagline(accounts.entities[auth.userAccountId].tagline);
     setSocialMediaLink(accounts.entities[auth.userAccountId].social_media_acct);
@@ -152,8 +152,6 @@ function Settings() {
       return ({ label: '', value: id });
     }));
   }, [categories.entities, suggestedCategoryIds]);
-
-  console.log('date:', new Date(accounts.entities[auth.userAccountId].birthday), date);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -227,7 +225,7 @@ function Settings() {
                         />
                       </div>
                       <div className="mb-3">
-                        {date && <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={moment(date).format('MMM D, YYYY')} />}
+                        {date !== '' && <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={moment(date).format('MMM D, YYYY')} />}
                       </div>
                       <div className="mb-3">
                         <MultiSelect
