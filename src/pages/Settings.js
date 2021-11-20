@@ -60,7 +60,7 @@ function Settings() {
                         </label>
                         icheft
                       </div>
-                      <div className="flex justify-between items-center py-3">
+                      <div className="flex flex-wrap gap-y-2 justify-between items-center py-3">
                         {/* Left */}
                         <div>
                           <div className="text-sm font-medium mb-1">Real Name</div>
@@ -73,7 +73,7 @@ function Settings() {
                             id="real-name"
                             checked={showRealName}
                             onChange={() => setShowRealName(!showRealName)}
-                            DisplayName="Display My Real Name"
+                            DisplayName="Show Real Name"
                             AltName="Show Real Name"
                             onValue="On"
                             offValue="Off"
@@ -92,10 +92,10 @@ function Settings() {
                       <h2 className="text-xl text-gray-800 font-bold mb-1">User Profile</h2>
                       <div className="text-sm mb-3">Modify the content so that friends can know you better.</div>
                       <div className="mb-3">
-                        <TextField inputClassName="w-80" label="Tagline" value="PM of IM3008" />
+                        <TextField inputClassName="w-full md:w-80" label="Tagline" value="PM of IM3008" />
                       </div>
                       <div className="mb-3">
-                        <TextField inputClassName="w-80" label="Instagram  Username" value="icheft" />
+                        <TextField inputClassName="w-full md:w-80" label="Instagram  Username" value="icheft" />
                       </div>
                       <div className="mb-3">
                         <Select
@@ -104,13 +104,13 @@ function Settings() {
                           value={dept}
                           options={departments}
                           onChange={e => setDept(e.target.value)}
-                          inputClassName="w-80"
+                          inputClassName="w-full md:w-80"
                         />
                       </div>
-                      <div className="flex justify-between items-center pb-3">
+                      <div className="flex flex-wrap gap-y-2 justify-between items-center pb-3">
                         {/* Left */}
                         <div>
-                          <Datepicker label="Birthday" inputClassName="w-80" mode="single" setValue={setDate} />
+                          <Datepicker label="Birthday" inputClassName="w-full md:w-80" mode="single" setValue={setDate} />
                         </div>
                         {/* Right */}
                         <div>
@@ -119,7 +119,7 @@ function Settings() {
                             id="bday"
                             checked={showBday}
                             onChange={() => setShowBday(!showBday)}
-                            DisplayName="Display My Birthday"
+                            DisplayName="Show Birthday"
                             AltName="Show Birthday"
                             onValue="On"
                             offValue="Off"

@@ -23,13 +23,13 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
 
   const [accountId, setAccountId] = useState(null);
   const [action, setAction] = useState('not-friend');
-  const [
-    pastEvents,
-    pastTotalCount,
-    pastLoading,
-    pastFetchMore,
-    pastError,
-  ] = useEventsView('history', [], 5, true, accountId);
+  const [pastEvents, pastTotalCount, pastLoading, pastFetchMore, pastError] = useEventsView(
+    'history',
+    [],
+    5,
+    true,
+    accountId,
+  );
 
   useEffect(() => {
     if (self) {
@@ -68,12 +68,13 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
       >
         <h2 className="text-gray-800 font-semibold text-4xl mb-3">🔍</h2>
         <h2 className="text-gray-800 font-semibold">Select a friend or friend request to view here.</h2>
-
       </div>
     );
   }
 
-  if (!accounts.entities[accountId]) { return (<PageNotFound />); }
+  if (!accounts.entities[accountId]) {
+    return <PageNotFound />;
+  }
 
   return (
     <div
@@ -84,18 +85,20 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
       {/* Profile background */}
       <div className="relative h-24">
         {/* Close button */}
-        <button
-          type="button"
-          className="md:hidden absolute top-4 left-4 sm:left-6 text-white opacity-80 hover:opacity-100"
-          onClick={() => setFriendSidebarOpen(!friendSidebarOpen)}
-          aria-controls="profile-sidebar"
-          aria-expanded={friendSidebarOpen}
-        >
-          <span className="sr-only">Close sidebar</span>
-          <svg className="w-6 h-6 fill-current text-gray-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
-          </svg>
-        </button>
+        {!self && (
+          <button
+            type="button"
+            className="md:hidden absolute top-4 left-4 sm:left-6 text-white opacity-80 hover:opacity-100"
+            onClick={() => setFriendSidebarOpen(!friendSidebarOpen)}
+            aria-controls="profile-sidebar"
+            aria-expanded={friendSidebarOpen}
+          >
+            <span className="sr-only">Close sidebar</span>
+            <svg className="w-6 h-6 fill-current text-gray-500" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Content */}
@@ -118,16 +121,11 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
           </div>
           {/* Bio */}
 
-          {accounts.entities[accountId].tagline !== ''
-            && (
-            <div className="text-sm mb-2">
-              {accounts.entities[accountId].tagline || <Skeleton />}
-            </div>
-            )}
+          {accounts.entities[accountId].tagline !== '' && (
+            <div className="text-sm mb-2">{accounts.entities[accountId].tagline || <Skeleton />}</div>
+          )}
           {/* Meta */}
-          {
-            accounts.entities[accountId]?.social_media_acct
-            && (
+          {accounts.entities[accountId]?.social_media_acct && (
             <div className="flex flex-wrap justify-center space-x-4">
               <div className="flex items-center">
                 <LinkIcon extraClass="text-gray-400" />
@@ -141,8 +139,7 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
                 </a>
               </div>
             </div>
-            )
-          }
+          )}
         </header>
 
         {/* Actions */}
@@ -163,13 +160,11 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
               <div className="text-sm space-y-2">
                 <div className="sm:ml-0 mt-2 sm:mt-0">
                   <ul className="flex flex-wrap sm:justify-start -m-1">
-                    {
-                      accounts.entities[accountId].preferred_category_id?.map(id => (
-                        <li key={id} className="m-1">
-                          <Badge>{categories.entities[id]?.name}</Badge>
-                        </li>
-                      ))
-                    }
+                    {accounts.entities[accountId].preferred_category_id?.map(id => (
+                      <li key={id} className="m-1">
+                        <Badge>{categories.entities[id]?.name}</Badge>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -178,16 +173,12 @@ function ProfileBody({ friendSidebarOpen, setFriendSidebarOpen, self = false }) 
             {/* About Me */}
             <div>
               <h2 className="text-gray-800 font-semibold mb-2">About Me</h2>
-              <div className="text-sm space-y-2">
-                {accounts.entities[accountId].about}
-              </div>
+              <div className="text-sm space-y-2">{accounts.entities[accountId].about}</div>
             </div>
 
             <div>
               <h2 className="text-gray-800 font-semibold mb-2">
-                Past Event Joined by
-                {' '}
-                {accounts.entities[accountId].username}
+                {`Past Event Joined by ${accounts.entities[accountId].username}`}
               </h2>
               {/* Cards */}
               <div className="grid grid-cols-1 gap-6">

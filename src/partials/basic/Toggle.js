@@ -14,8 +14,8 @@ export default function Toggle({
 }) {
   return (
     <>
-      <div className="flex items-center ml-4">
-        <div className="text-sm text-gray-500 mr-2">{DisplayName}</div>
+      <div className="flex items-center">
+        <div className="text-sm text-gray-500">{DisplayName}</div>
         {showOnOffValue && <div className="text-sm text-gray-400 italic mr-2 ml-2">{checked ? onValue : offValue}</div>}
         <div className="form-switch focus-within:outline-blue">
           <input
