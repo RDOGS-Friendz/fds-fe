@@ -7,10 +7,10 @@ import MultiSelect from '../partials/basic/MultiSelect';
 import Select from '../partials/basic/Select';
 import TextField from '../partials/basic/TextField';
 import Button from '../partials/basic/Button';
-import Toggle from '../partials/basic/Toggle';
 
 import { readAccountProfile, editAccountProfile } from '../slices/accountsSlice';
 import { browseAllCategory } from '../slices/categoriesSlice';
+import genderTypeTransform from '../functions/genderTypeTransform';
 
 const departments = [
   { label: 'Information Management', value: 'Information Management' },
@@ -161,34 +161,14 @@ function Settings() {
                     <section className="border-b border-gray-200 pb-3">
                       <h2 className="text-xl text-gray-800 font-bold mb-1">Static Profile</h2>
                       <div className="text-sm mb-3">You cannot change the value under this section.</div>
-                      <div>
+                      <div className="mb-3">
                         <label className="block text-sm font-medium mb-1" htmlFor="name">
                           Username
                         </label>
                         {accounts.entities[auth.userAccountId].username}
                       </div>
-                      <div className="flex justify-between items-center py-3">
-                        {/* Left */}
-                        <div>
-                          <div className="text-sm font-medium mb-1">Real Name</div>
-                          {accounts.entities[auth.userAccountId].real_name}
-                        </div>
-                        {/* Right */}
-                        <div>
-                          {/* Display My Real Name */}
-                          <Toggle
-                            id="real-name"
-                            checked={showRealName}
-                            onChange={() => setShowRealName(!showRealName)}
-                            DisplayName="Display My Real Name"
-                            AltName="Show Real Name"
-                            onValue="On"
-                            offValue="Off"
-                          />
-                        </div>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="name">
+                      <div className="mb-3">
+                        <label className="block text-sm font-medium mb-1" htmlFor="real_name">
                           Real Name
                         </label>
                         {accounts.entities[auth.userAccountId].real_name}
@@ -197,7 +177,7 @@ function Settings() {
                         <label className="block text-sm font-medium mb-1" htmlFor="name">
                           Gender
                         </label>
-                        {accounts.entities[auth.userAccountId].gender}
+                        {genderTypeTransform(accounts.entities[auth.userAccountId].gender)}
                       </div>
                     </section>
                     {/* Business Profile */}
@@ -230,24 +210,8 @@ function Settings() {
                           inputClassName="w-80"
                         />
                       </div>
-                      <div className="flex justify-between items-center pb-3">
-                        {/* Left */}
-                        <div>
-                          <Datepicker label="Birthday" inputClassName="w-80" mode="single" setValue={setDate} />
-                        </div>
-                        {/* Right */}
-                        <div>
-                          {/* Display My Real Name */}
-                          <Toggle
-                            id="bday"
-                            checked={showBday}
-                            onChange={() => setShowBday(!showBday)}
-                            DisplayName="Display My Birthday"
-                            AltName="Show Birthday"
-                            onValue="On"
-                            offValue="Off"
-                          />
-                        </div>
+                      <div className="mb-3">
+                        <Datepicker label="Birthday" inputClassName="w-80" mode="single" setValue={setDate} />
                       </div>
                       <div className="mb-3">
                         <MultiSelect
