@@ -78,7 +78,7 @@ function Settings() {
   const [showRealName, setShowRealName] = useState(false);
   const [dept, setDept] = useState('');
   const [showBday, setShowBday] = useState(false);
-  const [date, setDate] = useState(Date());
+  const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
   const [tagline, setTagline] = useState('');
   const [socialMediaLink, setSocialMediaLink] = useState('');
@@ -110,6 +110,20 @@ function Settings() {
     dispatch(readAccountProfile({ authToken: auth.token, accountId: auth.userAccountId }));
   };
 
+  const handleCancel = () => {
+    setDept(accounts.entities[auth.userAccountId].department);
+    setDate(new Date(accounts.entities[auth.userAccountId].birthday));
+    setDescription(accounts.entities[auth.userAccountId].about);
+    setTagline(accounts.entities[auth.userAccountId].tagline);
+    setSocialMediaLink(accounts.entities[auth.userAccountId].social_media_acct);
+    setPreferredCategory(accounts.entities[auth.userAccountId].preferred_category_id?.map(id => {
+      if (categories.entities[id]) {
+        return ({ label: categories.entities[id].name, value: id });
+      }
+      return ({ label: '', value: id });
+    }));
+  };
+
   useEffect(() => {
     dispatch(readAccountProfile({ authToken: auth.token, accountId: auth.userAccountId }));
   }, [auth.token, auth.userAccountId, dispatch]);
@@ -120,7 +134,7 @@ function Settings() {
 
   useEffect(() => {
     setDept(accounts.entities[auth.userAccountId].department);
-    setDate(Date(accounts.entities[auth.userAccountId].birthday));
+    setDate(new Date(accounts.entities[auth.userAccountId].birthday));
     setDescription(accounts.entities[auth.userAccountId].about);
     setTagline(accounts.entities[auth.userAccountId].tagline);
     setSocialMediaLink(accounts.entities[auth.userAccountId].social_media_acct);
@@ -138,6 +152,8 @@ function Settings() {
       return ({ label: '', value: id });
     }));
   }, [categories.entities, suggestedCategoryIds]);
+
+  console.log('date:', new Date(accounts.entities[auth.userAccountId].birthday), date);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -211,7 +227,7 @@ function Settings() {
                         />
                       </div>
                       <div className="mb-3">
-                        <Datepicker label="Birthday" inputClassName="w-80" mode="single" setValue={setDate} />
+                        <Datepicker label="Birthday" inputClassName="w-80" mode="single" setValue={setDate} date={date} />
                       </div>
                       <div className="mb-3">
                         <MultiSelect
@@ -239,7 +255,7 @@ function Settings() {
                   <footer>
                     <div className="flex flex-col px-6 py-5 border-t border-gray-200">
                       <div className="flex self-end space-x-2">
-                        <Button variant="secondary">Cancel</Button>
+                        <Button variant="secondary" onClick={() => handleCancel()}>Cancel</Button>
                         <Button onClick={() => handleEdit()}>Save Changes</Button>
                       </div>
                     </div>
