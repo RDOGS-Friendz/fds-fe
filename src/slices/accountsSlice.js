@@ -79,7 +79,7 @@ export const readAccountProfile = createAsyncThunk(
 
 export const editAccountProfile = createAsyncThunk(
   'accounts/editAccountProfile',
-  async ({ authToken, account_id, tagline, department, social_media_acct, birthday, preferred_category_id }) => {
+  async ({ authToken, account_id, tagline, department, social_media_acct, birthday, preferred_category_id, about }) => {
     const config = {
       headers: {
         'auth-token': authToken,
@@ -92,6 +92,7 @@ export const editAccountProfile = createAsyncThunk(
       social_media_acct,
       birthday,
       preferred_category_id,
+      about,
     }, config);
   },
 );

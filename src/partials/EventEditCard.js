@@ -106,7 +106,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
       setShowCategoryHelpTexts(false);
       setShowNumberOfPeopleHelpTexts(false);
     }
-  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation, hasInitialized]);
+  }, [categories.entities, editingEventId, events.entities, locations.entities, setCategory, setLocation, hasInitialized, locationReset, categoryReset]);
 
   useEffect(() => {
     setHasInitialized(false);
@@ -245,7 +245,7 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
 
           {/* Modal content */}
           <div className="mb-4">
-            <Datepicker icon={<GoClock />} label="Date" setValue={setDate} />
+            <Datepicker icon={<GoClock />} label="Date" setValue={setDate} date={date} />
           </div>
           <div className="mb-4">
             <TextField
