@@ -20,7 +20,7 @@ export default function SearchBar(
 ) {
   return (
     <>
-      <div className="w-full">
+      <div className="relative w-full">
         <div>
           <label className="block text-sm font-medium mb-1" htmlFor={id}>
             {label}
