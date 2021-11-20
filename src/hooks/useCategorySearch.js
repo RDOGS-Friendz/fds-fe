@@ -36,8 +36,8 @@ export default function useCategorySearch() {
   };
 
   const onBlur = () => {
-    setInputValue('');
-    setSelectedCategoryId(null);
+    // setInputValue('');
+    // setSelectedCategoryId(null);
     setShowSuggestions(false);
   };
 

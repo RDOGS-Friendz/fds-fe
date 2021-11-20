@@ -68,7 +68,14 @@ export default function Events() {
         ['end_date', dateRange[1]?.toISOString()],
       ].filter(item => item[1] !== null && item[1] !== undefined && item[1] !== ''),
     );
-  }, [dateRange, searchInputValue, selectedCategoryId, selectedDayTimeValue, selectedDurationValue, selectedIntensityValue]);
+  }, [
+    dateRange,
+    searchInputValue,
+    selectedCategoryId,
+    selectedDayTimeValue,
+    selectedDurationValue,
+    selectedIntensityValue,
+  ]);
 
   useEffect(() => {
     if (width < 768) {
@@ -131,9 +138,7 @@ export default function Events() {
   return (
     <main>
       <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-
         <div className="sm:flex sm:justify-between sm:items-center mb-8">
-
           <div className="mb-4 sm:mb-0">
             <h1 className="text-2xl md:text-3xl text-gray-800 font-bold">Find Events ✨</h1>
           </div>
@@ -144,7 +149,6 @@ export default function Events() {
               <span className="xs:block">Search</span>
             </button>
           </div>
-
         </div>
 
         <AccordionBasic title="Filter/Advanced Search" initialState>
@@ -170,11 +174,23 @@ export default function Events() {
                 {Object.keys(intensityOptions)
                   .map(key => ({ value: key, label: intensityOptions[key] }))
                   .map(({ value, label }) => (
-                    <div key={value} className={`flex flex-row items-center mb-2 hover:opacity-70 active:opacity-50 transition-all ${selectedIntensityValue === value && 'text-indigo-500'}`}>
+                    <div
+                      key={value}
+                      className={`flex flex-row items-center mb-2 hover:opacity-70 active:opacity-50 transition-all ${
+                        selectedIntensityValue === value && 'text-indigo-500'
+                      }`}
+                    >
                       <button type="button" onClick={() => handleClickIntensityOption(value)}>
                         {label}
                       </button>
-                      <svg className={`ml-2 flex-shrink-0 fill-current text-indigo-500 ${selectedIntensityValue !== value && 'invisible'}`} width="12" height="9" viewBox="0 0 12 9">
+                      <svg
+                        className={`ml-2 flex-shrink-0 fill-current text-indigo-500 ${
+                          selectedIntensityValue !== value && 'invisible'
+                        }`}
+                        width="12"
+                        height="9"
+                        viewBox="0 0 12 9"
+                      >
                         <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z" />
                       </svg>
                     </div>
@@ -185,11 +201,23 @@ export default function Events() {
                 {Object.keys(dayTimeOptions)
                   .map(key => ({ value: key, label: dayTimeOptions[key] }))
                   .map(({ value, label }) => (
-                    <div key={value} className={`flex flex-row items-center mb-2 hover:opacity-70 active:opacity-50 transition-all ${selectedDayTimeValue === value && 'text-indigo-500'}`}>
+                    <div
+                      key={value}
+                      className={`flex flex-row items-center mb-2 hover:opacity-70 active:opacity-50 transition-all ${
+                        selectedDayTimeValue === value && 'text-indigo-500'
+                      }`}
+                    >
                       <button type="button" onClick={() => handleClickDayTimeOption(value)}>
                         {label}
                       </button>
-                      <svg className={`ml-2 flex-shrink-0 fill-current text-indigo-500 ${selectedDayTimeValue !== value && 'invisible'}`} width="12" height="9" viewBox="0 0 12 9">
+                      <svg
+                        className={`ml-2 flex-shrink-0 fill-current text-indigo-500 ${
+                          selectedDayTimeValue !== value && 'invisible'
+                        }`}
+                        width="12"
+                        height="9"
+                        viewBox="0 0 12 9"
+                      >
                         <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z" />
                       </svg>
                     </div>
@@ -200,11 +228,23 @@ export default function Events() {
                 {Object.keys(durationOptions)
                   .map(key => ({ value: key, label: durationOptions[key] }))
                   .map(({ value, label }) => (
-                    <div key={value} className={`flex flex-row items-center mb-2 hover:opacity-70 active:opacity-50 transition-all ${selectedDurationValue === value && 'text-indigo-500'}`}>
+                    <div
+                      key={value}
+                      className={`flex flex-row items-center mb-2 hover:opacity-70 active:opacity-50 transition-all ${
+                        selectedDurationValue === value && 'text-indigo-500'
+                      }`}
+                    >
                       <button type="button" onClick={() => handleClickDurationOption(value)}>
                         {label}
                       </button>
-                      <svg className={`ml-2 flex-shrink-0 fill-current text-indigo-500 ${selectedDurationValue !== value && 'invisible'}`} width="12" height="9" viewBox="0 0 12 9">
+                      <svg
+                        className={`ml-2 flex-shrink-0 fill-current text-indigo-500 ${
+                          selectedDurationValue !== value && 'invisible'
+                        }`}
+                        width="12"
+                        height="9"
+                        viewBox="0 0 12 9"
+                      >
                         <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z" />
                       </svg>
                     </div>
@@ -217,8 +257,17 @@ export default function Events() {
             </div>
           </div>
           <div className="flex justify-end flex-wrap space-x-2">
-            <Button variant="tertiary" onClick={handleClear}>Clear</Button>
-            <Button variant="secondary" onClick={reset}>Apply</Button>
+            <Button variant="tertiary" onClick={handleClear}>
+              Clear
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                reset(false);
+              }}
+            >
+              Apply
+            </Button>
           </div>
         </AccordionBasic>
 
@@ -226,40 +275,39 @@ export default function Events() {
           <Badge
             color={privateOnly ? 'plain' : 'active'}
             onClick={() => {
-              if (privateOnly) { reset(false); }
+              if (privateOnly) {
+                reset(false);
+              }
             }}
           >
             View All
-
           </Badge>
           <Badge
             color={!privateOnly ? 'plain' : 'active'}
             onClick={() => {
-              if (!privateOnly) { reset(true); }
+              if (!privateOnly) {
+                reset(true);
+              }
             }}
           >
             Private Only
-
           </Badge>
         </div>
 
         {/* Cards */}
         <div className="grid md:grid-cols-6 xl:grid-cols-9 2xl:grid-cols-12 gap-6 justify-items-center mb-5">
-          {
-          loading
-            ? (
-              <div className="col-span-full row-span-full h-96 flex items-center align-middle">
-                <PulseLoader size={6} color="gray" />
-              </div>
-            )
-            : displayItems.map(item => <EventCard key={item.id} event={item} />)
-}
+          {loading ? (
+            <div className="col-span-full row-span-full h-96 flex items-center align-middle">
+              <PulseLoader size={6} color="gray" />
+            </div>
+          ) : (
+            displayItems.map(item => <EventCard key={item.id} event={item} />)
+          )}
         </div>
 
         <div className="flex flex-shrink-0 justify-center col-span-full">
           <PaginationNumeric setPageIndex={switchPage} pageIndex={currentPageIndex} numOfPage={totalNumberOfPage} />
         </div>
-
       </div>
     </main>
   );
