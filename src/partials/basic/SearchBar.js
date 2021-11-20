@@ -5,6 +5,7 @@ export default function SearchBar(
   { id,
     icon,
     label,
+    type,
     required,
     showHelpText = false,
     helpText = null,
@@ -19,17 +20,18 @@ export default function SearchBar(
 ) {
   return (
     <>
-      <div className="relative inline-flex">
+      <div className="w-full">
         <div>
           <label className="block text-sm font-medium mb-1" htmlFor={id}>
             {label}
             {required
         && <span className="text-red-500">*</span>}
           </label>
-          <div className="relative w-72">
+          <div className="relative w-full">
             <input
               id={id}
-              className={`form-input w-70${icon ? ' pl-9' : ' pr-9'}`}
+              className={`form-input w-full md:w-72 ${icon ? ' pl-9' : ' pr-9'}`}
+              type={type}
               value={inputValue}
               onChange={onInputChange}
               onBlur={onInputBlur}

@@ -30,15 +30,15 @@ function DropdownClassic({ label, selected, setSelected, options }) {
   });
 
   return (
-    <div>
+    <div className="w-full">
       <label className="block text-sm font-medium mb-1">
         {label}
       </label>
-      <div className="relative inline-flex">
+      <div className="relative w-full">
         <button
           type="button"
           ref={trigger}
-          className="btn justify-between min-w-44 bg-white border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-600"
+          className="btn justify-between min-w-44 w-full md:w-72 bg-white border-gray-200 hover:border-gray-300 text-gray-500 hover:text-gray-600"
           aria-label="Select date range"
           aria-haspopup="true"
           onClick={() => setDropdownOpen(!dropdownOpen)}
