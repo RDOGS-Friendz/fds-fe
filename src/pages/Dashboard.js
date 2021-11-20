@@ -101,7 +101,7 @@ function Dashboard() {
                 totalCount={suggestedTotalCount}
                 loading={suggestedLoading}
                 fetchMore={suggestedFetchMore}
-                // joinReset={[upcomingReset]}
+                joinReset={[upcomingReset]}
               />
             </DashboardCard>
 
@@ -111,7 +111,7 @@ function Dashboard() {
                 totalCount={upcomingTotalCount}
                 loading={upcomingLoading}
                 fetchMore={upcomingFetchMore}
-                // joinReset={[upcomingReset]}
+                joinReset={[upcomingReset]}
               />
             </DashboardCard>
 
