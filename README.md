@@ -10,6 +10,34 @@
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
     - [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
 
+## Development 
+
+1. Clone this repository
+  ```
+  git clone https://github.com/RDOGS-Friendz/fds-fe.git
+  ```
+2. Open the directory in your favorite text editor (**VS Code** is highly recommended). If you are using VS Code, please make sure you have the mentioned plugins installed.
+4. In terminal, use `yarn` to install the [dependencies](package.json).
+5. Before you run our app, please [connect to a backend server (either ours or yours)](#connecting-to-our-server)
+6. Run `yarn start` to run the app in the development mode. 
+
+### Connecting to Our Server
+
+You have two options:
+
+1. Please contact us for the `.env` file. Our present data are all stored in our server.
+2. If you want to replicate this app, please also consider to clone our [`fds-be` repository](https://github.com/RDOGS-Friendz/fds-be), and follow the instructions there.
+  
+  In your `.env`, you should put in:
+
+  ```
+  REACT_APP_API_ROOT="http://127.0.0.1:8000"
+  CHOKIDAR_USEPOLLING=true
+  FAST_REFRESH=false
+  ```
+
+  That'll do it. 
+
 ## Available Scripts
 
 In the project directory, you can run:
