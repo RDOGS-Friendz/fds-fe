@@ -36,7 +36,7 @@ export default function EventDetail({ open, setOpen, event }) {
     await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
 
-  const onCancelJoinedEvent = async e => {
+  const onCancelJoinEvent = async e => {
     e.stopPropagation();
     await dispatch(cancelJoinEvent({ authToken: auth.token, event_id: event.id }));
     await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
@@ -53,6 +53,15 @@ export default function EventDetail({ open, setOpen, event }) {
     await dispatch(deleteBookmark({ authToken: auth.token, event_id: event.id }));
     await dispatch(readEvent({ authToken: auth.token, event_id: event.id }));
   };
+
+  function MainActionButton() {
+    if (event?.participant_ids.includes(Number(auth.userAccountId))) {
+      return <Button className="w-full" variant="tertiary" onClick={e => onCancelJoinEvent(e)}>JOINED</Button>;
+    } if (event?.participant_ids.length === event?.max_participant_count) {
+      return <Button className="w-full" disabled>FULL</Button>;
+    }
+    return <Button className="w-full" onClick={e => onJoinEvent(e)}>JOIN</Button>;
+  }
 
   return (
     <ModalBasic modalOpen={open} setModalOpen={setOpen}>
@@ -112,15 +121,7 @@ export default function EventDetail({ open, setOpen, event }) {
       </div>
       <div className="px-5 mb-2">
         <div className="flex flex-row space-x-1 w-full mb-1">
-          {event?.participant_ids.includes(Number(auth.userAccountId)) ? (
-            <Button className="w-full" variant="tertiary" onClick={onCancelJoinedEvent}>
-              JOINED
-            </Button>
-          ) : (
-            <Button className="w-full" onClick={onJoinEvent}>
-              JOIN
-            </Button>
-          )}
+          {MainActionButton()}
           {event?.bookmarked ? (
             <Button
               icon={<BsFillBookmarkFill />}
