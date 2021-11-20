@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
-
-import Datepicker from '../partials/basic/DatePicker';
+import DatePicker from 'react-datepicker';
+// import Datepicker from '../partials/basic/DatePicker';
 import MultiSelect from '../partials/basic/MultiSelect';
 import Select from '../partials/basic/Select';
 import TextField from '../partials/basic/TextField';
@@ -11,6 +11,8 @@ import Button from '../partials/basic/Button';
 import { readAccountProfile, editAccountProfile } from '../slices/accountsSlice';
 import { browseAllCategory } from '../slices/categoriesSlice';
 import genderTypeTransform from '../functions/genderTypeTransform';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 const departments = [
   { label: 'Information Management', value: 'Information Management' },
@@ -103,11 +105,12 @@ function Settings() {
       tagline,
       department: dept || '',
       social_media_acct: socialMediaLink,
-      birthday: moment(date).toISOString(),
+      birthday: moment(date).toISOString() ? date : '',
       preferred_category_id: preferredCategory.map((item => item.value)),
       about: description,
     }));
     dispatch(readAccountProfile({ authToken: auth.token, accountId: auth.userAccountId }));
+    setDate(accounts.entities[auth.userAccountId].birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : '');
   };
 
   const handleCancel = () => {
@@ -134,7 +137,7 @@ function Settings() {
 
   useEffect(() => {
     setDept(accounts.entities[auth.userAccountId].department ? accounts.entities[auth.userAccountId].department : 'Information Management');
-    setDate(accounts.entities[auth.userAccountId].birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : '1999-12-31T16:00:00Z');
+    setDate(accounts.entities[auth.userAccountId].birthday ? new Date(accounts.entities[auth.userAccountId].birthday) : null);
     setDescription(accounts.entities[auth.userAccountId].about);
     setTagline(accounts.entities[auth.userAccountId].tagline);
     setSocialMediaLink(accounts.entities[auth.userAccountId].social_media_acct);
@@ -224,8 +227,26 @@ function Settings() {
                           inputClassName="w-full"
                         />
                       </div>
-                      <div className="mb-3">
-                        {date != null && <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={date ? moment(date).format('MMM D, YYYY') : 'Jan 1, 2000'} />}
+                      <div className="relative w-full mb-3">
+                        {/* {typeof moment(date).format('MMM D, YYYY').toLocaleString()}
+                        {typeof moment(accounts.entities[auth.userAccountId]?.birthday).format('MMM D, YYYY').toLocaleString()} */}
+                        {/* selected={startDate} onChange={(date) => setStartDate(date) */}
+                        <label className="block text-sm font-medium mb-1">
+                          Birthday
+                        </label>
+                        <div className="w-full">
+                          <DatePicker className="form-input pl-9 text-gray-500 hover:text-gray-600 font-medium focus:border-gray-300 w-full md:w-72" selected={date} onChange={d => setDate(d)} />
+                          <div className="absolute inset-0 right-auto top-6 flex items-center pointer-events-none">
+                            <svg className="w-4 h-4 fill-current text-gray-500 ml-3" viewBox="0 0 16 16">
+                              <path d="M15 2h-2V0h-2v2H9V0H7v2H5V0H3v2H1a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V3a1 1 0 00-1-1zm-1 12H2V6h12v8z" />
+                            </svg>
+                          </div>
+                        </div>
+                        {/* <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={moment(date).format('MMM D, YYYY').toLocaleString()} /> */}
+                        {/* {
+                          (moment(date).format('MMM D, YYYY').toLocaleString().localeCompare(moment(accounts.entities[auth.userAccountId]?.birthday).format('MMM D, YYYY').toLocaleString()))
+                            ? <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={moment(date).format('MMM D, YYYY').toLocaleString()} /> : <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date="Jan 1, 2000" />
+                        } */}
                       </div>
                       <div className="mb-3">
                         <MultiSelect
