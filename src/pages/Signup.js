@@ -112,7 +112,7 @@ function Signup() {
                     label="Gender"
                     id="gender"
                     options={[
-                      { label: 'Female', value: 'Female' },
+                      { label: 'Female', value: 'FEMALE' },
                       { label: 'Male', value: 'MALE' },
                       { label: 'Other', value: 'OTHER' },
                     ]}
