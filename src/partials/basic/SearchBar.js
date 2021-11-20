@@ -18,6 +18,7 @@ export default function SearchBar(
     placeholder,
   },
 ) {
+  console.log('suggestion', showSuggestions, suggestions.slice(0, 8).map(suggestion => suggestion.name));
   return (
     <>
       <div className="w-full">

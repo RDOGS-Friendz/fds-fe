@@ -91,8 +91,8 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
       setShowCategoryHelpTexts(false);
       setShowNumberOfPeopleHelpTexts(false);
     } else if (editingEventId === null && !hasInitialized) {
-      locationReset();
-      categoryReset();
+      // locationReset();
+      // categoryReset();
       setDate(Date());
       setStartTime(moment().startOf('h').add(1, 'h').format('h:mm a'));
       setEndTime(

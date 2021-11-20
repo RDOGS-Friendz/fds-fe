@@ -36,8 +36,8 @@ export default function useLocationSearch() {
   };
 
   const onBlur = () => {
-    setInputValue('');
-    setSelectedLocationId(null);
+    // setInputValue('');
+    // setSelectedLocationId(null);
     setShowSuggestions(false);
   };
 
