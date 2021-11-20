@@ -22,7 +22,6 @@ export default forwardRef(
       },
       onChange: (selectedDates, dateStr, instance) => {
         const [startDate, endDate] = dateStr.split(' to ');
-        // console.log([startDate, endDate]);
         setValue([moment(startDate, ['MMM D, YYYY']), moment(endDate, ['MMM D, YYYY'])]);
         instance.element.value = dateStr.replace('to', '-');
       },

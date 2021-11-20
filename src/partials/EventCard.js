@@ -68,7 +68,12 @@ export default function EventCard({ event, dragging, joinReset = [], bookmarkRes
     } if (event?.participant_ids.length === event?.max_participant_count) {
       return <Button className="w-full" disabled>FULL</Button>;
     }
-    return <Button className="w-full" onClick={onJoinEvent}>JOIN</Button>;
+    return (
+      <>
+        <Button className="w-full" onClick={onJoinEvent}>JOIN</Button>
+        <Button className="w-full" onClick={() => onJoinEvent}>JOIN</Button>
+      </>
+    );
   };
 
   return (
@@ -105,7 +110,15 @@ export default function EventCard({ event, dragging, joinReset = [], bookmarkRes
           </div>
         </div>
         <div className="flex flex-row space-x-1 w-full">
-          <MainActionButton />
+          {event?.participant_ids.includes(Number(auth.userAccountId)) ? (
+            <Button className="w-full" variant="tertiary" onClick={onCancelJoinEvent}>
+              JOINED
+            </Button>
+          ) : (
+            <Button className="w-full" onClick={onJoinEvent}>
+              JOIN
+            </Button>
+          )}
           {
             event?.bookmarked
               ? <Button icon={<BsFillBookmarkFill />} className="w-15" onClick={onDeleteBookmarkEvent} variant="secondary" />
@@ -114,7 +127,7 @@ export default function EventCard({ event, dragging, joinReset = [], bookmarkRes
         </div>
       </div>
 
-      <EventDetail event={event} open={detailModalOpen} setOpen={setDetailModalOpen} />
+      <EventDetail key={event.id} event={event} open={detailModalOpen} setOpen={setDetailModalOpen} />
     </>
   );
 }

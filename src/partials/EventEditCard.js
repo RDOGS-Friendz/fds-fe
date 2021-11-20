@@ -245,8 +245,6 @@ export default function EventEditCard({ open, setOpen, resets = [], editingEvent
     handleClose();
   };
 
-  console.log(date);
-
   return (
     <ModalBlank
       id="success-modal"
