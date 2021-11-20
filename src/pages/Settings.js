@@ -227,7 +227,7 @@ function Settings() {
                         />
                       </div>
                       <div className="mb-3">
-                        <Datepicker label="Birthday" inputClassName="w-80" mode="single" setValue={setDate} date={date} />
+                        <Datepicker label="Birthday" inputClassName="w-full" mode="single" setValue={setDate} date={date} />
                       </div>
                       <div className="mb-3">
                         <MultiSelect
