@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { MdAdd } from 'react-icons/md';
 import { RiPencilFill } from 'react-icons/ri';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
@@ -165,8 +164,8 @@ function Dashboard() {
                     />
                   )
                 }
-                footerButton={<Button onClick={onClickAddEvent} icon={<MdAdd />}>Add Event</Button>}
-                emptyActionButton={<Button onClick={onClickAddEvent} icon={<MdAdd />}>Add Event</Button>}
+                // footerButton={<Button onClick={onClickAddEvent} icon={<MdAdd />}>Add Event</Button>}
+                // emptyActionButton={<Button onClick={onClickAddEvent} icon={<MdAdd />}>Add Event</Button>}
               />
             </DashboardCard>
             <EventEditCard
