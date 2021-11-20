@@ -12,7 +12,7 @@ import useCategorySearch from '../hooks/useCategorySearch';
 import DropdownClassic from './basic/DropdownClassic';
 import { addEvent, deleteEvent, editEvent } from '../slices/eventsSlice';
 
-export default function EventEditCard({ open, setOpen, resets, editingEventId = null }) {
+export default function EventEditCard({ open, setOpen, resets = [], editingEventId = null }) {
   const intensityOptions = {
     LOW: 'Low',
     INTERMEDIATE: 'Intermediate',
@@ -67,12 +67,15 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
   const [showNumberOfPeopleHelpTexts, setShowNumberOfPeopleHelpTexts] = useState(false);
 
   const [hasInitialized, setHasInitialized] = useState(false);
+
   useEffect(() => {
     if (editingEventId && events.entities[editingEventId] && !hasInitialized) { // initialize when editing event
       const editingEvent = events.entities[editingEventId];
       setDate(Date(editingEvent.start_time));
       setStartTime(moment(editingEvent.start_time).format('h:mm a'));
-      setEndTime(moment(editingEvent.end_time).format('h:mm a'));
+      setEndTime((moment(editingEvent.end_time).isAfter(moment().startOf('d').add(23, 'h'))
+        ? moment(editingEvent.end_time).subtract(1, 'd').format('h:mm a')
+        : moment(editingEvent.end_time).format('h:mm a')));
       setTitle(editingEvent.title);
       setLocation(locations.entities[editingEvent.location_id].name, editingEvent.location_id);
       setCategory(categories.entities[editingEvent.category_id].name, editingEvent.category_id);
@@ -91,10 +94,15 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
       locationReset();
       categoryReset();
       setDate(Date());
-      setStartTime(moment().format('h:mm a'));
-      setEndTime(moment().add(1, 'h').format('h:mm a'));
-      setStartTimeValue(moment());
-      setEndTimeValue(moment().add(1, 'h'));
+      setStartTime(moment().startOf('h').add(1, 'h').format('h:mm a'));
+      setEndTime(
+        moment().startOf('h').add(2, 'h')
+          .format('h:mm a'),
+      );
+      setStartTimeValue(moment().startOf('h').add(1, 'h'));
+      setEndTimeValue(moment().startOf('h').add(2, 'h').isAfter(moment().startOf('d').add(23, 'h'))
+        ? moment().startOf('h').add(2, 'h').subtract(1, 'd')
+        : moment().startOf('h').add(2, 'h'));
       setTitle('');
       setIsPrivate(false);
       setSelectedIntensityValue('LOW');
@@ -140,10 +148,14 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
     locationReset();
     categoryReset();
     setDate(Date());
-    setStartTime(moment().format('h:mm a'));
-    setEndTime(moment().add(1, 'h').format('h:mm a'));
-    setStartTimeValue(moment());
-    setEndTimeValue(moment().add(1, 'h'));
+    setStartTime(moment().startOf('h').add(1, 'h').format('h:mm a'));
+    setEndTime(moment().startOf('h').add(2, 'h').format('h:mm a'));
+    setStartTimeValue(moment().startOf('h').add(1, 'h'));
+    setEndTimeValue(
+      moment().startOf('h').add(2, 'h').isAfter(moment().startOf('d').add(23, 'h'))
+        ? moment().startOf('h').add(2, 'h').subtract(1, 'd')
+        : moment().startOf('h').add(2, 'h'),
+    );
     setTitle('');
     setIsPrivate(false);
     setSelectedIntensityValue('LOW');
@@ -358,8 +370,6 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
                   setNumberOfPeopleNeeded(parseInt(e.target.value, 10));
                 } else if (e.target.value.trim() === '') {
                   setNumberOfPeopleNeeded('');
-                } else {
-                  console.log('something happened!');
                 }
               }}
             />
@@ -402,8 +412,6 @@ export default function EventEditCard({ open, setOpen, resets, editingEventId = 
                   </>
                 )
             }
-            {/* <button className="btn-sm border-gray-200 hover:border-gray-300 text-gray-600" onClick={e => { e.stopPropagation(); setSuccessModalOpen(false); }}>Cancel</button>
-            <button className="btn-sm bg-indigo-500 hover:bg-indigo-600 text-white">Yes, Upgrade it</button> */}
           </div>
         </div>
       </div>
